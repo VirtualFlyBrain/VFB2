@@ -1,9 +1,2 @@
-
-*.DS_Store
-.project
-
-*.name
-
-.settings/.jsdtscope
-
-*.container
+public/*
+.DS_Store
