@@ -68,7 +68,7 @@ disableHugoGeneratorInject = false
 
   # Prefix of link to the git commit detail page. GitInfo must be enabled.
   #
-  gitUrl = "https://github.com/VirtualFlyBrain/VFB2/tree/hugo"
+  gitUrl = "https://github.com/VirtualFlyBrain/VFB2/commit/"
 
   # Set disableReadOtherPosts to true in order to hide the links to other posts.
   #
