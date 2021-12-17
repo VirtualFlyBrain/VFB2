@@ -171,25 +171,29 @@ disableHugoGeneratorInject = false
     url  = "https://github.com/VirtualFlyBrain"
 
   [[params.social]]
-    name = "linkedin"
-    url  = "https://www.linkedin.com/"
+    name = "facebook"
+    url  = "https://www.facebook.com/Virtual-Fly-Brain-131151036987118"
 
   [[params.social]]
-    name = "stackoverflow"
-    url  = "https://www.stackoverflow.com/"
+    name = "tumbler"
+    url  = "https://virtualflybrain.tumblr.com/"
 
 [languages]
   [languages.en]
-    subtitle  = "Hello Friend NG Theme"
+    subtitle  = "A hub for Drosophila melanogaster neural anatomy, imaging data & connectomics."
     weight    = 1
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
   [languages.fr]
-    subtitle  = "Hello Friend NG Theme"
+    subtitle  = "Un site pour l'anatomie neuronale de Drosophila melanogaster, les données d'imagerie et la connectomique."
     weight    = 2
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
 [menu]
+  [[menu.main]]
+    identifier = "vfb"
+    name       = "Open VFB"
+    url        = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto"
   [[menu.main]]
     identifier = "about"
     name       = "About"
