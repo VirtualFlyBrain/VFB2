@@ -18,7 +18,7 @@ The 3D Brain Viewer
 
 Using our [Viewer](/org.geppetto.frontend/geppetto), one can explore the anatomy, as well as view image stacks from datasets integrated by VFB. Any number of images can be displayed at the same time.
 
-See [here]({{< ref "content_report.md" >}} "Content Report") which image datasets are available on VFB.
+See [here]({{< ref "posts/content_report.md" >}} "Content Report") which image datasets are available on VFB.
 
 The Viewer page is divided into 3 areas: the Stack Viewer and its navigation tools are on left; on the right hand side corresponds to the term info window, where information about a term will be shown and where further queries can be done from. The viewer menu with different tabs and functionalities is shown below the viewer.
 
