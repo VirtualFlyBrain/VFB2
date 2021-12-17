@@ -61,7 +61,7 @@ disableHugoGeneratorInject = false
 
   # Home subtitle of the index page.
   #
-  homeSubtitle = "A hub for _Drosophila melanogaster_ neural anatomy and imaging data"
+  homeSubtitle = "A hub for <i>Drosophila melanogaster</i> neural anatomy and imaging data"
 
   # Set a background for the homepage
   # backgroundImage = "assets/images/background.jpg"
