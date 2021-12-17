@@ -48,8 +48,8 @@ disableHugoGeneratorInject = false
   series   = "series"
 
 [params]
-  dateform        = "Jan 2, 2006"
-  dateformShort   = "Jan 2"
+  dateform        = "2 Jan, 2006"
+  dateformShort   = "2 Jan"
   dateformNum     = "2006-01-02"
   dateformNumTime = "2006-01-02 15:04"
 
@@ -61,7 +61,7 @@ disableHugoGeneratorInject = false
 
   # Home subtitle of the index page.
   #
-  homeSubtitle = "Hello Friend NG"
+  homeSubtitle = "A hub for _Drosophila melanogaster_ neural anatomy and imaging data"
 
   # Set a background for the homepage
   # backgroundImage = "assets/images/background.jpg"
@@ -80,7 +80,7 @@ disableHugoGeneratorInject = false
   # Per default, this option is off. 
   # The theme is respecting the prefers-color-scheme of the operating systeme. 
   # With this option on, the page user is able to set the scheme he wants. 
-  enableThemeToggle = false
+  enableThemeToggle = true
 
   # Sharing buttons
   #
