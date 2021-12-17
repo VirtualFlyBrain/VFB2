@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/categories/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hugo.virtualflybrain.org/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://hugo.virtualflybrain.org/fr/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/posts/2014/09/cr%C3%A9ation-dun-nouveau-th%C3%A8me/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hugo.virtualflybrain.org/posts/2014/09/creating-a-new-theme/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://hugo.virtualflybrain.org/fr/posts/2014/09/cr%C3%A9ation-dun-nouveau-th%C3%A8me/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/categories/hugo/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/posts/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hugo.virtualflybrain.org/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://hugo.virtualflybrain.org/fr/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hugo.virtualflybrain.org/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://hugo.virtualflybrain.org/fr/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/posts/2014/04/d%C3%A9buter-avec-hugo/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hugo.virtualflybrain.org/posts/2014/04/getting-started-with-hugo/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://hugo.virtualflybrain.org/fr/posts/2014/04/d%C3%A9buter-avec-hugo/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/categories/go/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/posts/2014/04/introduction-aux-mod%C3%A8les-hugo/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hugo.virtualflybrain.org/posts/2014/04/hugo-template-primer/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://hugo.virtualflybrain.org/fr/posts/2014/04/introduction-aux-mod%C3%A8les-hugo/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/categories/jekyll/</loc>
+    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/posts/2014/03/migrer-vers-hugo-depuis-jekyll/</loc>
+    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hugo.virtualflybrain.org/posts/2014/03/migrate-to-hugo-from-jekyll/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://hugo.virtualflybrain.org/fr/posts/2014/03/migrer-vers-hugo-depuis-jekyll/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/series/</loc>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hugo.virtualflybrain.org/series/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://hugo.virtualflybrain.org/fr/series/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://hugo.virtualflybrain.org/fr/tags/</loc>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://hugo.virtualflybrain.org/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://hugo.virtualflybrain.org/fr/tags/"
+                />
+  </url>
+  
+</urlset>
