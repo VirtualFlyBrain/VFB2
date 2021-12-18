@@ -1,5 +1,5 @@
 baseURL = "/"
-title = "Virtual Fly Brain"
+title = "Goldydocs"
 
 enableRobotsTXT = true
 
@@ -64,27 +64,32 @@ anchor = "smart"
 [services]
 [services.googleAnalytics]
 # Comment out the next line to disable GA tracking. Also disables the feature described in [params.ui.feedback].
-id = "UA-18509775-2"
+id = "UA-00000000-0"
 
 # Language configuration
 
 [languages]
 [languages.en]
 title = "Goldydocs"
-description = "VFB is an interactive tool for neurobiologists to explore the detailed neuroanatomy, neuron connectivity and gene expression of _Drosophila melanogaster_. Our goal is to make it easier for researchers to find relevant anatomical information and reagents."
+description = "A Docsy example site"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
-time_format_default = "02/01/2006"
-time_format_blog = "02/01/2006"
-[languages.fr]
+[languages.no]
 title = "Goldydocs"
-description = "Un site pour l'anatomie neuronale de Drosophila melanogaster, les données d'imagerie et la connectomique."
-languageName ="French"
-contentDir = "content/fr"
+description = "Docsy er operativsystem for skyen"
+languageName ="Norsk"
+contentDir = "content/no"
 time_format_default = "02.01.2006"
 time_format_blog = "02.01.2006"
 
+[languages.fa]
+title = "اسناد گلدی"
+description = "یک نمونه برای پوسته داکسی"
+languageName ="فارسی"
+contentDir = "content/fa"
+time_format_default = "2006.01.02"
+time_format_blog = "2006.01.02"
 
 [markup]
   [markup.goldmark]
@@ -125,12 +130,12 @@ version = "0.0"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
-url_latest_version = "https://virtualflybrain.org"
+url_latest_version = "https://example.com"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/VirtualFlyBrain/VFB2"
+github_repo = "https://github.com/google/docsy-example"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-github_project_repo = "https://github.com/VirtualFlyBrain"
+github_project_repo = "https://github.com/google/docsy"
 
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
@@ -140,7 +145,7 @@ github_project_repo = "https://github.com/VirtualFlyBrain"
 # github_branch= "main"
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
-gcs_engine_id = "012773655283321966452:lczlp8tfhfs"
+gcs_engine_id = "d72aa9b2712488cc3"
 
 # Enable Algolia DocSearch
 algolia_docsearch = false
@@ -185,19 +190,24 @@ enable = false
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
-	name = "User support forum"
-	url = "https://groups.google.com/g/vfb-suport"
+	name = "User mailing list"
+	url = "https://example.org/mail"
 	icon = "fa fa-envelope"
-        desc = "Discussion and help"
+        desc = "Discussion and help from your fellow users"
 [[params.links.user]]
 	name ="Twitter"
-	url = "https://twitter.com/virtualflybrain"
+	url = "https://example.org/twitter"
 	icon = "fab fa-twitter"
         desc = "Follow us on Twitter to get the latest news!"
+[[params.links.user]]
+	name = "Stack Overflow"
+	url = "https://example.org/stack"
+	icon = "fab fa-stack-overflow"
+        desc = "Practical questions and curated answers"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "GitHub"
-	url = "https://github.com/VirtualFlyBrain"
+	url = "https://github.com/google/docsy"
 	icon = "fab fa-github"
         desc = "Development takes place here!"
 [[params.links.developer]]
@@ -206,7 +216,8 @@ enable = false
 	icon = "fab fa-slack"
         desc = "Chat with other project developers"
 [[params.links.developer]]
-	name = "Developer/Curator mailing list"
-	url = "mailto:data@virtualflybrain.org"
+	name = "Developer mailing list"
+	url = "https://example.org/mail"
 	icon = "fa fa-envelope"
-        desc = "Discuss data addition, corection or development issues around the project"
+        desc = "Discuss development issues around the project"
+
