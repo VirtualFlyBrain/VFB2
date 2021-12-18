@@ -70,13 +70,13 @@ id = "UA-18509775-2"
 
 [languages]
 [languages.en]
-title = "Goldydocs"
+title = "Virtual Fly Brain"
 description = "VFB is an interactive tool for neurobiologists to explore the detailed neuroanatomy, neuron connectivity and gene expression of _Drosophila melanogaster_. Our goal is to make it easier for researchers to find relevant anatomical information and reagents."
 languageName ="English"
 # Weight used for sorting.
 weight = 1
 [languages.fr]
-title = "Goldydocs"
+title = "Virtual Fly Brain"
 description = "Un site pour l'anatomie neuronale de Drosophila melanogaster, les données d'imagerie et la connectomique."
 languageName ="French"
 contentDir = "content/fr"
