@@ -1,7 +1,7 @@
 baseURL = "https://hugo.virtualflybrain.org"
 title   = "Virtual Fly Brain"
 languageCode = "en-us"
-theme = "hello-friend-ng"
+theme = "docsy"
 
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
