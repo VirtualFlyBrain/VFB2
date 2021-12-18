@@ -1,204 +1,212 @@
-baseURL = "https://hugo.virtualflybrain.org"
-title   = "Virtual Fly Brain"
-languageCode = "en-us"
-theme = "docsy"
-
-PygmentsCodeFences = true
-PygmentsStyle = "monokai"
-
-paginate  = 10
-rssLimit  = 10  # Maximum number of items in the RSS feed.
-copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
-
-# googleAnalytics = ""
-# disqusShortname = ""
-
-archetypeDir = "archetypes"
-contentDir   = "content"
-dataDir      = "data"
-layoutDir    = "layouts"
-publishDir   = "public"
-
-buildDrafts  = false
-buildFuture  = false
-buildExpired = false
-canonifyURLs = true
+baseURL = "/"
+title = "Virtual Fly Brain"
 
 enableRobotsTXT = true
-enableGitInfo   = true
-enableEmoji     = true
-enableMissingTranslationPlaceholders = false
-disableRSS     = false
-disableSitemap = false
-disable404     = false
-disableHugoGeneratorInject = false
 
-[permalinks]
-  posts = "/posts/:year/:month/:title/"
+# Hugo allows theme composition (and inheritance). The precedence is from left to right.
+theme = ["docsy"]
 
-[author]
-  name = "Robert Court"
+# Will give values to .Lastmod etc.
+enableGitInfo = true
 
-[blackfriday]
-  hrefTargetBlank = true
+# Language settings
+contentDir = "content/en"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+# Useful when translating.
+enableMissingTranslationPlaceholders = true
 
+# Comment out to enable taxonomies in Docsy
+# disableKinds = ["taxonomy", "taxonomyTerm"]
+
+# You can add your own taxonomies
 [taxonomies]
-  tag      = "tags"
-  category = "categories"
-  series   = "series"
+tag = "tags"
+category = "categories"
 
-[params]
-  dateform        = "Jan 2, 2006"
-  dateformShort   = "Jan 2"
-  dateformNum     = "2006-01-02"
-  dateformNumTime = "2006-01-02 15:04"
+[params.taxonomy]
+# set taxonomyCloud = [] to hide taxonomy clouds
+taxonomyCloud = ["tags", "categories"] 
 
-  # Metadata mostly used in document's head
-  #
-  description = "VFB integrates data curated from the literature with image data from many bulk sources. The search system allows you to search for neurons and neuroanatomical structures using almost any name found in the literature. The query system can identify neurons innervating any specified neuropil or fasciculating with any specified tract. It also allows queries for genes, transgenes and phenotypes expressed in any brain region or neuron. Search and query results combine referenced textual descriptions with 3D images and links to originating data sources. VFB features tens of thousands of 3D images of neurons, clones and expression patterns, registered to standard template brains. Any combination of these images can be viewed together. A BLAST-type query system (NBLAST) allows you to find similar neurons and drivers starting from a registered neuron."
-  keywords = ""
-  images = [""]
+# If used, must have same lang as taxonomyCloud
+taxonomyCloudTitle = ["Tag Cloud", "Categories"] 
 
-  # Home subtitle of the index page.
-  #
-  homeSubtitle = "A hub for Drosophila melanogaster neural anatomy, imaging data & connectomics."
+# set taxonomyPageHeader = [] to hide taxonomies on the page headers
+taxonomyPageHeader = ["tags", "categories"] 
 
-  # Set a background for the homepage
-  # backgroundImage = "assets/images/background.jpg"
 
-  # Prefix of link to the git commit detail page. GitInfo must be enabled.
-  #
-  gitUrl = "https://github.com/VirtualFlyBrain/VFB2/commit/"
+# Highlighting config
+pygmentsCodeFences = true
+pygmentsUseClasses = false
+# Use the new Chroma Go highlighter in Hugo.
+pygmentsUseClassic = false
+#pygmentsOptions = "linenos=table"
+# See https://help.farbox.com/pygments.html
+pygmentsStyle = "tango"
 
-  # Set disableReadOtherPosts to true in order to hide the links to other posts.
-  #
-  disableReadOtherPosts = false
+# Configure how URLs look like per section.
+[permalinks]
+blog = "/:section/:year/:month/:day/:slug/"
 
-  # Enable theme toggle
-  # 
-  # This options enables the theme toggle for the theme. 
-  # Per default, this option is off. 
-  # The theme is respecting the prefers-color-scheme of the operating systeme. 
-  # With this option on, the page user is able to set the scheme he wants. 
-  enableThemeToggle = false
+## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
+[blackfriday]
+plainIDAnchors = true
+hrefTargetBlank = true
+angledQuotes = false
+latexDashes = true
 
-  # Sharing buttons
-  #
-  # There are a lot of buttons preconfigured. If you want to change them,
-  # generate the buttons here: https://sharingbuttons.io
-  # and add them into your own `layouts/partials/sharing-buttons.html`
-  #
-  enableSharingButtons = true
+# Image processing configuration.
+[imaging]
+resampleFilter = "CatmullRom"
+quality = 75
+anchor = "smart"
 
-  # Global language menu
-  #
-  # Enables the global language menu.
-  #
-  enableGlobalLanguageMenu = false
+[services]
+[services.googleAnalytics]
+# Comment out the next line to disable GA tracking. Also disables the feature described in [params.ui.feedback].
+id = "UA-18509775-2"
 
-  # Integrate Javascript files or stylesheets by adding the url to the external assets or by
-  # linking local files with their path relative to the static folder, e.g. "css/styles.css"
-  #
-  customCSS = []
-  customJS  = []
-
-  # Toggle this option need to rebuild SCSS, requires extended version of Hugo
-  #
-  justifyContent = false  # Set "text-align: justify" to .post-content.
-
-  # Custom footer 
-  # If you want, you can easily override the default footer with your own content. 
-  #
-  [params.footer]
-    trademark = true
-    rss = true
-    copyright = true
-    author = true
-
-    topText = []
-    bottomText = [
-      "Powered by <a href=\"http://gohugo.io\">Hugo</a>",
-      "Made with &#10084; by <a href=\"https://github.com/rhazdon\">Djordje Atlialp</a>"
-    ]
-
-  # Colors for favicons
-  #
-  [params.favicon.color]
-    mask = "#1b1c1d"
-    msapplication = "#1b1c1d"
-    theme = "#1b1c1d"
-
-  [params.logo]
-    logoMark     = ">"
-    logoText     = "VFB"
-    logoHomeLink = "/"
-    # Set true to remove the logo cursor entirely.
-    # logoCursorDisabled = false
-    # Set to a valid CSS color to change the cursor in the logo.
-    # logoCursorColor    = "#67a2c9"
-    # Set to a valid CSS time value to change the animation duration, "0s" to disable.
-    # logoCursorAnimate  = "2s"
-
-  # Commento is more than just a comments widget you can embed — 
-  # it’s a return to the roots of the internet. 
-  # An internet without the tracking and invasions of privacy. 
-  # An internet that is simple and lightweight. 
-  # An internet that is focused on interesting discussions, not ads. 
-  # A better internet.
-  # Uncomment this to enable Commento.
-  #
-  # [params.commento]
-  #   url = ""
-
-  # Uncomment this if you want a portrait on your start page
-  #
-  # [params.portrait]
-  #   path     = "/img/image.jpg"
-  #   alt      = "Portrait"
-  #   maxWidth = "50px"
-
-  # Social icons
-  [[params.social]]
-    name = "twitter"
-    url  = "https://twitter.com/virtualflybrain"
-
-  [[params.social]]
-    name = "email"
-    url  = "mailto:support@virtualflybrain.org"
-
-  [[params.social]]
-    name = "github"
-    url  = "https://github.com/VirtualFlyBrain"
-
-  [[params.social]]
-    name = "facebook"
-    url  = "https://www.facebook.com/Virtual-Fly-Brain-131151036987118"
-
-  [[params.social]]
-    name = "tumbler"
-    url  = "https://virtualflybrain.tumblr.com/"
+# Language configuration
 
 [languages]
-  [languages.en]
-    subtitle  = "A hub for Drosophila melanogaster neural anatomy, imaging data & connectomics."
-    weight    = 1
-    copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+[languages.en]
+title = "Goldydocs"
+description = "VFB is an interactive tool for neurobiologists to explore the detailed neuroanatomy, neuron connectivity and gene expression of _Drosophila melanogaster_. Our goal is to make it easier for researchers to find relevant anatomical information and reagents."
+languageName ="English"
+# Weight used for sorting.
+weight = 1
+time_format_default = "02/01/2006"
+time_format_blog = "02/01/2006"
+[languages.fr]
+title = "Goldydocs"
+description = "Un site pour l'anatomie neuronale de Drosophila melanogaster, les données d'imagerie et la connectomique."
+languageName ="French"
+contentDir = "content/fr"
+time_format_default = "02.01.2006"
+time_format_blog = "02.01.2006"
 
-  [languages.fr]
-    subtitle  = "Un site pour l'anatomie neuronale de Drosophila melanogaster, les données d'imagerie et la connectomique."
-    weight    = 2
-    copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
-[menu]
-  [[menu.main]]
-    identifier = "vfb"
-    name       = "Open VFB"
-    url        = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto"
-  [[menu.main]]
-    identifier = "about"
-    name       = "About"
-    url        = "about/"
-  [[menu.main]]
-    identifier = "posts"
-    name       = "Posts"
-    url        = "posts/"
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+      # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
+      style = "tango"
+      # Uncomment if you want your chosen highlight style used for code blocks without a specified language
+      # guessSyntax = "true"
+
+# Everything below this are Site Params
+
+# Comment out if you don't want the "print entire section" link enabled.
+[outputs]
+section = ["HTML", "print", "RSS"]
+
+[params]
+copyright = "The Docsy Authors"
+privacy_policy = "https://policies.google.com/privacy"
+
+# First one is picked as the Twitter card image if not set on page.
+# images = ["images/project-illustration.png"]
+
+# Menu title if your navbar has a versions selector to access old versions of your site.
+# This menu appears only if you have at least one [params.versions] set.
+version_menu = "Releases"
+
+# Flag used in the "version-banner" partial to decide whether to display a 
+# banner on every page indicating that this is an archived version of the docs.
+# Set this flag to "true" if you want to display the banner.
+archived_version = false
+
+# The version number for the version of the docs represented in this doc set.
+# Used in the "version-banner" partial to display a version number for the 
+# current doc set.
+version = "0.0"
+
+# A link to latest version of the docs. Used in the "version-banner" partial to
+# point people to the main doc site.
+url_latest_version = "https://virtualflybrain.org"
+
+# Repository configuration (URLs for in-page links to opening issues and suggesting changes)
+github_repo = "https://github.com/VirtualFlyBrain/VFB2"
+# An optional link to a related project repo. For example, the sibling repository where your product code lives.
+github_project_repo = "https://github.com/VirtualFlyBrain"
+
+# Specify a value here if your content directory is not in your repo's root directory
+# github_subdir = ""
+
+# Uncomment this if you have a newer GitHub repo with "main" as the default branch,
+# or specify a new value if you want to reference another branch in your GitHub links
+# github_branch= "main"
+
+# Google Custom Search Engine ID. Remove or comment out to disable search.
+gcs_engine_id = "012773655283321966452:lczlp8tfhfs"
+
+# Enable Algolia DocSearch
+algolia_docsearch = false
+
+# Enable Lunr.js offline search
+offlineSearch = false
+
+# Enable syntax highlighting and copy buttons on code blocks with Prism
+prism_syntax_highlighting = false
+
+# User interface configuration
+[params.ui]
+#  Set to true to disable breadcrumb navigation.
+breadcrumb_disable = false
+# Set to true to disable the About link in the site footer
+footer_about_disable = false
+# Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top navbar
+navbar_logo = true
+# Set to true if you don't want the top navbar to be translucent when over a `block/cover`, like on the homepage.
+navbar_translucent_over_cover_disable = false
+# Enable to show the side bar menu in its compact state.
+sidebar_menu_compact = false
+# Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
+sidebar_search_disable = false
+
+# Adds a H2 section titled "Feedback" to the bottom of each doc. The responses are sent to Google Analytics as events.
+# This feature depends on [services.googleAnalytics] and will be disabled if "services.googleAnalytics.id" is not set.
+# If you want this feature, but occasionally need to remove the "Feedback" section from a single page,
+# add "hide_feedback: true" to the page's front matter.
+[params.ui.feedback]
+enable = true
+# The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
+yes = 'Glad to hear it! Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
+no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
+
+# Adds a reading time to the top of each doc.
+# If you want this feature, but occasionally need to remove the Reading time from a single page, 
+# add "hide_readingtime: true" to the page's front matter
+[params.ui.readingtime]
+enable = false
+
+[params.links]
+# End user relevant links. These will show up on left side of footer and in the community page if you have one.
+[[params.links.user]]
+	name = "User support forum"
+	url = "https://groups.google.com/g/vfb-suport"
+	icon = "fa fa-envelope"
+        desc = "Discussion and help"
+[[params.links.user]]
+	name ="Twitter"
+	url = "https://twitter.com/virtualflybrain"
+	icon = "fab fa-twitter"
+        desc = "Follow us on Twitter to get the latest news!"
+# Developer relevant links. These will show up on right side of footer and in the community page if you have one.
+[[params.links.developer]]
+	name = "GitHub"
+	url = "https://github.com/VirtualFlyBrain"
+	icon = "fab fa-github"
+        desc = "Development takes place here!"
+[[params.links.developer]]
+	name = "Slack"
+	url = "https://example.org/slack"
+	icon = "fab fa-slack"
+        desc = "Chat with other project developers"
+[[params.links.developer]]
+	name = "Developer/Curator mailing list"
+	url = "mailto:data@virtualflybrain.org"
+	icon = "fa fa-envelope"
+        desc = "Discuss data addition, corection or development issues around the project"
