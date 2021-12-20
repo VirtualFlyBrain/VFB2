@@ -101,7 +101,7 @@ time_format_blog = "02.01.2006"
 section = ["HTML", "print", "RSS"]
 
 [params]
-copyright = "The Docsy Authors"
+copyright = "VirtualFlyBrain.org"
 privacy_policy = "https://policies.google.com/privacy"
 
 # First one is picked as the Twitter card image if not set on page.
@@ -156,7 +156,7 @@ breadcrumb_disable = false
 # Set to true to disable the About link in the site footer
 footer_about_disable = false
 # Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top navbar
-navbar_logo = true
+navbar_logo = false
 # Set to true if you don't want the top navbar to be translucent when over a `block/cover`, like on the homepage.
 navbar_translucent_over_cover_disable = false
 # Enable to show the side bar menu in its compact state.
