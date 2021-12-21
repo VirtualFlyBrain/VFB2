@@ -11,6 +11,8 @@ Description: >
 
 #feel free to add extra details here or include a readme file
 
+{{ $.Param "ontology" }}
+
 <a href={{ printf "https://www.ebi.ac.uk/ols/ontologies/%s" $.Params.ontology }} target="_blank"><img src="https://www.ebi.ac.uk/ols/img/OLS_logo_2017.png" style="max-width: 20%; background: #000000; padding: 5px;" alt="Open in the Ontology Lookup Service (OLS)" ></a>
 
 <div id="result">
