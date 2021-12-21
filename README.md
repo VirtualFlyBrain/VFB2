@@ -1,4 +1,4 @@
-# VFB2
+# Virtual Fly Brain Docs
 
 Static documentation site for VirtualFlyBrain.org
 
