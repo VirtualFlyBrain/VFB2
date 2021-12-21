@@ -184,15 +184,25 @@ enable = false
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
-	name = "User support forum"
-	url = "https://groups.google.com/g/vfb-suport"
+	name = "Support"
+	url = "mailto:support@virtualflybrain.org"
 	icon = "fa fa-envelope"
-        desc = "Discussion and help"
+        desc = "Email the user support forum"
+[[params.links.user]]
+	name = "F.A.Q."
+	url = "https://groups.google.com/g/vfb-suport"
+	icon = "fas fa-question-circle"
+        desc = "See if your question has already been answered in the support forum"
 [[params.links.user]]
 	name ="Twitter"
 	url = "https://twitter.com/virtualflybrain"
 	icon = "fab fa-twitter"
         desc = "Follow us on Twitter to get the latest news!"
+[params.links.user]]
+	name = "Data Requests"
+	url = "mailto:data@virtualflybrain.org"
+	icon = "fas fa-envelope-square"
+        desc = "Contact us privatly about data inclusion"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "GitHub"
@@ -201,11 +211,11 @@ enable = false
         desc = "Development takes place here!"
 [[params.links.developer]]
 	name = "Slack"
-	url = "https://example.org/slack"
+	url = "https://virtualflybrain.slack.com"
 	icon = "fab fa-slack"
         desc = "Chat with other project developers"
 [[params.links.developer]]
 	name = "Developer/Curator mailing list"
 	url = "mailto:data@virtualflybrain.org"
-	icon = "fa fa-envelope"
+	icon = "fas fa-envelope-square"
         desc = "Discuss data addition, corection or development issues around the project"
