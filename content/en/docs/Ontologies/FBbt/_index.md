@@ -1,8 +1,8 @@
 ---
 title: "Drosophila Anatomy Ontology (DAO)"
 linkTitle: "Drosophila Anatomy Ontology (DAO)"
-tags:[ontologies,annotation]
-content:[ontologies,annotations]
+tags: [ontologies,annotation]
+content: [ontologies,annotations]
 weight: 20
 Description: >
   An ontology of Drosophila melanogaster anatomy.
