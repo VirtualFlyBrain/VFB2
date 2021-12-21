@@ -1,12 +1,12 @@
 ---
-title: "Drosophila Anatomy Ontology (DAO)"
-linkTitle: "Drosophila Anatomy Ontology (DAO)"
-tags: [ontologies,annotation,FBbt,DAO]
+title: "FlyBase Developmental Ontology (FBdv)"
+linkTitle: "FlyBase Developmental Ontology (FBdv)"
+tags: [ontologies,annotation,FBdv]
 content: [ontologies,annotations]
 weight: 20
 Description: >
-  An ontology of Drosophila melanogaster anatomy.
-ontology: fbbt
+  An ontology of Drosophila melanogaster developmental stages.
+ontology: fbdv
 ---
 
 #feel free to add extra details here or include a readme file
