@@ -6,7 +6,7 @@ content: [ontologies,annotations]
 weight: 20
 Description: >
   A miscellaneous ontology of terms used for curation in FlyBase, including the DPO.
-ontology: fbcv
+ontology: "fbcv"
 ---
 
 #feel free to add extra details here or include a readme file

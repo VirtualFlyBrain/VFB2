@@ -6,7 +6,7 @@ content: [ontologies,annotations]
 weight: 20
 Description: >
   An ontology of Drosophila melanogaster developmental stages.
-ontology: fbdv
+ontology: "fbdv"
 ---
 
 #feel free to add extra details here or include a readme file
