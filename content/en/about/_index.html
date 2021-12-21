@@ -22,27 +22,11 @@ weight: 10
 
     {{% blocks/lead  color="dark" %}}
     <style type="text/css">
-      div#blue a:link {
-        color: #05162f;
-      }
-
-      div#blue a:visited {
-        color: #05162f;
-      }
-
-      div#blue a:hover {
-        color: #07224b;
-      }
-
-      div#blue a:active {
-        color: #0d2e5f;
-      }
-
-      div#blue img {
+      div#main img {
         max-width: 20%;
       }
     </style>
-    <div id="blue" class="col-12">
+    <div id="main" class="col-12">
       <h2>Who we are</h2>
       <h3>Virtual Fly Brain members and their contribution</h3>
       <h4>3D Viewer, online tools, server and the website</h4>
@@ -147,12 +131,28 @@ weight: 10
 
 
     {{< blocks/section  color="primary" >}}
-      <style type="text/css">
-        div#yellow img {
-          max-width: 20%;
-        }
-      </style>
-      <div id="yellow" class="col-12 text-center">
+    <style type="text/css">
+      div#blue a:link {
+        color: #05162f;
+      }
+
+      div#blue a:visited {
+        color: #05162f;
+      }
+
+      div#blue a:hover {
+        color: #07224b;
+      }
+
+      div#blue a:active {
+        color: #0d2e5f;
+      }
+
+      div#blue img {
+        max-width: 20%;
+      }
+    </style>
+      <div id="blue" class="col-12 text-center">
         <h2>Funding</h2>
         <a href='http://www.ebi.ac.uk/' target='_blank'>
           <img class='' src='https://v2.virtualflybrain.org/images/vfb/project/logos/wtvm050446.png' border='0' />
@@ -306,7 +306,7 @@ weight: 10
                   {{< /blocks/section>}}
 
                     {{< blocks/section color="primary" >}}
-                      <div class="col-12 text-center"> <a name='citation'></a>
+                      <div id="blue" class="col-12 text-center"> <a name='citation'></a>
                         <h2>How to cite us</h2>
                         <p> Please use the format below:</p>
                         <p> Milyaev, N., Osumi-Sutherland, D., Reeve, S., Burton, N., Baldock, R. A. and Armstrong, J.
