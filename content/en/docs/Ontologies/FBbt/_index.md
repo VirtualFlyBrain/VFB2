@@ -9,7 +9,7 @@ Description: >
 ---
 
 <div id="result">
-<script>  $( "#result" ).load( "https://www.ebi.ac.uk/ols/ontologies/fbbt #ontology_info_box", function(){$("a[href^='../']").each(function(){$(this).attr('href',$(this).attr('href').replace('../','https://www.ebi.ac.uk/ols/');)})})</script>
+<script>  $( "#result" ).load( "https://www.ebi.ac.uk/ols/ontologies/fbbt #ontology_info_box", function(){$("a[href^='../']").each(function(){$(this).attr('href',$(this).attr('href').replace('../','https://www.ebi.ac.uk/ols/'));})})</script>
 
 
 </script>
