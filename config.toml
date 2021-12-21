@@ -189,7 +189,7 @@ enable = false
 	icon = "fa fa-envelope"
         desc = "Email the user support forum"
 [[params.links.user]]
-	name = "F.A.Q."
+	name = "FAQ"
 	url = "https://groups.google.com/g/vfb-suport"
 	icon = "fas fa-question-circle"
         desc = "See if your question has already been answered in the support forum"
