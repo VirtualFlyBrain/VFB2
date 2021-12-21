@@ -6,9 +6,6 @@ content: [ontologies,annotations]
 weight: 20
 Description: >
   An ontology of Drosophila melanogaster anatomy.
-menu:
-  main:
-    weight: 20
 ---
 
 <div id="result">
