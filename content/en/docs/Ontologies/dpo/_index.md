@@ -1,12 +1,12 @@
 ---
-title: "FlyBase Controlled Vocabulary (FBcv)"
-linkTitle: "FlyBase Controlled Vocabulary"
+title: "Drosophila Phenotype Ontology (DPO)"
+linkTitle: "Drosophila Phenotype Ontology"
 tags: [ontologies,annotation,FBcv]
 content: [ontologies,annotations]
 weight: 20
-ontology: "fbcv"
+ontology: "dpo"
 Description: >
-  A miscellaneous ontology of terms used for curation in FlyBase, including the DPO.
+  An ontology for the description of Drosophila melanogaster phenotypes.
 ---
 
 [//]: # (feel free to add extra details here or include a readme file)

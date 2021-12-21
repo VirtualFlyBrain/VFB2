@@ -1,6 +1,6 @@
 ---
 title: "Drosophila Anatomy Ontology (DAO)"
-linkTitle: "Drosophila Anatomy Ontology (DAO)"
+linkTitle: "Drosophila Anatomy Ontology"
 tags: [ontologies,annotation,FBbt,DAO]
 content: [ontologies,annotations]
 weight: 20

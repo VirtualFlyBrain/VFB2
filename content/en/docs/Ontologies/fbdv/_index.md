@@ -1,6 +1,6 @@
 ---
 title: "FlyBase Developmental Ontology (FBdv)"
-linkTitle: "FlyBase Developmental Ontology (FBdv)"
+linkTitle: "FlyBase Developmental Ontology"
 tags: [ontologies,annotation,FBdv]
 content: [ontologies,annotations]
 weight: 20
