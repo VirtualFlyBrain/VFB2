@@ -22,28 +22,78 @@ weight: 10
 
     {{% blocks/lead %}}
 
-    <h2 id="the-3d-brain-viewer">The 3D Brain Viewer</h2>
-    <p>Using our <a href="/org.geppetto.frontend/geppetto">Viewer</a>, one can explore the anatomy, as well as view
-      image stacks from datasets integrated by VFB. Any number of images can be displayed at the same time.</p>
-    <p>See <a href="{{&lt; ref" title="posts/content_report.md&quot; &gt;}} &quot;Content Report">here</a> which image
-      datasets are available on VFB.</p>
-    <p>The Viewer page is divided into 3 areas: the Stack Viewer and its navigation tools are on left; on the right hand
-      side corresponds to the term info window, where information about a term will be shown and where further queries
-      can be done from. The viewer menu with different tabs and functionalities is shown below the viewer.</p>
-    <p><img src="/images/vfb/project/viewer_intro.png" alt="Main page"></p>
-    <p>The template brain (JFRC2) and painted domains stack we currently use are kindly provided by Arnim Jenett of <a
-        href="https://www.janelia.org/">HHMI Janelia Research Campus</a>, and Kei Ito and Kazunori Shinomiya of <a
-        href="http://www.u-tokyo.ac.jp/en/index.html">University of Tokyo</a>. The painted domain boundaries comply with
-      the new BrainName&#39;s standard nomenclature <a href="https://doi.org/10.1016/j.neuron.2013.12.017">(Ito et al.,
-        2014)</a>. It is available to download from <a href="template_files_downloads.htm">here</a>.</p>
-    <p>You can overlay any number of images stacks in our <a href="/org.geppetto.frontend/geppetto">Viewer</a>. And each
-      display is associated to a URL which you can share with others</p>
-    <p>Below, is an example of an overlay of 3 image stacks and 2 neuropils. In green, a single neuron from the
-      FlyCircuit dataset (Cha-F-500059); in dark blue the lineage clone LALv1 and in magenta the lineage clone DL1, both
-      from Tzumin Lee&#39;s dataset. In addition to the image stacks, two neuropils are also selected: noduli (in
-      yellow) and ellipsoid body (in light blue).</p>
-    <p><img src="/images/vfb/project/composite.png" alt="Composite view"></p>
-
+    <div class="col-12">
+      <h2>Who we are</h2>
+      <p>Virtual Fly Brain members and their contribution: </p>
+    </div>
+    <div class='vfb-content-container col-xs-12'>
+      <div class='row'>
+        <div class='small-3 columns text-center content-image'> <a
+            href='http://www.anc.ed.ac.uk/index.php?option=com_content&task=view&id=12&Itemid=68'
+            target='_blank'> <img class=''
+              src='https://v2.virtualflybrain.org/images/vfb/project/logos/InformaticsLogo.gif' /> </a> </div>
+        <div class='small-9 columns'> <i>3D Viewer, online tools, server and the website:</i><br />
+          <b>Institute for Adaptive and Neural Computation, School of Informatics, University of
+            Edinburgh</b><br /> <a href='https://www.inf.ed.ac.uk/people/staff/Robert_Court.html'
+            target='_blank'>Robert Court (Lead DevOps)</a> <br /> <a
+            href='https://www.inf.ed.ac.uk/people/staff/James_Armstrong.html' target='_blank'>Douglas
+            Armstrong (current project PI)</a><br /> Former devs: Nestor Milyaev (2009-2012)<br /> </div>
+      </div>
+      <div class='row'>
+        <div class='small-3 columns text-center content-image'> <a href='http://www.gen.cam.ac.uk/'
+            target='_blank'> <img class=''
+              src='https://v2.virtualflybrain.org/images/vfb/project/logos/CUnibig.png' /> </a> </div>
+        <div class='small-9 columns'> <i>Ontology editing, FlyBase support and data annotation:</i><br />
+          <b>Department of Genetics, University of Cambridge</b><br /> <a
+            href='http://www.neuroscience.cam.ac.uk/directory/profile.php?cokane' target='_blank'>Cahir O'Kane
+            (current project PI)</a><br /> Former contributors: Michael Ashburner (original PI and grant
+          holder), Simon Reeve (2009-2011), Nicole Staudt (2015-2016), Alex Holmes (2017-2019)<br />
+          <b>Department of Physiology, Development and Neuroscience</b><br /> <a
+            href='https://www.pdn.cam.ac.uk/research/groups/flybase/flybase-group-members'
+            target='_blank'>Clare Pilgrim</a> (Ontology editor/Curator)<br /> <a
+            href='https://www.pdn.cam.ac.uk/research/groups/flybase/flybase-group-members'
+            target='_blank'>Alex McLachlan</a> (Curator/UX Tester)<br /> <a
+            href='https://www.pdn.cam.ac.uk/research/groups/flybase/flybase-group-members'
+            target='_blank'>Aoife Larkin</a> (Curator)<br /> <a
+            href='https://www.pdn.cam.ac.uk/research/groups/flybase/flybase-group-members'
+            target='_blank'>Gillian Millburn</a> (Senior Curator)<br /> <a
+            href='https://www.pdn.cam.ac.uk/research/groups/flybase/flybase-group-members'
+            target='_blank'>Nick Brown (current project PI)</a><br /> <b>Department of Zoology, University of
+            Cambridge</b><br /> <a href='http://www.neuroscience.cam.ac.uk/directory/profile.php?mcosta'
+            target='_blank'>Marta Costa (current project Co-I)</a><br /> </div>
+      </div>
+      <div class='row'>
+        <div class='small-3 columns text-center content-image'> <a href='http://www2.mrc-lmb.cam.ac.uk/'
+            target='_blank'> <img class=''
+              src='https://v2.virtualflybrain.org/images/vfb/project/logos/MRC-LMB_logo.png' border='0' />
+          </a> </div>
+        <div class='small-9 columns'> <i>Image processing, registration and NBLAST neuron search:</i><br />
+          <b>MRC Laboratory of Molecular Biology, Cambridge</b><br /> <a
+            href='http://www2.mrc-lmb.cam.ac.uk/group-leaders/h-to-m/gregory-jefferis/' target='_blank'>Greg
+            Jefferis (current project PI)</a><br /> </div>
+      </div>
+      <div class='row'>
+        <div class='small-3 columns text-center content-image'> <a href='http://www.ebi.ac.uk/'
+            target='_blank'> <img class=''
+              src='https://v2.virtualflybrain.org/images/vfb/project/logos/EMBL_EBI_logo_180pixels_RGB.png'
+              border='0' /> </a> </div>
+        <div class='small-9 columns'> <i>Schema development &amp; Web development:</i><br /> <b>European
+            Bioinformatics Institute (EMBL-EBI), Cambridge</b><br /> <a
+            href='https://www.ebi.ac.uk/about/people/david-osumi-sutherland' target='_blank'>David
+            Osumi-Sutherland (current project Co-I)</a><br /> <a
+            href='https://www.researchgate.net/profile/Nicolas_Matentzoglu2' target='_blank'>Nico Matentzoglu
+            (developer)</a><br /> <a href='https://www.ebi.ac.uk/about/people/helen-parkinson'
+            target='_blank'>Helen Parkinson (current project PI)</a><br /> </div>
+      </div>
+      <div class='row' style='margin-bottom: 0px !important;''>          <div class=' small-3 columns
+        text-center content-image'> <a href='http://www.metacell.us/' target='_blank'> <img class=''
+            src='https://github.com/tarelli/bucket/raw/master/MetaCellLogoWhite300ppi.png' border='0' /> </a>
+      </div>
+      <div class='small-9 columns'> <i>Software engineering, <a href='http://www.geppetto.org'
+            target='_blank'>Geppetto</a> customisation, graphics design:</i><br /> <b><a
+            href='http://www.metacell.us' target='_blank'>MetaCell</a> Ltd., LLC, Oxford, UK - Boston,
+          MA</b><br /> </div>
+    </div>
     {{% /blocks/lead %}}
 
     
@@ -83,78 +133,7 @@ weight: 10
               <div id='vfb-content-title'>About <span style='color:white;'> Virtual Fly Brain</span></div>
             </div>
             <div id='vfb-content-text' class='vfbcontent'>
-              <div>
-                <h2>Who we are</h2>
-                <p>Virtual Fly Brain members and their contribution: </p>
-              </div>
-              <div class='vfb-content-container col-xs-12'>
-                <div class='row'>
-                  <div class='small-3 columns text-center content-image'> <a
-                      href='http://www.anc.ed.ac.uk/index.php?option=com_content&task=view&id=12&Itemid=68'
-                      target='_blank'> <img class=''
-                        src='https://v2.virtualflybrain.org/images/vfb/project/logos/InformaticsLogo.gif' /> </a> </div>
-                  <div class='small-9 columns'> <i>3D Viewer, online tools, server and the website:</i><br />
-                    <b>Institute for Adaptive and Neural Computation, School of Informatics, University of
-                      Edinburgh</b><br /> <a href='https://www.inf.ed.ac.uk/people/staff/Robert_Court.html'
-                      target='_blank'>Robert Court (Lead DevOps)</a> <br /> <a
-                      href='https://www.inf.ed.ac.uk/people/staff/James_Armstrong.html' target='_blank'>Douglas
-                      Armstrong (current project PI)</a><br /> Former devs: Nestor Milyaev (2009-2012)<br /> </div>
-                </div>
-                <div class='row'>
-                  <div class='small-3 columns text-center content-image'> <a href='http://www.gen.cam.ac.uk/'
-                      target='_blank'> <img class=''
-                        src='https://v2.virtualflybrain.org/images/vfb/project/logos/CUnibig.png' /> </a> </div>
-                  <div class='small-9 columns'> <i>Ontology editing, FlyBase support and data annotation:</i><br />
-                    <b>Department of Genetics, University of Cambridge</b><br /> <a
-                      href='http://www.neuroscience.cam.ac.uk/directory/profile.php?cokane' target='_blank'>Cahir O'Kane
-                      (current project PI)</a><br /> Former contributors: Michael Ashburner (original PI and grant
-                    holder), Simon Reeve (2009-2011), Nicole Staudt (2015-2016), Alex Holmes (2017-2019)<br />
-                    <b>Department of Physiology, Development and Neuroscience</b><br /> <a
-                      href='https://www.pdn.cam.ac.uk/research/groups/flybase/flybase-group-members'
-                      target='_blank'>Clare Pilgrim</a> (Ontology editor/Curator)<br /> <a
-                      href='https://www.pdn.cam.ac.uk/research/groups/flybase/flybase-group-members'
-                      target='_blank'>Alex McLachlan</a> (Curator/UX Tester)<br /> <a
-                      href='https://www.pdn.cam.ac.uk/research/groups/flybase/flybase-group-members'
-                      target='_blank'>Aoife Larkin</a> (Curator)<br /> <a
-                      href='https://www.pdn.cam.ac.uk/research/groups/flybase/flybase-group-members'
-                      target='_blank'>Gillian Millburn</a> (Senior Curator)<br /> <a
-                      href='https://www.pdn.cam.ac.uk/research/groups/flybase/flybase-group-members'
-                      target='_blank'>Nick Brown (current project PI)</a><br /> <b>Department of Zoology, University of
-                      Cambridge</b><br /> <a href='http://www.neuroscience.cam.ac.uk/directory/profile.php?mcosta'
-                      target='_blank'>Marta Costa (current project Co-I)</a><br /> </div>
-                </div>
-                <div class='row'>
-                  <div class='small-3 columns text-center content-image'> <a href='http://www2.mrc-lmb.cam.ac.uk/'
-                      target='_blank'> <img class=''
-                        src='https://v2.virtualflybrain.org/images/vfb/project/logos/MRC-LMB_logo.png' border='0' />
-                    </a> </div>
-                  <div class='small-9 columns'> <i>Image processing, registration and NBLAST neuron search:</i><br />
-                    <b>MRC Laboratory of Molecular Biology, Cambridge</b><br /> <a
-                      href='http://www2.mrc-lmb.cam.ac.uk/group-leaders/h-to-m/gregory-jefferis/' target='_blank'>Greg
-                      Jefferis (current project PI)</a><br /> </div>
-                </div>
-                <div class='row'>
-                  <div class='small-3 columns text-center content-image'> <a href='http://www.ebi.ac.uk/'
-                      target='_blank'> <img class=''
-                        src='https://v2.virtualflybrain.org/images/vfb/project/logos/EMBL_EBI_logo_180pixels_RGB.png'
-                        border='0' /> </a> </div>
-                  <div class='small-9 columns'> <i>Schema development &amp; Web development:</i><br /> <b>European
-                      Bioinformatics Institute (EMBL-EBI), Cambridge</b><br /> <a
-                      href='https://www.ebi.ac.uk/about/people/david-osumi-sutherland' target='_blank'>David
-                      Osumi-Sutherland (current project Co-I)</a><br /> <a
-                      href='https://www.researchgate.net/profile/Nicolas_Matentzoglu2' target='_blank'>Nico Matentzoglu
-                      (developer)</a><br /> <a href='https://www.ebi.ac.uk/about/people/helen-parkinson'
-                      target='_blank'>Helen Parkinson (current project PI)</a><br /> </div>
-                </div>
-                <div class='row' style='margin-bottom: 0px !important;''>          <div class=' small-3 columns
-                  text-center content-image'> <a href='http://www.metacell.us/' target='_blank'> <img class=''
-                      src='https://github.com/tarelli/bucket/raw/master/MetaCellLogoWhite300ppi.png' border='0' /> </a>
-                </div>
-                <div class='small-9 columns'> <i>Software engineering, <a href='http://www.geppetto.org'
-                      target='_blank'>Geppetto</a> customisation, graphics design:</i><br /> <b><a
-                      href='http://www.metacell.us' target='_blank'>MetaCell</a> Ltd., LLC, Oxford, UK - Boston,
-                    MA</b><br /> </div>
-              </div>
+              
             </div>
             <div> <br />
               <h2>Funding</h2>
