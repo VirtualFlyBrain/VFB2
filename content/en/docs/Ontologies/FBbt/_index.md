@@ -10,7 +10,7 @@ Description: >
 
 #feel free to add extra details here or include a readme file
 
-[<img src="https://www.ebi.ac.uk/ols/img/OLS_logo_2017.png" style="max-width:20%;" alt="Open in the Ontology Lookup Service (OLS)" >](https://www.ebi.ac.uk/ols/ontologies/fbbt)
+[<img src="https://www.ebi.ac.uk/ols/img/OLS_logo_2017.png" style="max-width: 20%; background: #afafaf; padding: 5px;" alt="Open in the Ontology Lookup Service (OLS)" >](https://www.ebi.ac.uk/ols/ontologies/fbbt)
 
 <div id="result">
 <script>  $( "#result" ).load( "https://www.ebi.ac.uk/ols/ontologies/fbbt #ontology_info_box", function(){$("a[href^='../']").each(function(){$(this).attr('target','_blank');$(this).attr('href',$(this).attr('href').replace('../','https://www.ebi.ac.uk/ols/'));})})</script>
