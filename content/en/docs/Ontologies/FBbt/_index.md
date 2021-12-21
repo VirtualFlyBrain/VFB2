@@ -8,8 +8,9 @@ Description: >
   An ontology of Drosophila melanogaster anatomy.
 ---
 
+[<img src="https://www.ebi.ac.uk/ols/img/OLS_logo_2017.png" style="max-width:20%;">](https://www.ebi.ac.uk/ols/ontologies/fbbt)
 <div id="result">
-<script>  $( "#result" ).load( "https://www.ebi.ac.uk/ols/ontologies/fbbt #ontology_info_box", function(){$("a[href^='../']").each(function(){$(this).attr('href',$(this).attr('href').replace('../','https://www.ebi.ac.uk/ols/'));})})</script>
+<script>  $( "#result" ).load( "https://www.ebi.ac.uk/ols/ontologies/fbbt #ontology_info_box", function(){$("a[href^='../']").each(function(){$(this).attr('target','_blank');$(this).attr('href',$(this).attr('href').replace('../','https://www.ebi.ac.uk/ols/'));})})</script>
 
 
 </script>
