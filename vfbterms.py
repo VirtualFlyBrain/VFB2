@@ -25,10 +25,9 @@ def wrapStringInHTMLMac(term):
     filename = term["term"]["core"]["short_form"] + ".md"
     f = open(filename, "w", encoding="utf-8")
     note = """
-    {{% alert title="Note" color="primary" %}}
-    This page displays the raw VFB json record for this term.
-    Please use the link below to open the term inside the Virtual Fly Brain viewer:
-    {{% /alert %}}
+    {{% pageinfo %}}
+    This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer:
+    {{% /pageinfo %}}
     """
     wrapper = """---
     title: "{0} [{1}]"
@@ -41,7 +40,7 @@ def wrapStringInHTMLMac(term):
 
 {8}
 
-[Open {0} in VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})
+[Open **{0}** in **VFB**](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})
 
 
 ## VFB Term Json
