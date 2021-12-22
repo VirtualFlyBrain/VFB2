@@ -8,4 +8,4 @@ description: >
   Introduction session from the Virtual Fly Brain "Hacking the connectome" workshop that was run in collaboration with the Drosophila Connectomics Group based at the Dept of Zoology, University of Cambridge.
 ---
 
-{{< youtube id="FfhAgQLxx0Q" autoplay="true" >}}
+{{< categories: id="FfhAgQLxx0Q" autoplay="true" >}}
