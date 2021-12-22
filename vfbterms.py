@@ -77,6 +77,9 @@ onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 chdir(mypath + 'fbbt/')
 
 for id in fbbt:
-    terms = vc.neo_query_wrapper.get_TermInfo([id])
-    for term in terms:
-        wrapStringInHTMLMac(term)
+    try:
+        terms = vc.neo_query_wrapper.get_TermInfo([id])
+        for term in terms:
+            wrapStringInHTMLMac(term)
+    except:
+        print(id)
