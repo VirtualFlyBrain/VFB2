@@ -75,13 +75,6 @@ description = "VFB is an interactive tool for neurobiologists to explore the det
 languageName ="English"
 # Weight used for sorting.
 weight = 1
-[languages.fr]
-title = "Virtual Fly Brain"
-description = "Un site pour l'anatomie neuronale de Drosophila melanogaster, les données d'imagerie et la connectomique."
-languageName ="French"
-contentDir = "content/fr"
-time_format_default = "02.01.2006"
-time_format_blog = "02.01.2006"
 
 
 [markup]
