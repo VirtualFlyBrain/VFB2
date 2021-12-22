@@ -21,12 +21,15 @@ def find_images(src, key, dest=set()):
     return dest
 
 def save_terms(ids):
+    import os.path
     for id in ids:
         try:
             print(id)
-            terms = vc.neo_query_wrapper.get_TermInfo([id])
-            for term in terms:
-                wrapStringInHTMLMac(term)
+            filename = id + ".md"
+            if not os.path.isfile(filename):
+                terms = vc.neo_query_wrapper.get_TermInfo([id])
+                for term in terms:
+                    wrapStringInHTMLMac(term)
         except:
             print("ERROR:" + id)
 
