@@ -4,18 +4,17 @@ from os.path import isfile, join
 from vfb_connect.cross_server_tools import VfbConnect
 
 
-def gen_dict_extract(key, var):
-    if hasattr(var, "iteritems"):
-        for k, v in var.iteritems():
-            if k == key:
-                yield v
-            if isinstance(v, dict):
-                for result in gen_dict_extract(key, v):
-                    yield result
-            elif isinstance(v, list):
-                for d in v:
-                    for result in gen_dict_extract(key, d):
-                        yield result
+def build_index(src, key, dest, path=[]):
+    for k, v in src.iteritems():
+        fv = path+[v]
+        if isinstance(v, dict):
+            build_index(v, key, dest, fv)
+        else:
+            if key == k:
+                try:
+                    dest[v].append(fv)
+                except KeyError:
+                    dest[v] = [fv]
 
 
 def wrapStringInHTMLMac(term):
@@ -52,7 +51,8 @@ def wrapStringInHTMLMac(term):
 </a>
 
     """
-    folders = gen_dict_extract("image_folder", term)
+    folders=[]
+    build_index(term, "image_folder", folders)
     images = ""
     for folder in folders:
         images += '<img src="' + folder + 'thumbnail.png" alt="drawing" width="200"/>'
