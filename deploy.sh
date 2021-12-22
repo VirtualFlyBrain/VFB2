@@ -14,5 +14,5 @@
 #
 HUGO_ENV="production"
 ulimit -Sv 100000000
-hugo --renderToDisk --enableGitInfo --minify --templateMetrics
+hugo --enableGitInfo --minify --templateMetrics
 
