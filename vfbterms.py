@@ -66,7 +66,7 @@ def wrapStringInHTMLMac(term):
 
 vc=VfbConnect(neo_endpoint='http://pdb.v4.virtualflybrain.org', neo_credentials=('neo4j', 'vfb'), owlery_endpoint='http://owl.virtualflybrain.org/kbs/vfb/')
 
-fbbt = vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbt' AND NOT n.deprecated=true RETURN collect(distinct n.short_form) as ids ORDER BY ids ASC"])[0]['data'][0]['row'][0]
+fbbt = vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbt' AND NOT n:Deprecated AND NOT n.deprecated=true WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0]
 
 print(fbbt)
 
