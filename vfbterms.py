@@ -41,7 +41,7 @@ def wrapStringInHTMLMac(term):
 
     {8}
 
-    {{{{< button class="btn btn-lg btn-secondary mr-3 mb-4" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}" >}}}}View term in VFB <i class="fas fa-desktop ml-2 "></i>{{{{< /button >}}}}
+    {{{{< button "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}" "View term in VFB <i class='fas fa-desktop ml-2'></i>" "btn-lg btn-secondary mr-3 mb-4" >}}}}
 
         ## VFB Term Json
 
