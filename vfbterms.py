@@ -27,7 +27,7 @@ def wrapStringInHTMLMac(term):
     note = """
     {{% alert title="Note" color="primary" %}}
     This page displays the raw VFB json record for this term.
-    Please use the button below to open the term inside the Virtual Fly Brain viewer:
+    Please use the link below to open the term inside the Virtual Fly Brain viewer:
     {{% /alert %}}
     """
     wrapper = """---
@@ -41,17 +41,18 @@ def wrapStringInHTMLMac(term):
 
     {8}
 
-    {{{{< button "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}" "View term in VFB <i class='fas fa-desktop ml-2'></i>" "btn-lg btn-secondary mr-3 mb-4" >}}}}
+    [Open {0} in VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})
 
-        ## VFB Term Json
 
-        ```json
-        {5}
-        ```
-        ## Available images
-        <a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">
-        {6}
-        </a>
+    ## VFB Term Json
+
+    ```json
+    {5}
+    ```
+    ## Available images
+    <a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">
+    {6}
+    </a>
 
     """
     folders = gen_dict_extract("image_folder", term)
