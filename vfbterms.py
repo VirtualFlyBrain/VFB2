@@ -1,4 +1,7 @@
 import sys
+from os import listdir, chdir
+from os.path import isfile, join
+from vfb_connect.cross_server_tools import VfbConnect
 
 def wrapStringInHTMLMac(term):
     import datetime
@@ -73,26 +76,29 @@ def wrapStringInHTMLMac(term):
     whole = wrapper.format(term['term']['core']['label'], term['term']['core']['short_form'], term['term']['description'], term['term']['comment'], result ,json.dumps(term, indent = 4).replace("\n","<br>\n "), amp )
     try:
         f.write(whole)
-    except:    
+    except:
         print(whole)
     f.close()
 
-from vfb_connect.cross_server_tools import VfbConnect
+
 vc=VfbConnect()
 
-from os import listdir, chdir
-from os.path import isfile, join
 mypath=sys.argv[1]
+print("Updating all files in " + mypath)
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+
+print(onlyfiles)
 
 chdir(mypath)
 
 all = sorted([w.replace('.md', '') for w in onlyfiles if w.startswith('FBbt') ])
 for id in all:
-	try: 
+	try:
+		print(id)
 		terms = vc.neo_query_wrapper.get_TermInfo([id])
 		for term in terms:
-			wrapStringInHTMLMac(term) 
+			wrapStringInHTMLMac(term)
+			print(term)
 	except:
   		print(id)
 
