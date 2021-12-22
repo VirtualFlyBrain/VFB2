@@ -20,6 +20,17 @@ def find_images(src, key, dest=set()):
                             dest.union(find_images(i, key, dest))
     return dest
 
+def save_terms(ids):
+    for id in ids:
+        try:
+            print(id)
+            terms = vc.neo_query_wrapper.get_TermInfo([id])
+            for term in terms:
+                wrapStringInHTMLMac(term)
+        except:
+            print("ERROR:" + id)
+
+
 def wrapStringInHTMLMac(term):
     import datetime
     import json
@@ -66,20 +77,18 @@ def wrapStringInHTMLMac(term):
 
 vc=VfbConnect(neo_endpoint='http://pdb.v4.virtualflybrain.org', neo_credentials=('neo4j', 'vfb'), owlery_endpoint='http://owl.virtualflybrain.org/kbs/vfb/')
 
-fbbt = vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbt' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0]
-
 
 mypath = sys.argv[1]
 print("Updating all files in " + mypath)
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
 chdir(mypath + 'fbbt/')
+save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbt' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+chdir(mypath + 'fbbi/')
+save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbi' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+chdir(mypath + 'fbcv/')
+save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBcv' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+chdir(mypath + 'fbdv/')
+save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBdv' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
-for id in fbbt:
-    try:
-        print(id)
-        terms = vc.neo_query_wrapper.get_TermInfo([id])
-        for term in terms:
-            wrapStringInHTMLMac(term)
-    except:
-        print("ERROR:" + id)
+
