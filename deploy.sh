@@ -12,7 +12,6 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 #
-rm -rf public/
 HUGO_ENV="production"
 ulimit -Sv 100000000
 hugo --renderToDisk --enableGitInfo --minify --gc --print-mem
