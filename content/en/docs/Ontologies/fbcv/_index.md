@@ -2,7 +2,7 @@
 title: "FlyBase Controlled Vocabulary (FBcv)"
 linkTitle: "FlyBase Controlled Vocabulary"
 tags: [ontologies,annotation,FBcv]
-content: [ontologies,annotations]
+categories: [ontologies,annotations]
 weight: 20
 ontology: "fbcv"
 Description: >

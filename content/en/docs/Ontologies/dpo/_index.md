@@ -2,7 +2,7 @@
 title: "Drosophila Phenotype Ontology (DPO)"
 linkTitle: "Drosophila Phenotype Ontology"
 tags: [ontologies,annotation,FBcv]
-content: [ontologies,annotations]
+categories: [ontologies,annotations]
 weight: 20
 ontology: "dpo"
 Description: >

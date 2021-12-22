@@ -2,7 +2,7 @@
 title: "Biological Imaging Methods Ontology"
 linkTitle: "Biological Imaging Methods Ontology"
 tags: [ontologies,annotation,FBbi]
-content: [ontologies,annotations]
+categories: [ontologies,annotations]
 weight: 20
 ontology: "fbbi"
 Description: >
