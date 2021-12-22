@@ -84,11 +84,8 @@ chdir(mypath)
 
 all = sorted([w.replace(".md", "") for w in onlyfiles if w.startswith("FBbt")])
 for id in all:
-    try:
-        print(id)
-        terms = vc.neo_query_wrapper.get_TermInfo([id])
-        for term in terms:
-            wrapStringInHTMLMac(term)
-            print(term)
-    except:
-        print(id)
+    print(id)
+    terms = vc.neo_query_wrapper.get_TermInfo([id])
+    for term in terms:
+        wrapStringInHTMLMac(term)
+        print(term)
