@@ -1,3 +1,4 @@
+import sys
 
 def wrapStringInHTMLMac(term):
     import datetime
@@ -81,7 +82,7 @@ vc=VfbConnect()
 
 from os import listdir, chdir
 from os.path import isfile, join
-mypath="./fbbt/"
+mypath=sys.argv[1]
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
 chdir(mypath)
