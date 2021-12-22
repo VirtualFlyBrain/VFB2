@@ -36,7 +36,7 @@ def wrapStringInHTMLMac(term):
     date: {7}
     description: >
         {2} {3}
-    ---
+---
 
     {7}
 
