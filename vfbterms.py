@@ -71,7 +71,7 @@ def wrapStringInHTMLMac(term):
 </a>
 
         """
-        images = ' '.join(find_images(term, "image_folder"))
+        images = ' '.join(find_images(term, "image_folder", set()))
         whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],' '.join(term["term"]["description"]),' '.join(term["term"]["comment"]),','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
         try:
             f.write(whole)
