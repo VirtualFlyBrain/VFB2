@@ -41,9 +41,7 @@ def wrapStringInHTMLMac(term):
 
     {8}
 
-    <button name="button" class="btn btn-lg btn-secondary mr-3 mb-4" onclick="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">
-            View term in VFB <i class="fas fa-desktop ml-2 "></i>
-        </button>
+    <button name="button" class="btn btn-lg btn-secondary mr-3 mb-4" onclick="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">View term in VFB <i class="fas fa-desktop ml-2 "></i></button>
 
         ## VFB Term Json
 
