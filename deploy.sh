@@ -13,5 +13,7 @@
 #limitations under the License.
 #
 rm -rf public/
-HUGO_ENV="production" hugo --gc || exit 1
-s3deploy -source=public/ -region=eu-west-1 -bucket=bep.is -distribution-id=E8OKNT7W9ZYZ2 -path temp/td
+HUGO_ENV="production"
+ulimit -Sv 500000
+hugo --enableGitInfo --minify --gc --print-mem
+
