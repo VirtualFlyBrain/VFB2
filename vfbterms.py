@@ -63,7 +63,7 @@ def wrapStringInHTMLMac(term):
         term["term"]["comment"],
         term["term"]["core"]["types"],
         json.dumps(term, indent=4),
-        images,
+        images
     )
     try:
         f.write(whole)
