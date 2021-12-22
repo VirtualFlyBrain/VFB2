@@ -15,5 +15,5 @@
 rm -rf public/
 HUGO_ENV="production"
 ulimit -Sv 100000000
-hugo --enableGitInfo --minify --gc --print-mem
+hugo --renderToDisk --enableGitInfo --minify --gc --print-mem
 
