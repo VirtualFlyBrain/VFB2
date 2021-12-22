@@ -38,7 +38,7 @@ def wrapStringInHTMLMac(term):
 
 {8}
 
-[Open **{0}** in **VFB**](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})
+<span style="font-size:larger;">[Open **{0}** in **VFB**](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})</span>
 
 
 ## VFB Term Json
