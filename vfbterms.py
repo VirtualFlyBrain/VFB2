@@ -39,20 +39,20 @@ def wrapStringInHTMLMac(term):
         {2} {3}
 ---
 
-    {8}
+{8}
 
-    [Open {0} in VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})
+[Open {0} in VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})
 
 
-    ## VFB Term Json
+## VFB Term Json
 
-    ```json
-    {5}
-    ```
-    ## Available images
-    <a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">
-    {6}
-    </a>
+```json
+{5}
+```
+## Available images
+<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">
+{6}
+</a>
 
     """
     folders = gen_dict_extract("image_folder", term)
