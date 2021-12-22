@@ -34,13 +34,15 @@ def save_terms(ids):
 def wrapStringInHTMLMac(term):
     import datetime
     import json
+    import os.path
     now = datetime.datetime.today().strftime("%Y-%m-%d")
     filename = term["term"]["core"]["short_form"] + ".md"
-    f = open(filename, "w", encoding="utf-8")
-    note = """
+    if not os.path.isfile(filename):
+        f = open(filename, "w", encoding="utf-8")
+        note = """
 {{% alert title="Note" color="primary" %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /alert %}}
-    """
-    wrapper = """---
+        """
+        wrapper = """---
     title: "{0} [{1}]"
     linkTitle: "{0}"
     tags: [{4}]
@@ -65,14 +67,14 @@ def wrapStringInHTMLMac(term):
 {6}
 </a>
 
-    """
-    images = ' '.join(find_images(term, "image_folder"))
-    whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],' '.join(term["term"]["description"]),' '.join(term["term"]["comment"]),','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
-    try:
-        f.write(whole)
-    except:
-        print(whole)
-    f.close()
+        """
+        images = ' '.join(find_images(term, "image_folder"))
+        whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],' '.join(term["term"]["description"]),' '.join(term["term"]["comment"]),','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
+        try:
+            f.write(whole)
+        except:
+            print(whole)
+        f.close()
 
 
 vc=VfbConnect(neo_endpoint='http://pdb.v4.virtualflybrain.org', neo_credentials=('neo4j', 'vfb'), owlery_endpoint='http://owl.virtualflybrain.org/kbs/vfb/')
