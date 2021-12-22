@@ -8,7 +8,7 @@ def find_images(src, key, dest=set()):
     for k, v in zip(src.keys(), src.values()):
         if key == k:
             if not v in str(dest):
-                dest.add('<img src="' + v + 'thumbnail.png" alt="thumbnail" width="200"/>')
+                dest.add('<img src="' + v + 'thumbnail.png" alt="{{ .Page.Title }}" width="100"/>')
         elif isinstance(v, dict):
             if key in str(v):
                 dest.union(find_images(v, key, dest))
