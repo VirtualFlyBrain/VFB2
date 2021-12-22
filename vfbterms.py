@@ -52,13 +52,14 @@ def wrapStringInHTMLMac(term):
         ## Available images
         <a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">
         {6}
-
+        </a>
 
     """
     folders = gen_dict_extract("image_folder", term)
     images = ""
     for folder in folders:
         images += '<img src="' + folder + 'thumbnail.png" alt="drawing" width="200"/>'
+    print(images)
     whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],term["term"]["description"],term["term"]["comment"],term["term"]["core"]["types"],json.dumps(term, indent=4),images,note)
     try:
         f.write(whole)
@@ -73,8 +74,6 @@ mypath = sys.argv[1]
 print("Updating all files in " + mypath)
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
-print(onlyfiles)
-
 chdir(mypath)
 
 all = sorted([w.replace(".md", "") for w in onlyfiles if w.startswith("FBbt")])
@@ -83,4 +82,3 @@ for id in all:
     terms = vc.neo_query_wrapper.get_TermInfo([id])
     for term in terms:
         wrapStringInHTMLMac(term)
-        print(term)
