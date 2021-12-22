@@ -64,16 +64,17 @@ def wrapStringInHTMLMac(term):
     f.close()
 
 
-vc = VfbConnect()
+vc=VfbConnect(neo_endpoint='http://pdb.v4.virtualflybrain.org', neo_credentials=('neo4j', 'vfb'), owlery_endpoint='http://owl.virtualflybrain.org/kbs/vfb/')
+
+fbbt = vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbt' RETURN collect(distinct n.short_form) as ids"])[0]['data'][0]['row'][0]
 
 mypath = sys.argv[1]
 print("Updating all files in " + mypath)
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
-chdir(mypath)
+chdir(mypath + 'fbbt/')
 
-all = sorted([w.replace(".md", "") for w in onlyfiles if w.startswith("FBbt")])
-for id in all:
+for id in fbbt:
     print(id)
     terms = vc.neo_query_wrapper.get_TermInfo([id])
     for term in terms:
