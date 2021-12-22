@@ -31,14 +31,14 @@ def wrapStringInHTMLMac(term):
     """
     wrapper = """---
     title: "{0} [{1}]"
-    tags: {4}
+    tags: [{4}]
     content: [term]
     date: {7}
     description: >
         {2} {3}
 ---
 
-    {7}
+    {8}
 
     <a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">
             View term in VFB <i class="fas fa-desktop ml-2 "></i>
@@ -60,7 +60,7 @@ def wrapStringInHTMLMac(term):
     for folder in folders:
         images += '<img src="' + folder + 'thumbnail.png" alt="drawing" width="200"/>'
     print(images)
-    whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],term["term"]["description"],term["term"]["comment"],term["term"]["core"]["types"],json.dumps(term, indent=4),images,note)
+    whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],' '.join(term["term"]["description"]),' '.join(term["term"]["comment"]),','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
     try:
         f.write(whole)
     except:
