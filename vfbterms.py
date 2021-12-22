@@ -24,6 +24,11 @@ def wrapStringInHTMLMac(term):
     now = datetime.datetime.today().strftime("%Y%m%d-%H%M%S")
     filename = term["term"]["core"]["short_form"] + ".md"
     f = open(filename, "w", encoding="utf-8")
+    note = """
+    {{% alert title="Note" color="primary" %}}
+    This is page displays the raw VFB json record for this term. Please use the button below to open the term inside the Virtual Fly Brain viewer:
+    {{% /alert %}}
+    """
     wrapper = """---
     title: "{0} [{1}]"
     tags: {4}
@@ -33,9 +38,7 @@ def wrapStringInHTMLMac(term):
         {2} {3}
     ---
 
-    {{% alert title="Note" color="primary" %}}
-    This is page displays the raw VFB json record for this term. Please use the button below to open the term inside the Virtual Fly Brain viewer:
-    {{% /alert %}}
+    {7}
 
     <a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">
             View term in VFB <i class="fas fa-desktop ml-2 "></i>
@@ -56,7 +59,7 @@ def wrapStringInHTMLMac(term):
     images = ""
     for folder in folders:
         images += '<img src="' + folder + 'thumbnail.png" alt="drawing" width="200"/>'
-    whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],term["term"]["description"],term["term"]["comment"],term["term"]["core"]["types"],json.dumps(term, indent=4),images)
+    whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],term["term"]["description"],term["term"]["comment"],term["term"]["core"]["types"],json.dumps(term, indent=4),images,note)
     try:
         f.write(whole)
     except:
