@@ -56,15 +56,7 @@ def wrapStringInHTMLMac(term):
     images = ""
     for folder in folders:
         images += '<img src="' + folder + 'thumbnail.png" alt="drawing" width="200"/>'
-    whole = wrapper.format(
-        term["term"]["core"]["label"],
-        term["term"]["core"]["short_form"],
-        term["term"]["description"],
-        term["term"]["comment"],
-        term["term"]["core"]["types"],
-        json.dumps(term, indent=4),
-        images
-    )
+    whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],term["term"]["description"],term["term"]["comment"],term["term"]["core"]["types"],json.dumps(term, indent=4),images)
     try:
         f.write(whole)
     except:
