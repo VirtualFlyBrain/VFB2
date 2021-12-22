@@ -68,7 +68,6 @@ vc=VfbConnect(neo_endpoint='http://pdb.v4.virtualflybrain.org', neo_credentials=
 
 fbbt = vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbt' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0]
 
-print(fbbt)
 
 mypath = sys.argv[1]
 print("Updating all files in " + mypath)
@@ -78,8 +77,9 @@ chdir(mypath + 'fbbt/')
 
 for id in fbbt:
     try:
+        print(id)
         terms = vc.neo_query_wrapper.get_TermInfo([id])
         for term in terms:
             wrapStringInHTMLMac(term)
     except:
-        print(id)
+        print("ERROR:" + id)
