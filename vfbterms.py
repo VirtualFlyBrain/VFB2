@@ -8,15 +8,14 @@ def wrapStringInHTMLMac(term):
     import json
     from webbrowser import open_new_tab
     now = datetime.datetime.today().strftime("%Y%m%d-%H%M%S")
-    filename = term['term']['core']['short_form'] + '.html'
+    filename = term['term']['core']['short_form'] + '.md'
     f = open(filename,'w',encoding='utf-8')
-    amp = """<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>"""
-    wrapper = """<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <meta name="description" content="{0} [{1}] {2} {3}">
+    wrapper = """---
+    title: "{0} [{1}]"
+    tags: "{4}"
+    description: >
+        {2} {3}
+    
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script type="application/ld+json">
@@ -73,7 +72,7 @@ def wrapStringInHTMLMac(term):
                     for ci in term["channel_image"]: 
                         dictionary["image"].append({"@type":"imageObject","caption":term["term"]["core"]["label"] + " [" + ci["image"]["template_anatomy"]["label"] + "]", "thumbnail":ci["image"]["image_folder"] + "thumbnail.png"}) 
     result = json.dumps(dictionary, indent = 4)
-    whole = wrapper.format(term['term']['core']['label'], term['term']['core']['short_form'], term['term']['description'], term['term']['comment'], result ,json.dumps(term, indent = 4).replace("\n","<br>\n "), amp )
+    whole = wrapper.format(term['term']['core']['label'], term['term']['core']['short_form'], term['term']['description'], term['term']['comment'], term['term']['core']['types'], result ,json.dumps(term, indent = 4).replace("\n","<br>\n "), amp )
     try:
         f.write(whole)
     except:
