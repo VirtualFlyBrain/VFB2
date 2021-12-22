@@ -25,7 +25,7 @@ def wrapStringInHTMLMac(term):
     filename = term["term"]["core"]["short_form"] + ".md"
     f = open(filename, "w", encoding="utf-8")
     note = """
-{{% pageinfo %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /pageinfo %}}
+{{% alert title="Note" color="primary" %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /alert %}}
     """
     wrapper = """---
     title: "{0} [{1}]"
