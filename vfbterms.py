@@ -21,7 +21,7 @@ def gen_dict_extract(key, var):
 def wrapStringInHTMLMac(term):
     import datetime
     import json
-    now = datetime.datetime.today().strftime("%Y%m%d-%H%M%S")
+    now = datetime.datetime.today().strftime("%Y-%m-%d")
     filename = term["term"]["core"]["short_form"] + ".md"
     f = open(filename, "w", encoding="utf-8")
     note = """
