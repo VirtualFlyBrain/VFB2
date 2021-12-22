@@ -14,6 +14,6 @@
 #
 rm -rf public/
 HUGO_ENV="production"
-ulimit -Sv 500000
+ulimit -Sv 500000000
 hugo --enableGitInfo --minify --gc --print-mem
 
