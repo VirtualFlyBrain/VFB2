@@ -172,6 +172,9 @@ offlineSearch = false
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = false
 
+# timeout for site builder
+timeout = 3600000
+
 # User interface configuration
 [params.ui]
 #  Set to true to disable breadcrumb navigation.
