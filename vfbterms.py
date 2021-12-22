@@ -4,18 +4,21 @@ from os.path import isfile, join
 from vfb_connect.cross_server_tools import VfbConnect
 
 
-def build_index(src, key, dest, path=[]):
-    for k, v in src.iteritems():
-        fv = path+[v]
-        if isinstance(v, dict):
-            build_index(v, key, dest, fv)
-        else:
-            if key == k:
-                try:
-                    dest[v].append(fv)
-                except KeyError:
-                    dest[v] = [fv]
-
+def find_images(src, key, dest=set()):
+    for k, v in zip(src.keys(), src.values()):
+        if key == k:
+            if not v in str(dest):
+                dest.add('<img src="' + v + 'thumbnail.png" alt="thumbnail" width="200"/>')
+        elif isinstance(v, dict):
+            if key in str(v):
+                dest.union(find_images(v, key, dest))
+        elif isinstance(v, list):
+            if key in str(v):
+                for i in v:
+                    if key in str(i):
+                        if isinstance(i, dict):
+                            dest.union(find_images(i, key, dest))
+    return dest
 
 def wrapStringInHTMLMac(term):
     import datetime
@@ -51,12 +54,7 @@ def wrapStringInHTMLMac(term):
 </a>
 
     """
-    folders=[]
-    build_index(term, "image_folder", folders)
-    images = ""
-    for folder in folders:
-        images += '<img src="' + folder + 'thumbnail.png" alt="drawing" width="200"/>'
-    print(images)
+    images = ' '.join(find_images(term, "image_folder"))
     whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],' '.join(term["term"]["description"]),' '.join(term["term"]["comment"]),','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
     try:
         f.write(whole)
