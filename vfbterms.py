@@ -21,16 +21,13 @@ wrapper = """---
 
 <span style="font-size:larger;">[Open **{0}** in **VFB**](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})</span>
 
+{6}
 
 ## VFB Term Json
 
 ```json
 {5}
 ```
-## Available images
-<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">
-{6}
-</a>
 
 """
 
@@ -74,6 +71,8 @@ def wrapStringInHTMLMac(term):
         f = open(filename, "w", encoding="utf-8")
         images = ""
         images = " ".join(find_images(term, "image_folder", set()))
+        if "<img" in images:
+            images = '## Available images\n<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=' + term["term"]["core"]["short_form"] + '">' + images + '</a>'
         whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],' '.join(term["term"]["description"]),' '.join(term["term"]["comment"]),','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
         try:
             f.write(whole)
