@@ -1,7 +1,7 @@
 ---
 title: "Virtual Fly Brain Images (VFB)"
 linkTitle: "VFB Image Ontology"
-tags: [ontologies,annotation,VFB]
+tags: [ontologies,annotation,VFB,VFBexp]
 categories: [ontologies,annotations]
 weight: 20
 ontology: "vfb"
