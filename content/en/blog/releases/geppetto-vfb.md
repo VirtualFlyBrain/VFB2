@@ -2,7 +2,6 @@
 ---
 title: "VFB Geppetto Releases"
 linkTitle: "VFB Geppetto Releases"
-date: 2021-12-23
 description: >
   Release details for Virtual Fly Brains 3D browser site built on the Geppetto platform
 ---
