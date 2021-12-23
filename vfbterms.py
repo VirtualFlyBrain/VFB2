@@ -4,6 +4,36 @@ from os.path import isfile, join
 from vfb_connect.cross_server_tools import VfbConnect
 
 
+note = """
+{{% alert title="Note" color="primary" %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /alert %}}
+"""
+wrapper = """---
+    title: "{0} [{1}]"
+    linkTitle: "{0}"
+    tags: [{4}]
+    content: [term]
+    date: {7}
+    description: >
+        {2} {3}
+---
+
+{8}
+
+<span style="font-size:larger;">[Open **{0}** in **VFB**](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})</span>
+
+
+## VFB Term Json
+
+```json
+{5}
+```
+## Available images
+<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">
+{6}
+</a>
+
+"""
+
 def find_images(src, key, dest=set()):
     for k, v in zip(src.keys(), src.values()):
         if key == k:
@@ -42,36 +72,8 @@ def wrapStringInHTMLMac(term):
     filename = term["term"]["core"]["short_form"] + ".md"
     if not os.path.isfile(filename):
         f = open(filename, "w", encoding="utf-8")
-        note = """
-{{% alert title="Note" color="primary" %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /alert %}}
-        """
-        wrapper = """---
-    title: "{0} [{1}]"
-    linkTitle: "{0}"
-    tags: [{4}]
-    content: [term]
-    date: {7}
-    description: >
-        {2} {3}
----
-
-{8}
-
-<span style="font-size:larger;">[Open **{0}** in **VFB**](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})</span>
-
-
-## VFB Term Json
-
-```json
-{5}
-```
-## Available images
-<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1}">
-{6}
-</a>
-
-        """
-        images = ' '.join(find_images(term, "image_folder", set()))
+        images = ""
+        images = " ".join(find_images(term, "image_folder", set()))
         whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],' '.join(term["term"]["description"]),' '.join(term["term"]["comment"]),','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
         try:
             f.write(whole)
