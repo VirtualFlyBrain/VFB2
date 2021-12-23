@@ -73,7 +73,7 @@ def wrapStringInHTMLMac(term):
         images = " ".join(find_images(term, "image_folder", set()))
         if "<img" in images:
             images = '## Available images\n<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=' + term["term"]["core"]["short_form"] + '">' + images + '</a>'
-        whole = wrapper.format(term["term"]["core"]["label"],term["term"]["core"]["short_form"],' '.join(term["term"]["description"]),' '.join(term["term"]["comment"]),','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
+        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],' '.join(term["term"]["description"]),' '.join(term["term"]["comment"]),','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
         try:
             f.write(whole)
         except:
