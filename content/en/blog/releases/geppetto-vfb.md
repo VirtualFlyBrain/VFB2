@@ -10,3 +10,8 @@ description: >
 [VFB GitHub Repo geppetto-vfb releases](https://github.com/VirtualFlyBrain/geppetto-vfb/releases)
 
 
+<div id="result">
+<script>  $( "#result" ).load( "https://github.com/VirtualFlyBrain/geppetto-vfb/releases #repo-content-pjax-container", function(){$("a[href^='/VirtualFlyBrain']").each(function(){$(this).attr('target','_blank');$(this).attr('href',$(this).attr('href').replace('/VirtualFlyBrain','https://github.com/VirtualFlyBrain'));})})</script>
+
+</script>
+</div>
