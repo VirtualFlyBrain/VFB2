@@ -4,6 +4,7 @@ from os.path import isfile, join
 from vfb_connect.cross_server_tools import VfbConnect
 
 
+
 note = """
 {{% alert title="Note" color="primary" %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /alert %}}
 """
@@ -48,15 +49,18 @@ def find_images(src, key, dest=set()):
     return dest
 
 def save_terms(ids):
+    run = 10000
     import os.path
     for id in ids:
         try:
-            print(id)
-            filename = id + ".md"
-            if not os.path.isfile(filename):
-                terms = vc.neo_query_wrapper.get_TermInfo([id])
-                for term in terms:
-                    wrapStringInHTMLMac(term)
+            if run > 1:
+                print(id)
+                filename = id + ".md"
+                if not os.path.isfile(filename):
+                    run -= 1
+                    terms = vc.neo_query_wrapper.get_TermInfo([id])
+                    for term in terms:
+                        wrapStringInHTMLMac(term)
         except:
             print("ERROR:" + id)
 
