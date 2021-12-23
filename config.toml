@@ -203,6 +203,13 @@ no = 'Sorry to hear that. Please <a href="https://github.com/VirtualFlyBrain/VFB
 [params.ui.readingtime]
 enable = false
 
+[[menu.main]]
+  name = 'Launch VFB'
+  post = "<i class="fas fa-desktop ml-2 "></i>"
+  pre = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto"
+  url = '/getting-started/'
+  weight = -100
+
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
