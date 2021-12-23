@@ -205,8 +205,8 @@ enable = false
 
 [[menu.main]]
   name = "Launch VFB"
-  post = '<i class="fas fa-desktop ml-2 "></i></span>'
-  pre = '<span class="btn btn-lg btn-secondary mr-3 mb-4" >'
+  post = '<i class="fas fa-desktop ml-2 "></i>'
+  pre = ""
   url = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto"
   weight = -100
 
