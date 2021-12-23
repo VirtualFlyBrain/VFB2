@@ -54,9 +54,9 @@ def save_terms(ids):
     for id in ids:
         try:
             if run > 1:
-                print(id)
                 filename = id + ".md"
                 if not os.path.isfile(filename):
+                    print(id)
                     run -= 1
                     terms = vc.neo_query_wrapper.get_TermInfo([id])
                     for term in terms:
