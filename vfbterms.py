@@ -49,7 +49,7 @@ def find_images(src, key, dest=set()):
     return dest
 
 def save_terms(ids):
-    run = 10000
+    run = 1000
     import os.path
     for id in ids:
         try:
