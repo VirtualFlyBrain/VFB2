@@ -3,7 +3,7 @@ title: "FlyBase Developmental Ontology (FBdv)"
 linkTitle: "FlyBase Developmental Ontology"
 tags: [ontologies,annotation,FBdv]
 categories: [ontologies,annotations]
-weight: 20
+weight: 40
 Description: >
   An ontology of Drosophila melanogaster developmental stages.
 ontology: "fbdv"

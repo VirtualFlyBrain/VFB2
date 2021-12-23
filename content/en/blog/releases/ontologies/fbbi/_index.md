@@ -3,7 +3,7 @@ title: "Biological Imaging Methods Ontology"
 linkTitle: "Biological Imaging Methods Ontology"
 tags: [ontologies,annotation,FBbi]
 categories: [ontologies,annotations]
-weight: 20
+weight: 100
 ontology: "fbbi"
 Description: >
   A structured controlled vocabulary of sample preparation, visualization and imaging methods used in biomedical research.

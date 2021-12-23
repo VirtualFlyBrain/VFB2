@@ -3,7 +3,7 @@ title: "Drosophila Phenotype Ontology (DPO)"
 linkTitle: "Drosophila Phenotype Ontology"
 tags: [ontologies,annotation,FBcv]
 categories: [ontologies,annotations]
-weight: 20
+weight: 120
 ontology: "dpo"
 Description: >
   An ontology for the description of Drosophila melanogaster phenotypes.
