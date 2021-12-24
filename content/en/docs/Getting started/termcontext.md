@@ -1,6 +1,6 @@
 ---
-categories: ["Overview"]
-tags: ["test", "sample", "docs"]
+categories: ["overview","help"]
+tags: ["term","classification","location"]
 title: "This is the Term Context tab"
 linkTitle: "Term Context"
 description: >
@@ -10,7 +10,7 @@ weight: 60
 <link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
 
 <i class="fa fa-home"></i>   Home resets your view
-    
+
 <i class="fa fa-search-plus"></i>   Use the zoom icons or scroll with the mouse to zoom in/out
     
 <i class="fa fa-refresh"></i>   Click to refresh to the current focus term

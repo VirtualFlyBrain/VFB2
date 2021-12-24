@@ -1,6 +1,6 @@
 ---
-categories: ["Overview"]
-tags: ["test", "sample", "docs"]
+categories: ["overview","help"]
+tags: ["search","query","Anatomy","painted","domain","Template","Synaptic_neuropil"]
 title: "Starting to explore VFB"
 linkTitle: "Starting to explore"
 description: >
