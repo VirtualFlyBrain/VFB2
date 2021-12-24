@@ -13,7 +13,7 @@ weight: 60
 
 <i class="fa fa-search-plus"></i>   Use the zoom icons or scroll with the mouse to zoom in/out
     
-<i class="fa fa-refresh"></i>   Click to refresh to the current focus term
+<i class="fas fa-sync-alt"></i>   Click to refresh to the current focus term
     
 <i class="fa fa-bars"></i>   Select either the location or the classification for the current term
 
