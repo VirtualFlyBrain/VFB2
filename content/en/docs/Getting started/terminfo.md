@@ -9,13 +9,14 @@ weight: 50
 ---
 <link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
 
-<i class="fa fa-hand-pointer-o"></i>   Click on thumbnails to add that image to the viewer
 
-<i class="fa fa-hand-pointer-o"></i>   Click on terms to select them
+<i class="far fa-hand-pointer"></i>   Click on thumbnails to add that image to the viewer
+
+<i class="far fa-hand-pointer"></i>   Click on terms to select them
     
-<i class="fa fa-hand-pointer-o"></i>   Click on download items to begin downloading
+<i class="far fa-hand-pointer"></i>   Click on download items to begin downloading
     
-<i class="fa fa-quora"></i>   Run term related queries
+<i class="fab fa-quora"></i>   Run term related queries
 
 
 <p align="center">
