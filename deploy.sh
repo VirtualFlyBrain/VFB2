@@ -13,5 +13,7 @@
 #limitations under the License.
 #
 HUGO_ENV="production"
-ulimit -Sv 100000000
-hugo --enableGitInfo --minify --templateMetrics --gc --debug
+
+npm install --global yarn
+
+hugo --enableGitInfo --minify --templateMetrics --gc -v
