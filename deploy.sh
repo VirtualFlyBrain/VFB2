@@ -14,5 +14,4 @@
 #
 HUGO_ENV="production"
 ulimit -Sv 100000000
-hugo --enableGitInfo --minify --templateMetrics --gc --print-mem
-
+hugo --enableGitInfo --minify --templateMetrics --gc --debug
