@@ -76,6 +76,8 @@ languageName ="English"
 # Weight used for sorting.
 weight = 1
 
+[frontmatter]
+  date = ["date", "publishDate", "lastmod"]
 
 [markup]
   [markup.goldmark]
