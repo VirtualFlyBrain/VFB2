@@ -11,11 +11,11 @@ weight: 70
 
 The 'strongest' paths are the shortest/highest weighted paths. Paths are arranged from the 'strongest' at the bottom to the 'weakest' at the top. A detailed explanation for the algorithm used to determine path strengths can be found [here](https://github.com/VirtualFlyBrain/graph_queries/blob/main/weighted_path.md).
 
-<i class="fa fa-dot-circle-o"></i>   Search for the source neuron to start from (Note: query is directional)
+<i class="far fa-dot-circle"></i>   Search for the source neuron to start from (Note: query is directional)
     
 <i class="fa fa-map-marker"></i>   Search for the target neuron
     
-<i class="fa fa-arrows-h"></i>   Maximum number of paths to return (only the 'strongest' paths will be returned)
+<i class="fas fa-arrows-alt-h"></i>   Maximum number of paths to return (only the 'strongest' paths will be returned)
     
 <i class="fa fa-balance-scale"></i>   A minimum weight for the synapse count of each connection can be applied, paths containing individual connections below this minimum will not be returned
 
