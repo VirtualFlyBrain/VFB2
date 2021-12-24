@@ -78,6 +78,9 @@ weight = 1
 
 [frontmatter]
   date = ["date", "publishDate", "lastmod"]
+  expiryDate = ['expiryDate']
+  lastmod = [':git', 'lastmod', 'date', 'publishDate']
+  publishDate = ['publishDate', 'date']
 
 [markup]
   [markup.goldmark]
