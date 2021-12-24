@@ -16,6 +16,7 @@ wrapper = """---
     date: {7}
     description: >
         {2} {3}
+    weight: 1000
 ---
 
 {8}
