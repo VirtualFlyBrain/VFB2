@@ -1,6 +1,6 @@
 ---
 categories: ["overview","help"]
-tags: ["term"]
+tags: ["term","tools"]
 title: "This is the Term Info tab"
 linkTitle: "Term Info"
 description: >

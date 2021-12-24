@@ -1,6 +1,6 @@
 ---
 categories: ["overview","help"]
-tags: ["slice","3D","volume","NRRD","WLZ","Woolz","IIP3D"]
+tags: ["slice","3D","volume","NRRD","WLZ","Woolz","IIP3D","tools"]
 title: "This is the Slice Viewer tab"
 linkTitle: "Slice Viewer"
 description: >

@@ -1,6 +1,6 @@
 ---
 categories: ["overview","help"]
-tags: ["term","classification","location"]
+tags: ["term","classification","location","tools"]
 title: "This is the Term Context tab"
 linkTitle: "Term Context"
 description: >

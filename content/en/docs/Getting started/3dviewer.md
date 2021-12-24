@@ -1,6 +1,6 @@
 ---
 categories: ["overview","help"]
-tags: ["3D","volume","OBJ","SWC","rotate"]
+tags: ["3D","volume","OBJ","SWC","rotate","tools"]
 title: "This is the 3D Viewer tab"
 linkTitle: "3D Viewer"
 description: >
