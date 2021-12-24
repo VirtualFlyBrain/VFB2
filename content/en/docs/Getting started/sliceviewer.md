@@ -22,5 +22,5 @@ weight: 30
 <i class="fa gpt-showplane"></i>   Toggles the slice position on the 3D Viewer on/off
 
 <p align="center">
-  <img src="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/build/VFBqHelpMain.jpg" alt="Virtual Fly Brain (VFB) Overview" style="max-width=50%" />
+  <img src="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/build/slice-viewer.png" alt="Virtual Fly Brain (VFB) Slice Viewer" style="max-width=50%" />
 </p>
