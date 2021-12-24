@@ -17,7 +17,7 @@ weight: 40
     
 <i class="fa fa-home"></i>   Home resets your view
     
-<i class="fa fa-video-camera"></i>   The camera icon starts/stops a rotation animation of the scene
+<i class="fas fa-video"></i>   The camera icon starts/stops a rotation animation of the scene
     
 <i class="fa gpt-sphere_wireframe-jpg"></i>   The sphere icon toggles wireframes on/off
 
