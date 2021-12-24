@@ -3,7 +3,7 @@ title: "Overview"
 linkTitle: "Overview"
 weight: 1
 description: >
-  Here's where your user finds out if your project is for them.
+  An overiew video showing some examples of what you can do with Virtual Fly Brain
 ---
 
 {{< youtube id="z2Cre6avnpk" autoplay="true" >}}
