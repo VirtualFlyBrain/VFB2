@@ -17,6 +17,7 @@ wrapper = """---
     description: >
         {2} {3}
     weight: 1000
+    sitemap_exclude: true
 ---
 
 {8}
