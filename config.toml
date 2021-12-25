@@ -152,7 +152,7 @@ url_latest_version = "https://virtualflybrain.org"
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/VirtualFlyBrain/VFB2"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-github_project_repo = "https://github.com/VirtualFlyBrain"
+github_project_repo = "https://github.com/VirtualFlyBrain/VFB2"
 
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
