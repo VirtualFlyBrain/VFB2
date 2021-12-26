@@ -4,6 +4,7 @@ linkTitle: "Drosophila Anatomy Ontology"
 tags: [ontologies,annotation,FBbt,DAO]
 categories: [ontologies,annotations]
 weight: 30
+date: 2021-12-26
 Description: >
   An ontology of Drosophila melanogaster anatomy.
 ontology: "fbbt"
