@@ -4,6 +4,7 @@ linkTitle: "VFB Image Ontology"
 tags: [ontologies,annotation,VFB,VFBexp]
 categories: [ontologies,annotations]
 weight: 20
+date: 2021-12-26
 ontology: "vfb"
 Description: >
   The VFB query system relies on representation of data/knowledge in OWL. Central to this a representation of Drosophila neuro-anatomy in the [Drosophila anatomy ontology]({{< ref "../fbbt/_index.md" >}}). The anatomical structures depicted in images displayed on VFB are represented as a [KnowledgeBase of OWL individuals](https://github.com/VirtualFlyBrain/VFB_owl/blob/master/doc/vfb_owl_ind_schema.md), which are classified (typed) using OWL class expressions referencing the anatomy ontology.  When this KnowledgeBase of individuals is combined with the ontology, a reasoner can be used to classify and query for anatomical structures depicted in the images on VFB.
