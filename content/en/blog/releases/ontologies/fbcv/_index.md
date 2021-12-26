@@ -4,6 +4,7 @@ linkTitle: "FlyBase Controlled Vocabulary"
 tags: [ontologies,annotation,FBcv]
 categories: [ontologies,annotations]
 weight: 50
+date: 2021-12-26
 ontology: "fbcv"
 Description: >
   A miscellaneous ontology of terms used for curation in FlyBase, including the DPO.
