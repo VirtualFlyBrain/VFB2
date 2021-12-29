@@ -8,6 +8,10 @@ date: 2021-12-26
 ontology: "fbbi"
 Description: >
   A structured controlled vocabulary of sample preparation, visualization and imaging methods used in biomedical research.
+cascade:
+- type: "docs"
+  _target:
+    path: "/**"
 ---
 
 [//]: # (feel free to add extra details here or include a readme file)
