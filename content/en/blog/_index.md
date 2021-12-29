@@ -4,7 +4,8 @@ linkTitle: "Blog"
 menu:
   main:
     weight: 30
-type: "docs"
+cascade:
+- type: "docs"
   _target:
     path: "/**"
 ---
