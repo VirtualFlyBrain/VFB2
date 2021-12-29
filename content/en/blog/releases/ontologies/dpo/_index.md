@@ -8,6 +8,10 @@ date: 2021-12-26
 ontology: "dpo"
 Description: >
   An ontology for the description of Drosophila melanogaster phenotypes.
+cascade:
+- type: "docs"
+  _target:
+    path: "/**"
 ---
 
 [//]: # (feel free to add extra details here or include a readme file)
