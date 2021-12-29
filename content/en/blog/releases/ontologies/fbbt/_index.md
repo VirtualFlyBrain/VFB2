@@ -8,6 +8,10 @@ date: 2021-12-26
 Description: >
   An ontology of Drosophila melanogaster anatomy.
 ontology: "fbbt"
+cascade:
+- type: "docs"
+  _target:
+    path: "/**"
 ---
 
 [//]: # (feel free to add extra details here or include a readme file)
