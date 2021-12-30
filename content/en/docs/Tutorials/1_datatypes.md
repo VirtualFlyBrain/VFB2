@@ -25,7 +25,7 @@ Collections of neurons are typically held in a specialized container: a`NeuronLi
 In this notebook we will focus on skeletons - a.k.a. `TreeNeurons` - since this is what you get out of CATMAID. Let's kick things off by having a look at what neurons look like once it's loaded: 
 
 
-```
+```python
 import navis
 
 # Load one of the example neurons shipped with navis
@@ -113,7 +113,7 @@ n
 Above summary lists a couple of (computed) properties of the neuron. Each of those can also be accessed directly like so:
 
 
-```
+```python
 n.id
 ```
 
@@ -145,7 +145,7 @@ At this point I encourage you to just explore and play around with what TreeNeur
 As an example: this is how you get the ID of this neuron's root node.
 
 
-```
+```python
 # Current root node of this neuron
 n.root
 ```
@@ -160,7 +160,7 @@ n.root
 Some of the properties such as `.root` or `.ends` are computed on-the-fly from the underlying raw data. For `TreeNeurons` that's the node table (and it's graph representation). The node table is a pandas DataFrame that looks effectively like a SWC:
 
 
-```
+```python
 # `.head()` gives us the first couple rows
 n.nodes.head()
 ```
@@ -261,7 +261,7 @@ n.nodes.head()
 The methods (such as `.reroot`) are short-hands for main navis functions:
 
 
-```
+```python
 # Reroot neuron to another node
 n2 = n.reroot(new_root=2)
 # Print the new root -> expect "2"
@@ -276,7 +276,7 @@ n2.root
 
 
 
-```
+```python
 # Instead of calling the shorthand method, we can also do this
 n3 = navis.reroot_neuron(n, new_root=2)
 n3.root
@@ -293,7 +293,7 @@ n3.root
 In practice you will likely work with multiple neurons at a time. For that, `navis` has a convenient container: `NeuronLists`
 
 
-```
+```python
 # Get more than one example neuron
 nl = navis.example_neurons(5)
 
@@ -309,7 +309,7 @@ type(nl)
 
 
 
-```
+```python
 # You can also create neuron lists yourself
 my_nl = navis.NeuronList(n)
 ```
@@ -317,7 +317,7 @@ my_nl = navis.NeuronList(n)
 In many ways `NeuronLists` work like Python-lists with a couple of extras: 
 
 
-```
+```python
 # Calling just the neuronlist produces a summary 
 nl
 ```
@@ -428,7 +428,7 @@ nl
 
 
 
-```
+```python
 # Get a single neuron from the neuronlist
 nl[1]
 ```
@@ -507,7 +507,7 @@ nl[1]
 `neuronlists` also support fancy indexing similar to `numpy` arrays:
 
 
-```
+```python
 # Get multiple neurons from the neuronlist
 nl[[1, 2]]
 ```
@@ -579,7 +579,7 @@ nl[[1, 2]]
 
 
 
-```
+```python
 # Slicing is also supported
 nl[1:3]
 ```
@@ -653,7 +653,7 @@ nl[1:3]
 Strings will be matched against the neurons' names.
 
 
-```
+```python
 # Get neuron(s) by their name
 nl['754534424']
 ```
@@ -714,7 +714,7 @@ nl['754534424']
 `neuronlists` have a special `.idx` indexer that let's you select neurons by their ID
 
 
-```
+```python
 # Get neuron(s) by their ID 
 # -> note that for example neurons name == id 
 nl.idx[[754534424, 722817260]]
@@ -787,7 +787,7 @@ nl.idx[[754534424, 722817260]]
 
 
 
-```
+```python
 # Access properties across neurons -> returns numpy arrays
 nl.n_nodes 
 ```
@@ -800,12 +800,12 @@ nl.n_nodes
 
 
 
-```
+```python
 
 ```
 
 
-```
+```python
 # Select neurons by given property
 # -> this works with any boolean array 
 nl[nl.n_nodes >= 4500]
@@ -898,7 +898,7 @@ nl[nl.n_nodes >= 4500]
 
 
 
-```
+```python
 
 ```
 

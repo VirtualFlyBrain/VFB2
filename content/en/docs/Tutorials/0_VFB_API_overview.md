@@ -29,7 +29,7 @@ Note: available methods and their documentation are easy to explore in DeepNote.
 **1.1** `vc.neo_query_wrapper` TermInfo queries return the results of a VFB Term Information window as JSON, following the [VFB_JSON standard](), or a summary that can easily be converted into a DataFrame.
 
 
-```
+```python
 # A query for full TermInfo.  This probably produces more information than you will need for most purposes.
 
 vc.neo_query_wrapper.get_type_TermInfo(['FBbt_00003686'])
@@ -399,7 +399,7 @@ vc.neo_query_wrapper.get_type_TermInfo(['FBbt_00003686'])
 
 
 
-```
+```python
 # A query for summary info
 import pandas as pd
 
@@ -454,14 +454,14 @@ summary_tab
 
 
 
-```
+```python
 # A different method is needed to get info about individual neurons
 
 summary = vc.neo_query_wrapper.get_anatomical_individual_TermInfo(['VFB_jrchjrch'], summary=True)
 summary_tab = pd.DataFrame.from_records(summary)
 summary_tab
 
-```
+```python
 
 
 
@@ -521,7 +521,7 @@ summary_tab
 **1.2** The `neo_query_wrapper` also includes methods for mapping between IDs from different sources. 
 
 
-```
+```python
 # Some bodyIDs of HemiBrain neurons from the neuprint DataBase:
 bodyIDs = [1068958652, 571424748, 1141631198]
 vc.neo_query_wrapper.xref_2_vfb_id(map(str, bodyIDs)) # Note IDs must be strings
@@ -546,7 +546,7 @@ vc.neo_query_wrapper.xref_2_vfb_id(map(str, bodyIDs)) # Note IDs must be strings
 
 
 
-```
+```python
 # xref queries can be constrained by DB. Results can optionally be reversed
 
 vc.neo_query_wrapper.xref_2_vfb_id(map(str, bodyIDs), db = 'neuprint_JRC_Hemibrain_1point1' , reverse_return=True)
@@ -569,7 +569,7 @@ vc.neo_query_wrapper.xref_2_vfb_id(map(str, bodyIDs), db = 'neuprint_JRC_Hemibra
 **2.1** Methods that take the names of classes in VFB e.g. 'nodulus' or 'Kenyon cell', or simple query expressions using the names of classes and return metadata about the classes or individual neurons
 
 
-```
+```python
 KC_types = vc.get_subclasses("Kenyon cell", summary=True)
 pd.DataFrame.from_records(KC_types)
 ```
@@ -953,6 +953,6 @@ pd.DataFrame.from_records(KC_types)
 Please see Connectivity Notebook for examples
 
 
-```
+```python
 
 ```

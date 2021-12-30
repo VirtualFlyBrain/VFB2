@@ -7,7 +7,7 @@ weight: 110
 Required packages: vfb-connect and python-catmaid (pymaid & navis)
 
 
-```
+```python
 !pip install vfb-connect --upgrade
 !pip install python-catmaid --upgrade
 ```
@@ -21,7 +21,7 @@ This is designed as an interactive tutorial. Feel free to add code cells below e
 VirtualFlyBrain integrates images and connectomics profiles of neurons from many sources.  It classifies and records their properties using a standard, queryable classification ([The Drosophila Anatomy Ontology](https://www.ebi.ac.uk/ols/ontologies/fbbt)). This standardises the names of neuron types across sources, so you don't need to worry about differences in nomenclature uses and supports queries for neurons by their classification. 
 
 
-```
+```python
 # Import libs and initialise API objects
 from vfb_connect.cross_server_tools import VfbConnect
 import pandas as pd
@@ -39,7 +39,7 @@ rm = pymaid.connect_catmaid(server="https://fafb.catmaid.virtualflybrain.org/", 
 # Test call to see if connection works 
 print(f'Server is running CATMAID version {rm.catmaid_version}')
 
-```
+```python
 
     WARNING: Could not load OpenGL library.
     INFO  : Global CATMAID instance set. Caching is ON. (pymaid)
@@ -58,7 +58,7 @@ Use the search tool on [VFB](http://virtualflybrain.org) to find neuron types by
 Use either the full name or the Symbol to query for neurons:
 
 
-```
+```python
 DA3adPN = vc.get_instances("adult Drosulfakinin neuron", summary=True)
 pd.DataFrame.from_records(DA3adPN)
 ```
@@ -193,7 +193,7 @@ pd.DataFrame.from_records(DA3adPN)
 We can use the same method to search for neurons by location, using simple queries.
 
 
-```
+```python
 # Find neurons by location. The following query works across multiple data sources and both sides of the brain.  
 # Results may be incomplete & may include minor overlap inferred from low synapse counts
 
@@ -201,7 +201,7 @@ neurons_in_DA3 = vc.get_instances("'neuron' that 'overlaps' some 'antennal lobe 
 neurons_in_DA3_tab = pd.DataFrame.from_records(neurons_in_DA3)
 neurons_in_DA3_tab[0:5]
 
-```
+```python
 
     Running query: FBbt:00005106 that RO:0002131 some FBbt:00003934
     Query URL: http://owl.virtualflybrain.org/kbs/vfb/instances?object=FBbt%3A00005106+that+RO%3A0002131+some+FBbt%3A00003934&prefixes=%7B%22FBbt%22%3A+%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFBbt_%22%2C+%22RO%22%3A+%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_%22%2C+%22BFO%22%3A+%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBFO_%22%7D&direct=False
@@ -320,7 +320,7 @@ neurons_in_DA3_tab[0:5]
 
 
 
-```
+```python
 # Find local interneurons (intrinsic neurons) of the AL, overlapping DA3:
 
 local_in_DA3 = vc.get_instances("'local interneuron of adult antennal lobe' that 'overlaps' some 'antennal lobe glomerulus DA3'",
@@ -1118,7 +1118,7 @@ local_in_DA3_tab
 
 
 
-```
+```python
 # Find neurons by dataset/paper - on CATMAID
 
 bates = pymaid.find_neurons(annotations='Paper: Bates and Schlegel et al 2020')
@@ -1234,7 +1234,7 @@ bates
 
 
 
-```
+```python
 # Inspect what datasets are available on VFB
 
 ds = vc.neo_query_wrapper.get_datasets(summary=True)
@@ -1415,7 +1415,7 @@ ds_tab.sort_values(by=['id'])
 
 
 
-```
+```python
 sayin_tab = pd.DataFrame.from_records(vc.get_instances_by_dataset('Sayin2019', summary=True))
 sayin_tab
 ```
@@ -1490,7 +1490,7 @@ sayin_tab
 
 
 
-```
+```python
 vc.get_connected_neurons_by_type(upstream_type='LNd', downstream_type='adult descending neuron', weight=20)
 ```
 
@@ -1550,7 +1550,7 @@ vc.get_connected_neurons_by_type(upstream_type='LNd', downstream_type='adult des
 
 
 
-```
+```python
 # Intra pacemaker neuron neuron connections
 
 vc.get_connected_neurons_by_type(upstream_type='pacemaker neuron', downstream_type='pacemaker neuron', weight=20)
@@ -1878,7 +1878,7 @@ vc.get_connected_neurons_by_type(upstream_type='pacemaker neuron', downstream_ty
 
 
 
-```
+```python
 
 vc.get_connected_neurons_by_type(upstream_type='adult neuron', downstream_type='adult Drosulfakinin neuron', weight=20)
 ```
@@ -2080,6 +2080,6 @@ vc.get_connected_neurons_by_type(upstream_type='adult neuron', downstream_type='
 
 
 
-```
+```python
 
 ```
