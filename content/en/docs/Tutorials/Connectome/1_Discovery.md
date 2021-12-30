@@ -2080,6 +2080,4 @@ vc.get_connected_neurons_by_type(upstream_type='adult neuron', downstream_type='
 
 
 
-```python
 
-```

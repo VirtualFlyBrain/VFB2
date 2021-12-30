@@ -953,6 +953,3 @@ pd.DataFrame.from_records(KC_types)
 Please see Connectivity Notebook for examples
 
 
-```python
-
-```
