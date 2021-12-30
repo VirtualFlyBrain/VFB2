@@ -1,6 +1,6 @@
 # Virtual Fly Brain Docs
 
-Static documentation site for VirtualFlyBrain.org
+Static documentation site for [www.VirtualFlyBrain.org](https://www.virtualflybrain.org)
 
 For the VFB 3D browser (geppetto) see https://github.com/VirtualFlyBrain/geppetto-vfb
 
