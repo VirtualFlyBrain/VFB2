@@ -42,7 +42,7 @@ n
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -168,7 +168,7 @@ n.nodes.head()
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -325,7 +325,7 @@ nl
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -436,7 +436,7 @@ nl[1]
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -515,7 +515,7 @@ nl[[1, 2]]
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -587,7 +587,7 @@ nl[1:3]
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -661,7 +661,7 @@ nl['754534424']
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -723,7 +723,7 @@ nl.idx[[754534424, 722817260]]
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -814,7 +814,7 @@ nl[nl.n_nodes >= 4500]
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;

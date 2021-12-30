@@ -411,7 +411,7 @@ summary_tab
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -466,7 +466,7 @@ summary_tab
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -582,7 +582,7 @@ pd.DataFrame.from_records(KC_types)
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
