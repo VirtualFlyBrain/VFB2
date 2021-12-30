@@ -66,7 +66,7 @@ pd.DataFrame.from_records(DA3adPN)
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -211,7 +211,7 @@ neurons_in_DA3_tab[0:5]
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -337,7 +337,7 @@ local_in_DA3_tab
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1131,7 +1131,7 @@ bates
 
 
 
-&lt;class 'pymaid.core.CatmaidNeuronList'&gt; containing 583 neurons (0.0B)<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1245,7 +1245,7 @@ ds_tab.sort_values(by=['id'])
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1423,7 +1423,7 @@ sayin_tab
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1497,7 +1497,7 @@ vc.get_connected_neurons_by_type(upstream_type='LNd', downstream_type='adult des
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1559,7 +1559,7 @@ vc.get_connected_neurons_by_type(upstream_type='pacemaker neuron', downstream_ty
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1886,7 +1886,7 @@ vc.get_connected_neurons_by_type(upstream_type='adult neuron', downstream_type='
 
 
 
-<div>
+<div style="border: 1px solid grey; width: 100%; height: fit-content; overflow: auto;" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
