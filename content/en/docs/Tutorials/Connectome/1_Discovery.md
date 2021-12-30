@@ -39,7 +39,7 @@ rm = pymaid.connect_catmaid(server="https://fafb.catmaid.virtualflybrain.org/", 
 # Test call to see if connection works 
 print(f'Server is running CATMAID version {rm.catmaid_version}')
 
-```python
+```
 
     WARNING: Could not load OpenGL library.
     INFO  : Global CATMAID instance set. Caching is ON. (pymaid)
@@ -201,7 +201,7 @@ neurons_in_DA3 = vc.get_instances("'neuron' that 'overlaps' some 'antennal lobe 
 neurons_in_DA3_tab = pd.DataFrame.from_records(neurons_in_DA3)
 neurons_in_DA3_tab[0:5]
 
-```python
+```
 
     Running query: FBbt:00005106 that RO:0002131 some FBbt:00003934
     Query URL: http://owl.virtualflybrain.org/kbs/vfb/instances?object=FBbt%3A00005106+that+RO%3A0002131+some+FBbt%3A00003934&prefixes=%7B%22FBbt%22%3A+%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFBbt_%22%2C+%22RO%22%3A+%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_%22%2C+%22BFO%22%3A+%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBFO_%22%7D&direct=False
