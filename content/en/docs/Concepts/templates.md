@@ -11,7 +11,7 @@ Many central nervious system (CNS) templates exist for Drosophila, below we prov
 
 ## Central Nervious System from Janelia Research Campus JRC2018
 
-<img src="https://www.virtualflybrain.org/data/VFB/i/0010/1567/VFB_00101567/thumbnail.png" style="max-width:40%" ><img src="https://www.virtualflybrain.org/data/VFB/i/0020/0000/VFB_00200000/thumbnail.png" style="max-width:40%" >  
+<img src="https://virtualflybrain.org/data/VFB/i/0010/1567/VFB_00101567/thumbnail.png" style="max-width:40%" ><img src="https://virtualflybrain.org/data/VFB/i/0020/0000/VFB_00200000/thumbnail.png" style="max-width:40%" >  
 
 VFB displays data aligned to either the [JRC 2018 unisex brain template](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00101567&i=VFB_00101567) for cephalic or [JRC 2018 unisex Ventral Nerve Cord (VNC)](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00200000,VFB_00200000) for non-cephalic data.
 
@@ -23,7 +23,7 @@ See [JRC 2018 Brain templates](https://www.janelia.org/open-science/jrc-2018-bra
 
 Superceeded by [JRC2018]({{ < ref "#central-nervious-system-from-janelia-research-campus-jrc2018" > }})
 
-<img src="https://www.virtualflybrain.org/data/VFB/i/0001/7894/VFB_00017894/thumbnail.png" style="max-width:40%" >
+<img src="https://virtualflybrain.org/data/VFB/i/0001/7894/VFB_00017894/thumbnail.png" style="max-width:40%" >
 
 Template brain created by Arnim Jenett (Janelia Research Campus), Kazunori Shinomiya and Kei Ito (Tokyo University) from a staining with the neuropil marker [nc82](http://www.flybase.org/reports/FBgn0259246.html). 
 
