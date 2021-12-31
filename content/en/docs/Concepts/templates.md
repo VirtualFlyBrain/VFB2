@@ -17,7 +17,7 @@ VFB displays data aligned to either the [JRC 2018 unisex brain template](https:/
 
 [Bogovic et al., "An unbiased template of the Drosophila brain and ventral nerve cord"](https://doi.org/10.1371/journal.pone.0236495)
 
-See [JRC 2018 Brain templates](https://www.janelia.org/open-science/jrc-2018-brain-templates)
+The files are available from Janelia: [JRC 2018 Brain templates](https://www.janelia.org/open-science/jrc-2018-brain-templates)
 
 ## Adult Brain from Janelia Research Campus/VFB (JFRC2010/JFRC2)
 
