@@ -27,15 +27,6 @@ The voxel size is 0.62x0.62x0.62 micron.
 
 The files are available [here](https://github.com/VirtualFlyBrain/DrosAdultBRAINdomains).
 
-# Bridging Registrations
-
-Transforms to map between different Drosophila template brains are available.
-
-<p align="center">
-<img src="https://github.com/schlegelp/navis-flybrains/blob/main/_static/bridging_graph.png?raw=true" width="800">
-</p>
-
-You can see how to use the above in python using [navis-flybrains](https://navis.readthedocs.io/en/latest/source/tutorials/transforming.html) or in R using [nat.flybrains](https://natverse.org/nat.flybrains/index.html)
 
 
 
