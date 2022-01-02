@@ -50,8 +50,24 @@ def find_images(src, key, dest=set()):
                             dest.union(find_images(i, key, dest))
     return dest
 
+def find_values(src, key, dest=set()):
+    for k, v in zip(src.keys(), src.values()):
+        if key == k:
+            if not v in str(dest):
+                dest.add(v)
+        elif isinstance(v, dict):
+            if key in str(v):
+                dest.union(find_images(v, key, dest))
+        elif isinstance(v, list):
+            if key in str(v):
+                for i in v:
+                    if key in str(i):
+                        if isinstance(i, dict):
+                            dest.union(find_images(i, key, dest))
+    return dest
+
 def save_terms(ids):
-    run = 1000
+    run = 5000
     import os.path
     for id in ids:
         try:
@@ -86,6 +102,9 @@ def wrapStringInHTMLMac(term):
             com = ' '.join(term["term"]["comment"])
         except:
             print('missing desc')
+        # If no description then combine all 'label' in the json to give a a crude description of term, xrefs, technique & examples.
+        if desc.equals(""):
+            desc = " ".join(find_values(term, "label", set()))
         whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
         try:
             f.write(whole)
@@ -111,8 +130,6 @@ chdir(mypath + 'fbdv/')
 save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBdv' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 chdir(mypath + 'vfb/')
 vfb = vc.nc.commit_list(["MATCH (n:Individual) WHERE n.short_form starts with 'VFB_' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0]
-save_terms(vfb)
-save_terms(vfb)
 save_terms(vfb)
 save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'VFBexp_' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 save_terms(vc.nc.commit_list(["MATCH (n:Dataset) with n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
