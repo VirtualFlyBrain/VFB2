@@ -57,13 +57,13 @@ def find_values(src, key, dest=set()):
                 dest.add(v)
         elif isinstance(v, dict):
             if key in str(v):
-                dest.union(find_images(v, key, dest))
+                dest.union(find_values(v, key, dest))
         elif isinstance(v, list):
             if key in str(v):
                 for i in v:
                     if key in str(i):
                         if isinstance(i, dict):
-                            dest.union(find_images(i, key, dest))
+                            dest.union(find_values(i, key, dest))
     return dest
 
 def save_terms(ids):
