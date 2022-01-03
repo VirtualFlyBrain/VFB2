@@ -87,6 +87,7 @@ def wrapStringInHTMLMac(term):
     import datetime
     import json
     import os.path
+    import traceback
     now = datetime.datetime.today().strftime("%Y-%m-%d")
     filename = term["term"]["core"]["short_form"] + ".md"
     if not os.path.isfile(filename):
@@ -103,8 +104,13 @@ def wrapStringInHTMLMac(term):
         except:
             print('missing desc')
         # If no description then combine all 'label' in the json to give a a crude description of term, xrefs, technique & examples.
-        if desc.equals(""):
-            desc = " ".join(find_values(term, "label", set()))
+        try:
+            if desc.equals(""):
+                desc = " ".join(find_values(term, "label", set()))
+        except Exception as e:
+            print('error on label for desc')
+            print(e)
+            print(traceback.format_exc())
         whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
         try:
             f.write(whole)
