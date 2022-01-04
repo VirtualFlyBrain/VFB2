@@ -37,7 +37,7 @@ wrapper = """---
 def find_images(src, key, dest=set()):
     for k, v in zip(src.keys(), src.values()):
         if key == k:
-            if not v in str(dest):
+            if not v in str(dest) and not v.endswith("_c"):
                 dest.add('<img src="' + v + 'thumbnail.png" alt="{{< param linkTitle >}}" width="200"/>')
         elif isinstance(v, dict):
             if key in str(v):
