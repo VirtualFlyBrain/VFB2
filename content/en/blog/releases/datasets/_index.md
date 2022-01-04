@@ -4,7 +4,7 @@ linkTitle: "Datasets"
 weight: 15
 tags: [DataSet,releases]
 description: >
-    This coantains a list of all available Datasets available on Virtual Fly Brain (VFB) currently.
+    Here is a list of all available datasets available on Virtual Fly Brain (VFB).
 cascade:
 - type: "docs"
   _target:
