@@ -106,7 +106,7 @@ def wrapStringInHTMLMac(term):
         # If no description then combine all 'label' in the json to give a a crude description of term, xrefs, technique & examples.
         try:
             if desc == "":
-                desc = " ".join(find_values(term, "label", set()))
+                desc = "; ".join(find_values(term, "label", set()))
         except Exception as e:
             print('error on label for desc')
             print(e)
