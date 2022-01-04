@@ -28,3 +28,22 @@ cascade:
 [VFB L1EM CATMAID API](https://l1em.catmaid.virtualflybrain.org/apis/)
 
 [FAFB Datasets inside VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?q=VFB_00050000,AlignedDatasets)
+
+### Projects
+
+```json
+[
+  {
+    "id": 1,
+    "stackgroups": [],
+    "stacks": [
+      {
+        "comment": "L1 CNS ssTEM at 3.8x3.8x50 nm of whole Drosophila 1st instar larval CNS",
+        "id": 1,
+        "title": "L1 CNS 0-tilt"
+      }
+    ],
+    "title": "L1 CNS"
+  }
+]
+```

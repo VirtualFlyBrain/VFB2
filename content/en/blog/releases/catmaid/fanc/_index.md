@@ -23,3 +23,36 @@ cascade:
 [VFB FAFB CATMAID API](https://fanc.catmaid.virtualflybrain.org/apis/)
 
 [FANC Neurons inside VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00200000&q=Maniates_Selvin2020,DatasetImages)
+
+
+### Projects
+
+```json
+[
+  {
+    "id": 1,
+    "stackgroups": [],
+    "stacks": [
+      {
+        "comment": "",
+        "id": 1,
+        "title": "VNC XY"
+      }
+    ],
+    "title": "Adult VNC"
+  },
+  {
+    "id": 2,
+    "stackgroups": [],
+    "stacks": [
+      {
+        "comment": "",
+        "id": 3,
+        "title": "JRC2018_VNC_FEMALE"
+      }
+    ],
+    "title": "JRC2018_VNC_FEMALE"
+  }
+]
+```
+

@@ -25,3 +25,23 @@ cascade:
 [VFB FAFB CATMAID API](https://fafb.catmaid.virtualflybrain.org/apis/)
 
 [FAFB Datasets inside VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?q=VFB_00101567,AlignedDatasets)
+
+
+### Projects
+
+```json
+[
+  {
+    "id": 1,
+    "stackgroups": [],
+    "stacks": [
+      {
+        "comment": "",
+        "id": 1,
+        "title": "fafb"
+      }
+    ],
+    "title": "Adult Brain"
+  }
+]
+```
