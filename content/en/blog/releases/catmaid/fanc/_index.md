@@ -1,7 +1,7 @@
 ---
 title: "FANC Catmaid Dataset "
 linkTitle: "FANC"
-weight: 20
+weight: 30
 description: >
     FANC is a sparse connectome of the adult Ventral Nerve Cord (VNC). Reconstruction of motor control circuits in adult Drosophila using automated transmission electron microscopy; Jasper S. Phelps, David Grant Colburn Hildebrand, Brett J. Graham, Aaron T. Kuan, Logan A. Thomas, Tri M. Nguyen, Julia Buhmann, Anthony W. Azevedo, Anne Sustar, Sweta Agrawal, Mingguan Liu, Brendan L. Shanny, Jan Funke, John C. Tuthill, and Wei-Chung Allen Lee. https://doi.org/10.1016/j.cell.2020.12.013 
 cascade:

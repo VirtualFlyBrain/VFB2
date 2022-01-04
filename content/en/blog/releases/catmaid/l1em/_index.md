@@ -1,7 +1,7 @@
 ---
 title: "L1 EM Catmaid Dataset "
 linkTitle: "L1EM"
-weight: 20
+weight: 10
 description: >
     Drosophila Larval (L1) CNS Tracing by Albert Cardona’s lab at HHMI Janelia Research Campus and collaborators.
 cascade:
