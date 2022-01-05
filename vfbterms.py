@@ -98,6 +98,7 @@ def wrapStringInHTMLMac(term):
             images = '## Available images\n<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=' + term["term"]["core"]["short_form"] + '">' + images + '</a>'
         desc = ""
         com = ""
+        tags = ""
         try:
             desc = ' '.join(term["term"]["description"])
             com = ' '.join(term["term"]["comment"])
@@ -111,7 +112,15 @@ def wrapStringInHTMLMac(term):
             print('error on label for desc')
             print(e)
             print(traceback.format_exc())
-        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,','.join(term["term"]["core"]["types"]),json.dumps(term, indent=4),images,now,note)
+        try:
+            tags = ','.join(term["term"]["core"]["types"])
+            if "_" in term["term"]["core"]["short_form"]:
+                tags += "," + term["term"]["core"]["short_form"].split("_")[0]
+        except Exception as e:
+            print('error on tag creation')
+            print(e)
+            print(traceback.format_exc())
+        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note)
         try:
             f.write(whole)
         except:
