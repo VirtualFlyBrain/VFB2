@@ -112,6 +112,7 @@ def wrapStringInHTMLMac(term):
             print('error on label for desc')
             print(e)
             print(traceback.format_exc())
+        # Add Ontology to tags list (XXX from XXX_YYYYYYYY)
         try:
             tags = ','.join(term["term"]["core"]["types"])
             if "_" in term["term"]["core"]["short_form"]:
@@ -120,6 +121,7 @@ def wrapStringInHTMLMac(term):
             print('error on tag creation')
             print(e)
             print(traceback.format_exc())
+        
         whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note)
         try:
             f.write(whole)
