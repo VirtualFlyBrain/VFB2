@@ -100,8 +100,8 @@ def wrapStringInHTMLMac(term):
         com = ""
         tags = ""
         try:
-            desc = ' '.join(term["term"]["description"]).replace("\n", " ")
-            com = ' '.join(term["term"]["comment"]).replace("\n", " ")
+            desc = ' '.join(term["term"]["description"]).replace("\n", " ").replace('\r', ' ')
+            com = ' '.join(term["term"]["comment"]).replace("\n", " ").replace('\r', ' ')
         except:
             print('missing desc')
         # If no description then combine all 'label' in the json to give a a crude description of term, xrefs, technique & examples.
