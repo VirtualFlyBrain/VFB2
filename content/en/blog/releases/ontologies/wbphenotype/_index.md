@@ -1,7 +1,7 @@
 ---
 title: "C elegans Phenotype Ontology (WBPhenotype)"
 linkTitle: "C elegans Phenotype Ontology"
-tags: [ontologies,annotation,worm]
+tags: [ontologies,annotation,worm,WBPhenotype]
 categories: [ontologies,annotations]
 weight: 150
 date: 2022-01-05

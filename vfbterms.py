@@ -117,6 +117,8 @@ def wrapStringInHTMLMac(term):
             tags = ','.join(term["term"]["core"]["types"])
             if "_" in term["term"]["core"]["short_form"]:
                 tags += "," + term["term"]["core"]["short_form"].split("_")[0]
+            elif term["term"]["core"]["short_form"].startswith("FB"):
+                tags += "," + term["term"]["core"]["short_form"][0:4]
         except Exception as e:
             print('error on tag creation')
             print(e)
@@ -196,3 +198,7 @@ save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'C
 
 chdir(mypath + 'bfo/')
 save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'BFO_' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+chdir(mypath + 'flybase/')
+save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FB' AND NOT n.short_form contains '_' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+

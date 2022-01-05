@@ -1,7 +1,7 @@
 ---
 title: "Zebrafish Phenotype Ontology (ZP)"
 linkTitle: "Zebrafish Phenotype Ontology"
-tags: [ontologies,annotation,fish]
+tags: [ontologies,annotation,fish,ZP]
 categories: [ontologies,annotations]
 weight: 150
 date: 2022-01-05
