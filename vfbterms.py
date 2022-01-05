@@ -13,7 +13,7 @@ wrapper = """---
     linkTitle: "{0}"
     tags: [{4}]
     content: [term]
-    date: {7}
+    date: 2022-01-01
     description: >
         {2} {3}
     weight: 1000
