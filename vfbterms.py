@@ -170,3 +170,7 @@ save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'R
 
 chdir(mypath + 'obi/')
 save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'OBI_' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+chdir(mypath + 'ncbitaxon/')
+save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'NCBITaxon_' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
