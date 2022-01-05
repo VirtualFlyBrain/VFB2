@@ -1,13 +1,13 @@
 ---
-title: "Gene Ontology (GO)"
-linkTitle: "Gene Ontology"
-tags: [ontologies,annotation,go]
+title: "Sequence types and features ontology (SO)"
+linkTitle: "Sequence types and features ontology"
+tags: [ontologies,annotation,so]
 categories: [ontologies,annotations]
 weight: 60
 date: 2022-01-05
 Description: >
-  The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.
-ontology: "go"
+  A structured controlled vocabulary for sequence annotation, for the exchange of annotation data and for the description of sequence objects in databases.
+ontology: "so"
 cascade:
 - type: "docs"
   _target:
