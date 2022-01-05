@@ -161,3 +161,7 @@ save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'P
 
 chdir(mypath + 'pco/')
 save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'PCO_' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+chdir(mypath + 'uberon/')
+save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'UBERON_' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
