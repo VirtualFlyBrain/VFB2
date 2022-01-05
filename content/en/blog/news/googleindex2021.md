@@ -11,5 +11,7 @@ description: >
 Goole Statement:
 ```
 December 6-14
-An internal issue caused an increase of redirect errors during indexing, and associated email notifications. This was not due to any website issues, but was due to an internal Google issue. Pages that were dropped from the index have been scheduled for recrawling.
+An internal issue caused an increase of redirect errors during indexing, and associated email notifications. 
+This was not due to any website issues, but was due to an internal Google issue. 
+Pages that were dropped from the index have been scheduled for recrawling.
 ```
