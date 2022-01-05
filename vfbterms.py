@@ -177,3 +177,6 @@ save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'N
 chdir(mypath + 'zp/')
 save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'ZP_' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
+chdir(mypath + 'wbphenotype/')
+save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'WBPhenotype_' AND NOT n:Deprecated WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+

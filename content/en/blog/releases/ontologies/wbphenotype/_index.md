@@ -1,13 +1,13 @@
 ---
-title: "Zebrafish Phenotype Ontology (ZP)"
-linkTitle: "Zebrafish Phenotype Ontology"
-tags: [ontologies,annotation,fish]
+title: "C elegans Phenotype Ontology (WBPhenotype)"
+linkTitle: "C elegans Phenotype Ontology"
+tags: [ontologies,annotation,worm]
 categories: [ontologies,annotations]
 weight: 150
 date: 2022-01-05
 Description: >
-  The Zebrafish Phenotype Ontology formally defines all phenotypes of the Zebrafish model organism.
-ontology: "zp"
+  Ontology about C. elegans and other nematode phenotypes.
+ontology: "wbphenotype"
 cascade:
 - type: "docs"
   _target:
