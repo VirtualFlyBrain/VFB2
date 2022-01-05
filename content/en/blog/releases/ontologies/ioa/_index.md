@@ -1,13 +1,13 @@
 ---
-title: "Sequence types and features ontology (SO)"
-linkTitle: "Sequence types and features ontology"
-tags: [ontologies,annotation,SO]
+title: "Information Artifact Ontology (IAO)"
+linkTitle: "Information Artifact Ontology"
+tags: [ontologies,annotation,IAO]
 categories: [ontologies,annotations]
-weight: 60
+weight: 70
 date: 2022-01-05
 Description: >
-  A structured controlled vocabulary for sequence annotation, for the exchange of annotation data and for the description of sequence objects in databases.
-ontology: "so"
+  The Information Artifact Ontology (IAO) is an ontology of information entities, originally driven by work by the OBI digital entity and realizable information entity branch.
+ontology: "iao"
 cascade:
 - type: "docs"
   _target:

@@ -1,7 +1,7 @@
 ---
 title: "Gene Ontology (GO)"
 linkTitle: "Gene Ontology"
-tags: [ontologies,annotation,go]
+tags: [ontologies,annotation,GO]
 categories: [ontologies,annotations]
 weight: 60
 date: 2022-01-05
