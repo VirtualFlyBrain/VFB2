@@ -37,7 +37,7 @@ wrapper = """---
 def find_images(src, key, dest=set()):
     for k, v in zip(src.keys(), src.values()):
         if key == k:
-            if not v in str(dest) and not v.endswith("_c"):
+            if not v in str(dest):
                 dest.add('<img src="' + v + 'thumbnail.png" alt="{{< param linkTitle >}}" width="200"/>')
         elif isinstance(v, dict):
             if key in str(v):
@@ -53,7 +53,7 @@ def find_images(src, key, dest=set()):
 def find_values(src, key, dest=set()):
     for k, v in zip(src.keys(), src.values()):
         if key == k:
-            if not v in str(dest):
+            if not v in str(dest) and not v.endswith("_c") and not v.endswith("-c"):
                 dest.add(v)
         elif isinstance(v, dict):
             if key in str(v):
@@ -67,7 +67,7 @@ def find_values(src, key, dest=set()):
     return dest
 
 def save_terms(ids):
-    run = 10000
+    run = 100000
     import os.path
     for id in ids:
         try:
@@ -75,10 +75,10 @@ def save_terms(ids):
                 filename = id + ".md"
                 if not os.path.isfile(filename):
                     print(id)
-                    run -= 1
                     terms = vc.neo_query_wrapper.get_TermInfo([id])
                     for term in terms:
                         wrapStringInHTMLMac(term)
+                        run -= 1
         except:
             print("ERROR:" + id)
 
@@ -106,7 +106,7 @@ def wrapStringInHTMLMac(term):
         # If no description then combine all 'label' in the json to give a a crude description of term, xrefs, technique & examples.
         try:
             if desc == "":
-                desc = "; ".join(find_values(term, "label", set()))
+                com += " [" + "; ".join(find_values(term, "label", set())) + "]"
         except Exception as e:
             print('error on label for desc')
             print(e)
