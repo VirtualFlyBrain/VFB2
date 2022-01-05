@@ -100,7 +100,7 @@ def wrapStringInHTMLMac(term):
         com = ""
         tags = ""
         try:
-            desc = ' '.join(term["term"]["description"])
+            desc = ' '.join(term["term"]["description"]).replace("\n", " ")
             com = ' '.join(term["term"]["comment"])
         except:
             print('missing desc')
