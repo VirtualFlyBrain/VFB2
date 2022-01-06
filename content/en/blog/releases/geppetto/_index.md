@@ -2,7 +2,7 @@
 title: "Geppetto"
 linkTitle: "Geppetto"
 weight: 21
-tags: [Geppetto]
+tags: [Geppetto,MetaCell]
 description: >
     The ultimate neuroscience platform.
 cascade:
@@ -12,6 +12,8 @@ cascade:
 ---
 
 [Geppetto](https://geppetto.org) is an open source project that VFB is an acive developer of in partnership with [MetaCell](https://www.metacell.us/)
+
+<video autoplay="" loop="" muted="" playsinline=""><source src="https://www.metacell.us/assets/video/VirtualFlyBrain.mp4" type="video/mp4"></video>
 
 For full details on the project see [Geppetto.org](https://geppetto.org)
 
