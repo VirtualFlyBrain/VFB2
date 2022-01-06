@@ -67,7 +67,7 @@ def find_values(src, key, dest=set()):
     return dest
 
 def save_terms(ids):
-    run = 10000
+    run = 100000
     import os.path
     for id in ids:
         try:
