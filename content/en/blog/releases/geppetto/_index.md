@@ -23,8 +23,9 @@ For full details on the project see [Geppetto.org](https://geppetto.org)
 
 Build robust neuroscience applications.
 
-[Live demo](http://live.geppetto.org) [Paper](http://paper.geppetto.org) [Docs](http://docs.geppetto.org/en/latest/)
 
+| [Live demo](http://live.geppetto.org) | [Paper](http://paper.geppetto.org) | [Docs](http://docs.geppetto.org/en/latest/) |
+--------------------------------
 
 
 The visualisation and simulation platform focused on what matters to you.
@@ -116,7 +117,8 @@ Show me the code!
 
 Right! Geppetto is hosted on GitHub, every module has its own repository to provide flexible ways of branching individual components. For every module we have at least two branches, development and master. The development branch gets merged into master each monthly release. If you want to contribute you can either go straight to the code or reach out to us dropping an [email](mailto:info@geppetto.org), we will show you around and help you contribute in your favorite way!
 
-[Source code](http://git.geppetto.org) [Docs](http://docs.geppetto.org) [Development board](http://board.geppetto.org/)
+| [Source code](http://git.geppetto.org) | [Docs](http://docs.geppetto.org) | [Development board](http://board.geppetto.org/)
+--------------------------------
 
 F.A.Q.
 ======
