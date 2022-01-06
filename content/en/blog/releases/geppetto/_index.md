@@ -12,28 +12,28 @@ cascade:
 ---
 
 <div id="hero">
-<scrip>$( "#hero" ).load( "https://geppetto.org/ #hero")</script>
+<script>$( "#hero" ).load( "https://geppetto.org/ #hero")</script>
 </div>
 
 <div id="news">
-<scrip>$( "#news" ).load( "https://geppetto.org/ #news")</script>
+<script>$( "#news" ).load( "https://geppetto.org/ #news")</script>
 </div>
 
 <div id="features">
-<scrip>$( "#features" ).load( "https://geppetto.org/ #features")</script>
+<script>$( "#features" ).load( "https://geppetto.org/ #features")</script>
 </div>
 
 <div id="info">
-<scrip>$( "#info" ).load( "https://geppetto.org/ #info")</script>
+<script>$( "#info" ).load( "https://geppetto.org/ #info")</script>
 </div>
 
 
 <div id="gallery">
-<scrip>$( "#gallery" ).load( "https://geppetto.org/ #gallery")</script>
+<script>$( "#gallery" ).load( "https://geppetto.org/ #gallery")</script>
 </div>
 
 <div id="getinvolved">
-<scrip>$( "#getinvolved" ).load( "https://geppetto.org/ #getinvolved")</script>
+<script>$( "#getinvolved" ).load( "https://geppetto.org/ #getinvolved")</script>
 </div>
 
 [Geppetto.org](https://geppetto.org)
