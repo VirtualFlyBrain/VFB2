@@ -137,7 +137,7 @@ Find some answers to the most common questions about Geppetto!
 *   [Dario Del Piano](https://uk.linkedin.com/in/dario-del-piano-a8a12937) (Engineer)
 *   [Facundo Rodriguez](https://www.linkedin.com/in/facundo-rodriguez-24091b17a/) (Engineer)
 *   [Filippo Ledda](https://it.linkedin.com/in/filippo-ledda-21bbb29) (Architect, engineer)
-*   [Jesus Martinez](https://www.linkedin.com/in/jesus-martinez-95971219Jesus Martinez) (Engineer)
+*   [Jesus Martinez](https://www.linkedin.com/in/jesus-martinez-95971219) (Engineer)
 
 For the full list of contributors see [here](https://github.com/orgs/openworm/teams/geppetto-contributors).
 
