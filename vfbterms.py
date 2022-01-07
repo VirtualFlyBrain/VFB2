@@ -72,7 +72,7 @@ def save_terms(ids):
     for id in ids:
         try:
             if run > 1:
-                filename = id + ".md"
+                filename = id + "_v0.md"
                 if not os.path.isfile(filename):
                     print(id)
                     terms = vc.neo_query_wrapper.get_TermInfo([id])
@@ -89,7 +89,7 @@ def wrapStringInHTMLMac(term):
     import os.path
     import traceback
     now = datetime.datetime.today().strftime("%Y-%m-%d")
-    filename = term["term"]["core"]["short_form"] + ".md"
+    filename = term["term"]["core"]["short_form"] + "_v0.md"
     if not os.path.isfile(filename):
         f = open(filename, "w", encoding="utf-8")
         images = ""
@@ -123,10 +123,13 @@ def wrapStringInHTMLMac(term):
             print('error on tag creation')
             print(e)
             print(traceback.format_exc())
-        
         whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note)
         try:
             f.write(whole)
+            filename = term["term"]["core"]["short_form"] + ".md"
+            if os.path.isfile(filename):
+                os.remove(filename)
+                print('Removed: ' + filename)
         except:
             print(whole)
         f.close()
