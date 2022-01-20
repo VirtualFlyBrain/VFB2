@@ -16,13 +16,13 @@ wrapper = """---
     date: 2022-01-01
     description: >
         {2} {3}
-    weight: 1000
+    weight: 10000
     sitemap_exclude: true
 ---
 
 {8}
 
-<span style="font-size:larger;">[Open **{0}** in **VFB**](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})</span>
+<span style="font-size:larger;">[Open <strong>{0}</strong> in <strong>VFB</strong>](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})</span>
 
 {6}
 
@@ -89,7 +89,7 @@ def wrapStringInHTMLMac(term):
     import os.path
     import traceback
     now = datetime.datetime.today().strftime("%Y-%m-%d")
-    filename = term["term"]["core"]["short_form"] + "_v0.md"
+    filename = term["term"]["core"]["short_form"] + "_v1.md"
     if not os.path.isfile(filename):
         f = open(filename, "w", encoding="utf-8")
         images = ""
@@ -126,7 +126,7 @@ def wrapStringInHTMLMac(term):
         whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note)
         try:
             f.write(whole)
-            filename = term["term"]["core"]["short_form"] + ".md"
+            filename = term["term"]["core"]["short_form"] + "_v0.md"
             if os.path.isfile(filename):
                 os.remove(filename)
                 print('Removed: ' + filename)
