@@ -10,3 +10,6 @@ User-agent: *
 Disallow:{{ if not $allowCrawling }} /{{ end }}
 Disallow: /data/VFB/
 Sitemap: {{ "/sitemap.xml" | absURL }}
+{{ range (seq 1 38) }}
+Sitemap: {{ "/sitemap{{ . }}.xml" | absURL }}
+{{ end }}
