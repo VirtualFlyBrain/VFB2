@@ -7,9 +7,9 @@
 # Allow crawling of all content
 {{- end }}
 User-agent: *
-Disallow:{{ if not $allowCrawling }} /{{ end }}
+{{ if not $allowCrawling }}Disallow: /{{- end }}
 Disallow: /data/VFB/
 Sitemap: {{ "/sitemap.xml" | absURL }}
-{{ range (seq 1 38) -}}
+{{ range (seq 1 38) }}
 Sitemap: {{ "/sitemap" + $. + ".xml" | absURL }}
 {{- end }}
