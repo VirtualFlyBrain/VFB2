@@ -8,4 +8,5 @@
 {{- end }}
 User-agent: *
 Disallow:{{ if not $allowCrawling }} /{{ end }}
+Disallow: /data/VFB/
 Sitemap: {{ "/sitemap.xml" | absURL }}
