@@ -11,5 +11,5 @@ User-agent: *
 Disallow: /data/VFB/
 Sitemap: {{ "/sitemap.xml" | absURL }}
 {{ range (seq 1 38) }}
-Sitemap: {{ "/sitemap" + $. + ".xml" | absURL }}
+Sitemap: {{ . | printf "/sitemap%s.xml" | absURL }}
 {{- end }}
