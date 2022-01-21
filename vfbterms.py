@@ -53,7 +53,7 @@ def find_images(src, key, dest=set()):
 def find_values(src, key, dest=set()):
     for k, v in zip(src.keys(), src.values()):
         if key == k:
-            if not v in str(dest) and not v.endswith("_c") and not v.endswith("-c"):
+            if not v in str(dest) and not v.endswith("_c") and not v.endswith("-c") and not v.endswith(" c"):
                 dest.add(v)
         elif isinstance(v, dict):
             if key in str(v):
