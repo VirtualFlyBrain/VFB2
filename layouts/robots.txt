@@ -10,6 +10,6 @@ User-agent: *
 {{ if not $allowCrawling }}Disallow: /{{- end }}
 Disallow: /data/VFB/
 Sitemap: {{ "/sitemap.xml" | absURL }}
-{{ range (seq 1 38) }}
-Sitemap: {{ . | printf "https://www.virtualflybrain.org/sitemap%i.xml" }}
+{{ range $index, $element := seq 1 38 }}
+Sitemap: {{ printf "https://www.virtualflybrain.org/sitemap%i.xml" $element }}
 {{- end }}
