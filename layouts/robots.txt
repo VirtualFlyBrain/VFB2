@@ -11,5 +11,5 @@ User-agent: *
 Disallow: /data/VFB/
 Sitemap: {{ "/sitemap.xml" | absURL }}
 {{ range (seq 1 38) }}
-Sitemap: {{ . | printf "/sitemap%i.xml" | absURL }}
+Sitemap: {{ . | printf "https://www.virtualflybrain.org/sitemap%i.xml" }}
 {{- end }}
