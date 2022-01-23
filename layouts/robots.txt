@@ -11,5 +11,5 @@ User-agent: *
 Disallow: /data/VFB/
 Sitemap: {{ "/sitemap.xml" | absURL }}
 {{ range $index, $element := (seq 38) }}
-Sitemap: {{ printf "https://www.virtualflybrain.org/sitemap%i.xml" (add $index 1) }}
+Sitemap: https://www.virtualflybrain.org/sitemap{{- (add $index 1) -}}.xml
 {{- end }}
