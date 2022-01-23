@@ -1,6 +1,7 @@
 ---
-title: "VFB Blog"
-linkTitle: "Blog"
+title: "VFB Latest"
+linkTitle: "Lastest"
+aliases = ["/blog/"] 
 menu:
   main:
     weight: 30
@@ -11,6 +12,6 @@ cascade:
 ---
 
 
-This is the **blog** section. It has two categories: News and Releases.
+This is this section we list all the latest news and released data.
 
 
