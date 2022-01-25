@@ -3,7 +3,7 @@ from os import listdir, chdir
 from os.path import isfile, join
 from vfb_connect.cross_server_tools import VfbConnect
 
-version = 1
+version = 2
 
 note = """
 {{% alert title="Note" color="primary" %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /alert %}}
@@ -14,6 +14,7 @@ wrapper = """---
     tags: [{4}]
     content: [term]
     date: 2022-01-01
+    images: [{7}]
     description: >
         {2} {3}
     weight: 10000
@@ -39,6 +40,22 @@ def find_images(src, key, dest=set()):
         if key == k:
             if not v in str(dest):
                 dest.add('<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=' + v.replace("https://www.virtualflybrain.org/data/", "").replace("https://virtualflybrain.org/data/", "").replace("http://virtualflybrain.org/data/", "").replace("/data/","").replace("/VFB_",",VFB_").replace("/i/","_").replace("/","") +'" ><img src="' + v + 'thumbnail.png" alt="{{< param linkTitle >}}" width="200"/></a>')
+        elif isinstance(v, dict):
+            if key in str(v):
+                dest.union(find_images(v, key, dest))
+        elif isinstance(v, list):
+            if key in str(v):
+                for i in v:
+                    if key in str(i):
+                        if isinstance(i, dict):
+                            dest.union(find_images(i, key, dest))
+    return dest
+
+def find_images_list(src, key, dest=set()):
+    for k, v in zip(src.keys(), src.values()):
+        if key == k:
+            if not v in str(dest):
+                dest.add('"' + v + '"')
         elif isinstance(v, dict):
             if key in str(v):
                 dest.union(find_images(v, key, dest))
@@ -92,9 +109,11 @@ def wrapStringInHTMLMac(term):
     if not os.path.isfile(filename):
         f = open(filename, "w", encoding="utf-8")
         images = ""
+        images_meta = ""
         images = " ".join(find_images(term, "image_folder", set()))
         if "<img" in images:
             images = '## Example Images\n' + images
+            images_meta = ",".join(find_images_list(term, "image_folder", set()))
         desc = ""
         com = ""
         tags = ""
@@ -122,7 +141,7 @@ def wrapStringInHTMLMac(term):
             print('error on tag creation')
             print(e)
             print(traceback.format_exc())
-        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note)
+        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note,images_meta)
         try:
             f.write(whole)
             filename = term["term"]["core"]["short_form"] + "_v" + str(version - 1) + ".md"
