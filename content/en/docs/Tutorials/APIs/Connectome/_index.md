@@ -1,4 +1,3 @@
-
 ---
 title: "Hacking the connectome"
 linkTitle: "Connectome"
