@@ -1,4 +1,3 @@
-
 ---
 title: "Application Programming Interfaces (APIs)"
 linkTitle: "APIs"
