@@ -3,6 +3,7 @@ title: "Introduction to connectomic data and tools"
 date: 2021-05-04
 weight: 4
 series: ["APIs"]
+alias: ["/docs/tutorials/connectome/"]
 categories: [connectome,python,workshop,tutorials]
 tags: [api,python,vfbconnect,natverse,nat,navis,pymaid,neuprint,rcatmaid,r]
 videos: ["https://www.youtube.com/watch?v=FfhAgQLxx0Q"]

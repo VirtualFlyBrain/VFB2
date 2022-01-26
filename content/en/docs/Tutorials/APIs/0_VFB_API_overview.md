@@ -2,6 +2,7 @@
 title: "VFB connect API overview"
 weight: 100
 series: ["APIs"]
+alias: ["/docs/tutorials/0_vfb_api_overview/"]
 date: 2021-12-27
 description: >
   The VFB connect API provides programmatic access to the databases underlying VFB
