@@ -1,8 +1,10 @@
 ---
 title: "Tool landscape"
-date: 2021-05-04
 weight: 4
+series: ["APIs"]
+date: 2021-12-27
 categories: [connectome,python,workshop,tutorials]
+images: ["https://github.com/VirtualFlyBrain/training/raw/main/presentations/_static/vfb_workshop.png"]
 tags: [api,python,vfbconnect,natverse,nat,navis,pymaid,neuprint,rcatmaid,r]
 description: >
   There are multiple tools to query the various data sources. Fortunately they play together nicely. Here is a quick overview
