@@ -33,5 +33,7 @@ If you've found a problem in the docs, but you're not sure how to fix it yoursel
 * [Docsy user guide](https://www.docsy.dev/docs/): All about Docsy, including how it manages navigation, look and feel, and multi-language support.
 * [Hugo documentation](https://gohugo.io/documentation/): Comprehensive reference for Hugo.
 * [Github Hello World!](https://guides.github.com/activities/hello-world/): A basic introduction to GitHub concepts and workflow.
+* [nbcovert](https://github.com/jupyter/nbconvert): A tool to convert jupyter notebooks into markdown (md) format.
+* [HTML to Markdown Converter](https://codebeautify.org/html-to-markdown): It helps to convert your HTML to MD. This tool is super fast and processes conversion in the browser.
 
 
