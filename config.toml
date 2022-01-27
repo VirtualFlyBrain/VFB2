@@ -21,18 +21,19 @@ enableMissingTranslationPlaceholders = true
 
 # You can add your own taxonomies
 [taxonomies]
-tag = "tags"
 category = "categories"
+tag = "tags"
+series = "series"
 
 [params.taxonomy]
 # set taxonomyCloud = [] to hide taxonomy clouds
-taxonomyCloud = ["tags", "categories"]
+taxonomyCloud = ["categories", "tags"]
 
 # If used, must have same lang as taxonomyCloud
-taxonomyCloudTitle = ["Tag Cloud", "Categories"]
+taxonomyCloudTitle = ["Categories", "Tag Cloud"]
 
 # set taxonomyPageHeader = [] to hide taxonomies on the page headers
-taxonomyPageHeader = ["tags", "categories"]
+taxonomyPageHeader = ["categories", "tags"]
 
 
 # Highlighting config
