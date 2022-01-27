@@ -2,6 +2,7 @@
 title: "Contribution Guidelines"
 linkTitle: "Contribution Guidelines"
 weight: 10
+categories: ["help"]
 description: >
   How to contribute to these docs
 ---
