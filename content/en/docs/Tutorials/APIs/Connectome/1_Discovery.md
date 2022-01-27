@@ -1,7 +1,7 @@
 ---
 title: "Discovery"
 weight: 110
-series: ["APIs"]
+series: "APIs"
 date: 2021-12-27
 description: >
   VFB integrates images and connectomics profiles of neurons from many sources.  It classifies and records their properties using a standard, queryable classification. This standardises the names of neuron types across sources, so you don't need to worry about differences in nomenclature uses and supports queries for neurons by their classification. 

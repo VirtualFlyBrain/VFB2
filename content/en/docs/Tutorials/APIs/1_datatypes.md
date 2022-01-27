@@ -1,7 +1,7 @@
 ---
 title: "Data types"
 weight: 110
-series: ["APIs"]
+series: "APIs"
 date: 2021-12-27
 description: >
   In this notebook we will focus on neuron skeletons - a.k.a. `TreeNeurons`
