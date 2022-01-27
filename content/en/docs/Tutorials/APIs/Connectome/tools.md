@@ -1,7 +1,7 @@
 ---
 title: "Tool landscape"
 weight: 4
-series: "APIs"
+series: ["API"]
 date: 2021-12-27
 categories: [connectome,python,workshop,tutorials]
 images: ["https://github.com/VirtualFlyBrain/training/raw/main/presentations/_static/vfb_workshop.png"]

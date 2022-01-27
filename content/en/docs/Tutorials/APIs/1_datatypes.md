@@ -1,7 +1,7 @@
 ---
 title: "Data types"
 weight: 110
-series: "APIs"
+series: ["API"]
 alias: ["/docs/tutorials/1_datatypes/"]
 date: 2021-12-27
 description: >
