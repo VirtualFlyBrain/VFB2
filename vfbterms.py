@@ -3,7 +3,7 @@ from os import listdir, chdir
 from os.path import isfile, join
 from vfb_connect.cross_server_tools import VfbConnect
 
-version = 2
+version = 3
 
 note = """
 {{% alert title="Note" color="primary" %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /alert %}}
@@ -39,7 +39,7 @@ def find_images(src, key, dest=set()):
     for k, v in zip(src.keys(), src.values()):
         if key == k:
             if not v in str(dest):
-                dest.add('<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=' + v.replace("https://www.virtualflybrain.org/data/", "").replace("https://virtualflybrain.org/data/", "").replace("http://virtualflybrain.org/data/", "").replace("/data/","").replace("/VFB_",",VFB_").replace("/i/","_").replace("/","") +'" ><img src="' + v + 'thumbnail.png" alt="{{< param linkTitle >}}" width="200"/></a>')
+                dest.add('<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=' + v.replace("https://www.virtualflybrain.org/data/", "").replace("https://virtualflybrain.org/data/", "").replace("http://virtualflybrain.org/data/", "").replace("http://www.virtualflybrain.org/data/", "").replace("/data/","").replace("/VFB_",",VFB_").replace("/i/","_").replace("/","") +'" ><img src="' + v + 'thumbnail.png" alt="{{< param linkTitle >}}" width="200"/></a>')
         elif isinstance(v, dict):
             if key in str(v):
                 dest.union(find_images(v, key, dest))
