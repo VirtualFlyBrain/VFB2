@@ -16,6 +16,6 @@ cascade:
 
 [//]: # (feel free to add extra details here or include a readme file)
 
-You can run queries against the VFB OWL server using the python package [vfb-connect](https://vfb-connect.readthedocs.io/en/stable/) or directly via our owlery server endpoint [http://owl.virtualflybrain.org/kbs/vfb](http://owl.virtualflybrain.org/kbs/vfb). Details of the [Owlery rest API](https://github.com/phenoscape/owlery) can be found [here](https://owlery.phenoscape.org/api/).
+You can run queries against the VFB OWL server using the python package [vfb-connect](https://vfb-connect.readthedocs.io/en/stable/) or directly via our owlery server endpoint [http://owl.virtualflybrain.org/kbs/vfb](http://owl.virtualflybrain.org/kbs/vfb). Details of the [Owlery rest API](https://github.com/phenoscape/owlery) can be found [here](https://kb.phenoscape.org/owlery/docs/).
 
 The latest live version of the vfb.owl file can be accessed at [http://virtualflybrain.org/data/VFB/OWL/owlery-live.owl](http://virtualflybrain.org/data/VFB/OWL/owlery-live.owl)
