@@ -3,7 +3,7 @@ from os import listdir, chdir
 from os.path import isfile, join
 from vfb_connect.cross_server_tools import VfbConnect
 
-version = 3
+version = 4
 
 note = """
 {{% alert title="Note" color="primary" %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /alert %}}
@@ -19,6 +19,7 @@ wrapper = """---
         {2} {3}
     weight: 10000
     sitemap_exclude: true
+    canonicalUrl: '{{ replace .Permalink "blog/2022/01/01" "terms" }}'
 ---
 
 {8}
