@@ -11,7 +11,7 @@ cascade:
 ---
 
 
-![jpeg](/images/l1em_70percent.jpeg)
+![jpeg](https://www.virtualflybrain.org/images/l1em_70percent.jpeg)
 
 
 [@albertcardona](https://twitter.com/albertcardona)
