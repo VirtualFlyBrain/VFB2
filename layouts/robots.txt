@@ -8,7 +8,6 @@
 {{- end }}
 User-agent: *
 {{ if not $allowCrawling }}Disallow: /{{- end }}
-Disallow: /data/VFB/
 Sitemap: {{ "/sitemap.xml" | absURL }}
 {{ range $index, $element := (seq 38) }}
 Sitemap: https://www.virtualflybrain.org/sitemap{{- (add $index 1) -}}.xml
