@@ -1,7 +1,6 @@
 ---
 title: "VFB Latest"
 linkTitle: "Lastest"
-aliases: ["/blog/"] 
 menu:
   main:
     weight: 30
