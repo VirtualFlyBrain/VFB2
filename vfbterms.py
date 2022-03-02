@@ -40,7 +40,7 @@ def find_images(src, key, dest=set()):
     for k, v in zip(src.keys(), src.values()):
         if key == k:
             if not v in str(dest):
-                dest.add('<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=' + v.replace("https://www.virtualflybrain.org/data/", "").replace("https://virtualflybrain.org/data/", "").replace("http://virtualflybrain.org/data/", "").replace("http://www.virtualflybrain.org/data/", "").replace("/data/","").replace("/VFB_",",VFB_").replace("/i/","_").replace("/","") +'" ><img src="' + v + 'thumbnail.png" alt="{{< param linkTitle >}}" width="200"/></a>')
+                dest.add('<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=' + v.replace("https://www.virtualflybrain.org/data/", "").replace("https://virtualflybrain.org/data/", "").replace("http://virtualflybrain.org/data/", "").replace("http://www.virtualflybrain.org/data/", "").replace("/data/","").replace("/VFB_",",VFB_").replace("/i/","_").replace("/","") +'" ><img src="' + v + 'thumbnail.png" alt="{{< param linkTitle >}}" width="200"/></a>')
         elif isinstance(v, dict):
             if key in str(v):
                 dest.union(find_images(v, key, dest))
