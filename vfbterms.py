@@ -110,11 +110,9 @@ def wrapStringInHTMLMac(term):
     if not os.path.isfile(filename):
         f = open(filename, "w", encoding="utf-8")
         images = ""
-        images_meta = ""
         images = " ".join(find_images(term, "image_folder", set()))
         if "<img" in images:
             images = '## Example Images\n' + images
-            images_meta = ",".join(find_images_list(term, "image_folder", set()))
         desc = ""
         com = ""
         tags = ""
@@ -142,7 +140,7 @@ def wrapStringInHTMLMac(term):
             print('error on tag creation')
             print(e)
             print(traceback.format_exc())
-        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note,images_meta,term["term"]["core"]["label"].replace('\\','&bsol;').replace(' ','-').lower()+"-"+term["term"]["core"]["short_form"].lower())
+        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note,term["term"]["core"]["label"].replace('\\','&bsol;').replace(' ','-').lower()+"-"+term["term"]["core"]["short_form"].lower())
         try:
             f.write(whole)
             filename = term["term"]["core"]["short_form"] + "_v" + str(version - 1) + ".md"
