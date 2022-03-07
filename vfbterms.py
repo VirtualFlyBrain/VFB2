@@ -3,7 +3,7 @@ from os import listdir, chdir
 from os.path import isfile, join
 from vfb_connect.cross_server_tools import VfbConnect
 
-version = 4
+version = 5
 
 note = """
 {{% alert title="Note" color="primary" %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /alert %}}
@@ -19,7 +19,7 @@ wrapper = """---
         {2} {3}
     weight: 10000
     sitemap_exclude: true
-    canonicalUrl: '{{ replace .Permalink "blog/2022/01/01" "terms" }}'
+    canonicalUrl: "https://www.virtualflybrain.org/term/{9}"
 ---
 
 {8}
@@ -142,7 +142,7 @@ def wrapStringInHTMLMac(term):
             print('error on tag creation')
             print(e)
             print(traceback.format_exc())
-        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note,images_meta)
+        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note,images_meta,term["term"]["core"]["label"].replace('\\','&bsol;').replace(' ','-').lower()+"-"+term["term"]["core"]["short_form"].lower())
         try:
             f.write(whole)
             filename = term["term"]["core"]["short_form"] + "_v" + str(version - 1) + ".md"
