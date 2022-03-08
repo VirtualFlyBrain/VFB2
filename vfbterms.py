@@ -3,7 +3,7 @@ from os import listdir, chdir
 from os.path import isfile, join
 from vfb_connect.cross_server_tools import VfbConnect
 
-version = 5
+version = 6
 
 note = """
 {{% alert title="Note" color="primary" %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /alert %}}
