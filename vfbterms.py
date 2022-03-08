@@ -105,6 +105,7 @@ def wrapStringInHTMLMac(term):
     import json
     import os.path
     import traceback
+    import re
     now = datetime.datetime.today().strftime("%Y-%m-%d")
     filename = term["term"]["core"]["short_form"] + "_v" + str(version) + ".md"
     if not os.path.isfile(filename):
@@ -140,7 +141,9 @@ def wrapStringInHTMLMac(term):
             print('error on tag creation')
             print(e)
             print(traceback.format_exc())
-        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note,term["term"]["core"]["label"].replace('\\','&bsol;').replace(' ','-').lower()+"-"+term["term"]["core"]["short_form"].lower())
+        url = term["term"]["core"]["label"].replace('\\','&bsol;').replace(' ','-').lower()+"-"+term["term"]["core"]["short_form"].lower()
+        url = re.sub("[^0-9a-zA-Z-_]+", "", url)
+        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note,url)
         try:
             f.write(whole)
             filename = term["term"]["core"]["short_form"] + "_v" + str(version - 1) + ".md"
