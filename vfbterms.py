@@ -19,7 +19,7 @@ wrapper = """---
         {2} {3}
     weight: 10000
     sitemap_exclude: true
-    canonicalUrl: "https://www.virtualflybrain.org/term/{9}"
+    canonicalUrl: "https://www.virtualflybrain.org/term/{9}/"
 ---
 
 {8}
