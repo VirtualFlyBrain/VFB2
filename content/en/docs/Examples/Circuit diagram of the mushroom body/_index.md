@@ -6,6 +6,7 @@ description: >
   Schematic representation of the 21 cell types of MBONs in the lobes and one cell type of MBON in the calyx based on the data presented in the accompanying manuscript (Aso et al., 2014): circles, cell bodies; semicircles, dendrites; arrowheads, axon terminals; color-coding is by neurotransmitter as in panel (A) Three MBON cell-types (GABAergic MBON-γ1pedc>α/β, glutamatergic MBON-γ4>γ1γ2 and MBON-β1>α; marked as 11, 5 and 6 respectively) send axons into the MB lobes. Axons of MBON-γ4>γ1γ2 project from γ4 to γ1 and γ2, and thus have the potential to affect activity of MBON-γ1pedc>α/β. From γ1, the axon of MBON-γ1pedc>α/β projects to compartments in the α/β lobes including β1, where dendrites of MBON-β1>α arborize. Axons of both MBON-γ1pedc>α/β and MBON-β1>α project to the compartments in the α lobe. Therefore activity of MBONs in the α lobe can be regulated by these layered inter-compartmental connections. These three types of MBONs (11, 5 and 6) do not project back to their own dendrites. Therefore, the organization of the MBONs can be viewed as forming a multilayered feed-forward network (Aso et al., 2014). MBONs project to a small number of brain areas: the crepine (CRE; a region surrounding the horizontal/medial lobes), the superior medial protocerebrum (SMP), superior intermediate protocerebrum (SIP) and superior lateral protocerebrum (SLP) and the lateral horn (LH). The size of the arrowhead reflects the relative number of termini in each area. The MBONs are numbered and listed in Table 1. See the accompanying manuscript (Aso et al., 2014) and Table 1 for details.
 ---
 
+<div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto">
 <img src="https://www.virtualflybrain.org/images/Aso_Figure_1b.jpg" width="2300" height="2019" usemap="#Aso_Figure_1b" border="0">
 <map name="Aso_Figure_1b">
     <area shape="poly" coords="669,893,1537,891,1536,783,1545,780,1526,746,1506,783,1515,784,1514,873,1338,873,1338,784,1349,782,1328,747,1310,781,1322,784,1320,869,1193,872,1194,786,1207,785,1183,747,1166,785,1174,786,1174,872,716,872,714,389,813,391,815,396,853,382,816,361,816,370,716,368,714,193,813,193,814,201,855,186,814,166,817,173,693,175,696,870,669,872,669,892" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100246" title="MBON-γ1pedc>α/β">
@@ -101,7 +102,7 @@ description: >
     <area shape="rect" coords="1051,599,1758,1240" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100214&amp;name=PAM%20(synonym)" title="dopaminergic PAM cluster">
     <area shape="rect" coords="525,67,1049,1235" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100219&amp;name=dopaminergic%20PPL1%20neuron" title="dopaminergic PPL1 cluster">
 </map>
-
+</div>
 
 
 [https://doi.org/10.7554/eLife.04580.003](https://doi.org/10.7554/eLife.04580.003)
