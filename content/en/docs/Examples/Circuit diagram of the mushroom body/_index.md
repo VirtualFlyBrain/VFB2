@@ -7,7 +7,7 @@ description: >
 ---
 
 <div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto">
-<img src="https://www.virtualflybrain.org/images/Aso_Figure_1b.jpeg" width="2300" height="2019" usemap="#Aso_Figure_1b" border="0">
+<img src="https://www.virtualflybrain.org/images/Aso_Figure_1b.jpeg" min-width="2300" min-height="2019" usemap="#Aso_Figure_1b" border="0">
 <map name="Aso_Figure_1b">
     <area shape="poly" coords="669,893,1537,891,1536,783,1545,780,1526,746,1506,783,1515,784,1514,873,1338,873,1338,784,1349,782,1328,747,1310,781,1322,784,1320,869,1193,872,1194,786,1207,785,1183,747,1166,785,1174,786,1174,872,716,872,714,389,813,391,815,396,853,382,816,361,816,370,716,368,714,193,813,193,814,201,855,186,814,166,817,173,693,175,696,870,669,872,669,892" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100246" title="MBON-γ1pedc>α/β">
     <area shape="poly" coords="2255,1277,2256,119,917,122,919,102,708,102,725,136,2243,133,2247,1284,2257,1278" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100238" title="MBON-α3">
@@ -99,8 +99,8 @@ description: >
     <area shape="rect" coords="605,1048,830,1201" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100273" title="mushroom body gamma lobe slice 1">
     <area shape="rect" coords="1294,1046,1441,1197" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100275" title="mushroom body gamma lobe slice 3">
     <area shape="rect" coords="852,1051,1037,1203" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100274" title="mushroom body gamma lobe slice 2">
-    <area shape="rect" coords="1051,599,1758,1240" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100214&amp;name=PAM%20(synonym)" title="dopaminergic PAM cluster">
-    <area shape="rect" coords="525,67,1049,1235" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100219&amp;name=dopaminergic%20PPL1%20neuron" title="dopaminergic PPL1 cluster">
+    <area shape="rect" coords="1051,599,1758,1240" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100214" title="dopaminergic PAM cluster">
+    <area shape="rect" coords="525,67,1049,1235" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100219" title="dopaminergic PPL1 cluster">
 </map>
 </div>
 
