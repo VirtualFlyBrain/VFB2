@@ -104,5 +104,6 @@ description: >
 </map>
 </div>
 
+<a href="https://doi.org/10.7554/eLife.04580.003" target="_blank">https://doi.org/10.7554/eLife.04580.003</a>
 
-[https://doi.org/10.7554/eLife.04580.003](https://doi.org/10.7554/eLife.04580.003)
+
