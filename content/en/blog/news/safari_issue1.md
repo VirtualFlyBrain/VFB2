@@ -1,7 +1,6 @@
 ---
 title: "Fix for problems with current Safari release"
 linkTitle: "Safari Issue Fix"
-weight: 100
 date: 2022-03-11
 description: >-
      Virtual Fly Brain 3D browser won't load on Safari Version 15.3 (17612.4.9.1.8) with expreimental feature enabled. Please follow these instructions to disable until Apple fix the issue.
