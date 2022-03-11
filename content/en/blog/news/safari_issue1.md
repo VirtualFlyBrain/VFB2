@@ -12,14 +12,12 @@ The issue is down to an 'expreimental feature' (NSURLSession WebSocket) being se
 
 To turn reolve this issue turn this off:
 
-
 ## In Safari on the desktop:
 
      Under 'Develop' expand 'Experimental Features' untick 'NSURLSession WebSocket'
      
      
 If you don’t see the Develop menu in the menu bar, choose Safari > Preferences, click Advanced, then select “Show Develop menu in menu bar”.
-
 
 
 ## On IOS devices:
