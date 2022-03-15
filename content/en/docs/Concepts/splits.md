@@ -5,7 +5,7 @@ categories: ["overview","help"]
 tags: ["Split","Expression_pattern","transgene","FlyLight"]
 weight: 30
 description: >
-  This techniques work by driving the expression of target transgenes at the intersection between the expression patterns of two hemi-driver transgenes.
+  This techniques works by driving the expression of target transgenes at the intersection between the expression patterns of two hemi-driver transgenes.
 ---
 
 Thousands of hemi-driver transgenes are now available, meaning that millions of combinations/[splits](/tags/split/) are possible, each targeting some precise subset of the 10s-100s of thousands of neurons in a fly Central Nervous System (CNS).  Finding the right combination for an experiment is a serious bottleneck for researchers.
