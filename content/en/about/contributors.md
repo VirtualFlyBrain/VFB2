@@ -8,6 +8,12 @@ weight: 700
 
 We would like to thank the following contributors for their help with this project:
 
+<style>
+img {
+  max-width: 100px;
+}
+</style>
+
 
 [![Robbie1977](https://avatars.githubusercontent.com/u/4630768?v=4&s=100)](https://github.com/Robbie1977) 
 [![dosumis](https://avatars.githubusercontent.com/u/112839?v=4&s=100)](https://github.com/dosumis) 
