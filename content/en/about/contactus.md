@@ -3,8 +3,6 @@ title: Contact us
 weight: 9000
 ---
 
-## Contact us
-
 To report a bug on the site, use the [Report an issue](Feedback.htm) page. For help, comments or suggestions, please use {{< email support>}}.
 
 To be kept updated on new features and data sign up to our mailing list using the subscribe button on the right.
