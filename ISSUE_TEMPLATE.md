@@ -1,10 +1,10 @@
-##### Description of the problem
+##### Description of the issue
 
 
 
 
 
-This form is for VFB2 bug reports and feature requests.
+This form is for VFB bug reports and feature requests.
 
 If you need help, please use the [forum](https://groups.google.com/forum/#!forum/vfb-suport).
 
@@ -14,14 +14,14 @@ Always include a code snippet, screenshots, and any relevant data to help us und
 
 ##### Browser
 
-- [x] All of them
+- [ ] All of them
 - [ ] Chrome
 - [ ] Firefox
 - [ ] Internet Explorer
 
 ##### OS
 
-- [x] All of them
+- [ ] All of them
 - [ ] Windows
 - [ ] macOS
 - [ ] Linux

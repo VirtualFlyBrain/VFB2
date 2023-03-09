@@ -1,0 +1,14 @@
+# www.robotstxt.org
+
+{{- $isProduction := eq hugo.Environment "production" -}}
+{{- $allowCrawling := $isProduction -}}
+
+{{ if $allowCrawling }}
+# Allow crawling of all content
+{{- end }}
+User-agent: *
+{{ if not $allowCrawling }}Disallow: /{{- end }}
+Sitemap: {{ "/sitemap.xml" | absURL }}
+{{ range $index, $element := (seq 38) }}
+Sitemap: https://www.virtualflybrain.org/sitemap{{- (add $index 1) -}}.xml
+{{- end }}
