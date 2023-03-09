@@ -33,7 +33,7 @@ We look forward to your contributions and thank you for your support of the VFB 
 Did you know that you can directly edit pages on the VFB site? Simply click on the "Edit this page" link on the right-hand side of any page to make changes. Your changes will be submitted as a pull request on GitHub, where they will be reviewed by our team before being merged into the main branch.
 
 ## Code of Conduct
-We expect all contributors to abide by our Code of Conduct. Please take a moment to read it before contributing to the project.
+We expect all contributors to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). Please take a moment to read it before contributing to the project.
 
 ## License
 The VFB project is licensed under the MIT License. See [LICENSE](LICENSE.md) for more information.
