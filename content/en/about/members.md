@@ -1,5 +1,6 @@
 ---
 title: Virtual Fly Brain Members and Their Contributions
+weight: 400
 ---
 
 ## Who We Are
