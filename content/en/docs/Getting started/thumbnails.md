@@ -17,6 +17,12 @@ Here is a guide on how to interpret VFB thumbnails:
 - Each color in the color bar corresponds to a specific depth in the image stack, and the intensity of the color represents the maximum intensity value at that depth.
 - Users can use the color bar to identify the depth of the signal and gain insights into the distribution of intensity values across different depths in the image stack.
 
+<style>
+img {
+  border: 10px solid black;
+}
+</style>
+
 ![Example VFB template thumbnail](https://www.virtualflybrain.org/data/VFB/i/0010/1567/VFB_00101567/thumbnail.png)
 * Note the colour bar and hence the signal in the image uses nealy the whole of the available (Z) stack space.
 
