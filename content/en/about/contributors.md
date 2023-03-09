@@ -10,7 +10,8 @@ We would like to thank the following contributors for their help with this proje
 
 <style>
 img {
-  max-width: 100px !important;
+  width: 100px !important;
+  height: 100px !important;
 }
 </style>
 
@@ -92,6 +93,7 @@ img {
 [![maxcom](https://avatars.githubusercontent.com/u/69385?v=4&s=100)](https://github.com/maxcom) 
 [![p3t0r](https://avatars.githubusercontent.com/u/41199?v=4&s=100)](https://github.com/p3t0r) 
 [![vmunier](https://avatars.githubusercontent.com/u/1211392?v=4&s=100)](https://github.com/vmunier) 
+[![rmorey](https://avatars.githubusercontent.com/u/4590343?v=4&s=100)](https://github.com/rmorey) 
 [![aheimsbakk](https://avatars.githubusercontent.com/u/8190865?v=4&s=100)](https://github.com/aheimsbakk) 
 [![dependabot[bot]](https://avatars.githubusercontent.com/in/29110?v=4&s=100)](https://github.com/apps/dependabot) 
 [![yyz1989](https://avatars.githubusercontent.com/u/7029943?v=4&s=100)](https://github.com/yyz1989) 
