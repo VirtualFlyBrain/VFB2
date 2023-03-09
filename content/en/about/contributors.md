@@ -10,7 +10,8 @@ We would like to thank the following contributors for their help with this proje
 
 <style>
 img {
-  max-width: 100px !important;
+  width: 100px !important;
+  height: 100px ! important;
 }
 </style>
 
