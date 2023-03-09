@@ -9,7 +9,7 @@ To report a bug on the site, use the [Report an issue](Feedback.htm) page. For h
 
 To be kept updated on new features and data sign up to our mailing list using the subscribe button on the right.
 
-To tell us about new data that you generated that could be incorporated into VFB see [here](yourPaper.htm).
+To tell us about new data that you generated that could be incorporated into VFB see [here](https://www.virtualflybrain.org/docs/contribution-guidelines/).
 
 ## Using our software or registered image data
 
