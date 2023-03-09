@@ -1,5 +1,6 @@
 ---
 title: Publications
+weight: 900
 ---
 
 ## Publications
