@@ -1,61 +1,42 @@
 # Virtual Fly Brain Docs
 
+Welcome to the Virtual Fly Brain version 2 (VFB2) GitHub repository! 
+
 Static documentation site for [www.VirtualFlyBrain.org](https://www.virtualflybrain.org)
 
 For the VFB 3D browser (geppetto) see https://github.com/VirtualFlyBrain/geppetto-vfb
 
-## Running this website locally
+## Contributing
 
-Building and running the site locally requires a recent `extended` version of [Hugo](https://gohugo.io).
-You can find out more about how to install Hugo for your environment in our
-[Getting started](https://www.docsy.dev/docs/getting-started/#prerequisites-and-installation) guide.
+We welcome contributions from the community. If you're interested in contributing to the VFB project, there are several ways you can get involved:
 
-Once you've made your working copy of the site repo, from the repo root folder, run:
+1. Reporting bugs or issues
+If you encounter any bugs or issues while using VFB2, please [submit a new issue](https://github.com/VirtualFlyBrain/VFB2/issues/new/choose) on our GitHub repository. When submitting a new issue, please be as descriptive as possible and include any relevant screenshots, error messages, or steps to reproduce the issue.
 
-```
-hugo server
-```
+2. Fixing bugs or issues
+If you have the skills and knowledge to fix a bug or issue in VFB2, we welcome your contributions! To get started, browse our list of [open issues](https://github.com/VirtualFlyBrain/VFB2/issues) and pick one that you are interested in. Once you have fixed the issue, submit a pull request with your changes.
 
-## Running a container locally
+3. Adding new features or enhancements
+If you have ideas for new features or enhancements to VFB2, we would love to hear them! Please [submit a new issue](https://github.com/VirtualFlyBrain/VFB2/issues/new/choose) on our GitHub repository with your proposal. If your proposal is approved, you can then work on implementing it and submit a pull request with your changes.
 
-You can run docsy-example inside a [Docker](https://docs.docker.com/)
-container, the container runs with a volume bound to the `docsy-example`
-folder. This approach doesn't require you to install any dependencies other
-than [Docker Desktop](https://www.docker.com/products/docker-desktop) on
-Windows and Mac, and [Docker Compose](https://docs.docker.com/compose/install/)
-on Linux.
+4. Contributing to the documentation
+Documentation is an important part of any software project, and we welcome contributions to our documentation as well. If you notice any errors or omissions in our documentation, or if you have ideas for how to improve it, please submit a pull request with your changes. 
 
-1. Build the docker image 
+You can also directly edit pages on the VFB doc site using the links on the right-hand side of each page. This allows you to quickly fix any errors or make small updates without needing to clone the repository and make a pull request.
 
-   ```bash
-   docker-compose build
-   ```
+5. Translating VFB2
+We welcome contributions to translate VFB2 into different languages. If you are interested in translating VFB2, please submit a pull request with your translations.
 
-1. Run the built image
+We look forward to your contributions and thank you for your support of the VFB project!
 
-   ```bash
-   docker-compose up
-   ```
+## Directly editing pages on the VFB site
+Did you know that you can directly edit pages on the VFB site? Simply click on the "Edit this page" link on the right-hand side of any page to make changes. Your changes will be submitted as a pull request on GitHub, where they will be reviewed by our team before being merged into the main branch.
 
-   > NOTE: You can run both commands at once with `docker-compose up --build`.
+## Code of Conduct
+We expect all contributors to abide by our Code of Conduct. Please take a moment to read it before contributing to the project.
 
-1. Verify that the service is working. 
+## License
+The VFB project is licensed under the MIT License. See [LICENSE](LICENSE.md) for more information.
 
-   Open your web browser and type `http://localhost:1313` in your navigation bar,
-   This opens a local instance of the docsy-example homepage. You can now make
-   changes to the docsy example and those changes will immediately show up in your
-   browser after you save.
-
-### Cleanup
-
-To stop Docker Compose, on your terminal window, press **Ctrl + C**. 
-
-To remove the produced images run:
-
-```console
-docker-compose rm
-```
-For more information see the [Docker Compose
-documentation](https://docs.docker.com/compose/gettingstarted/).
 
 
