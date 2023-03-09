@@ -1,8 +1,8 @@
 ---
 title: How to cite us
+weight: 20
 ---
 
-## How to cite us
 
 Please use the format below:
 
