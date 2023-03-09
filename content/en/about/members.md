@@ -56,6 +56,7 @@ title: Virtual Fly Brain Members and Their Contributions
 
 #### European Bioinformatics Institute (EMBL-EBI), Cambridge
 - [David Osumi-Sutherland](https://www.ebi.ac.uk/about/people/david-osumi-sutherland) (current project Co-I)
+- [Huseyin Kir](https://www.ebi.ac.uk/people/person/huseyin-kir/) (developer)
 - [Nico Matentzoglu](https://www.researchgate.net/profile/Nicolas_Matentzoglu2) (developer)
 - [Helen Parkinson](https://www.ebi.ac.uk/about/people/helen-parkinson) (current project PI)
 
