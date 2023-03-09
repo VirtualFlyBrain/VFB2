@@ -1,6 +1,7 @@
 ---
 title: Contributors
 description: A list of contributors to the VirtualFlyBrain project
+weight: 700
 ---
 
 # Contributors
