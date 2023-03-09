@@ -1,6 +1,7 @@
 ---
 title: What is Virtual Fly Brain?
 description: Virtual Fly Brain (VFB) - an interactive tool for neurobiologists to explore the detailed neuroanatomy, neuron connectivity, and gene expression of Drosophila melanogaster.
+weight: 100
 ---
 
 Welcome to **Virtual Fly Brain (VFB)** - an interactive tool for neurobiologists to explore the detailed neuroanatomy, neuron connectivity, and gene expression of _Drosophila melanogaster_. Our goal is to make it easier for researchers to find relevant anatomical information and reagents.
