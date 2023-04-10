@@ -6,3 +6,4 @@
 .settings/.jsdtscope
 
 *.container
+.DS_Store
