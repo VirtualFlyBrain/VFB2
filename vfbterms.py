@@ -24,7 +24,16 @@ wrapper = """---
 
 {8}
 
-<span style="font-size:larger;">[Open <strong>{0}</strong> in <strong>VFB</strong>](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})</span>
+[Open **{0}** in **VFB**](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})
+
+## Term Information
+
+- **ID**: {1}
+- **Name**: {0}
+- **Definition**: {2}
+- **Synonyms**: {10}
+- **Type**: {11}
+- **Comment**: {3}
 
 {6}
 
@@ -117,6 +126,8 @@ def wrapStringInHTMLMac(term):
         desc = ""
         com = ""
         tags = ""
+        synonyms = ""
+        term_type = ""
         try:
             desc = ' '.join(term["term"]["description"]).replace("\n", " ").replace('\r', ' ')
             com = ' '.join(term["term"]["comment"]).replace("\n", " ").replace('\r', ' ')
@@ -141,9 +152,17 @@ def wrapStringInHTMLMac(term):
             print('error on tag creation')
             print(e)
             print(traceback.format_exc())
+        # Add extra meta 
+        try:
+            synonyms = ", ".join([syn["val"] for syn in data.get("synonyms", [])])
+            term_type = data.get("type", "")
+        except Exception as e:
+            print('error on extra meta creation')
+            print(e)
+            print(traceback.format_exc())
         url = term["term"]["core"]["label"].replace('\\','&bsol;').replace(' ','-').lower()+"-"+term["term"]["core"]["short_form"].lower()
         url = re.sub("[^0-9a-zA-Z-_]+", "", url)
-        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note,url)
+        whole = wrapper.format(term["term"]["core"]["label"].replace('\\','&bsol;'),term["term"]["core"]["short_form"],desc,com,tags,json.dumps(term, indent=4),images,now,note,url,synonyms,term_type)
         try:
             f.write(whole)
             filename = term["term"]["core"]["short_form"] + "_v" + str(version - 1) + ".md"
@@ -155,7 +174,7 @@ def wrapStringInHTMLMac(term):
         f.close()
 
 
-vc=VfbConnect(neo_endpoint='http://pdb.v4.virtualflybrain.org', neo_credentials=('neo4j', 'vfb'), owlery_endpoint='http://owl.virtualflybrain.org/kbs/vfb/')
+vc=VfbConnect(neo_endpoint='http://pdb.virtualflybrain.org', neo_credentials=('neo4j', 'vfb'), owlery_endpoint='http://owl.virtualflybrain.org/kbs/vfb/')
 
 
 mypath = sys.argv[1]
