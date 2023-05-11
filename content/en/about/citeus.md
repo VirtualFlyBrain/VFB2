@@ -4,10 +4,18 @@ weight: 20
 ---
 
 
-Please use the format below:
+Please use the citation below:
 
-Robert Court, Marta Costa, Clare Pilgrim, Gillian Millburn, Alex Holmes, Alex McLachlan, Aoife Larkin, Nicolas Matentzoglu, Huseyin Kir, Helen Parkinson, Nicolas H. Brown, Cahir J. O'Kane, J. Douglas Armstrong, Gregory S. X. E. Jefferis and David Osumi-Sutherland (2023). [Virtual Fly Brain - An interactive atlas of the Drosophila nervous system](http://dx.doi.org/10.3389/fphys.2023.1076533). Frontiers in Physiology 14.
+## APA
+Court, R., Costa, M., Pilgrim, C., Millburn, G., Holmes, A., McLachlan, A., Larkin, A., Matentzoglu, N., Kir, H., Parkinson, H., Brown, N. H., J., C., Armstrong, J. D., & Jefferis, G. S. (2023). Virtual Fly Brain—An interactive atlas of the Drosophila nervous system. Frontiers in Physiology, 14. https://doi.org/10.3389/fphys.2023.1076533
 
+## MLA
+Court, Robert, et al. "Virtual Fly Brain—An Interactive Atlas of the Drosophila Nervous System." Frontiers in Physiology, vol. 14, 2023, https://doi.org/10.3389/fphys.2023.1076533.
+
+## Chicago
+Court, Robert, Costa, Marta, Pilgrim, Clare, Millburn, Gillian, Holmes, Alex, McLachlan, Alex, Larkin, Aoife et al. "Virtual Fly Brain—An interactive atlas of the Drosophila nervous system." Frontiers in Physiology 14, (2023). https://doi.org/10.3389/fphys.2023.1076533.
+
+## BibTex
 ```bib
 @article{10.3389/fphys.2023.1076533,
   author = {Robert Court and Marta Costa and Clare Pilgrim and Gillian Millburn and Alex Holmes and Alex McLachlan and Aoife Larkin and Nicolas Matentzoglu and Huseyin Kir and Helen Parkinson and Nicolas H. Brown and Cahir J. O'Kane and J. Douglas Armstrong and Gregory S. X. E. Jefferis and David Osumi-Sutherland},
