@@ -41,7 +41,7 @@ vc.neo_query_wrapper.get_type_TermInfo(['FBbt_00003686'])
 ```
 
 
-
+```python
 
     [{'term': {'core': {'iri': 'http://purl.obolibrary.org/obo/FBbt_00003686',
         'symbol': '',
@@ -401,7 +401,7 @@ vc.neo_query_wrapper.get_type_TermInfo(['FBbt_00003686'])
         'PubMed': '18395827',
         'DOI': '10.1002/cne.21692'}]}]
 
-
+```
 
 
 ```python
@@ -466,7 +466,7 @@ summary = vc.neo_query_wrapper.get_anatomical_individual_TermInfo(['VFB_jrchjrch
 summary_tab = pd.DataFrame.from_records(summary)
 summary_tab
 
-```python
+```
 
 
 
@@ -533,7 +533,7 @@ vc.neo_query_wrapper.xref_2_vfb_id(map(str, bodyIDs)) # Note IDs must be strings
 ```
 
 
-
+```python
 
     {'1068958652': [{'db': 'neuronbridge', 'vfb_id': 'VFB_jrchjwda'},
       {'db': 'neuronbridge', 'vfb_id': 'VFB_jrch06r9'},
@@ -547,7 +547,7 @@ vc.neo_query_wrapper.xref_2_vfb_id(map(str, bodyIDs)) # Note IDs must be strings
       {'db': 'neuronbridge', 'vfb_id': 'VFB_jrchjw8r'},
       {'db': 'neuprint_JRC_Hemibrain_1point0point1', 'vfb_id': 'VFB_jrch05uz'},
       {'db': 'neuprint_JRC_Hemibrain_1point1', 'vfb_id': 'VFB_jrchjw8r'}]}
-
+```
 
 
 
@@ -559,14 +559,14 @@ vc.neo_query_wrapper.xref_2_vfb_id(map(str, bodyIDs), db = 'neuprint_JRC_Hemibra
 
 
 
-
+```python
     {'VFB_jrchjw8r': [{'acc': '1141631198',
        'db': 'neuprint_JRC_Hemibrain_1point1'}],
      'VFB_jrchjwct': [{'acc': '571424748',
        'db': 'neuprint_JRC_Hemibrain_1point1'}],
      'VFB_jrchjwda': [{'acc': '1068958652',
        'db': 'neuprint_JRC_Hemibrain_1point1'}]}
-
+```
 
 
 ### 2. `vc` direct methods overview
@@ -578,11 +578,11 @@ vc.neo_query_wrapper.xref_2_vfb_id(map(str, bodyIDs), db = 'neuprint_JRC_Hemibra
 KC_types = vc.get_subclasses("Kenyon cell", summary=True)
 pd.DataFrame.from_records(KC_types)
 ```
-
+```python
     Running query: FBbt:00003686
     Query URL: http://owl.virtualflybrain.org/kbs/vfb/subclasses?object=FBbt%3A00003686&prefixes=%7B%22FBbt%22%3A+%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFBbt_%22%2C+%22RO%22%3A+%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_%22%2C+%22BFO%22%3A+%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBFO_%22%7D&direct=False
     Query results: 37
-
+```
 
 
 
