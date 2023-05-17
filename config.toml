@@ -249,3 +249,8 @@ enable = false
 	url = "mailto:data@virtualflybrain.org"
 	icon = "fas fa-envelope-square"
         desc = "Discuss data addition, corection or development issues around the project"
+
+[[module.imports]]
+  path = "github.com/google/docsy"
+[[module.imports]]
+  path = "github.com/google/docsy/dependencies"
