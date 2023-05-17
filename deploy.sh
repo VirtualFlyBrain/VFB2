@@ -25,4 +25,6 @@ npm install
 
 cd /src/
 
+hugo mod graph
+
 hugo --enableGitInfo --minify --templateMetrics --gc -v
