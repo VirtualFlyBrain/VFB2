@@ -14,6 +14,15 @@
 #
 HUGO_ENV="production"
 
+cd /src/
+
 npm install --global yarn
+
+npm install --save-dev autoprefixer postcss-cli postcss
+
+cd /src/themes/docsy/ 
+npm install
+
+cd /src/
 
 hugo --enableGitInfo --minify --templateMetrics --gc -v
