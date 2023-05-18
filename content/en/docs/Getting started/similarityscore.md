@@ -5,9 +5,7 @@ weight: 4000
 description: >
   This guide provides step-by-step instructions on how to use the similarity score queries on VirtualFlyBrain.org. These queries allow users to find neurons or expression patterns that are morphologically similar to a selected neuron or expression pattern.
 ---
-
-# Similarity Score Queries Guide
-
+## Scores Availability
 The similarity scores are calculated using [NBLAST](https://www.virtualflybrain.org/docs/tutorials/apis/connectome/5_nblast/) or other third-party scores (e.g. [NeuronBridge](https://neuronbridge.janelia.org/)). Only queries with above-threshold scores will appear in the 'Find similar...' menu. 
 
 ## Step 1: Select a Neuron or Expression Pattern
