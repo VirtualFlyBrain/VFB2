@@ -18,6 +18,8 @@ set -x
 
 cd /src/
 
+npm install -g npm
+
 npm install --global yarn
 
 npm install --save-dev autoprefixer postcss-cli postcss
