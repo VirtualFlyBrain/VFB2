@@ -14,6 +14,8 @@
 #
 HUGO_ENV="production"
 
+set -x
+
 cd /src/
 
 npm install --global yarn
@@ -24,6 +26,8 @@ cd /src/themes/docsy/
 npm install
 
 cd /src/
+
+hugo mod clean --all
 
 hugo mod graph
 
