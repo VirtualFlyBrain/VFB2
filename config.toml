@@ -13,7 +13,10 @@ path = "docsy"
 enableGitInfo = true
 
 # Language settings
-contentDir = "content/en"
+[[module.mounts]]
+source = "content/en"
+target = "content"
+
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 # Useful when translating.
