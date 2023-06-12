@@ -6,7 +6,7 @@ weight: 5000
 ```BibTeX
 @article{Court_2023, 
     doi = {10.3389/fphys.2023.1076533}, 
-    url = {https://doi.org/10.3389%2Ffphys.2023.1076533}, 
+    url = {https://doi.org/10.3389/fphys.2023.1076533}, 
     year = 2023, 
     month = {jan}, 
     publisher = {Frontiers Media {SA}}, 
