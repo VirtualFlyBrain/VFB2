@@ -106,7 +106,6 @@ img {
 [![barryclark](https://avatars.githubusercontent.com/u/692762?v=4&s=100)](https://github.com/barryclark) 
 [![eringrand](https://avatars.githubusercontent.com/u/6360871?v=4&s=100)](https://github.com/eringrand) 
 [![javiercejudo](https://avatars.githubusercontent.com/u/1095851?v=4&s=100)](https://github.com/javiercejudo) 
-[![benabbottnz](https://avatars.githubusercontent.com/u/2616473?v=4&s=100)](https://github.com/benabbottnz) 
 [![peteretelej](https://avatars.githubusercontent.com/u/2271973?v=4&s=100)](https://github.com/peteretelej) 
 [![bkiers](https://avatars.githubusercontent.com/u/281616?v=4&s=100)](https://github.com/bkiers) 
 [![genericmethod](https://avatars.githubusercontent.com/u/4405235?v=4&s=100)](https://github.com/genericmethod) 
