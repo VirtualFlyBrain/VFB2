@@ -16,6 +16,10 @@ HUGO_ENV="production"
 
 set -x
 
+ulimit -m 50000000
+ulimit -v 50000000
+
+
 cd /src/
 
 npm install -g npm
