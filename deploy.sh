@@ -33,4 +33,4 @@ hugo mod clean --all
 
 hugo mod graph
 
-hugo --enableGitInfo --templateMetrics --gc -v
+hugo --enableGitInfo --gc -v
