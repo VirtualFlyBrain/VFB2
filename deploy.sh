@@ -33,6 +33,8 @@ npm install
 
 cd /src/
 
+hugo --enableGitInfo --gc -v
+
 hugo mod clean --all
 
 hugo mod graph
