@@ -20,7 +20,7 @@ FlyLight makes its primary data available via VFB as well as through dedicated w
 
 ## FlyLight Data and Resources
 
-While FlyLight's data is intergrated & indexed on [VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?q=VFB_00101567,AllDatasets) and direct link out provided to the images on these sites they can be direclty searched:
+While FlyLight's data is intergrated & indexed on [VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?q=VFB_00101567,AllDatasets) and direct link out provided to the images on these sites they can be directly searched:
 
 [Browse the Generation 1 GAL4 expression patterns](https://flweb.janelia.org/)
 
