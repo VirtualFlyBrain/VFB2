@@ -2,6 +2,7 @@
 title: "Janelia FlyLight"
 linkTitle: "FlyLight"
 weight: 20
+tags: ["Split","Expression_pattern","transgene","FlyLight","Janelia","Larval","MCFO","NeuronBridge"]
 description: >
     The FlyLight Project produces large anatomical data sets and highly characterized collections of GAL4, LexA and Split-GAL4 drivers in order to enable the visualization and precise manipulation of individual cell types in the Drosophila nervous system.
 cascade:
