@@ -8,7 +8,7 @@ description: >
     We applogise for any inconvenience but have been assured this is now fixed and should get back to normal soon.
 ---
 
-Goole Statement:
+Google Statement:
 ```
 December 6-14
 An internal issue caused an increase of redirect errors during indexing, and associated email notifications. 
