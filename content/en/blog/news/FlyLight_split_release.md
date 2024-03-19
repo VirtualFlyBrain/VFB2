@@ -2,7 +2,6 @@
 title: "Larval split-GAL4 line raw images release"
 linkTitle: "Larval split-GAL4 raw images"
 date: 2024-03-19
-sitemap_exclude: true
 description: >
     Raw images from the 1020 Larval split-GAL4 lines and 350 Generation 1 LexA lines included in Meissner et al., 2024 are now available on VFB.
 ---
