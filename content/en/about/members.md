@@ -50,13 +50,20 @@ weight: 400
 
 ### Schema Development &amp; Web Development
 
+<a href='https://www.sanger.ac.uk/' target='_blank'>
+  <img class='' src='https://virtualflybrain.org/images/logo-sanger-blue.svg'
+     style="max-width: 50%" />
+</a>
+
+#### Wellcome Sanger Institute, Cambridge
+- [David Osumi-Sutherland](https://www.linkedin.com/in/osumisutherland) (current project Co-I)
+
 <a href='http://www.ebi.ac.uk/' target='_blank'>
   <img class='' src='https://v2.virtualflybrain.org/images/vfb/project/logos/EMBL_EBI_logo_180pixels_RGB.png'
      style="max-width: 50%" />
 </a>
 
 #### European Bioinformatics Institute (EMBL-EBI), Cambridge
-- [David Osumi-Sutherland](https://www.ebi.ac.uk/about/people/david-osumi-sutherland) (current project Co-I)
 - [Huseyin Kir](https://www.ebi.ac.uk/people/person/huseyin-kir/) (developer)
 - [Nico Matentzoglu](https://www.researchgate.net/profile/Nicolas_Matentzoglu2) (developer)
 - [Helen Parkinson](https://www.ebi.ac.uk/about/people/helen-parkinson) (current project PI)
