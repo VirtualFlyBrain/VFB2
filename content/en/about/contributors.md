@@ -68,6 +68,7 @@ img {
 [![psj258](https://avatars.githubusercontent.com/u/4971287?v=4&s=100)](https://github.com/psj258) 
 [![gitter-badger](https://avatars.githubusercontent.com/u/8518239?v=4&s=100)](https://github.com/gitter-badger) 
 [![mattearnshaw](https://avatars.githubusercontent.com/u/679927?v=4&s=100)](https://github.com/mattearnshaw) 
+[![actions-user](https://avatars.githubusercontent.com/u/65916846?v=4&s=100)](https://github.com/actions-user) 
 [![NeZanyat](https://avatars.githubusercontent.com/u/1211953?v=4&s=100)](https://github.com/NeZanyat) 
 [![afonsobspinto](https://avatars.githubusercontent.com/u/19196034?v=4&s=100)](https://github.com/afonsobspinto) 
 [![snyk-bot](https://avatars.githubusercontent.com/u/19733683?v=4&s=100)](https://github.com/snyk-bot) 
