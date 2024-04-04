@@ -118,7 +118,7 @@ img {
 [![hunjaelee](https://avatars.githubusercontent.com/u/26385351?v=4&s=100)](https://github.com/hunjaelee) 
 [![italohdc](https://avatars.githubusercontent.com/u/5404234?v=4&s=100)](https://github.com/italohdc) 
 [![fleeting](https://avatars.githubusercontent.com/u/23062?v=4&s=100)](https://github.com/fleeting) 
-[![frenchie16](https://avatars.githubusercontent.com/u/130613?v=4&s=100)](https://github.com/frenchie16) 
+[![junefrench](https://avatars.githubusercontent.com/u/130613?v=4&s=100)](https://github.com/junefrench) 
 [![praseodym](https://avatars.githubusercontent.com/u/20283?v=4&s=100)](https://github.com/praseodym) 
 [![omgmog](https://avatars.githubusercontent.com/u/50949?v=4&s=100)](https://github.com/omgmog) 
 [![rnicholus](https://avatars.githubusercontent.com/u/593312?v=4&s=100)](https://github.com/rnicholus) 
