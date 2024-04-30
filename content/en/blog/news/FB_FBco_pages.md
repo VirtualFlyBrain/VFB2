@@ -10,7 +10,7 @@ FlyBase has added report pages for split driver lines, where two (or more) hemid
 
 ![example_hemi_combo](https://www.virtualflybrain.org/images/splits_images.png)
 
-These new ‘split system combinations’ pages (e.g. Scer\GAL4DBD.R22B12∩Hsap\RELAAD.R14E06,Scer\GAL4DBD.R72B05∩Hsap\RELAAD.ple), include information specific to that combination. Currently these include the FlyBase identifier (FBco), synonyms, the transgenic hemidriver alleles that make up the combination, expression pattern data and links to stocks corresponding to the combination.
+These new ‘split system combinations’ pages (e.g. [GAL4DBD.R72B05∩Hsap\RELAAD.ple](http://flybase.org/reports/FBco0000023)), include information specific to that combination. Currently these include the FlyBase identifier (FBco), synonyms, the transgenic hemidriver alleles that make up the combination, expression pattern data and links to stocks corresponding to the combination.
 
 ![example_FBco_report](https://www.virtualflybrain.org/images/FBco_report.png)
 
