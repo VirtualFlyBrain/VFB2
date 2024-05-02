@@ -240,6 +240,11 @@ enable = false
 	icon = "fab fa-twitter"
         desc = "Follow us on Twitter to get the latest news!"
 [[params.links.user]]
+	name ="Facebook"
+	url = "https://www.facebook.com/profile.php?id=100063716312824"
+	icon = "fab fa-facebook"
+        desc = "Like us on Facebook to get the latest news!"
+[[params.links.user]]
 	name ="LinkedIn"
 	url = "https://www.linkedin.com/company/102861264/"
 	icon = "fab fa-linkedin"
