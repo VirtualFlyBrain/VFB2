@@ -2,6 +2,7 @@
 title: "New Split-GAL4 report pages on FlyBase"
 linkTitle: "FlyBase Split-GAL4 reports"
 date: 2024-04-30
+image: https://www.virtualflybrain.org/images/splits_images.png
 description: >
     FlyBase now has 'Split System Combination' pages displaying curated information for Split-GAL4 lines.
 ---
