@@ -154,8 +154,8 @@ def wrapStringInHTMLMac(term):
             print(traceback.format_exc())
         # Add extra meta 
         try:
-            synonyms = ", ".join([syn["val"] for syn in data.get("synonyms", [])])
-            term_type = data.get("type", "")
+            synonyms = ", ".join([syn["val"] for syn in term["term"].get("synonyms", [])])
+            term_type = term["term"].get("type", "")
         except Exception as e:
             print('error on extra meta creation')
             print(e)
