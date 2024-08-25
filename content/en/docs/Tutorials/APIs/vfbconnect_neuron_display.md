@@ -2,6 +2,7 @@
 title: "Guide to Working with Images from Virtual Fly Brain (VFB) Using the VFBConnect Library"
 linkTitle: "Neuron display in VFBconnect"
 date: 2024-08-25
+weight: 5
 description: >
     This guide will help you use the VFBConnect library to interact with Virtual Fly Brain (VFB) data, specifically focusing on working with neuron images and their representations. The examples provided cover retrieving neuron data, accessing different types of data representations (skeleton, mesh, volume), and visualizing this data.
 ---
