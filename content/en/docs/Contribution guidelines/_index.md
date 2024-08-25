@@ -69,5 +69,6 @@ If you've found a problem in the docs, but you're not sure how to fix it yoursel
 * [Github Hello World!](https://guides.github.com/activities/hello-world/): A basic introduction to GitHub concepts and workflow.
 * [nbcovert](https://github.com/jupyter/nbconvert): A tool to convert jupyter notebooks into markdown (md) format.
 * [HTML to Markdown Converter](https://codebeautify.org/html-to-markdown): It helps to convert your HTML to MD. This tool is super fast and processes conversion in the browser.
+* [How to add new query properties to VFBConnect library](https://virtualflybrain.org/docs/contribution-guidelines/expanding_vfbconnect_queries/)
 
 
