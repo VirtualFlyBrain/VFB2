@@ -10,12 +10,12 @@ We now incorporate scRNAseq data from multiple studies, including the [Fly Cell 
 
 Clusters can be found for particular cell types via the 'Single cell transcriptomics data for..' query on the cell type Term Info pane.
 
-![transcriptomics_query](https://www.virtualflybrain.org/images/transcriptomics_query.png)
+![transcriptomics_query](https://www.virtualflybrain.org/images/scRNAseq/cluster_query.png)
 
 Genes for a particular cluster can be filtered by function and sorted by expression level and extent (proportion of cells in cluster expressing the gene). As with other VFB search results, these can be exported as a csv.
 _Note that we currently only include genes that have extent > 0.2 in a cluster._
 
-![cluster_genes](https://www.virtualflybrain.org/images/cluster_genes.png)
+![cluster_genes](https://www.virtualflybrain.org/images/scRNAseq/gene_expression.png)
 
 Data can also be retrieved using [VFB_connect](https://vfb-connect.readthedocs.io/en/stable/API_reference.html#transcriptomics-queries).
 
