@@ -236,9 +236,9 @@ enable = false
         desc = "See if your question has already been answered in the support forum"
 [[params.links.user]]
 	name ="Twitter"
-	url = "https://twitter.com/virtualflybrain"
-	icon = "fab fa-twitter"
-        desc = "Follow us on Twitter to get the latest news!"
+	url = "https://virtualflybrain.bsky.social"
+	icon = "fa-brands fa-bluesky"
+        desc = "Follow us on Bsky to get the latest news!"
 [[params.links.user]]
 	name ="Facebook"
 	url = "https://www.facebook.com/profile.php?id=100063716312824"
