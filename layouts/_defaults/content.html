@@ -2,6 +2,7 @@
 	<h1>{{ .Title }}</h1>
 	{{ with .Params.description }}<div class="lead">{{ . | markdownify }}</div>{{ end }}
 	<header class="article-meta">
+		<script src="https://kit.fontawesome.com/8eef0b7f65.js" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/8eef0b7f65.js" crossorigin="anonymous"></script>
 		{{ $context := . }}
 		{{ if .Site.Params.Taxonomy.taxonomyPageHeader }}
 			{{ range $index, $taxo := .Site.Params.Taxonomy.taxonomyPageHeader }}
