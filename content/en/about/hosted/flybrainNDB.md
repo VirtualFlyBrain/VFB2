@@ -3,11 +3,7 @@ title: FLYBRAIN Neuron Database (NDB)
 description: "FLYBRAIN NDB is an extension to the Flybrain, an Online Atlas of the Drosophila Nervous System. It collected images and descriptions of single identified neurons in the Drosophila brain, providing morphological information of all fly brain neurons identified at the time."
 ---
 
-# FLYBRAIN Neuron Database (NDB)
-
-FLYBRAIN NDB is an extension to the Flybrain, an Online Atlas of the Drosophila Nervous System. It collects images and descriptions of single identified neurons in the Drosophila brain, providing morphological information of all fly brain neurons identified to date.
-
-Current website: https://flybrain-ndb.virtualflybrain.org/
+https://flybrain-ndb.virtualflybrain.org/
 
 ## Database Structure
 
