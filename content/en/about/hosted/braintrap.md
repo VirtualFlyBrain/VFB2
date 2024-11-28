@@ -3,9 +3,7 @@ title: BrainTrap
 description: "BrainTrap is a database of 3D protein expression patterns in the Drosophila brain, providing interactive visualization and exploration of confocal datasets showing reporter gene expression and protein localization."
 ---
 
-# BrainTrap
-
-BrainTrap is a database of 3D protein expression patterns in the Drosophila brain, providing interactive visualization and exploration of confocal datasets showing reporter gene expression and protein localization.
+https://braintrap.virtualflybrain.org/
 
 ## Overview
 
