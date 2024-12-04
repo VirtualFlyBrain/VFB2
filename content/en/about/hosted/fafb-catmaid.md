@@ -3,6 +3,8 @@ title: FAFB CATMAID Data Viewer
 description: "This CATMAID (Collaborative Annotation Toolkit for Massive Amounts of Image Data) instance hosts neuroanatomical data from the Full Adult Fly Brain (FAFB) electron microscopy dataset, featuring manually traced neurons from numerous research publications."
 ---
 
+![Neuron traced in Drosophila adult brain EM volume in early 2018](https://www.zoo.cam.ac.uk/sites/www.zoo.cam.ac.uk/files/styles/leading/public/neurons_traced_3d_2018_annot_resized_0.png)
+
 ## Access
 
 The FAFB CATMAID instance is hosted and maintained by Virtual Fly Brain (VFB) as part of their mission to integrate and preserve key Drosophila neuroscience datasets. The instance is accessible at:
