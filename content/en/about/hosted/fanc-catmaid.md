@@ -23,6 +23,8 @@ The data is from the research published in:
 
 Fushiki A, et al. (2021) A circuit mechanism for the propagation of waves of muscle contraction in Drosophila. Cell, 184(3), 759-774.e20. https://doi.org/10.1016/j.cell.2020.12.013
 
+see: https://www.lee.hms.harvard.edu/resources
+
 ## Dataset Contents
 
 The viewer provides access to:
