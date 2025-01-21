@@ -3,7 +3,7 @@ title: L1EM CATMAID Data Viewer
 description: "This CATMAID (Collaborative Annotation Toolkit for Massive Amounts of Image Data) instance hosts neuroanatomical data from the Drosophila first instar larva (L1) electron microscopy dataset, featuring manually traced neurons from numerous research publications."
 ---
 
-![Drosopila Larval CNS 70% traced back in 2017](https://www2.mrc-lmb.cam.ac.uk/wordpress/wp-content/uploads/A_Cardona_DNpy8l4X0AAsEFz-520x258.jpeg)
+![Drosopila Larval CNS 70% traced back in 2017](https://www.virtualflybrain.org/images/l1em_70percent.jpeg)
 
 ## Access
 
