@@ -3,7 +3,7 @@ title: FAFB CATMAID Data Viewer
 description: "This CATMAID (Collaborative Annotation Toolkit for Massive Amounts of Image Data) instance hosts neuroanatomical data from the Full Adult Fly Brain (FAFB) electron microscopy dataset, featuring manually traced neurons from numerous research publications."
 ---
 
-![Neuron traced in Drosophila adult brain EM volume in early 2018](https://www.zoo.cam.ac.uk/sites/www.zoo.cam.ac.uk/files/styles/leading/public/neurons_traced_3d_2018_annot_resized_0.png)
+![Neuron traced in Drosophila adult brain EM volume in early 2018](https://flyconnecto.me/wp-content/uploads/2017/12/cropped-2ndreducedwholefly.png)
 
 ## Access
 
@@ -15,33 +15,35 @@ This resource provides access to the FAFB dataset and its associated neural reco
 ## Source Publications
 
 ### Primary Resources
-- FAFB Project: https://www.zoo.cam.ac.uk/research/groups/connectomics
+- FAFB Project: https://flyconnecto.me/
 - EM Dataset: Zheng Z, et al. (2018) A Complete Electron Microscopy Volume of the Brain of Adult Drosophila melanogaster. Cell, 174(3), 730-743.e22. https://doi.org/10.1016/j.cell.2018.06.019
 
 ### Contributing Publications
 The database includes neurons traced and published in numerous studies. Each neuron is annotated with its source publication. Major contributing publications include:
 
-- Baltruschat et al. (2021)
-- Bates and Schlegel et al. (2020)
-- Coates et al. (2020)
+- [Circuit reorganization in the Drosophila mushroom body calyx accompanies memory consolidation (Baltruschat et al. 2021)](https://doi.org/10.1016/j.celrep.2021.108871)
+- [Complete connectome of the Drosophila mushroom body provides insights into memory organization (Bates and Schlegel et al. 2020)](https://doi.org/10.1016/j.cub.2020.06.042)
+- [The Connectome of the Adult Drosophila Mushroom Body Provides Insights into Function (Coates et al. 2020)](https://doi.org/10.1523/JNEUROSCI.0552-20.2020)
 - Dolan and Belliart-Guérin et al. (2018)
-- Dolan et al. (2019)
-- Engert et al. (2022)
+- [Neurogenetic dissection of the Drosophila lateral horn reveals major outputs, diverse behavioural functions, and interactions with the mushroom body (Dolan et al. 2019)](https://doi.org/10.7554/eLife.43079)
+- [Drosophila gustatory projections are segregated by taste modality and connectivity (Engert et al. 2022)](https://doi.org/10.7554/eLife.78110)
 - Felsenberg et al. (2018)
 - Gorko et al. (2024)
-- Hampel and Eichler et al. (2020)
+- [Distinct subpopulations of mechanosensory chordotonal organ neurons elicit grooming of the fruit fly antennae (Hampel et al. 2020)](https://doi.org/10.7554/eLife.59976)
 - Kim et al. (2020)
 - Kind et al. (2021)
-- Marin et al. (2020)
-- Morimoto et al. (2020)
-- Otto et al. (2020)
+- [A neural circuit for diurnal temperature preference in Drosophila (Marin et al. 2020)](https://doi.org/10.1016/j.cub.2020.06.028)
+- [Spatial readout of visual looming in the central brain of Drosophila (Morimoto et al. 2020)](https://doi.org/10.7554/eLife.57685)
+- [Input Connectivity Reveals Additional Heterogeneity of Dopaminergic Reinforcement in Drosophila (Otto et al. 2020)](https://doi.org/10.1016/j.cub.2020.05.077)
 - Sayin et al. (2019)
-- Shiu et al. (2022)
-- Taisz and Galili et al. (2022)
-- Turner-Evans et al. (2020)
-- Wang et al. (2020a, 2020b, 2020c)
-- Zhao et al. (2023)
-- Zheng et al. (2018, 2022)
+- [Taste quality and hunger interactions in a feeding sensorimotor circuit (Shiu et al. 2022)](https://doi.org/10.7554/eLife.79887)
+- [Generating parallel representations of position and identity in the olfactory system (Taisz et al. 2023)](https://doi.org/10.1016/j.cell.2023.04.038)
+- [A synaptic threshold mechanism for computing escape decisions (Turner-Evans et al. 2020)](https://doi.org/10.1016/j.neuron.2020.08.006)
+- [Neural circuitry linking mating and egg laying in Drosophila females (Wang et al. 2020a)](https://doi.org/10.1038/s41586-020-2055-9)
+- [Circuit and Behavioral Mechanisms of Sexual Rejection by Drosophila Females (Wang et al. 2020b)](https://doi.org/10.1016/j.cub.2020.07.083)
+- [Neural circuit mechanisms of sexual receptivity in Drosophila females (Wang et al. 2020c)](https://doi.org/10.1038/s41586-020-2972-7)
+- [Zhao et al. (2023)](https://doi.org/10.1101/2022.12.14.520178)
+- [Structured sampling of olfactory input by the fly mushroom body (Zheng et al. 2022)](https://doi.org/10.1016/j.cub.2022.06.031)
 
 Full references for specific neurons can be found on Virtual Fly Brain by searching for their skeleton ID (skid).
 
