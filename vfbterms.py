@@ -1,6 +1,17 @@
+#!/usr/bin/env python3
+
 import sys
 from os import listdir, chdir
 from os.path import isfile, join
+import os
+import warnings
+
+# Suppress the urllib3 warning about OpenSSL
+warnings.filterwarnings('ignore', category=Warning)
+
+# Set environment variable to skip GUI dependencies
+os.environ['VFB_SKIP_GUI'] = '1'
+
 from vfb_connect.cross_server_tools import VfbConnect
 import re
 
@@ -296,72 +307,183 @@ def wrapStringInHTMLMac(term):
             print(whole)
         f.close()
 
-mypath = sys.argv[1]
-print("Updating all files in " + mypath)
-onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+def test_medulla_page():
+    """Test full term page creation for medulla using actual VFB connection"""
+    expected_content = """---
+    title: "medulla [FBbt_00003748]"
+    linkTitle: "medulla"
+    tags: [Entity,Adult,Anatomy,Class,Nervous_system,Synaptic_neuropil,Synaptic_neuropil_domain,FBbt]
+    content: [term]
+    date: {current_date}
+    images: []
+    description: >
+        The second optic neuropil, sandwiched between the lamina and the lobula complex. It is divided into 10 layers: 1-6 make up the outer (distal) medulla, the seventh (or serpentine) layer exhibits a distinct architecture and layers 8-10 make up the inner (proximal) medulla (Ito et al., 2014).
+    weight: 10000
+    sitemap_exclude: true
+    canonicalUrl: "https://www.virtualflybrain.org/term/medulla-fbbt_00003748/"
+---
 
-chdir(mypath + 'fbbt/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbt' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-chdir(mypath + 'fbbi/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbi' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-chdir(mypath + 'fbcv/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBcv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-chdir(mypath + 'fbdv/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBdv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-chdir(mypath + 'vfb/')
-vfb = vc.nc.commit_list(["MATCH (n:Individual) WHERE n.short_form starts with 'VFB_' AND NOT n.short_form starts with 'VFB_internal' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0]
-save_terms(vfb)
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'VFBexp_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+{note}
 
-# TODO: replace once VFBconnect pub queries added
-#save_terms(vc.nc.commit_list(["MATCH (n:pub) with n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+[Open **medulla** in **VFB**](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=FBbt_00003748)
 
-chdir(mypath + '../datasets/')
+## Term Information
 
-save_terms(vc.nc.commit_list(["MATCH (n:DataSet) with n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+- **ID**: FBbt_00003748
+- **Name**: medulla
+- **Definition**: The second optic neuropil, sandwiched between the lamina and the lobula complex. It is divided into 10 layers: 1-6 make up the outer (distal) medulla, the seventh (or serpentine) layer exhibits a distinct architecture and layers 8-10 make up the inner (proximal) medulla (Ito et al., 2014).
+- **Type**: Entity, Adult, Anatomy, Class, Nervous_system, Synaptic_neuropil, Synaptic_neuropil_domain
 
-chdir(mypath + 'go/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'GO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+## Classification
+- [synaptic neuropil domain](https://www.virtualflybrain.org/term/synaptic-neuropil-domain-fbbt_00040007) <span class="label types"><span class="label label-Synaptic_neuropil">Synaptic neuropil</span> <span class="label label-Nervous_system">Nervous system</span></span>
 
-chdir(mypath + 'so/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'SO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+## Relationships
+- develops from [medulla anlage](https://www.virtualflybrain.org/term/medulla-anlage-fbbt_00001935) <span class="label types"><span class="label label-Nervous_system">Nervous system</span> <span class="label label-Larva">Larva</span></span>
 
-chdir(mypath + 'ioa/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'IAO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+## Cross References
+- [![Insect Brain DB](https://insectbraindb.org/app/assets/images/Megalopta_frontal.png) Insect Brain DB](https://insectbraindb.org/app/structures/38)
+  - [medulla on Insect Brain DB](https://insectbraindb.org/app/structures/38)"""
 
-chdir(mypath + 'geno/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'GENO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+    # Get actual medulla data
+    print("Fetching medulla data from VFB...")
+    terms = vc.neo_query_wrapper.get_TermInfo(["FBbt_00003748"])
+    
+    if terms.empty:
+        print("ERROR: Could not fetch medulla data")
+        return False
+        
+    # Generate actual content
+    print("Generating medulla page...")
+    import tempfile
+    import os
+    
+    # Create temporary directory for test
+    with tempfile.TemporaryDirectory() as tmpdir:
+        os.chdir(tmpdir)
+        
+        # Process the term
+        for _, row in terms.iterrows():
+            term_data = {
+                "term": {
+                    "core": {
+                        "short_form": row.get("short_form", ""),
+                        "label": row.get("label", ""),
+                        "types": row.get("types", []),
+                        "iri": row.get("iri", ""),
+                        "symbol": row.get("symbol", "")
+                    },
+                    "description": [row.get("description", "")],
+                    "comment": [row.get("comment", "")]
+                },
+                "parents": row.get("parents", []),
+                "relationships": row.get("relationships", []),
+                "xrefs": row.get("xrefs", []),
+                "pub_syn": row.get("pub_syn", []),
+                "def_pubs": row.get("def_pubs", [])
+            }
+            wrapStringInHTMLMac(term_data)
+            
+            # Read generated file
+            filename = f"FBbt_00003748_v{version}.md"
+            if os.path.exists(filename):
+                with open(filename, 'r') as f:
+                    actual_content = f.read()
+                    
+                # Compare content (ignoring date which will change)
+                import datetime
+                expected_with_date = expected_content.format(
+                    current_date=datetime.datetime.today().strftime("%Y-%m-%d"),
+                    note=note
+                )
+                
+                if actual_content.strip() == expected_with_date.strip():
+                    print("✓ Test passed: Generated content matches expected")
+                    return True
+                else:
+                    print("✗ Test failed: Content mismatch")
+                    print("\nExpected content:")
+                    print(expected_with_date)
+                    print("\nActual content:")
+                    print(actual_content)
+                    return False
+            else:
+                print(f"✗ Test failed: File {filename} was not created")
+                return False
 
-chdir(mypath + 'pato/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'PATO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        mypath = sys.argv[1]
+        print("Updating all files in " + mypath)
+        onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
-chdir(mypath + 'pco/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'PCO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + 'fbbt/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbt' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + 'fbbi/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbi' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + 'fbcv/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBcv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + 'fbdv/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBdv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + 'vfb/')
+        vfb = vc.nc.commit_list(["MATCH (n:Individual) WHERE n.short_form starts with 'VFB_' AND NOT n.short_form starts with 'VFB_internal' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0]
+        save_terms(vfb)
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'VFBexp_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
-chdir(mypath + 'uberon/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'UBERON_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        # TODO: replace once VFBconnect pub queries added
+        #save_terms(vc.nc.commit_list(["MATCH (n:pub) with n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
-chdir(mypath + 'ro/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'RO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + '../datasets/')
 
-chdir(mypath + 'obi/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'OBI_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(vc.nc.commit_list(["MATCH (n:DataSet) with n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
-chdir(mypath + 'ncbitaxon/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'NCBITaxon_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + 'go/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'GO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
-chdir(mypath + 'zp/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'ZP_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + 'so/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'SO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
-chdir(mypath + 'wbphenotype/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'WBPhenotype_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + 'ioa/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'IAO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
-chdir(mypath + 'caro/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'CARO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + 'geno/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'GENO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
-chdir(mypath + 'bfo/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'BFO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + 'pato/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'PATO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
-chdir(mypath + 'flybase/')
-save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FB' AND NOT n.short_form contains '_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        chdir(mypath + 'pco/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'PCO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+        chdir(mypath + 'uberon/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'UBERON_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+        chdir(mypath + 'ro/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'RO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+        chdir(mypath + 'obi/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'OBI_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+        chdir(mypath + 'ncbitaxon/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'NCBITaxon_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+        chdir(mypath + 'zp/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'ZP_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+        chdir(mypath + 'wbphenotype/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'WBPhenotype_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+        chdir(mypath + 'caro/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'CARO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+        chdir(mypath + 'bfo/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'BFO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+        chdir(mypath + 'flybase/')
+        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FB' AND NOT n.short_form contains '_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+
+    else:
+        print("Testing medulla page generation...")
+        success = test_medulla_page()
+        if not success:
+            sys.exit(1)
 
