@@ -19,10 +19,21 @@ Valdes-Aleman J, et al. (2021). Comparative Connectomics Reveals How Partner Ide
 ## Dataset Contents
 
 The viewer provides access to:
-- Serial section electron microscopy data of Drosophila larval segments
-- Reconstructions of IAV sensory neurons
+- Serial section electron microscopy data of Drosophila 1st instar larval CNS (Control 1: whole-CNS volume, A1 segment)
+- Image resolution: 3.8 nm x 3.8 nm x 40 nm (x, y, z)
+- Manually traced neuron reconstructions
 - Synaptic connectivity information
 - Associated metadata and annotations
+
+## Technical Details
+
+The EM volume was prepared and imaged following protocols detailed in Ohyama et al. (2015). Neurons were reconstructed using CATMAID to obtain skeletonized structures and connectivity information. All synaptic connections represent chemical synapses.
+
+The neurons are uniquely identifiable based on key morphological features:
+- Nerve entry point of the main neurite into the neuropil
+- Growth pattern of main axonal and dendritic branches
+- Bilateral vs ipsilateral projections
+- Position of terminal projections within the medio-lateral, dorso-ventral and antero-posterior axes
 
 ## Features
 

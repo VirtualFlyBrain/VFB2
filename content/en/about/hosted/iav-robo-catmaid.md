@@ -19,10 +19,26 @@ Valdes-Aleman J, et al. (2021). Comparative Connectomics Reveals How Partner Ide
 ## Dataset Contents
 
 The viewer provides access to:
-- Serial section electron microscopy data of Drosophila larval segments
-- Reconstructions of IAV sensory neurons
+- Serial section electron microscopy data of Drosophila 1st instar larval CNS (1.5-segment fraction, A1/A2 segment)
+- Image resolution: 3.8 nm x 3.8 nm x 40 nm (x, y, z)
+- Genotype: w;; iav-GAL4/UAS-FraRobo
+- Manually traced neuron reconstructions showing shifted mechanosensory projections
 - Synaptic connectivity information
 - Associated metadata and annotations
+
+## Technical Details
+
+The EM volume was prepared and imaged following protocols detailed in Ohyama et al. (2015). Neurons were reconstructed using CATMAID to obtain skeletonized structures and connectivity information. All synaptic connections represent chemical synapses.
+
+Despite the FraRobo-induced lateral shift in terminal projections, neurons remain uniquely identifiable based on:
+- Nerve entry point of the main neurite into the neuropil
+- Growth pattern of main axonal and dendritic branches
+- Bilateral vs ipsilateral projections
+
+For example, mechanosensory chordotonal neurons can be identified by their:
+- Eight stereotypic entry points per hemisegment
+- Most lateral position among sensory neurons in their nerve bundle
+- Further lateral shift due to FraRobo expression
 
 ## Features
 
