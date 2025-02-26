@@ -28,7 +28,7 @@ The database includes neurons traced and published in numerous studies. Each neu
 - [Neurogenetic dissection of the Drosophila lateral horn reveals major outputs, diverse behavioural functions, and interactions with the mushroom body (Dolan et al. 2019)](https://doi.org/10.7554/eLife.43079)
 - [Drosophila gustatory projections are segregated by taste modality and connectivity (Engert et al. 2022)](https://doi.org/10.7554/eLife.78110)
 - [Re-evaluation of learned information in Drosophila (Felsenberg et al. 2018)](https://doi.org/10.1038/s41586-018-0102-6)
-- Gorko et al. (2024)
+- [Motor neurons generate pose-targeted movements via proprioceptive sculpting (Gorko et al. 2024)](https://doi.org/10.1038/s41586-024-07222-5)
 - [Distinct subpopulations of mechanosensory chordotonal organ neurons elicit grooming of the fruit fly antennae (Hampel et al. 2020)](https://doi.org/10.7554/eLife.59976)
 - [A neural circuit for wind-guided olfactory navigation (Kim et al. 2020)](https://doi.org/10.1038/s41467-020-14936-3)
 - [Parallel encoding of sensory history and behavioral preference during Caenorhabditis elegans olfactory learning (Kind et al. 2021)](https://doi.org/10.7554/eLife.75827)
