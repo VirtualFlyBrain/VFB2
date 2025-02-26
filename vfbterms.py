@@ -342,79 +342,78 @@ def test_medulla_page():
     
     # Generate actual content
     print("\nGenerating medulla page...")
-    import tempfile
-    import os
     
-    with tempfile.TemporaryDirectory() as tmpdir:
-        os.chdir(tmpdir)
-        
-        for _, row in terms.iterrows():
-            # Build full term data structure according to schema
-            term_data = {
-                "term": {
-                    "core": {
-                        "short_form": row["id"],
-                        "label": row["label"],
-                        "types": row["tags"],
-                        "iri": f"http://purl.obolibrary.org/obo/{row['id'].replace(':', '_')}",
-                        "symbol": row["symbol"],
-                        "link": "",  # Optional external URL
-                        "icon": ""   # Optional icon
+    # Process the term in current directory
+    for _, row in terms.iterrows():
+        # Build full term data structure according to schema
+        term_data = {
+            "term": {
+                "core": {
+                    "short_form": row["id"],
+                    "label": row["label"],
+                    "types": row["tags"],
+                    "iri": f"http://purl.obolibrary.org/obo/{row['id'].replace(':', '_')}",
+                    "symbol": row["symbol"],
+                    "link": "",
+                    "icon": ""
+                },
+                "description": [row["description"]] if row["description"] else [],
+                "comment": [""],
+            },
+            "anatomy_channel_image": [],
+            "xrefs": [
+                {
+                    "homepage": {
+                        "link_base": "https://insectbraindb.org",
+                        "label": "InsectBrainDB"
                     },
-                    "description": [row["description"]] if row["description"] else [],
-                    "comment": [""],  # Empty comment array as it's not in the data
-                },
-                "anatomy_channel_image": [],  # Optional anatomy channel images
-                "xrefs": [
-                    {
-                        "homepage": {
-                            "link_base": "https://insectbraindb.org",
-                            "label": "InsectBrainDB"
-                        },
-                        "link_base": "https://insectbraindb.org/app/structures/",
-                        "accession": xref.split(":")[1] if ":" in xref else xref,
-                        "link_text": xref.split(":")[0] if ":" in xref else "Link",
-                        "site": {
-                            "label": xref.split(":")[0] if ":" in xref else "External Link"
-                        }
-                    } for xref in (row["xrefs"] if isinstance(row["xrefs"], list) else [])
-                ],
-                "pub_syn": [],  # Publication synonyms
-                "def_pubs": [],  # Definition publications
-                "license": [],   # Optional license information
-                "dataset_license": [],  # Optional dataset license
-                "dataset_counts": {     # Optional dataset counts
-                    "images": 0,
-                    "types": 0
-                },
-                "relationships": [],    # Optional relationships
-                "parents": [           # Parent terms
-                    {
-                        "short_form": pid,
-                        "label": plabel,
-                        "types": ["Class"],
-                        "iri": f"http://purl.obolibrary.org/obo/{pid.replace(':', '_')}"
+                    "link_base": "https://insectbraindb.org/app/structures/",
+                    "accession": xref.split(":")[1] if ":" in xref else xref,
+                    "link_text": xref.split(":")[0] if ":" in xref else "Link",
+                    "site": {
+                        "label": xref.split(":")[0] if ":" in xref else "External Link"
                     }
-                    for plabel, pid in zip(row["parents_label"], row["parents_id"])
-                ],
-                "channel_image": [],    # Optional channel images
-                "template_domains": {}, # Optional template domains
-                "query": "",           # Optional query description
-                "version": str(version) # Version information
-            }
-            
-            wrapStringInHTMLMac(term_data)
-            
-            filename = f"FBbt_00003748_v{version}.md"
-            if os.path.exists(filename):
-                with open(filename, 'r') as f:
-                    actual_content = f.read()
-                print("\nGenerated content:")
-                print(actual_content)
-                return True
-            else:
-                print(f"✗ Test failed: File {filename} was not created")
-                return False
+                } for xref in (row["xrefs"] if isinstance(row["xrefs"], list) else [])
+            ],
+            "pub_syn": [],
+            "def_pubs": [],
+            "license": [],
+            "dataset_license": [],
+            "dataset_counts": {
+                "images": 0,
+                "types": 0
+            },
+            "relationships": [],
+            "parents": [
+                {
+                    "short_form": pid,
+                    "label": plabel,
+                    "types": ["Class"],
+                    "iri": f"http://purl.obolibrary.org/obo/{pid.replace(':', '_')}"
+                }
+                for plabel, pid in zip(row["parents_label"], row["parents_id"])
+            ],
+            "channel_image": [],
+            "template_domains": {},
+            "query": "",
+            "version": str(version)
+        }
+        
+        print("\nTerm data structure:")
+        print(term_data)
+        
+        wrapStringInHTMLMac(term_data)
+        
+        filename = f"FBbt_00003748_v{version}.md"
+        if os.path.exists(filename):
+            with open(filename, 'r') as f:
+                actual_content = f.read()
+            print("\nGenerated content:")
+            print(actual_content)
+            return True
+        else:
+            print(f"✗ Test failed: File {filename} was not created")
+            return False
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
