@@ -106,11 +106,11 @@ def save_terms(ids):
             if not os.path.isfile(filename):
                 print(f"Processing {id}...")
                 terms = vc.neo_query_wrapper.get_TermInfo([id])
-                if not terms:
+                if terms.empty:
                     print(f"ERROR: No data returned for {id}")
                     continue
-                for term in terms:
-                    wrapStringInHTMLMac(term)
+                for _, term in terms.iterrows():
+                    wrapStringInHTMLMac(term.to_dict())
                     run -= 1
         except Exception as e:
             print(f"ERROR processing {id}: {str(e)}")
