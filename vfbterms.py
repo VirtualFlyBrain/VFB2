@@ -94,20 +94,28 @@ def find_values(src, key, dest=set()):
                             dest.union(find_values(i, key, dest))
     return dest
 
+# Initialize VFB connection
+vc = VfbConnect()
+
 def save_terms(ids):
     run = 100000
     import os.path
     for id in ids:
         try:
-                filename = id + "_v" + str(version) + ".md"
-                if not os.path.isfile(filename):
-                    print(id)
-                    terms = vc.neo_query_wrapper.get_TermInfo([id])
-                    for term in terms:
-                        wrapStringInHTMLMac(term)
-                        run -= 1
-        except:
-            print("ERROR:" + id)
+            filename = id + "_v" + str(version) + ".md"
+            if not os.path.isfile(filename):
+                print(f"Processing {id}...")
+                terms = vc.neo_query_wrapper.get_TermInfo([id])
+                if not terms:
+                    print(f"ERROR: No data returned for {id}")
+                    continue
+                for term in terms:
+                    wrapStringInHTMLMac(term)
+                    run -= 1
+        except Exception as e:
+            print(f"ERROR processing {id}: {str(e)}")
+            import traceback
+            print(traceback.format_exc())
 
 def get_term_url(label, short_form):
     """Create canonical URL for a term"""
@@ -268,8 +276,6 @@ def wrapStringInHTMLMac(term):
         except:
             print(whole)
         f.close()
-
-vc=VfbConnect(neo_endpoint='http://pdb.virtualflybrain.org', neo_credentials=('neo4j', 'vfb'), owlery_endpoint='http://owl.virtualflybrain.org/kbs/vfb/')
 
 mypath = sys.argv[1]
 print("Updating all files in " + mypath)
