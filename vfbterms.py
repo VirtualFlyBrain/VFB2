@@ -189,14 +189,15 @@ def format_synonyms(term):
 
 def format_xrefs(term):
     refs = []
-    for xref in term.xrefs:
-        # Check if xref is a string or dictionary
-        if isinstance(xref, dict):
-            icon = ' <i class="fa fa-external-link"></i>' if xref.get("site", {}).get("icon") == "link" else ''
-            refs.append(f'- <a href="{xref["link_base"]}{xref["accession"]}" target="_blank">{xref["site"]["label"]}</a>{icon}')
-        else:
-            # Handle string xrefs or log them for debugging
-            print(f"Unexpected xref format: {xref}")
+    if "xrefs" in term:  # Check if xrefs exists in the dictionary
+        for xref in term["xrefs"]:  # Access xrefs using dictionary notation
+            # Check if xref is a string or dictionary
+            if isinstance(xref, dict):
+                icon = ' <i class="fa fa-external-link"></i>' if xref.get("site", {}).get("icon") == "link" else ''
+                refs.append(f'- <a href="{xref["link_base"]}{xref["accession"]}" target="_blank">{xref["site"]["label"]}</a>{icon}')
+            else:
+                # Handle string xrefs or log them for debugging
+                print(f"Unexpected xref format: {xref}")
     return '\n'.join(refs) if refs else 'None'
 
 def format_references(term):
