@@ -109,8 +109,27 @@ def save_terms(ids):
                 if terms.empty:
                     print(f"ERROR: No data returned for {id}")
                     continue
-                for _, term in terms.iterrows():
-                    wrapStringInHTMLMac(term.to_dict())
+                for _, row in terms.iterrows():
+                    # Restructure the data to match expected format
+                    term_data = {
+                        "term": {
+                            "core": {
+                                "short_form": row.get("short_form", ""),
+                                "label": row.get("label", ""),
+                                "types": row.get("types", []),
+                                "iri": row.get("iri", ""),
+                                "symbol": row.get("symbol", "")
+                            },
+                            "description": [row.get("description", "")],
+                            "comment": [row.get("comment", "")]
+                        },
+                        "parents": row.get("parents", []),
+                        "relationships": row.get("relationships", []),
+                        "xrefs": row.get("xrefs", []),
+                        "pub_syn": row.get("pub_syn", []),
+                        "def_pubs": row.get("def_pubs", [])
+                    }
+                    wrapStringInHTMLMac(term_data)
                     run -= 1
         except Exception as e:
             print(f"ERROR processing {id}: {str(e)}")
