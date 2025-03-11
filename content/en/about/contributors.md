@@ -109,7 +109,7 @@ img {
 [![javiercejudo](https://avatars.githubusercontent.com/u/1095851?v=4&s=100)](https://github.com/javiercejudo) 
 [![peteretelej](https://avatars.githubusercontent.com/u/2271973?v=4&s=100)](https://github.com/peteretelej) 
 [![bkiers](https://avatars.githubusercontent.com/u/281616?v=4&s=100)](https://github.com/bkiers) 
-[![genericmethod](https://avatars.githubusercontent.com/u/4405235?v=4&s=100)](https://github.com/genericmethod) 
+[![eRaz00r](https://avatars.githubusercontent.com/u/4405235?v=4&s=100)](https://github.com/eRaz00r) 
 [![Daniel15](https://avatars.githubusercontent.com/u/91933?v=4&s=100)](https://github.com/Daniel15) 
 [![daattali](https://avatars.githubusercontent.com/u/952340?v=4&s=100)](https://github.com/daattali) 
 [![esteinborn](https://avatars.githubusercontent.com/u/308007?v=4&s=100)](https://github.com/esteinborn) 
