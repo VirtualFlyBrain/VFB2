@@ -2,7 +2,7 @@
 title: "Bridging Registrations"
 tag: [Template,Registration,Alignment,nat,navis,flybrains,Transforms]
 description: >
-  Transformations to map between different cononical Drosophila templates.
+  Transformations to map between different canonical Drosophila templates.
 ---
 
 Many transforms to map between different Drosophila template brains are available.
