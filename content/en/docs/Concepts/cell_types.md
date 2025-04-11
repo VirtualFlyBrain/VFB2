@@ -2,7 +2,7 @@
 title: "Cell Types"
 linkTitle: "Cell Types"
 categories: ["overview","help"]
-tag: ["FBbt", "Anatomy", "Ontology", "Typing", "Classification"]
+tag: ["FBbt", "Anatomy", "Ontology", "Typing", "Classification", "Class"]
 description: >
   Cell type annotations on VFB.
 ---
