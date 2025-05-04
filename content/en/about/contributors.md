@@ -72,7 +72,6 @@ img {
 [![NeZanyat](https://avatars.githubusercontent.com/u/1211953?v=4&s=100)](https://github.com/NeZanyat) 
 [![afonsobspinto](https://avatars.githubusercontent.com/u/19196034?v=4&s=100)](https://github.com/afonsobspinto) 
 [![snyk-bot](https://avatars.githubusercontent.com/u/19733683?v=4&s=100)](https://github.com/snyk-bot) 
-[![reality](https://avatars.githubusercontent.com/u/223469?v=4&s=100)](https://github.com/reality) 
 [![leechuck](https://avatars.githubusercontent.com/u/362161?v=4&s=100)](https://github.com/leechuck) 
 [![MiguelAngelRG](https://avatars.githubusercontent.com/u/12188797?v=4&s=100)](https://github.com/MiguelAngelRG) 
 [![cmungall](https://avatars.githubusercontent.com/u/50745?v=4&s=100)](https://github.com/cmungall) 
