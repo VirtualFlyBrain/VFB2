@@ -4,7 +4,7 @@ tags: ["term","classification","location","tools"]
 title: "This is the Term Context tab"
 linkTitle: "Term Context"
 description: >
-   Term Context displays grapical information on the currently selected term's location or classification
+   Term Context displays graphical information on the currently selected term's location or classification
 weight: 60
 ---
 <link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
