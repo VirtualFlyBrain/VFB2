@@ -6,7 +6,7 @@ description: >
     VFB neuron-to-neuron and neuron-to-expression pattern similarity scores (NBLAST) have been expanded to include the male-CNS optic lobe and FAFB-FlyWire connectome datasets.
 ---
 
-VFB provides precomputed [NBLAST]() scores to assist in the discovery of 1) morphologically similar neurons within and across connectome datasets and 2) potential split-GAL4 driver lines which label neurons from connectomic datasets.
+VFB provides precomputed [NBLAST](https://doi.org/10.1016/j.neuron.2016.06.012) scores to assist in the discovery of 1) morphologically similar neurons within and across connectome datasets and 2) potential split-GAL4 driver lines which label neurons from connectomic datasets.
 
 VFB NBLAST scores currently cover:
 
