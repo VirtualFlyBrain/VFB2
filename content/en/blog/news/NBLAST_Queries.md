@@ -22,12 +22,12 @@ Images provided from FlyLight. New images are being added to VFB. ['FlyLight Spl
 
 NBLAST queries can be accessed in the term info panel for individuals (neuron/split-GAL4 images) (at bottom of the example image below). The queries are only available if there are any results for that individual.
 
-![NBLAST queries](https://www.virtualflybrain.org/images/NBLAST Queries.png)
+![NBLAST queries](https://www.virtualflybrain.org/images/NBLAST_Queries.png)
 
 Neuron-to-neuron example match:
 
-![NBLAST queries](https://www.virtualflybrain.org/images/Neuron-Neuron NBLAST.png)
+![NBLAST queries](https://www.virtualflybrain.org/images/Neuron-Neuron_NBLAST.png)
 
 Neuron-to-split-GAL4 expression pattern example match:
 
-![NBLAST queries](https://www.virtualflybrain.org/images/Neuron-Expression NBLAST.png)
+![NBLAST queries](https://www.virtualflybrain.org/images/Neuron-Expression_NBLAST.png)
