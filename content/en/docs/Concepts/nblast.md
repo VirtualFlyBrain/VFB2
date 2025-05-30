@@ -2,7 +2,7 @@
 title: "NBLAST"
 linkTitle: "NBLAST"
 weight: 50
-tag: [NBLAST]
+tag: [NBLAST,NBLASTexp]
 description: >
   Understanding NBLAST morphological similarity scoring on VFB
 ---
