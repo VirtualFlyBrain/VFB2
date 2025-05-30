@@ -8,7 +8,7 @@ description: >
 
 ## What is NBLAST?
 
-NBLAST (Costa et al., 2016) is a computational method to quantify morphological similarity between neurons. It provides an objective way to compare neuron shapes and identify morphologically similar cells within and across datasets.
+NBLAST ([Costa et al., 2016](https://doi.org/10.1016/j.neuron.2016.06.012)) is a computational method to quantify morphological similarity between neurons. It provides an objective way to compare neuron shapes and identify morphologically similar cells within and across datasets.
 
 ## How NBLAST works
 
