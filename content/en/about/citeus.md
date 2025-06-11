@@ -1,21 +1,30 @@
 ---
 title: How to cite us
+description: "Citation information for Virtual Fly Brain including APA, MLA, Chicago, and BibTeX formats. Use these citations when referencing VFB data, tools, or resources in your research publications."
+tags: [VFB,citation,publication]
+categories: [how to cite,acknowledgements]
 weight: 20
 ---
 
-Please use the citation below:
+# How to Cite Virtual Fly Brain
 
-## APA
-Court, R., Costa, M., Pilgrim, C., Millburn, G., Holmes, A., McLachlan, A., Larkin, A., Matentzoglu, N., Kir, H., Parkinson, H., Brown, N. H., O'Kane, C. J., Armstrong, J. D., Jefferis, G. S. X. E., & Osumi-Sutherland, D. (2023). Virtual Fly Brain—An interactive atlas of the Drosophila nervous system. Frontiers in Physiology, 14. https://doi.org/10.3389/fphys.2023.1076533
+If you use Virtual Fly Brain data, tools, or resources in your research, please cite our work using the citation formats below. Proper citation helps support continued development and funding of this resource.
 
-## MLA
-Court, Robert, et al. "Virtual Fly Brain—An Interactive Atlas of the Drosophila Nervous System." Frontiers in Physiology, vol. 14, 2023, https://doi.org/10.3389/fphys.2023.1076533.
+## Primary Citation
 
-## Chicago
-Court, Robert, Costa, Marta, Pilgrim, Clare, Millburn, Gillian, Holmes, Alex, McLachlan, Alex, Larkin, Aoife et al. "Virtual Fly Brain—An interactive atlas of the Drosophila nervous system." Frontiers in Physiology 14, (2023). https://doi.org/10.3389/fphys.2023.1076533.
+Use this citation when referencing Virtual Fly Brain in general, including use of the website, data, or tools:
 
-## BibTex
-```bib
+### APA
+Court, R., Costa, M., Pilgrim, C., Millburn, G., Holmes, A., McLachlan, A., Larkin, A., Matentzoglu, N., Kir, H., Parkinson, H., Brown, N. H., O'Kane, C. J., Armstrong, J. D., Jefferis, G. S. X. E., & Osumi-Sutherland, D. (2023). Virtual Fly Brain—An interactive atlas of the Drosophila nervous system. *Frontiers in Physiology*, *14*. https://doi.org/10.3389/fphys.2023.1076533
+
+### MLA
+Court, Robert, et al. "Virtual Fly Brain—An Interactive Atlas of the Drosophila Nervous System." *Frontiers in Physiology*, vol. 14, 2023, https://doi.org/10.3389/fphys.2023.1076533.
+
+### Chicago
+Court, Robert, Costa, Marta, Pilgrim, Clare, Millburn, Gillian, Holmes, Alex, McLachlan, Alex, Larkin, Aoife et al. "Virtual Fly Brain—An interactive atlas of the Drosophila nervous system." *Frontiers in Physiology* 14, (2023). https://doi.org/10.3389/fphys.2023.1076533.
+
+### BibTeX
+```bibtex
 @article{10.3389/fphys.2023.1076533,
   author = {Robert Court and Marta Costa and Clare Pilgrim and Gillian Millburn and Alex Holmes and Alex McLachlan and Aoife Larkin and Nicolas Matentzoglu and Huseyin Kir and Helen Parkinson and Nicolas H. Brown and Cahir J. O'Kane and J. Douglas Armstrong and Gregory S. X. E. Jefferis and David Osumi-Sutherland},
   title = "{Virtual Fly Brain—An interactive atlas of the Drosophila nervous system}",
@@ -30,6 +39,14 @@ Court, Robert, Costa, Marta, Pilgrim, Clare, Millburn, Gillian, Holmes, Alex, Mc
   url = {https://doi.org/10.3389/fphys.2023.1076533},
 }
 ```
-For details on the anatomy ontology:
+## Additional Citations
+
+### Drosophila Anatomy Ontology
+
+If you specifically use or reference the Drosophila anatomy ontology developed as part of Virtual Fly Brain, please also cite:
 
 * Osumi-Sutherland, D., Reeve, S., Mungall, C. J., Neuhaus, F., Ruttenberg, A., Jefferis, G. S. and Armstrong, J. D. (2012). [A strategy for building neuroanatomy ontologies](http://dx.doi.org/doi:10.1093/bioinformatics/bts113)
+
+
+## Acknowledgements
+When appropriate, please also acknowledge the specific data sources integrated into Virtual Fly Brain that you have used, such as JFRC, FlyBase, FlyCircuit, and datasets from individual research groups.
