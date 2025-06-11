@@ -2,8 +2,6 @@
 title: "FlyBase Emergency Funding"
 linkTitle: "FlyBase Funding"
 date: 2025-06-11
-description: >
-    VFB neuron-to-neuron and neuron-to-expression pattern similarity scores (NBLAST) have been expanded to include the male-CNS optic lobe and FAFB-FlyWire connectome datasets.
 ---
 
 VFB works closely with the FlyBase team and we rely on their hard work to provide many of our features. Due to the current funding situation at [FlyBase](https://flybase.org/), we encourage our users to donate and help maintain this essential resource.
