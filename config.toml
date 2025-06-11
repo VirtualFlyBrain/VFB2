@@ -237,7 +237,7 @@ enable = false
 [[params.links.user]]
 	name ="Twitter"
 	url = "https://virtualflybrain.bsky.social"
-	icon = "fa-brands fa-bluesky"
+	icon = "fab fa-bluesky"
         desc = "Follow us on Bsky to get the latest news!"
 [[params.links.user]]
 	name ="Facebook"
