@@ -2,6 +2,8 @@
 title: "Funding"
 date: 2025-06-11
 weight: 500
+tags: [VFB,funding]
+categories: [funding,acknowledgements,who we are]
 description: "VirtualFlyBrain has been supported by grants from multiple UK research councils and charitable foundations since 2009."
 ---
 ## Current Funding (2022-2026)
