@@ -133,4 +133,4 @@ img {
 [![hoeghh](https://avatars.githubusercontent.com/u/11328908?v=4&s=100)](https://github.com/hoeghh) 
 [![github-actions[bot]](https://avatars.githubusercontent.com/in/15368?v=4&s=100)](https://github.com/apps/github-actions) 
 [![enicolasgomez](https://avatars.githubusercontent.com/u/5366927?v=4&s=100)](https://github.com/enicolasgomez) 
-[![vidhya-metacell](https://avatars.githubusercontent.com/u/71261494?v=4&s=100)](https://github.com/vidhya-metacell) 
+[![vidhyalongani](https://avatars.githubusercontent.com/u/71261494?v=4&s=100)](https://github.com/vidhyalongani) 
