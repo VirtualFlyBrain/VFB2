@@ -8,7 +8,7 @@ description: >
   All available VFB APIs and underlying schemas.
 ---
 
-VFB provides access to its data through several APIs and databases. The core data infrastructure consists of Neo4j graph databases that store integrated neuroanatomical data, complemented by OWL reasoning services for advanced ontological queries.
+VFB provides access to its data through several APIs and databases. The core data infrastructure consists of Neo4j graph databases that store integrated neuroanatomical data, complemented by OWL reasoning services for advanced ontological queries and SOLR search for fast text-based queries.
 
 ## User Access Options
 
@@ -54,6 +54,13 @@ OWL reasoning service providing advanced queries over VFB ontologies using Descr
 - **Technology**: OWL API-based reasoner
 - **Capabilities**: Class hierarchies, instance queries, SPARQL with reasoning
 - **Endpoint**: [https://owl.virtualflybrain.org/kbs/vfb/](https://owl.virtualflybrain.org/kbs/vfb/)
+
+### [SOLR Search API](SOLR.md)
+Fast text search and autocomplete service for VFB entities, datasets, and publications.
+
+- **Technology**: Apache SOLR search engine
+- **Capabilities**: Full-text search, faceted search, result boosting
+- **Endpoint**: [https://solr.virtualflybrain.org/solr/vfb_olympiad/select](https://solr.virtualflybrain.org/solr/vfb_olympiad/select)
 
 ## Additional APIs
 
