@@ -42,10 +42,10 @@ The main VFB database containing integrated ontology data, expression patterns, 
 - **Browser**: [https://pdb.virtualflybrain.org/browser/](https://pdb.virtualflybrain.org/browser/)
 
 ### [Knowledge Base (KB)](KB.md)
-Specialized database focused on large-scale synaptic connectivity data and related annotations, separated from the main PDB due to the size and complexity of modern connectomes.
+Specialized database for VFB-specific annotations, metadata, and derived data supporting curation and integration workflows.
 
 - **Technology**: Neo4j graph database
-- **Content**: Detailed synaptic connectivity and connectome data
+- **Content**: VFB-specific data and workflow support
 - **Browser**: [https://kb.virtualflybrain.org/browser/](https://kb.virtualflybrain.org/browser/)
 
 ### [Owlery API](Owlery.md)

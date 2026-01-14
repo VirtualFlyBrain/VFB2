@@ -4,10 +4,10 @@ linkTitle: "KB API"
 weight: 2
 date: 2024-01-13
 description: >
-  The VFB Knowledge Base (KB) stores large-scale synaptic connectivity data and related annotations.
+  The VFB Knowledge Base (KB) provides specialized storage and query capabilities for VFB-specific data and annotations.
 ---
 
-The VFB Knowledge Base (KB) is a specialized Neo4j database focused on storing large-scale connectivity data. Due to the size and complexity of modern connectomes, most ontology data, expression patterns, and other integrated content has been moved to the Production Database (PDB). The KB now serves as a dedicated repository for synaptic connectivity information and related annotations.
+The VFB Knowledge Base (KB) is a specialized Neo4j database that complements the Production Database (PDB). While the PDB handles integrated ontology data, expression patterns, and image annotations, the KB serves specific VFB requirements and workflows.
 
 ## Browser Access
 
@@ -19,28 +19,10 @@ Explore the KB using the Neo4j browser:
 
 The KB serves as:
 
-1. **Connectivity Data Repository**: Primary storage for synaptic connectivity information from large-scale connectomes
-2. **VFB-Specific Annotations**: Annotations and metadata related to connectivity data
+1. **VFB-Specific Data Repository**: Storage for VFB-specific annotations, metadata, and derived data
+2. **Workflow Support**: Specialized storage supporting VFB curation and integration workflows
 
-**Note**: Ontology data, expression patterns, image annotations, and other integrated content are now stored in the Production Database (PDB) to handle the growing size and complexity of modern connectomes.
-
-## Data Types
-
-### Connectivity Data
-
-VFB stores connectivity data at multiple levels:
-
-1. **Neo4j Graph Storage**: Detailed synaptic connectivity in the KB graph database
-2. **OWL Ontology Files**: Connectomic data exported as OWL files for semantic interoperability
-
-**OWL Connectivity Files**: Available at [https://virtualflybrain.org/data/VFB/OWL/raw/](https://virtualflybrain.org/data/VFB/OWL/raw/) (connectome_*.owl files)
-
-Two levels of representation in Neo4j:
-
-1. **Crude Connectivity**: Simple triples `A synapsed_to B` with synapse counts
-2. **Detailed Synapses**: Individual synapse partonomy using GO terms (3 individuals per synapse)
-
-**Note**: Image annotations, ontology data, and expression patterns are now stored in the Production Database (PDB).
+**Note**: Ontology data, expression patterns, image annotations, and connectivity data are stored in the Production Database (PDB).
 
 ## Schema Requirements
 
@@ -68,23 +50,10 @@ Expression patterns in the KB follow the general semantic specification:
 
 The KB and PDB work together in VFB's data architecture:
 
-- **KB**: Specialized storage for large-scale connectivity data and related annotations
-- **PDB**: Integrated storage for ontology data, expression patterns, image annotations, and cross-referenced information
-- **Data Flow**: Connectivity data from KB is integrated with other data types in PDB for comprehensive queries
+- **KB**: Specialized storage for VFB-specific annotations, metadata, and derived data
+- **PDB**: Integrated storage for ontology data, expression patterns, image annotations, connectivity data, and cross-referenced information
+- **Data Flow**: VFB-specific data from KB supports curation and integration workflows alongside PDB data
 
-## Query Patterns
-
-### Connectivity Queries
-```cypher
-MATCH (neuron1:Individual)-[syn:synapsed_to]->(neuron2:Individual)
-RETURN neuron1, syn, neuron2
-```
-
-### Synapse Detail Queries
-```cypher
-MATCH (neuron:Individual)-[:has_presynaptic_terminal_in]->(region:Class)
-RETURN neuron, region
-```
 
 **Note**: For queries involving ontology data, expression patterns, or image annotations, use the Production Database (PDB).
 
