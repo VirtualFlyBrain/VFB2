@@ -2,6 +2,7 @@
 title: "Guide to adding new query properties to the VFBTerm object in the VFBConnect Library"
 linkTitle: "Adding new query in VFBconnect"
 date: 2024-08-25
+weight: 9
 description: >
     An exploration of how an example query is added to the VFBTerm object under VFBconnect which provides a template for any future queries you may want to add add to vfb.term
 ---
