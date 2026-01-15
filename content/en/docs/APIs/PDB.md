@@ -205,6 +205,52 @@ Synaptic connections are represented as:
 
 Or with detailed synapse partonomy using GO terms.
 
+### Image Data Model
+
+Image data in the PDB follows the VFB knowledge base specification for image annotation. Images are represented as OWL individuals, linked to anatomical entities they depict through image channels and registration to templates.
+
+**Basic Image Structure:**
+Images consist of channels that depict anatomical content and are registered to template spaces:
+
+```cypher
+(Anatomical_Image:Individual)<-[:depicts]-(Image_Channel:Individual)-[:in_register_with]->(Template_Channel:Template:Individual)-[:depicts]->(Template:Individual)
+```
+
+Where:
+- `Anatomical_Image`: The anatomical individual being depicted (e.g., expression pattern instance)
+- `Image_Channel`: The image channel containing the actual image data
+- `Template_Channel`: The reference template channel for spatial registration
+- `Template`: The template brain or anatomical reference space
+
+**Example: Expression Pattern Image**
+```cypher
+// Anatomical individual (expression pattern instance)
+(anatomical_image:Individual {short_form: 'VFB_00020468', label: 'JRC_R10A06 GAL4 in the adult brain'})
+
+// Image channel depicting the anatomical individual
+(anatomical_image)<-[:depicts]-(image_channel:Individual {short_form: 'VFBc_00020468', label: 'GMR_10A06_AE_01_08-fA01b_c'})
+
+// Registration to template channel
+(image_channel)-[:in_register_with {thumbnail: 'http://www.virtualflybrain.org/data/VFB/i/0002/0468/VFB_00017894/thumbnail.png', nrrd: 'http://www.virtualflybrain.org/data/VFB/i/0002/0468/VFB_00017894/volume.nrrd'}]->(template_channel:Template:Individual {short_form: 'VFBc_00017894', label: 'JFRC2_template_c'})
+
+// Template depicted by template channel
+(template_channel)-[:depicts]->(template:Individual {short_form: 'VFB_00017894', label: 'adult brain template JFRC2'})
+```
+
+**Querying Images:**
+```cypher
+// Find images depicting a specific anatomical individual
+MATCH (anatomical:Individual {short_form: 'VFB_00020468'})<-[:depicts]-(channel:Individual)
+RETURN channel, anatomical
+
+// Find expression pattern images registered to a specific template
+MATCH (anatomical:Individual)<-[:depicts]-(channel:Individual)
+-[:in_register_with]->(template_channel:Template:Individual)-[:depicts]->(template:Individual {label: 'adult brain template JFRC2'})
+RETURN anatomical.label, channel.label
+```
+
+Images include metadata properties such as filenames, thumbnails, voxel sizes, orientations, and links to data sources, stored as node properties on the image channel individuals.
+
 ## Data Sources
 
 The PDB integrates data from:
