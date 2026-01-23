@@ -13,7 +13,7 @@ cascade:
 
 ## Documentation 
 
-[FlyLight Project Homepage](https://www.janelia.org/project-team/flylight)
+
 
 ## Intro
 
