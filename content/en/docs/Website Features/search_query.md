@@ -1,8 +1,8 @@
 ---
 categories: ["overview","help"]
 tags: ["search","query","Anatomy","painted","domain","Template","Synaptic_neuropil"]
-title: "Starting to explore VFB"
-linkTitle: "Starting to explore"
+title: "Search and Query Tools on VFB"
+linkTitle: "Search and Query"
 description: >
   Text search and query tools and how to explore the 3D images.
 weight: 20
