@@ -4,11 +4,11 @@ tags: ["scRNAseq","tools"]
 title: "Single cell RNAseq data"
 linkTitle: "scRNAseq data"
 description: >
-   Single cell RNAseq data on VFB. 
+   How to navigate single cell RNAseq data on VFB. 
 weight: 9000
 ---
 
-## Finding gene expression data on VFB
+## Finding transcriptomics data on VFB
 
 ### Finding cell type clusters
 Cell types with available scRNAseq data can be identified using the 'Has scRNAseq data filter' when searching.
