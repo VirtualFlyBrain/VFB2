@@ -1,7 +1,7 @@
 ---
 categories: ["overview","help"]
 tags: ["connectome","tools"]
-title: "This is the Circuit Browser tab"
+title: "The Circuit Browser tab"
 linkTitle: "Circuit Browser"
 description: >
    The Circuit Browser allows you to find the strongest paths from one neuron (the source neuron) to another (the target neuron). 

@@ -1,7 +1,7 @@
 ---
 categories: ["overview","help"]
 tags: ["term","classification","location","tools"]
-title: "This is the Term Context tab"
+title: "The Term Context tab"
 linkTitle: "Term Context"
 description: >
    Term Context displays graphical information on the currently selected term's location or classification

@@ -1,8 +1,8 @@
 ---
-title: "How to Interpret VFB Thumbnails"
+title: "VFB Image Thumbnails"
 linkTitle: "Thumbnails"
 tags: ["thumbnails","CD-MIP","MIP"]
-weight: 100
+weight: 55
 description: >-
      VFB (Virtual Fly Brain) thumbnails are color depth maximum projection images that allow users to visualize the distribution of intensity values across different depths in a 3D image stack. 
 ---

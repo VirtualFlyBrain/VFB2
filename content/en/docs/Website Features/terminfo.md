@@ -1,7 +1,7 @@
 ---
 categories: ["overview","help"]
 tags: ["term","tools"]
-title: "This is the Term Info tab"
+title: "The Term Info tab"
 linkTitle: "Term Info"
 description: >
    Term Info displays information on the currently selected painted anatomy region, neuron, expression pattern or non-image term definitions

@@ -1,7 +1,7 @@
 ---
 categories: ["overview","help"]
 tags: ["3D","volume","OBJ","SWC","rotate","tools"]
-title: "This is the 3D Viewer tab"
+title: "The 3D Viewer tab"
 linkTitle: "3D Viewer"
 description: >
    The 3D Viewer displays 3D models of the template, showing all selected painted anatomy, neurons and expression patterns

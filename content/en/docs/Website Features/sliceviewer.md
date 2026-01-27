@@ -1,7 +1,7 @@
 ---
 categories: ["overview","help"]
 tags: ["slice","3D","volume","NRRD","WLZ","Woolz","IIP3D","tools"]
-title: "This is the Slice Viewer tab"
+title: "The Slice Viewer tab"
 linkTitle: "Slice Viewer"
 description: >
    The Slice Viewer displays single slices of the template, showing all selected painted anatomy, neurons and expression patterns
