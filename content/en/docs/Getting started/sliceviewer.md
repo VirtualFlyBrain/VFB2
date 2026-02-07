@@ -9,7 +9,7 @@ weight: 30
 ---
 <link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
 
-<i class="fa fa-hand-pointer-o"></i>   Hover to explore, click to list or shift + click to add painted anatomy
+<i class="fa fa-hand-pointer"></i>   Hover to explore, click to list or shift + click to add painted anatomy
     
 <i class="fa fa-arrows-v"></i>   Use the arrow icons or scroll with the mouse to move through the stack
     
