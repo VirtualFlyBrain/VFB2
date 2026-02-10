@@ -1,7 +1,7 @@
 ---
-title: "Hacking the connectome"
-linkTitle: "Connectome"
-weight: 8
+title: "Hacking the connectome workshop materials"
+linkTitle: "Connectome Workshop"
+weight: 10
 date: 2017-01-04
 categories: [connectome,python,workshop,tutorials]
 tags: [api,python,vfbconnect,natverse,nat,navis,pymaid,neuprint,rcatmaid,r]
