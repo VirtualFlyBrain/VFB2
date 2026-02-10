@@ -43,7 +43,7 @@ The Collaborative Annotation Toolkit for Massive Amounts of Image Data (CATMAID)
 ### [FlyLight](https://www.janelia.org/project-team/flylight)
 The FlyLight Project at Janelia Research Campus produces large anatomical data sets and highly characterized collections of GAL4, LexA and Split-GAL4 drivers in order to enable the visualization and precise manipulation of individual cell types in the Drosophila nervous system.
 
-#### [FlyLight Protocols](https://www.janelia.org/project-team/flylight/protocols)
+### [FlyLight Protocols](https://www.janelia.org/project-team/flylight/protocols)
 Protocols used in the FlyLight project for dissection, staining and imaging of Drosophila central nervous systems. Also includes videos.
 
 ### [larvalbrain](http://www.larvalbrain.org/#/)
