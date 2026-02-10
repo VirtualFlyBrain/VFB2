@@ -1,6 +1,6 @@
 ---
 title: "VFB connect API overview"
-weight: 100
+weight: 1
 series: ["API"]
 alias: ["/docs/tutorials/0_vfb_api_overview/"]
 date: 2021-12-27
@@ -15,7 +15,7 @@ The VFB connect API provides programmatic access to the databases underlying [Vi
 
 At the core of Virtual Fly Brain is a set of curated terms for Drosophila neuro-anatomy organised into a queryable classification, including terms for brain regions, e.g. [nodulus](http://virtualflybrain.org/reports/FBbt_00003680) and neurons e.g. [MBON01](http://virtualflybrain.org/reports/FBbt_00100234). These terms are used to annotate and classify individual brain regions and neurons in images and connectomics data. For example the term MBON01 is used to classify individual [neurons from sources including the CATMAID-FAFB and Neuprint-HemiBrain databases](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?q=FBbt_00100234,ListAllAvailableImages). VFB stores both [registered 3D images](http://virtualflybrain.org/reports/VFB_00101382) and [connectomics data](https://v2-dev.virtualflybrain.org/org.geppetto.frontend/geppetto?q=VFB_00101382,ref_neuron_neuron_connectivity_query) (where available) for all of these neurons.
 
-A single VfbConnect object wraps connections and canned queries against all open VFB databases. It includes methods for retreiving metadata about anatomy, individual brain regions and neurons including IDs for these that can be used for queries against other databases (e.g. CATMAID & neuprint).  It provides methods for downloading images and connectomics data. It provides access to sophisticated queries for anatomical classes and individual neurons accoring to their classification & properties. 
+A single VfbConnect object wraps database connections and canned queries against all open VFB databases. It includes methods for retreiving metadata about anatomy, individual brain regions and neurons including IDs for these that can be used for queries against other databases (e.g. CATMAID & neuprint).  It provides methods for downloading images and connectomics data. It provides access to sophisticated queries for anatomical classes and individual neurons according to their classification & properties. 
 
 ### Locations for methods under a `VfbConnect` object.
 
