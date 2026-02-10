@@ -19,19 +19,160 @@ The Model Context Protocol is a standard that allows LLMs to interact with exter
 
 The VFB MCP tool is available at: **[vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/)**
 
-To use it, you'll need:
-- An LLM that supports MCP (e.g., Claude with MCP integration)
-- Basic familiarity with asking questions about neuroanatomy
+### Quick Start
+
+#### Use the Live Service (Recommended)
+
+The easiest way to use VFB3-MCP is through our hosted service. This requires no installation or setup on your machine.
+
+##### Claude Desktop Setup
+
+1. Open Claude Desktop and go to Settings
+2. Navigate to the MCP section
+3. Add a new MCP server with these settings:
+   - Server Name: `virtual-fly-brain` (or any name you prefer)
+   - Type: HTTP
+   - Server URL: `https://vfb3-mcp.virtualflybrain.org`
+
+Configuration JSON (alternative method):
+
+```json
+{
+  "mcpServers": {
+    "virtual-fly-brain": {
+      "type": "http",
+      "url": "https://vfb3-mcp.virtualflybrain.org",
+      "tools": ["*"]
+    }
+  }
+}
+```
+
+##### Claude Code Setup
+
+1. Locate your Claude configuration file:
+   - macOS/Linux: `~/.claude.json`
+   - Windows: `%USERPROFILE%\.claude.json`
+2. Add the VFB3-MCP server to your configuration:
+
+```json
+{
+  "mcpServers": {
+    "virtual-fly-brain": {
+      "type": "http",
+      "url": "https://vfb3-mcp.virtualflybrain.org",
+      "tools": ["*"]
+    }
+  }
+}
+```
+
+3. Restart Claude Code for changes to take effect
+
+##### GitHub Copilot Setup
+
+1. Open VS Code with GitHub Copilot installed
+2. Open Settings (`Ctrl/Cmd + ,`)
+3. Search for "MCP" in the settings search
+4. Find the MCP Servers setting
+5. Add the server URL: `https://vfb3-mcp.virtualflybrain.org`
+6. Give it a name like "Virtual Fly Brain"
+
+Alternative JSON configuration (in `mcp.json`):
+
+```json
+{
+  "servers": {
+    "virtual-fly-brain": {
+      "type": "http",
+      "url": "https://vfb3-mcp.virtualflybrain.org"
+    }
+  }
+}
+```
+
+##### Visual Studio Code (with MCP Extension)
+
+1. Install the MCP extension for VS Code from the marketplace
+2. Open the Command Palette (`Ctrl/Cmd + Shift + P`)
+3. Type "MCP: Add server" and select it
+4. Choose "HTTP" as the server type
+5. Enter the server details:
+   - Name: `virtual-fly-brain`
+   - URL: `https://vfb3-mcp.virtualflybrain.org`
+6. Save and restart VS Code if prompted
+
+##### Other MCP Clients
+
+For any MCP-compatible client that supports HTTP servers:
+
+```json
+{
+  "mcpServers": {
+    "virtual-fly-brain": {
+      "type": "http",
+      "url": "https://vfb3-mcp.virtualflybrain.org",
+      "tools": ["*"]
+    }
+  }
+}
+```
+
+##### Gemini Setup
+
+To use the Virtual Fly Brain (VFB) Model Context Protocol (MCP) server with Google Gemini, you can connect through custom Python/Node.js clients that support MCP.
+
+Note: Direct Gemini web interface integration with MCP is not currently supported. Developer tools are needed to connect the two.
+
+Option 1: Using Python
+
+For application development, use the `mcp` and `google-genai` libraries to connect.
+
+Setup: `pip install google-genai mcp`
+
+Implementation: Use an `SSEClientTransport` to connect to the VFB URL, list its tools, and pass their schemas to the Gemini model as Function Declarations.
+
+#### Testing the Connection
+
+Once configured, you can test that VFB3-MCP is working by asking your AI assistant questions like:
+
+Basic Queries:
+
+- "Get information about the neuron VFB_jrcv0i43"
+- "Search for terms related to medulla in the fly brain"
+- "What neurons are in the antennal lobe?"
+
+Advanced Queries:
+
+- "Find all neurons that connect to the mushroom body"
+- "Show me expression patterns for gene repo"
+- "What brain regions are involved in olfactory processing?"
+- "Run a connectivity analysis for neuron VFB_00101567"
+
+Search Examples:
+
+- "Search for adult neurons in the visual system"
+- "Find genes expressed in the central complex"
+- "Show me all templates available in VFB"
+
+If you see responses with VirtualFlyBrain data, including neuron names, brain regions, gene expressions, or connectivity information, the setup is successful!
+
+For more detailed usage examples and API calls, see [examples.md](https://github.com/VirtualFlyBrain/VFB3-MCP/blob/main/examples.md).
+
+### Local Installation
+
+If you prefer to run the MCP server locally, see the [VFB3-MCP repository README](https://github.com/VirtualFlyBrain/VFB3-MCP/blob/main/README.md) for detailed installation instructions.
 
 ## Core Features
 
 The tool provides access to three main capabilities:
 
 ### 1. **Term Information Queries** (`get_term_info`)
+
 Retrieve detailed information about any VFB term using its VFB ID.
 
 **Example Query:**
-```
+```text
 "What is the medulla? Please get the full definition and structure."
 ```
 
@@ -43,10 +184,11 @@ Retrieve detailed information about any VFB term using its VFB ID.
 - Related images and connectivity data
 
 ### 2. **Term Search** (`search_terms`)
+
 Search for VFB terms using keywords and filters.
 
 **Example Query:**
-```
+```text
 "Find neurons in the medulla"
 ```
 
@@ -57,10 +199,11 @@ Search for VFB terms using keywords and filters.
 - **Filter by dataset:** FAFB, FlyCircuit, hemibrain, neuprint, flycircuit, etc.
 
 ### 3. **Query Execution** (`run_query`)
+
 Execute specific queries on VFB terms, including NBLAST similarity analysis.
 
 **Example Query:**
-```
+```text
 "What neurons are morphologically similar to IN02A049?"
 ```
 
@@ -155,34 +298,39 @@ Execute specific queries on VFB terms, including NBLAST similarity analysis.
 ## Tips for Effective Queries
 
 ### 1. **Use VFB IDs When Known**
+
 If you know the VFB ID of a term, use it directly:
-```
+```text
 "Get me detailed information about FBbt_00003748 (the medulla)"
 ```
 
 ### 2. **Combine Search and Query**
+
 Use search first to find relevant terms, then query them:
-```
+```text
 "Find all cholinergic neurons in the visual system, 
 then tell me about the top 5"
 ```
 
 ### 3. **Filter Strategically**
+
 Use filters to narrow results:
-```
+```text
 "Show me motor neurons from the male-CNS optic lobe dataset"
 ```
 
 ### 4. **Explore Relationships**
+
 Ask about anatomical and functional relationships:
-```
+```text
 "What neurons innervate the medulla? 
 What brain regions do they come from?"
 ```
 
 ### 5. **Cross-Dataset Comparisons**
+
 Compare neurons across different connectome datasets:
-```
+```text
 "Find the equivalent of this FAFB neuron in the hemibrain dataset"
 ```
 
