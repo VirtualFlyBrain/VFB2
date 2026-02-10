@@ -4,9 +4,12 @@ tags: ["3D","volume","OBJ","SWC","rotate","tools"]
 title: "The 3D Viewer tab"
 linkTitle: "3D Viewer"
 description: >
-   The 3D Viewer displays 3D models of the template, showing all selected painted anatomy, neurons and expression patterns
+   The 3D Viewer displays 3D models of the template, showing all selected painted anatomy, neurons and expression patterns.
 weight: 30
 ---
+
+ VFB features tens of thousands of 3D images of neurons, clones and expression patterns, registered to standard template brains. Any combination of these can be added to the 3D viewer together.
+
 <link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
 
 <i class="fa fa-mouse-pointer"></i>   Point and click to select neurons/expression
