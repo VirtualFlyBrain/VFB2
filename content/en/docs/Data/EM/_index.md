@@ -7,30 +7,9 @@ description: >
 
 ---
 
-Virtual Fly Brain brings together data from multiple [electron microscopy (EM) resources](/docs/resources/), providing access to high-resolution neuroanatomical datasets. These datasets include complete EM volumes of Drosophila brains and ventral nerve cords, neuron reconstructions, connectivity information and neurotransmitter predictions. Data can be visualised using the web browser or accessed programmatically via APIs.
+Virtual Fly Brain brings together data from multiple [electron microscopy (EM) resources](/docs/resources/), providing access to high-resolution neuroanatomical datasets. These datasets include complete EM volumes of Drosophila brains and ventral nerve cords, neuron reconstructions, connectivity information and neurotransmitter predictions. Data can be visualised using the web browser or accessed programmatically via [APIs](/docs/apis/).
 
-## Datasets Hosted by VFB
-
-Virtual Fly Brain (VFB) hosts several CATMAID instances for exploring connectomic reconstruction data. These datasets provide access to neuroanatomical data from various Drosophila electron microscopy projects. Full details are available on our hosted pages:
-
-### Adult full CNS
-- BANC (Brain and Nerve Cord)
-
-### Adult Brain
-- FlyWire FAFB (Full Adult Fly Brain)
-- [CATMAID FAFB (Full Adult Fly Brain)](/hosted/fafb-catmaid/) - Complete EM volume of an adult Drosophila melanogaster brain with manually traced neurons
-- Hemibrain
-- Optic-lobe
-
-### Adult VNC
-- MANC (Male Adult Nerve Cord)
-- [FANC (Female Adult Nerve Cord)](/hosted/fanc-catmaid/) - Adult female ventral nerve cord with reconstructions in both original and template space
-
-### Larval full CNS
-- [L1EM (First Instar Larva)](/hosted/l1em-catmaid/) - Complete EM volume of a Drosophila first instar larva brain with manually traced neurons
-
-
-## Comparison Table
+## Comparison Table of Integrated Datasets
 
 The table below summarises EM datasets that have been integrated into VFB, including the portion of the organism covered (`Anatomy`), the resource(s) where the original data can be found, The level of reconstruction (sparse or dense) and the original publication for the dataset.
 
@@ -44,3 +23,7 @@ The table below summarises EM datasets that have been integrated into VFB, inclu
 | Hemibrain | hb         | Partial brain (adult female) | Dense          | NeuPrint | [Scheffer et al. (2020)](https://doi.org/10.7554/eLife.57443)       
 | FAFB (CATMAID) | fafb       | Full brain (adult female)    | Sparse         | CATMAID | [Zheng et al. (2018)](https://doi.org/10.1016/j.cell.2018.06.019)                                                                            |
 | l1em | l1em       | Full CNS (female larva)      | Sparse         | CATMAID | [Ohyama et al. (2015)](https://doi.org/10.1038/nature14297)                                                                                  |
+
+## Datasets Hosted by VFB
+
+Virtual Fly Brain (VFB) hosts several CATMAID instances for exploring connectomic reconstruction data. These datasets provide access to neuroanatomical data from various Drosophila electron microscopy projects. Full details are available [here](/hosted/).

@@ -11,26 +11,22 @@ cascade:
     path: "/**"
 ---
 
-## Documentation 
+## Introduction
 
-
-
-## Intro
-
-FlyLight makes its primary data available via VFB as well as through dedicated websites for expression patterns of Generation 1 GAL4 and LexA lines and for split-GAL4 lines. Generation 1, split hemidriver, and stable split combination lines are available primarily from the Bloomington Stock Center. Stable split lines can also be requested via the split-GAL4 website.
+FlyLight makes its primary data available via VFB as well as through dedicated websites for expression patterns of Generation 1 GAL4 and LexA lines and for split-GAL4 lines. Generation 1, split hemidriver, and stable split combination lines are available primarily from the [Bloomington Stock Center](https://bdsc.indiana.edu/). Stable split lines can also be requested via the split-GAL4 website.
 
 ## FlyLight Data and Resources
 
-While FlyLight's data is intergrated & indexed on [VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?q=VFB_00101567,AllDatasets) and direct link out provided to the images on these sites they can be directly searched:
+FlyLight data is integrated and indexed on [VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?q=VFB_00101567,AllDatasets) and direct linkouts are provided from the [Term Info tabs](/docs/website-features/terminfo/#references-and-linkouts) to the original images. VFB hosts the original larval images [here](https://raw.larval.flylight.virtualflybrain.org/). External links to the original collections of adult images are provided below:
 
-[Browse the Generation 1 GAL4 expression patterns](https://flweb.janelia.org/)
+[Generation 1 GAL4 expression patterns](https://flweb.janelia.org/)
 
-[Browse the Generation 1 MCFO (single neuron) patterns](https://gen1mcfo.janelia.org/)
+[Generation 1 MCFO (single neuron) patterns](https://gen1mcfo.janelia.org/)
 
-[Browse the Split-GAL4 Expression Patterns](https://splitgal4.janelia.org/)
+[Split-GAL4 Expression Patterns](https://splitgal4.janelia.org/)
 
-[Browse the Raw Image Collection](https://flylight-raw.janelia.org/cgi-bin/raw.cgi)
+[Janelia Raw Image Collection](https://flylight-raw.janelia.org/cgi-bin/raw.cgi)
 
-[Search light and EM neurons - NeuronBridge](https://neuronbridge.janelia.org/)
+Light and EM neurons can also be searched for on [NeuronBridge](https://neuronbridge.janelia.org/)
 
-[VFB hosted Larval Expression Patterns](https://raw.larval.flylight.virtualflybrain.org/)
+Also see [FlyLight Imaging Tile Documentation](/docs/concepts/flylight_tiles/).

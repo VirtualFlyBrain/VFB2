@@ -46,7 +46,7 @@ Images (and citation information) can be downloaded from the `Downloads` section
 <i class="far fa-hand-pointer"></i>   Click on download items to begin downloading
 
 ## References and Linkouts
-Linkouts to external sites with further information about the selected entity can be found in the `Cross Refernces` section where appropriate. Literature references are in the `References` section, with links to the articles themselves and the FlyBase bibliography pages where available.
+Linkouts to external sites with further information about the selected entity can be found in the `Cross References` section where appropriate. Literature references are in the `References` section, with links to the articles themselves and the FlyBase bibliography pages where available.
 
 <p align="center">
   <img src="/images/terminfo/terminfo-xrefs.png" alt="Cross References and Linkouts in Term Info." style="max-width=50%" />

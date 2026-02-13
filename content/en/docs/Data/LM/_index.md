@@ -9,5 +9,3 @@ description: >
 
 Virtual Fly Brain brings together data from multiple [Light Microscopy (LM) resources](/docs/resources/), providing access to visualisations of driver (including split) expression patterns.
 
-## LM Datasets Hosted by VFB
-
