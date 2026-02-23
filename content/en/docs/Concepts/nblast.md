@@ -48,12 +48,7 @@ VFB NBLAST scores cover:
 
 ### Accessing NBLAST queries
 
-NBLAST similarity searches are available directly in the VFB interface:
-
-1. Navigate to any individual neuron or split-GAL4 image page
-2. Scroll to the term info panel 
-3. Look for NBLAST query options (only appears if results are available)
-4. Click to see ranked lists of morphologically similar items
+ See [Similarity Score Queries Guide](/docs/tutorials/website/similarityscore/) for details of how to find NBLAST similarity queries in the VFB interface.
 
 ### Interpreting results
 
@@ -96,6 +91,6 @@ NBLAST results on VFB can be:
 
 ## Further reading
 
-- [NBLAST tutorial](/docs/tutorials/apis/4_nblast/) - Detailed programming tutorial
+- [NBLAST tutorial](/docs/tutorials/apis/nblast/) - Detailed programming tutorial
 - [Original NBLAST paper](https://doi.org/10.1016/j.neuron.2016.06.012) - Costa et al., 2016
 - [VFB NBLAST announcement](/blog/2025/05/29/new-precomputed-neuron-and-expression-pattern-similarity-scores-on-vfb/) - Recent updates and expanded coverage
