@@ -5,7 +5,7 @@ title: "Browsing single cell RNAseq data"
 linkTitle: "scRNAseq data"
 description: >
    How to navigate single cell RNAseq data on VFB. 
-weight: 10
+weight: 30
 ---
 
 ## Finding transcriptomics data on VFB

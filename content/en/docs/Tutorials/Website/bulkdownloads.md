@@ -1,7 +1,7 @@
 ---
 title: "Bulk Image Download"
 linkTitle: "Bulk Downloader"
-weight: 30
+weight: 20
 description: >-
      This guide provides step-by-step instructions on how to use the bulk download tool on VirtualFlyBrain.org. The tool allows users to download multiple files at once, saving time and effort compared to downloading each file individually. The types of data available for download include OBJ, SWC, NRRD, and References. Users can also select specific variables related to their chosen data type. The downloaded data is packaged into a zip file for easy access and organization. 
 ---
