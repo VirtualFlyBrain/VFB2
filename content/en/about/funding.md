@@ -6,10 +6,10 @@ tags: [VFB,funding]
 categories: [funding,acknowledgements,who we are]
 description: "VirtualFlyBrain has been supported by grants from multiple UK research councils and charitable foundations since 2009."
 ---
-## Current Funding (2022-2026)
+## Current Funding (2022-2027)
 
 **Wellcome Trust Grant 223741/Z/21/Z**
-- Duration: April 1, 2022 to March 31, 2026
+- Duration: April 1, 2022 to March 31, 2026 (extended to March 31, 2027)
 - Supporting ongoing VirtualFlyBrain development and maintenance
 
 ## Historical Funding
