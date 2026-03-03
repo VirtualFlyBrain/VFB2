@@ -45,7 +45,7 @@ description: "VirtualFlyBrain has been supported by grants from multiple UK rese
 - Grant supporting Marta Costa's research: "Neuroinformatic identification of new types of neuron in the Drosophila brain" (October 2012 - September 2013)
 
 **Wellcome Trust - Cambridge Protein Trap Project**
-- Supporting BrainTrap database development
+- Supporting [BrainTrap](https://virtualflybrain.org/about/hosted/braintrap/) database development
 - Recipients: Kathryn Lilley, Steve Russell, Daniel St. Johnson
 
 ## Institutional Partners
