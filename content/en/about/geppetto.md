@@ -1,7 +1,7 @@
 ---
 title: "Geppetto"
 linkTitle: "Geppetto"
-weight: 21
+weight: 800
 tags: [Geppetto,MetaCell]
 description: >
     The ultimate neuroscience platform.
