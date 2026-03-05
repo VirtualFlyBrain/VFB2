@@ -47,24 +47,29 @@ weight: 400
 MetaCell collaborates with Virtual Fly Brain on the development and enhancement of the open source [Geppetto](http://www.geppetto.org) visualization platform that powers our 3D brain viewer.
 
 ---
+<!--- width set to 55 here to prevent bunching onto same line -->
 <a href='http://www.anc.ed.ac.uk/index.php?option=com_content&task=view&id=12&Itemid=68' target='_blank'>
-  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/InformaticsLogo.gif' style="max-width: 50%"/>
-</a>
-<a href='http://www.gen.cam.ac.uk/' target='_blank'>
-  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/CUnibig.png' style="max-width: 50%"/>
-</a>
-<a href='https://www.sanger.ac.uk/' target='_blank'>
-  <img src='https://virtualflybrain.org/images/logo-sanger-blue.svg' style="max-width: 50%"/>
-</a>
-<a href='http://www2.mrc-lmb.cam.ac.uk/' target='_blank'>
-  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/MRC-LMB_logo.png' style="max-width: 50%"/>
-</a>
-<a href='http://www.ebi.ac.uk/' target='_blank'>
-  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/EMBL_EBI_logo_180pixels_RGB.png' style="max-width: 50%"/>
+  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/InformaticsLogo.gif' style="max-width: 55%"/>
 </a>
 
+<a href='http://www.gen.cam.ac.uk/' target='_blank'>
+  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/CUnibig.png' style="max-width: 55%"/>
+</a>
+
+<a href='https://www.sanger.ac.uk/' target='_blank'>
+  <img src='https://virtualflybrain.org/images/logo-sanger-blue.svg' style="max-width: 55%"/>
+</a>  
+
+<a href='http://www2.mrc-lmb.cam.ac.uk/' target='_blank'>
+  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/MRC-LMB_logo.png' style="max-width: 55%"/>
+</a>  
+
+<a href='http://www.ebi.ac.uk/' target='_blank'>
+  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/EMBL_EBI_logo_180pixels_RGB.png' style="max-width: 55%"/>
+</a>  
+
 <a href='http://www.metacell.us/' target='_blank'>
-  <img src='https://github.com/tarelli/bucket/raw/master/MetaCellLogoWhite300ppi.png' style="max-width: 50%"/>
+  <img src='https://github.com/tarelli/bucket/raw/master/MetaCellLogoWhite300ppi.png' style="max-width: 55%"/>
 </a>
 
 ---

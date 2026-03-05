@@ -16,5 +16,6 @@ weight: 500
 
   [![flybase.gif](https://v2.virtualflybrain.org/images/vfb/project/logos/flybase.gif)](http://www.flybase.org/)
 
-  **Expression data** is collaboratively curated by VFB and [FlyBase](http://www.flybase.org/). 
-  <i>Phenotype data</i> is curated by FlyBase. Expression and phenotype data displayed on VFB is stored and maintained by FlyBase.
+  **Expression data** is collaboratively curated by VFB and [FlyBase](http://www.flybase.org/) and stored and maintained at FlyBase. 
+
+  **Phenotype data** is curated, stored, and maintained by FlyBase.
