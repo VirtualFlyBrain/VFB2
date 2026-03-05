@@ -7,7 +7,7 @@ description: >-
       Summary of templates on Virtual Fly Brain and the painted domains/regions available in those templates.
 ---
 
-Canonical templates not only allow for spatial alignment of image data, but also are often painted to make a reference atlas of anatomical regions. Many central nervous system (CNS) templates exist for Drosophila, below we provide a summary of those used in VFB. Templates can be downloaded from their [Term Info](../../website-features/terminfo/#data) pages.
+Canonical templates not only allow for spatial alignment of image data, but also are often painted to make a reference atlas of anatomical regions. Many central nervous system (CNS) templates exist for Drosophila, below we provide a summary of those used in VFB. Templates can be downloaded from their [Term Info](/docs/website-features/terminfo/#data) pages.
 
 ## Central Nervous System from Janelia Research Campus JRC2018
 

@@ -6,7 +6,7 @@ weight: 55
 description: >-
      VFB (Virtual Fly Brain) thumbnails are color depth maximum projection images that allow users to visualize the distribution of intensity values across different depths in a 3D image stack. 
 ---
-Thumbnails are found in [query results](../search_query/#query_results) and on [Term Info pages](../terminfo).
+Thumbnails are found in [query results](/docs/website-features/search_query/#query_results) and on [Term Info pages](/docs/website-features/terminfo).
 
 ## VFB Thumbnail features
 

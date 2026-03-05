@@ -12,11 +12,11 @@ Split drivers comprise at least two partial transcription factors that can recon
 
 <img src="/images/splits_images.png" max-width="50%" alt="A split-GAL4 expression pattern at the intersection of the expression patterns of two hemidrivers.">
 
-Researchers can identify split drivers for neurons of interest from the `Targeting Splits` section of a cell type [Term Info](/docs/website-features/terminfo/) page or by using [similarity scores](/docs/tutorials/website/similarityscore/) from a single neuron image. It is also possible to [search](/docs/website-features/search_query/) directly for particular hemidrivers and combinations.
+Researchers can identify split drivers for neurons of interest from the `Targeting Splits` section of a cell type [Term Info](/docs/website-features/terminfo) page or by using [similarity scores](/docs/tutorials/website/similarityscore/) from a single neuron image. It is also possible to [search](/docs/website-features/search_query) directly for particular hemidrivers and combinations.
 
 <img src="/images/splits_terminfo.png" max-width="50%" alt="Targeting Splits section of cell type Term Info page." >
 
-Similar to [non-split drivers](/docs/concepts/transgene/), VFB contains images and curated information about expression patterns for combinations. Each combination gets a standard name in VFB, reflecting the names of the component hemidrivers and any short names for the combination from the literature are added as synonyms (e.g. "[P{VT017411-GAL4.DBD} ∩ P{VT019018-p65.AD} expression pattern](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFBexp_FBtp0123314FBtp0119891)" has_exact_synonym: SS02256").
+Similar to [non-split drivers](/docs/concepts/transgene), VFB contains images and curated information about expression patterns for combinations. Each combination gets a standard name in VFB, reflecting the names of the component hemidrivers and any short names for the combination from the literature are added as synonyms (e.g. "[P{VT017411-GAL4.DBD} ∩ P{VT019018-p65.AD} expression pattern](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFBexp_FBtp0123314FBtp0119891)" has_exact_synonym: SS02256").
 
 <img src="/images/split_vfb.png" alt="split expression shown in Virtual Fly Brain (VFB)" max-width="50%" >
 

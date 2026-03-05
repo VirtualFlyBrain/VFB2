@@ -955,4 +955,4 @@ pd.DataFrame.from_records(KC_types)
 
 **2.2** Methods for querying connectivity
 
-Please see [Connectivity Notebook](/docs/past-workshops/connectome/4_connectomics/) for examples.
+Please see [Connectivity Notebook](/docs/past-workshops/connectome/4_connectomics) for examples.

@@ -19,7 +19,7 @@ Each entity in VFB has a unique `Name`. The `Name` field also shows semantic tag
 
 ## Ontology terms and Graphs
 
-`Classification` and `Relationships` fields show parent and related ontology classes for the selected entity. Click to navigate to the Term Info pages for these terms. The `location` and `classification` [Term Context](../termcontext) graphs show partonomy relationships and parentage of the selected entity, respectively.
+`Classification` and `Relationships` fields show parent and related ontology classes for the selected entity. Click to navigate to the Term Info pages for these terms. The `location` and `classification` [Term Context](/docs/website-features/termcontext) graphs show partonomy relationships and parentage of the selected entity, respectively.
 
 <p align="center">
   <img src="/images/terminfo/terminfo-ontologies.png" alt="Classification, Relationships and Graphs in Term Info." style="max-width=50%" />
@@ -29,13 +29,13 @@ Each entity in VFB has a unique `Name`. The `Name` field also shows semantic tag
 
 ## Data
 
-[`Thumbnails`](../thumbnails) show available images (as a carousel if multiple). These can be clicked to add the image to the 3D viewer.
+[`Thumbnails`](/docs/website-features/thumbnails) show available images (as a carousel if multiple). These can be clicked to add the image to the 3D viewer.
 
 <i class="far fa-hand-pointer"></i>   Click on thumbnails to add an image to the 3D viewer
 
-[Queries](../search_query/#queries-from-term-info) relevant to the selected entity can find related entities and other relevant information. Some EM neurons also have an option to add the neuron to the [Circuit Browser](../circuitbrowser) tool to explore connectivity data. Queries are specialised for different types of entity, for example, the Term Info page for a neuronal cell type may have queries to find images, transgene expression and transcriptomics data, whereas an EM image may have queries to find connectivity data.
+[Queries](/docs/website-features/search_query/#queries-from-term-info) relevant to the selected entity can find related entities and other relevant information. Some EM neurons also have an option to add the neuron to the [Circuit Browser](/docs/website-features/circuitbrowser) tool to explore connectivity data. Queries are specialised for different types of entity, for example, the Term Info page for a neuronal cell type may have queries to find images, transgene expression and transcriptomics data, whereas an EM image may have queries to find connectivity data.
 
-<i class="fab fa-quora"></i>   Run term related [queries](../search_query/#queries-from-term-info)
+<i class="fab fa-quora"></i>   Run term related [queries](/docs/website-features/search_query/#queries-from-term-info)
 
 Images (and citation information) can be downloaded from the `Downloads` section and their source dataset, template, and licence information can be found in their own Term Info fields.
 
