@@ -6,10 +6,10 @@ tags: [VFB,funding]
 categories: [funding,acknowledgements,who we are]
 description: "Virtual Fly Brain has been supported by grants from multiple UK research councils and charitable foundations since 2009."
 ---
-## Current Funding (2022-2026)
+## Current Funding (2022-2027)
 
 **Wellcome Trust Grant 223741/Z/21/Z**
-- Duration: April 1, 2022 to March 31, 2026
+- Duration: April 1, 2022 to March 31, 2026 (extended to March 31, 2027)
 - Supporting ongoing Virtual Fly Brain development and maintenance
 
 ## Historical Funding
@@ -45,7 +45,7 @@ description: "Virtual Fly Brain has been supported by grants from multiple UK re
 - Grant supporting Marta Costa's research: "Neuroinformatic identification of new types of neuron in the Drosophila brain" (October 2012 - September 2013)
 
 **Wellcome Trust - Cambridge Protein Trap Project**
-- Supporting BrainTrap database development
+- Supporting [BrainTrap](https://virtualflybrain.org/about/hosted/braintrap/) database development
 - Recipients: Kathryn Lilley, Steve Russell, Daniel St. Johnson
 
 ## Institutional Partners

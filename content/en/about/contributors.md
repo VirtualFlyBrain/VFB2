@@ -94,7 +94,6 @@ img {
 [![p3t0r](https://avatars.githubusercontent.com/u/41199?v=4&s=100)](https://github.com/p3t0r) 
 [![vmunier](https://avatars.githubusercontent.com/u/1211392?v=4&s=100)](https://github.com/vmunier) 
 [![rmorey](https://avatars.githubusercontent.com/u/4590343?v=4&s=100)](https://github.com/rmorey) 
-[![aheimsbakk](https://avatars.githubusercontent.com/u/8190865?v=4&s=100)](https://github.com/aheimsbakk) 
 [![dependabot[bot]](https://avatars.githubusercontent.com/in/29110?v=4&s=100)](https://github.com/apps/dependabot) 
 [![yyz1989](https://avatars.githubusercontent.com/u/7029943?v=4&s=100)](https://github.com/yyz1989) 
 [![KrisDavie](https://avatars.githubusercontent.com/u/5079892?v=4&s=100)](https://github.com/KrisDavie) 
@@ -134,3 +133,5 @@ img {
 [![github-actions[bot]](https://avatars.githubusercontent.com/in/15368?v=4&s=100)](https://github.com/apps/github-actions) 
 [![enicolasgomez](https://avatars.githubusercontent.com/u/5366927?v=4&s=100)](https://github.com/enicolasgomez) 
 [![vidhyalongani](https://avatars.githubusercontent.com/u/71261494?v=4&s=100)](https://github.com/vidhyalongani) 
+[![Salam-Dalloul](https://avatars.githubusercontent.com/u/32265731?v=4&s=100)](https://github.com/Salam-Dalloul) 
+[![Aiga115](https://avatars.githubusercontent.com/u/67194168?v=4&s=100)](https://github.com/Aiga115) 
