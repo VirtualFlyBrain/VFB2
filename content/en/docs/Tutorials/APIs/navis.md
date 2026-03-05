@@ -1,20 +1,16 @@
 ---
-title: "Data types"
+title: "Exploring Neurons in Navis"
 weight: 110
 series: ["API"]
 alias: ["/docs/tutorials/1_datatypes/"]
 date: 2021-12-27
 description: >
-  In this notebook we will focus on neuron skeletons - a.k.a. `TreeNeurons`
+  How to explore the properties of `TreeNeurons` using navis.
 ---
 
 
-# Overview
-`navis` is a Python package for analysing, manipulating and visualizing neurons.
-
-`pymaid` lets you interface with a CATMAID server such as those hosted by VFB. 
-
-Both packages have extensive documentation ([navis](https://navis.readthedocs.io/en/latest/) | [pymaid](https://pymaid.readthedocs.io/en/latest/)) with introductory tutorials, examples and a list of all available functions.
+## Overview
+`navis` is a Python package for analysing, manipulating and visualizing neurons. Official documentation [here](https://navis.readthedocs.io/en/latest/).
 
 ## Basic datatypes: neurons and neuron lists 
 `navis` knows three types of neurons:
@@ -129,9 +125,7 @@ n.id
 
 
 
-There are many more properties that you might find interesting! In theory, you can use type `n.` and TAB to get auto-complete suggestions of available properties and methods.
-
-Deepnote appears to have problems with that sometimes - you can fall back to good 'ole `dir()` in that case.
+There are many more properties that you might find interesting! Typing `n.` and pressing TAB should give auto-complete suggestions of available properties and methods. If your notebook editor has problems with that, you can fall back to using `dir()`.
 
 Here is an (incomplete) list of some of the more relevant properties:
 - `bbox`: bounding box of the neuron
@@ -139,13 +133,12 @@ Here is an (incomplete) list of some of the more relevant properties:
 - `id`: every neuron has an ID
 - `nodes`: the SWC node table underlying the neuron
 
-And a couple of class methods:
+And some class methods:
 - `reroot`: reroot neuron
-- `plot2d`/`plot3d`: plot the neuron (see also subsequent lessons)
+- `plot2d`/`plot3d`: plot the neuron (see also [plotting turorial](/docs/tutorials/apis/plotting/))
 - `copy`: make and return a copy
 - `prune_twigs`: remove small terminal twigs
 
-At this point I encourage you to just explore and play around with what TreeNeuron has to offer. Also check out the [docs](https://navis.readthedocs.io/en/latest/source/tutorials/generated/navis.TreeNeuron.html#navis.TreeNeuron)!
 
 As an example: this is how you get the ID of this neuron's root node.
 
@@ -162,7 +155,7 @@ n.root
 
 
 
-Some of the properties such as `.root` or `.ends` are computed on-the-fly from the underlying raw data. For `TreeNeurons` that's the node table (and it's graph representation). The node table is a pandas DataFrame that looks effectively like a SWC:
+Some of the properties such as `.root` or `.ends` are computed on-the-fly from the underlying raw data. For `TreeNeurons` that's the node table (and its graph representation). The node table is a pandas DataFrame that looks effectively like a SWC:
 
 
 ```python

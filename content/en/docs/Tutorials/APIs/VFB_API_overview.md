@@ -31,7 +31,7 @@ Note: available methods and their documentation are easy to explore in DeepNote.
 
 ### 1. `vc.neo_query_wrapper` methods overview
 
-**1.1** `vc.neo_query_wrapper` TermInfo queries return the results of a VFB Term Information window as JSON, following the [VFB_JSON standard](), or a summary that can easily be converted into a DataFrame.
+**1.1** `vc.neo_query_wrapper` TermInfo queries return the results of a VFB Term Information window as JSON, following the VFB_JSON standard, or a summary that can easily be converted into a DataFrame.
 
 
 ```python
@@ -571,7 +571,7 @@ vc.neo_query_wrapper.xref_2_vfb_id(map(str, bodyIDs), db = 'neuprint_JRC_Hemibra
 
 ### 2. `vc` direct methods overview
 
-**2.1** Methods that take the names of classes in VFB e.g. 'nodulus' or 'Kenyon cell', or simple query expressions using the names of classes and return metadata about the classes or individual neurons
+**2.1** Methods that take the names of classes in VFB e.g. 'nodulus' or 'Kenyon cell', or simple query expressions using the names of classes and return metadata about the classes or individual neurons.
 
 
 ```python
@@ -955,6 +955,4 @@ pd.DataFrame.from_records(KC_types)
 
 **2.2** Methods for querying connectivity
 
-Please see [Connectivity Notebook](https://www.virtualflybrain.org/docs/tutorials/apis/connectome/4_connectomics/) for examples
-
-
+Please see [Connectivity Notebook](/docs/past-workshops/connectome/4_connectomics/) for examples.

@@ -1,6 +1,6 @@
 ---
-title: "Tutorials for using VFB Application Programming Interfaces (APIs)"
-linkTitle: "VFB API Tutorials"
+title: "Application Programming Interface (API) Tutorials"
+linkTitle: "API Tutorials"
 weight: 20
 date: 2021-12-27
 series: ["API"]
