@@ -358,8 +358,8 @@ VFB terms use standardized identifiers:
 ## Next Steps
 
 - **Explore the tool:** Visit [vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/)
-- **Read more about NBLAST:** See our [NBLAST concepts page](/docs/concepts/nblast/)
-- **Learn about VFB APIs:** Check our [API overview](/docs/tutorials/apis/0_vfb_api_overview/)
+- **Read more about NBLAST:** See our [NBLAST concepts page](/docs/concepts/nblast)
+- **Learn about VFB APIs:** Check our [API overview](/docs/tutorials/apis/vfb_api_overview)
 - **Browse VFB directly:** Visit the main [Virtual Fly Brain site](https://virtualflybrain.org/)
 
 ## Common Questions
@@ -368,7 +368,7 @@ VFB terms use standardized identifiers:
 A: No, if you're using Claude or another MCP-compatible LLM with the integration already set up, just start asking questions.
 
 **Q: Can I download the data I find?**
-A: Yes, many results include links to download images, neuron skeletons, and connectivity data. Check the [API documentation](/docs/tutorials/apis/0_vfb_api_overview/) for programmatic access.
+A: Yes, many results include links to download images, neuron skeletons, and connectivity data. Check the [API documentation](/docs/tutorials/apis/vfb_api_overview) for programmatic access.
 
 **Q: What if I don't know the VFB ID?**
 A: The search tool can find terms by name or keyword. The LLM will help you locate the right term.
@@ -378,4 +378,4 @@ A: Absolutely! You can ask your LLM to retrieve VFB data and then perform additi
 
 ---
 
-**Happy exploring!** If you have questions or suggestions about the VFB MCP tool, please reach out to the [VFB team](/about/contactus/).
+**Happy exploring!** If you have questions or suggestions about the VFB MCP tool, please reach out to the [VFB team](/about/contactus).

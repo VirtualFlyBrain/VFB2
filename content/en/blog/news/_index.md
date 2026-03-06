@@ -1,6 +1,6 @@
 
 ---
-title: "News about Virtual Fly Brain (VFB)"
+title: "Virtual Fly Brain News"
 linkTitle: "News"
 weight: 20
 cascade:
