@@ -4,13 +4,13 @@ date: 2025-06-11
 weight: 500
 tags: [VFB,funding]
 categories: [funding,acknowledgements,who we are]
-description: "VirtualFlyBrain has been supported by grants from multiple UK research councils and charitable foundations since 2009."
+description: "Virtual Fly Brain has been supported by grants from multiple UK research councils and charitable foundations since 2009."
 ---
 ## Current Funding (2022-2027)
 
 **Wellcome Trust Grant 223741/Z/21/Z**
 - Duration: April 1, 2022 to March 31, 2026 (extended to March 31, 2027)
-- Supporting ongoing VirtualFlyBrain development and maintenance
+- Supporting ongoing Virtual Fly Brain development and maintenance
 
 ## Historical Funding
 
@@ -50,17 +50,16 @@ description: "VirtualFlyBrain has been supported by grants from multiple UK rese
 
 ## Institutional Partners
 
-VirtualFlyBrain is a collaborative project between:
+Virtual Fly Brain is a collaborative project between:
 
 - **University of Edinburgh** - School of Informatics
-- **University of Cambridge** - Multiple departments including Genetics, Physiology Development & Neuroscience, and Zoology
-- **EMBL's European Bioinformatics Institute (EMBL-EBI)** - Hinxton, UK
+- **University of Cambridge** - Departments of Physiology Development & Neuroscience, and Zoology
 - **Wellcome Sanger Institute** - Hinxton, UK
 - **MRC Laboratory for Molecular Biology** - Cambridge
 
 ## Data Partnerships
 
-VirtualFlyBrain integrates data from multiple sources through collaborative partnerships rather than direct funding arrangements:
+Virtual Fly Brain integrates data from multiple sources through collaborative partnerships rather than direct funding arrangements:
 
 - FlyBase Consortium
 - FlyCircuit Project (National Tsing Hua University, Taiwan)
@@ -69,7 +68,7 @@ VirtualFlyBrain integrates data from multiple sources through collaborative part
 
 ## Site Visualization Tools
 
-VirtualFlyBrain utilizes multiple visualization technologies:
+Virtual Fly Brain utilizes multiple visualization technologies:
 
 **Geppetto Framework**
 - Open source 3D visualization platform co-developed with MetaCell Corporation

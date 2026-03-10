@@ -16,7 +16,7 @@ VFB provides access to its data through several APIs and databases. The core dat
 - **VFB Web Interface**: [https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto) - User-friendly web interface for browsing and querying VFB data
 
 **For Programmatic Access:**
-- **VFBconnect Library**: [https://vfb-connect.readthedocs.io/](https://vfb-connect.readthedocs.io/) - Python library that provides high-level access to VFB data and queries. See also: [VFB API Tutorial](Tutorials/APIs/0_VFB_API_overview.md)
+- **VFBconnect Library**: [https://vfb-connect.readthedocs.io/](https://vfb-connect.readthedocs.io/) - Python library that provides high-level access to VFB data and queries. See also: [VFB API Tutorial](/docs/tutorials/apis/VFB_API_overview.md)
 
 **For Advanced Data Access:**
 - **Direct APIs** (documented below): Low-level access to underlying databases and reasoning services
