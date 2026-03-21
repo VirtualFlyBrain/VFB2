@@ -9,6 +9,7 @@ import re
 import json
 import datetime
 import traceback
+import time
 
 # Suppress the urllib3 warning about OpenSSL
 warnings.filterwarnings('ignore', category=Warning)
@@ -40,8 +41,8 @@ def create_session():
     """Create a requests session with retry logic and connection pooling."""
     session = requests.Session()
     retry = Retry(
-        total=3,
-        backoff_factor=1,
+        total=2,
+        backoff_factor=2,
         status_forcelist=[500, 502, 503, 504],
     )
     adapter = HTTPAdapter(max_retries=retry, pool_connections=10, pool_maxsize=10)
@@ -56,7 +57,7 @@ session = create_session()
 def fetch_term_info(term_id):
     """Fetch term info from VFBquery API. Returns dict or None on error."""
     try:
-        resp = session.get(API_BASE, params={"id": term_id}, timeout=30)
+        resp = session.get(API_BASE, params={"id": term_id}, timeout=120)
         resp.raise_for_status()
         data = resp.json()
         if not data or not data.get("Id"):
@@ -495,29 +496,45 @@ def get_vfb_connect():
 
 def save_terms(ids):
     """Fetch and save term pages for a list of IDs."""
-    for term_id in ids:
+    total = len(ids)
+    success_count = 0
+    skip_count = 0
+    fail_count = 0
+    for i, term_id in enumerate(ids):
         try:
             filename = term_id + "_v" + str(version) + ".md"
-            if not os.path.isfile(filename):
-                print(f"Processing {term_id}...")
-                term_data = fetch_term_info(term_id)
-                if term_data is None:
-                    continue
+            if os.path.isfile(filename):
+                skip_count += 1
+                continue
 
-                page_content = generate_page(term_data)
+            print(f"Processing {term_id} ({i+1}/{total})...")
+            term_data = fetch_term_info(term_id)
+            if term_data is None:
+                fail_count += 1
+                continue
 
-                with open(filename, "w", encoding="utf-8") as f:
-                    f.write(page_content)
+            page_content = generate_page(term_data)
 
-                # Clean up previous version
-                old_filename = term_id + "_v" + str(version - 1) + ".md"
-                if os.path.isfile(old_filename):
-                    os.remove(old_filename)
-                    print(f'Removed: {old_filename}')
+            with open(filename, "w", encoding="utf-8") as f:
+                f.write(page_content)
+
+            success_count += 1
+
+            # Clean up previous version
+            old_filename = term_id + "_v" + str(version - 1) + ".md"
+            if os.path.isfile(old_filename):
+                os.remove(old_filename)
+                print(f'Removed: {old_filename}')
+
+            # Brief pause to avoid overwhelming the API
+            time.sleep(0.5)
 
         except Exception as e:
+            fail_count += 1
             print(f"ERROR processing {term_id}: {str(e)}")
             print(traceback.format_exc())
+
+    print(f"\nBatch complete: {success_count} created, {skip_count} skipped (existing), {fail_count} failed out of {total} total")
 
 # ─── Testing ─────────────────────────────────────────────────────────────────
 
