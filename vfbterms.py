@@ -42,7 +42,7 @@ def create_session():
     session = requests.Session()
     retry = Retry(
         total=2,
-        backoff_factor=2,
+        backoff_factor=120,
         status_forcelist=[500, 502, 503, 504],
     )
     adapter = HTTPAdapter(max_retries=retry, pool_connections=10, pool_maxsize=10)
