@@ -57,7 +57,7 @@ session = create_session()
 def fetch_term_info(term_id):
     """Fetch term info from VFBquery API. Returns dict or None on error."""
     try:
-        resp = session.get(API_BASE, params={"id": term_id}, timeout=120)
+        resp = session.get(API_BASE, params={"id": term_id}, timeout=9000)
         resp.raise_for_status()
         data = resp.json()
         if not data or not data.get("Id"):
