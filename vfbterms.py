@@ -24,7 +24,13 @@ from urllib3.util.retry import Retry
 version = 7
 
 API_BASE = "https://v3-cached.virtualflybrain.org/get_term_info"
+STATUS_URL = "https://vfbquery.virtualflybrain.org/status"
 VFB_BROWSER_BASE = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto"
+
+# Throttle settings — stay under 20 concurrent to keep API reliable
+MAX_ACTIVE_BEFORE_BACKOFF = 20  # Back off when this many queries are active
+BACKOFF_SECONDS = 120           # How long to wait when server is busy
+STATUS_CHECK_INTERVAL = 10     # Seconds between status checks while waiting
 
 # Known ID prefixes for internal link conversion
 KNOWN_PREFIXES = (
@@ -52,10 +58,56 @@ def create_session():
 
 session = create_session()
 
+# ─── Server Throttling ───────────────────────────────────────────────────────
+
+def check_server_status():
+    """Check VFBquery server status. Returns (active, waiting) or None on error."""
+    try:
+        resp = session.get(STATUS_URL, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+        active = data.get("active", 0)
+        waiting = data.get("waiting", 0)
+        return active, waiting
+    except Exception as e:
+        print(f"WARNING: Could not check server status: {e}")
+        return None
+
+def wait_for_server_capacity():
+    """Block until the server has capacity below our threshold.
+
+    Monitors the /status endpoint and waits when active queries >= MAX_ACTIVE_BEFORE_BACKOFF
+    or when any queries are waiting in the queue. This is a low-priority process
+    and should not flood the API servers.
+    """
+    while True:
+        status = check_server_status()
+        if status is None:
+            # Can't reach status endpoint — back off to be safe
+            print(f"  Status endpoint unreachable, backing off {BACKOFF_SECONDS}s...")
+            time.sleep(BACKOFF_SECONDS)
+            continue
+
+        active, waiting = status
+        if waiting > 0 or active >= MAX_ACTIVE_BEFORE_BACKOFF:
+            print(f"  Server busy: {active} active, {waiting} queued. "
+                  f"Backing off {BACKOFF_SECONDS}s... (threshold: {MAX_ACTIVE_BEFORE_BACKOFF})")
+            time.sleep(BACKOFF_SECONDS)
+            continue
+
+        # Server has capacity
+        return
+
 # ─── Data Fetching ───────────────────────────────────────────────────────────
 
 def fetch_term_info(term_id):
-    """Fetch term info from VFBquery API. Returns dict or None on error."""
+    """Fetch term info from VFBquery API. Returns dict or None on error.
+
+    Checks server capacity before making the request to avoid flooding.
+    """
+    # Wait until the server isn't overloaded
+    wait_for_server_capacity()
+
     try:
         resp = session.get(API_BASE, params={"id": term_id}, timeout=9000)
         resp.raise_for_status()
@@ -526,8 +578,7 @@ def save_terms(ids):
                 os.remove(old_filename)
                 print(f'Removed: {old_filename}')
 
-            # Brief pause to avoid overwhelming the API
-            time.sleep(0.5)
+            # Throttling is handled by wait_for_server_capacity() in fetch_term_info
 
         except Exception as e:
             fail_count += 1
