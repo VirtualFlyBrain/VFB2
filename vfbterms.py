@@ -5,6 +5,10 @@ from os import listdir, chdir
 from os.path import isfile, join
 import os
 import warnings
+import re
+import json
+import datetime
+import traceback
 
 # Suppress the urllib3 warning about OpenSSL
 warnings.filterwarnings('ignore', category=Warning)
@@ -12,408 +16,591 @@ warnings.filterwarnings('ignore', category=Warning)
 # Set environment variable to skip GUI dependencies
 os.environ['VFB_SKIP_GUI'] = '1'
 
-from vfb_connect.cross_server_tools import VfbConnect
-import re
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
-version = 6
+version = 7
 
-note = """
-{{% alert title="Note" color="primary" %}}This page displays the raw VFB json record for this term. Please use the link below to open the term inside the Virtual Fly Brain viewer{{% /alert %}}
-"""
-wrapper = """---
-    title: "{0} [{1}]"
-    linkTitle: "{0}"
-    tags: [{4}]
-    content: [term]
-    date: 2022-01-01
-    images: [{7}]
-    description: >
-        {2} {3}
-    weight: 10000
-    sitemap_exclude: true
-    canonicalUrl: "https://www.virtualflybrain.org/term/{9}/"
----
+API_BASE = "https://v3-cached.virtualflybrain.org/get_term_info"
+VFB_BROWSER_BASE = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto"
 
-{8}
+# Known ID prefixes for internal link conversion
+KNOWN_PREFIXES = (
+    'FBbt_', 'FBbi_', 'FBcv_', 'FBdv_', 'FBal', 'FBrf', 'FBgn', 'FBti', 'FBtp',
+    'VFB_', 'VFBexp_', 'VFBext_', 'VFBlicense_',
+    'GO_', 'SO_', 'IAO_', 'GENO_', 'PATO_', 'PCO_',
+    'UBERON_', 'RO_', 'OBI_', 'NCBITaxon_', 'ZP_',
+    'WBPhenotype_', 'CARO_', 'BFO_',
+)
 
-[Open **{0}** in **VFB**](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id={1})
+# ─── HTTP Session ────────────────────────────────────────────────────────────
 
-## Term Information
+def create_session():
+    """Create a requests session with retry logic and connection pooling."""
+    session = requests.Session()
+    retry = Retry(
+        total=3,
+        backoff_factor=1,
+        status_forcelist=[500, 502, 503, 504],
+    )
+    adapter = HTTPAdapter(max_retries=retry, pool_connections=10, pool_maxsize=10)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
 
-- **ID**: {1}
-- **Name**: {0}
-- **Definition**: {2}
-- **Synonyms**: {10}
-- **Type**: {11}
-- **Comment**: {3}
+session = create_session()
 
-{6}
+# ─── Data Fetching ───────────────────────────────────────────────────────────
 
-## VFB Term Json
+def fetch_term_info(term_id):
+    """Fetch term info from VFBquery API. Returns dict or None on error."""
+    try:
+        resp = session.get(API_BASE, params={"id": term_id}, timeout=30)
+        resp.raise_for_status()
+        data = resp.json()
+        if not data or not data.get("Id"):
+            print(f"WARNING: Empty or invalid response for {term_id}")
+            return None
+        return data
+    except requests.exceptions.RequestException as e:
+        print(f"WARNING: HTTP error fetching {term_id}: {e}")
+        return None
+    except (json.JSONDecodeError, ValueError) as e:
+        print(f"WARNING: JSON parse error for {term_id}: {e}")
+        return None
 
-```json
-{5}
-```
-
-"""
-
-def find_images(src, key, dest=set()):
-    for k, v in zip(src.keys(), src.values()):
-        if key == k:
-            if not v in str(dest):
-                dest.add('<a href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=' + v.replace("https://www.virtualflybrain.org/data/", "").replace("https://virtualflybrain.org/data/", "").replace("http://virtualflybrain.org/data/", "").replace("http://www.virtualflybrain.org/data/", "").replace("/data/","").replace("/VFB_",",VFB_").replace("/i/","_").replace("/","") +'" ><img src="' + v + 'thumbnail.png" alt="{{< param linkTitle >}}" width="200"/></a>')
-        elif isinstance(v, dict):
-            if key in str(v):
-                dest.union(find_images(v, key, dest))
-        elif isinstance(v, list):
-            if key in str(v):
-                for i in v:
-                    if key in str(i):
-                        if isinstance(i, dict):
-                            dest.union(find_images(i, key, dest))
-    return dest
-
-def find_images_list(src, key, dest=set()):
-    for k, v in zip(src.keys(), src.values()):
-        if key == k:
-            if not v in str(dest):
-                dest.add('"' + v + '"')
-        elif isinstance(v, dict):
-            if key in str(v):
-                dest.union(find_images(v, key, dest))
-        elif isinstance(v, list):
-            if key in str(v):
-                for i in v:
-                    if key in str(i):
-                        if isinstance(i, dict):
-                            dest.union(find_images(i, key, dest))
-    return dest
-
-def find_values(src, key, dest=set()):
-    for k, v in zip(src.keys(), src.values()):
-        if key == k:
-            if not v in str(dest) and not v.endswith("_c") and not v.endswith("-c") and not v.endswith(" c"):
-                dest.add(v)
-        elif isinstance(v, dict):
-            if key in str(v):
-                dest.union(find_values(v, key, dest))
-        elif isinstance(v, list):
-            if key in str(v):
-                for i in v:
-                    if key in str(i):
-                        if isinstance(i, dict):
-                            dest.union(find_values(i, key, dest))
-    return dest
-
-# Initialize VFB connection
-vc = VfbConnect()
-
-def save_terms(ids):
-    run = 100000
-    import os.path
-    for id in ids:
-        try:
-            filename = id + "_v" + str(version) + ".md"
-            if not os.path.isfile(filename):
-                print(f"Processing {id}...")
-                terms = vc.neo_query_wrapper.get_TermInfo([id])
-                if terms.empty:
-                    print(f"ERROR: No data returned for {id}")
-                    continue
-                for _, row in terms.iterrows():
-                    # Restructure the data to match expected format
-                    term_data = {
-                        "term": {
-                            "core": {
-                                "short_form": row.get("short_form", ""),
-                                "label": row.get("label", ""),
-                                "types": row.get("types", []),
-                                "iri": row.get("iri", ""),
-                                "symbol": row.get("symbol", "")
-                            },
-                            "description": [row.get("description", "")],
-                            "comment": [row.get("comment", "")]
-                        },
-                        "parents": row.get("parents", []),
-                        "relationships": row.get("relationships", []),
-                        "xrefs": row.get("xrefs", []),
-                        "pub_syn": row.get("pub_syn", []),
-                        "def_pubs": row.get("def_pubs", [])
-                    }
-                    wrapStringInHTMLMac(term_data)
-                    run -= 1
-        except Exception as e:
-            print(f"ERROR processing {id}: {str(e)}")
-            import traceback
-            print(traceback.format_exc())
+# ─── URL / Link Helpers ─────────────────────────────────────────────────────
 
 def get_term_url(label, short_form):
-    """Create canonical URL for a term"""
-    url = label.replace('\\','').replace(' ','-').lower() + "-" + short_form.lower()
+    """Create canonical URL slug for a term."""
+    url = label.replace('\\', '').replace(' ', '-').lower() + "-" + short_form.lower()
     return re.sub("[^0-9a-zA-Z-_]+", "", url)
 
-def format_relationships(term):
-    rels = []
-    if "relationships" in term:
-        for rel in term["relationships"]:
-            obj = rel["object"]
-            types = ""
-            if "types" in obj:
-                types = " ".join([f'<span class="label label-{t}">{t}</span>' for t in obj["types"]])
-            term_url = get_term_url(obj["label"], obj["short_form"])
-            rels.append(f'- {rel["relation"]["label"]} [{obj["label"]}](https://www.virtualflybrain.org/term/{term_url}) <span class="label types">{types}</span>')
-    return "\n".join(rels)
+def is_known_id(identifier):
+    """Check if an identifier matches a known VFB prefix."""
+    return any(identifier.startswith(p) for p in KNOWN_PREFIXES)
 
-def format_classification(term):
-    classes = []
-    if "parents" in term:
-        for parent in term["parents"]:
-            types = ""
-            if "types" in parent:
-                types = " ".join([f'<span class="label label-{t}">{t}</span>' for t in parent["types"]])
-            term_url = get_term_url(parent["label"], parent["short_form"])
-            classes.append(f'- [{parent["label"]}](https://www.virtualflybrain.org/term/{term_url}) <span class="label types">{types}</span>')
-    return "\n".join(classes)
+def convert_internal_links(text):
+    """Convert API markdown links [label](ID) to site inter-page links.
 
-def format_synonyms(term):
-    syns = []
-    if "pub_syn" in term:
-        for syn in term["pub_syn"]:
-            pub_link = ""
-            if "pub" in syn and "core" in syn["pub"]:
-                pub = syn["pub"]["core"]
-                term_url = get_term_url(pub["label"], pub["short_form"])
-                pub_link = f' ([{pub["label"]}](https://www.virtualflybrain.org/term/{term_url}))'
-            syns.append(f'- {syn["synonym"]["scope"]}: {syn["synonym"]["label"]}{pub_link}')
-    return "\n".join(syns)
+    Handles:
+    - Simple links: [medulla](FBbt_00003748) → [medulla](/term/slug/)
+    - IDs that aren't known prefixes are left as-is
+    """
+    if not text:
+        return ""
 
-def format_xrefs(term):
-    refs = []
-    if "xrefs" in term:
-        for xref in term["xrefs"]:
-            if isinstance(xref, str) and ":" in xref:
-                db, accession = xref.split(":", 1)
-                # The schema indicates xrefs should be objects with link_base and accession
-                # We'll construct the link based on the database identifier
-                if db == "InsectBrainDB":
-                    link_base = "https://insectbraindb.org/app/structures/"
-                    refs.append(f'- <a href="{link_base}{accession}" target="_blank">{db}</a>')
-                else:
-                    # For other databases, just display the raw xref until we have proper link_base mapping
-                    refs.append(f'- {xref}')
-            elif isinstance(xref, dict):
-                # Handle cases where xref is already in schema format
-                if "link_base" in xref and "accession" in xref:
-                    icon = ' <i class="fa fa-external-link"></i>' if xref.get("site", {}).get("icon") == "link" else ''
-                    link_text = xref.get("site", {}).get("label", xref.get("link_text", "Link"))
-                    refs.append(f'- <a href="{xref["link_base"]}{xref["accession"]}" target="_blank">{link_text}</a>{icon}')
+    def replace_link(match):
+        label = match.group(1)
+        identifier = match.group(2)
+        if is_known_id(identifier):
+            slug = get_term_url(label, identifier)
+            return f'[{label}](/term/{slug}/)'
+        return match.group(0)
+
+    # Use a pattern that handles nested brackets in labels (e.g. gene names with [allele])
+    # Match: [ ... ]( ID ) where the ID part has no spaces or parens
+    return re.sub(r'\[([^\]]*(?:\[[^\]]*\][^\]]*)*)\]\(([^)\s]+)\)', replace_link, text)
+
+def format_relationships_section(relationships_text):
+    """Format Meta.Relationships into markdown bullets.
+
+    Input format: [rel_name](rel_id): [target1](id1), [target2](id2); [rel2](id): [target](id)
+    Output: - **rel_name**: [target1](/term/...), [target2](/term/...)
+    """
+    if not relationships_text:
+        return ""
+
+    lines = []
+    entries = relationships_text.split("; ")
+    for entry in entries:
+        entry = entry.strip()
+        if not entry:
+            continue
+        # Split on first ": " to separate relation from targets
+        if ": " in entry:
+            rel_part, targets_part = entry.split(": ", 1)
+            # Extract relation label from [label](id) format
+            rel_match = re.match(r'\[([^\]]+)\]\([^)]+\)', rel_part)
+            if rel_match:
+                rel_label = rel_match.group(1)
             else:
-                print(f"Unexpected xref format: {xref}")
-    return '\n'.join(refs) if refs else 'None'
+                rel_label = rel_part
+            # Convert target links
+            converted_targets = convert_internal_links(targets_part)
+            lines.append(f'- **{rel_label}**: {converted_targets}')
+        else:
+            # No colon separator — just convert links
+            lines.append(f'- {convert_internal_links(entry)}')
+    return "\n".join(lines)
 
-def format_references(term):
-    refs = []
-    if "def_pubs" in term:
-        for pub in term["def_pubs"]:
-            cite = [f'- <a href="?id={pub["core"]["short_form"]}">{pub["core"]["label"]}</a>']
-            xrefs = []
-            if "FlyBase" in pub:
-                xrefs.append(f'<a href="http://flybase.org/reports/{pub["FlyBase"]}" target="_blank">'
-                           f'<i class="popup-icon-link gpt-fly" title="FlyBase:{pub["FlyBase"]}"></i></a>')
-            if "DOI" in pub:
-                xrefs.append(f'<a href="https://doi.org/{pub["DOI"]}" target="_blank">'
-                           f'<i class="popup-icon-link gpt-doi" title="doi:{pub["DOI"]}"></i></a>')
-            if "PubMed" in pub:
-                xrefs.append(f'<a href="http://www.ncbi.nlm.nih.gov/pubmed/?term={pub["PubMed"]}" target="_blank">'
-                           f'<i class="popup-icon-link gpt-pubmed" title="PMID:{pub["PubMed"]}"></i></a>')
-            if xrefs:
-                cite.append(f'<span class="terminfo-pubxref"> {" ".join(xrefs)}</span>')
-            if "types" in pub["core"]:
-                types = " ".join([f'<span class="label label-{t}">{t}</span>' for t in pub["core"]["types"]])
-                cite.append(f'<span class="label types">{types}</span>')
-            refs.append(" ".join(cite))
-    return "\n".join(refs)
+def format_types_section(types_text):
+    """Format Meta.Types into markdown bullets.
 
-def wrapStringInHTMLMac(term):
-    import datetime
-    import json
-    import os.path
-    import traceback
-    import re
-    now = datetime.datetime.today().strftime("%Y-%m-%d")
-    filename = term["term"]["core"]["short_form"] + "_v" + str(version) + ".md"
-    if not os.path.isfile(filename):
-        f = open(filename, "w", encoding="utf-8")
-        images = ""
-        images_list = []
-        images = " ".join(find_images(term, "image_folder", set()))
-        images_list = ",".join(find_images_list(term, "image_folder", set()))
-        if "<img" in images:
-            images = '## Example Images\n' + images
-        desc = ""
-        com = ""
-        tags = ""
-        synonyms = ""
-        term_type = ""
+    Input format: [type1](id1); [type2](id2)
+    Output: - [type1](/term/slug1/)
+            - [type2](/term/slug2/)
+    """
+    if not types_text:
+        return ""
+
+    lines = []
+    entries = types_text.split("; ")
+    for entry in entries:
+        entry = entry.strip()
+        if entry:
+            lines.append(f'- {convert_internal_links(entry)}')
+    return "\n".join(lines)
+
+# ─── Formatting Helpers ──────────────────────────────────────────────────────
+
+def get_thumbnails(term_data):
+    """Extract thumbnail URLs from Images (individuals) or Examples (classes).
+
+    Returns list of dicts: {url, label, template_id}
+    """
+    thumbnails = []
+
+    # Individual terms have Images
+    images = term_data.get("Images", {})
+    if images:
+        for template_id, image_list in images.items():
+            for img in image_list:
+                if img.get("thumbnail"):
+                    thumbnails.append({
+                        "url": img["thumbnail"],
+                        "label": img.get("label", term_data.get("Name", "")),
+                        "template_id": template_id,
+                    })
+
+    # Class terms have Examples
+    examples = term_data.get("Examples", {})
+    if examples and not thumbnails:
+        for template_id, example_list in examples.items():
+            for ex in example_list:
+                if ex.get("thumbnail"):
+                    thumbnails.append({
+                        "url": ex["thumbnail"],
+                        "label": ex.get("label", term_data.get("Name", "")),
+                        "template_id": template_id,
+                    })
+
+    return thumbnails[:4]  # Limit to 4
+
+def format_tags_badges(tags):
+    """Format tags as Bootstrap badge HTML spans."""
+    if not tags:
+        return ""
+    badges = []
+    for tag in tags:
+        display_tag = tag.replace('_', ' ')
+        badges.append(f'<span class="badge bg-secondary">{display_tag}</span>')
+    return " ".join(badges)
+
+def format_synonyms_table(synonyms):
+    """Format Synonyms array as a markdown table."""
+    if not synonyms:
+        return ""
+
+    lines = [
+        "| Synonym | Scope | Reference |",
+        "|---------|-------|-----------|",
+    ]
+    for syn in synonyms:
+        label = syn.get("label", "")
+        scope = syn.get("scope", "").replace("has_", "").replace("_", " ")
+        pub = syn.get("publication", "")
+        pub_converted = convert_internal_links(pub) if pub else ""
+        lines.append(f'| {label} | {scope} | {pub_converted} |')
+    return "\n".join(lines)
+
+def format_query_preview(query, term_id):
+    """Format a Query's preview_results as a markdown table with thumbnails."""
+    preview = query.get("preview_results", {})
+    rows = preview.get("rows", [])
+    if not rows:
+        return ""
+
+    label = query.get("label", "Query")
+    count = query.get("count", 0)
+    query_name = query.get("query", "")
+
+    lines = []
+    lines.append(f'### {label} ({count} total)')
+    lines.append("")
+    lines.append('<div class="table-responsive">')
+    lines.append("")
+    lines.append("| Thumbnail | Name | Tags |")
+    lines.append("|-----------|------|------|")
+
+    for row in rows:
+        # Extract name — may be markdown link like [name](id)
+        name_raw = row.get("label", row.get("name", ""))
+        name_converted = convert_internal_links(name_raw)
+
+        # Extract tags
+        tags_raw = row.get("tags", "")
+        tags_display = tags_raw.replace("|", ", ") if tags_raw else ""
+
+        # Extract thumbnail — may be markdown image like [![alt](url)](link)
+        thumb_raw = row.get("thumbnail", "")
+        thumb_html = ""
+        if thumb_raw:
+            # Extract URL from markdown image: [![alt](url "title")](link)
+            img_match = re.search(r'!\[[^\]]*\]\(([^\s)]+)', thumb_raw)
+            if img_match:
+                thumb_url = img_match.group(1)
+                row_id = row.get("id", "")
+                thumb_html = f'<a href="{VFB_BROWSER_BASE}?id={row_id}"><img src="{thumb_url}" width="80" style="background:#000; border-radius:2px;"/></a>'
+
+        lines.append(f'| {thumb_html} | {name_converted} | {tags_display} |')
+
+    lines.append("")
+    lines.append("</div>")
+    lines.append("")
+    lines.append(f'<a href="{VFB_BROWSER_BASE}?id={term_id}" class="btn btn-outline-primary btn-sm">View all {count} results in VFB &rarr;</a>')
+    lines.append("")
+
+    return "\n".join(lines)
+
+def format_downloads(images):
+    """Format download links from Images entries."""
+    if not images:
+        return ""
+
+    lines = []
+    for template_id, image_list in images.items():
+        for img in image_list:
+            template_label = template_id
+            has_downloads = any(img.get(k) for k in ("nrrd", "obj", "swc", "wlz"))
+            if not has_downloads:
+                continue
+
+            lines.append(f'Image files aligned to {img.get("label", template_label)}:')
+            lines.append("")
+            if img.get("obj"):
+                lines.append(f'- [Pointcloud (OBJ)]({img["obj"]})')
+            if img.get("swc"):
+                lines.append(f'- [Skeleton (SWC)]({img["swc"]})')
+            if img.get("wlz"):
+                lines.append(f'- [Slices (Woolz)]({img["wlz"]})')
+            if img.get("nrrd"):
+                lines.append(f'- [Signal (NRRD)]({img["nrrd"]})')
+            lines.append("")
+
+    return "\n".join(lines)
+
+def format_licenses(licenses):
+    """Format Licenses dict into markdown."""
+    if not licenses:
+        return ""
+
+    lines = []
+    for key, lic in licenses.items():
+        label = lic.get("label", "Unknown License")
+        source = lic.get("source", "")
+        source_iri = lic.get("source_iri", "")
+        if source and source_iri:
+            lines.append(f'- **{label}** — Source: [{source}]({source_iri})')
+        elif source:
+            lines.append(f'- **{label}** — Source: {source}')
+        else:
+            lines.append(f'- **{label}**')
+    return "\n".join(lines)
+
+def format_publications(publications):
+    """Format Publications array into markdown with external links."""
+    if not publications:
+        return ""
+
+    lines = []
+    for pub in publications:
+        core = pub.get("core", {})
+        label = core.get("label", core.get("symbol", ""))
+        short_form = core.get("short_form", "")
+
+        parts = [f'- {convert_internal_links(f"[{label}]({short_form})")}']
+
+        ext_links = []
+        if pub.get("DOI"):
+            ext_links.append(f'[DOI](https://doi.org/{pub["DOI"]})')
+        if pub.get("PubMed"):
+            ext_links.append(f'[PubMed](https://pubmed.ncbi.nlm.nih.gov/{pub["PubMed"]})')
+        if pub.get("FlyBase"):
+            ext_links.append(f'[FlyBase](https://flybase.org/reports/{pub["FlyBase"]})')
+
+        if ext_links:
+            parts.append(f' ({" | ".join(ext_links)})')
+
+        lines.append("".join(parts))
+    return "\n".join(lines)
+
+# ─── Page Generation ─────────────────────────────────────────────────────────
+
+def generate_page(term_data):
+    """Generate the complete Hugo markdown page from API term data."""
+    name = term_data.get("Name", "Unknown")
+    term_id = term_data.get("Id", "")
+    meta = term_data.get("Meta", {})
+    tags = term_data.get("Tags", [])
+    synonyms = term_data.get("Synonyms", [])
+    queries = term_data.get("Queries", [])
+    licenses = term_data.get("Licenses", {})
+    publications = term_data.get("Publications", [])
+    technique = term_data.get("Technique", [])
+    images = term_data.get("Images", {})
+
+    # Description for front matter
+    description = meta.get("Description", "")
+    if not description:
+        # Fallback to Types text (stripped of markdown links)
+        types_text = meta.get("Types", "")
+        description = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', types_text)
+    # Clean for YAML
+    description = description.replace('"', '\\"').replace("\n", " ").replace("\r", " ").strip()
+
+    # Comment
+    comment = meta.get("Comment", "")
+
+    # URL slug
+    url_slug = get_term_url(name, term_id)
+
+    # Tags for front matter
+    tags_csv = ",".join(tags)
+    if "_" in term_id:
+        tags_csv += "," + term_id.split("_")[0]
+    elif term_id.startswith("FB"):
+        tags_csv += "," + term_id[0:4]
+
+    # Thumbnails
+    thumbnails = get_thumbnails(term_data)
+
+    # Build the page
+    sections = []
+
+    # ── Front matter ──
+    sections.append(f'''---
+title: "{name.replace(chr(92), "&bsol;")} [{term_id}]"
+linkTitle: "{name.replace(chr(92), "&bsol;")}"
+tags: [{tags_csv}]
+content: [term]
+date: 2022-01-01
+description: >
+    {description}
+weight: 10000
+sitemap_exclude: true
+canonicalUrl: "https://www.virtualflybrain.org/term/{url_slug}/"
+---
+''')
+
+    # ── Hero section ──
+    thumb_html = ""
+    if thumbnails:
+        thumb_imgs = []
+        for t in thumbnails:
+            thumb_imgs.append(
+                f'<a href="{VFB_BROWSER_BASE}?id={term_id}">'
+                f'<img src="{t["url"]}" alt="{name}" class="img-fluid rounded" '
+                f'style="max-width:200px; background:#000; margin:4px;"/></a>'
+            )
+        thumb_html = "\n    ".join(thumb_imgs)
+
+    tags_badges = format_tags_badges(tags)
+
+    desc_html = ""
+    if meta.get("Description"):
+        desc_html = f'<p>{convert_internal_links(meta["Description"])}</p>'
+
+    comment_html = ""
+    if comment:
+        comment_html = f'<p class="text-muted"><em>{convert_internal_links(comment)}</em></p>'
+
+    sections.append(f'''<div class="card mb-4 border-primary">
+<div class="card-body">
+<div class="row">
+<div class="col-md-4 text-center">
+    {thumb_html}
+</div>
+<div class="col-md-8">
+    <h4>{name}</h4>
+    <p class="text-muted"><strong>ID:</strong> {term_id}</p>
+    <div class="mb-2">{tags_badges}</div>
+    {desc_html}
+    {comment_html}
+    <a href="{VFB_BROWSER_BASE}?id={term_id}" class="btn btn-primary btn-lg mt-2">Open in VFB 3D Browser &rarr;</a>
+</div>
+</div>
+</div>
+</div>
+''')
+
+    # ── Classification ──
+    types_text = meta.get("Types", "")
+    if types_text:
+        types_md = format_types_section(types_text)
+        sections.append(f'## Classification\n\n{types_md}\n')
+
+    # ── Relationships ──
+    rels_text = meta.get("Relationships", "")
+    if rels_text:
+        rels_md = format_relationships_section(rels_text)
+        sections.append(f'## Relationships\n\n{rels_md}\n')
+
+    # ── Synonyms ──
+    if synonyms:
+        syn_md = format_synonyms_table(synonyms)
+        sections.append(f'## Alternative Names\n\n{syn_md}\n')
+
+    # ── Technique ──
+    if technique:
+        tech_lines = "\n".join(f'- {t}' for t in technique)
+        sections.append(f'## Imaging Technique\n\n{tech_lines}\n')
+
+    # ── Licenses ──
+    if licenses:
+        lic_md = format_licenses(licenses)
+        sections.append(f'## License\n\n{lic_md}\n')
+
+    # ── Downloads ──
+    if images:
+        dl_md = format_downloads(images)
+        if dl_md.strip():
+            sections.append(f'## Downloads\n\n{dl_md}\n')
+
+    # ── Query Previews ──
+    for q in queries:
+        preview = q.get("preview_results", {})
+        rows = preview.get("rows", [])
+        if rows:
+            q_md = format_query_preview(q, term_id)
+            sections.append(q_md)
+
+    # ── Publications ──
+    if publications:
+        pub_md = format_publications(publications)
+        sections.append(f'## References\n\n{pub_md}\n')
+
+    return "\n".join(sections)
+
+# ─── Term Saving ─────────────────────────────────────────────────────────────
+
+def get_vfb_connect():
+    """Lazy-initialize VfbConnect (only needed for batch ID listing)."""
+    global _vc
+    if '_vc' not in globals() or _vc is None:
+        from vfb_connect.cross_server_tools import VfbConnect
+        _vc = VfbConnect()
+    return _vc
+
+def save_terms(ids):
+    """Fetch and save term pages for a list of IDs."""
+    for term_id in ids:
         try:
-            desc = ' '.join(term["term"]["description"]).replace("\n", " ").replace('\r', ' ')
-            com = ' '.join(term["term"]["comment"]).replace("\n", " ").replace('\r', ' ')
-        except:
-            print('missing desc')
-        try:
-            if desc == "":
-                com += " [" + "; ".join(find_values(term, "label", set())) + "]"
+            filename = term_id + "_v" + str(version) + ".md"
+            if not os.path.isfile(filename):
+                print(f"Processing {term_id}...")
+                term_data = fetch_term_info(term_id)
+                if term_data is None:
+                    continue
+
+                page_content = generate_page(term_data)
+
+                with open(filename, "w", encoding="utf-8") as f:
+                    f.write(page_content)
+
+                # Clean up previous version
+                old_filename = term_id + "_v" + str(version - 1) + ".md"
+                if os.path.isfile(old_filename):
+                    os.remove(old_filename)
+                    print(f'Removed: {old_filename}')
+
         except Exception as e:
-            print('error on label for desc')
-            print(e)
+            print(f"ERROR processing {term_id}: {str(e)}")
             print(traceback.format_exc())
-        try:
-            tags = ','.join(term["term"]["core"]["types"])
-            if "_" in term["term"]["core"]["short_form"]:
-                tags += "," + term["term"]["core"]["short_form"].split("_")[0]
-            elif term["term"]["core"]["short_form"].startswith("FB"):
-                tags += "," + term["term"]["core"]["short_form"][0:4]
-        except Exception as e:
-            print('error on tag creation')
-            print(e)
-            print(traceback.format_exc())
-        
-        classification = format_classification(term)
-        relationships = format_relationships(term)
-        synonyms = format_synonyms(term)
-        xrefs = format_xrefs(term)
-        references = format_references(term)
-        
-        url = term["term"]["core"]["label"].replace('\\','&bsol;').replace(' ','-').lower()+"-"+term["term"]["core"]["short_form"].lower()
-        url = re.sub("[^0-9a-zA-Z-_]+", "", url)
-        
-        term_type = ','.join(term["term"]["core"].get("types", []))
-        
-        whole = wrapper.format(
-            term["term"]["core"]["label"].replace('\\','&bsol;'),  # {0}
-            term["term"]["core"]["short_form"],                    # {1}
-            desc,                                                  # {2}
-            com,                                                   # {3}
-            tags,                                                  # {4}
-            json.dumps(term, indent=4),                           # {5}
-            images,                                               # {6}
-            now,                                                  # {7}
-            images_list,                                         # {8}
-            url,                                                 # {9}
-            note,                                                # {10}
-            synonyms,                                            # {11}
-            term_type,                                          # {12}
-            classification,                                      # {13}
-            relationships,                                       # {14}
-            xrefs,                                              # {15}
-            references                                          # {16}
-        )
-        
-        try:
-            f.write(whole)
-            filename = term["term"]["core"]["short_form"] + "_v" + str(version - 1) + ".md"
-            if os.path.isfile(filename):
-                os.remove(filename)
-                print('Removed: ' + filename)
-        except:
-            print(whole)
-        f.close()
+
+# ─── Testing ─────────────────────────────────────────────────────────────────
+
+def test_term_page(term_id, term_type="class"):
+    """Test page generation for a single term."""
+    print(f"Fetching {term_id} from VFBquery API...")
+    term_data = fetch_term_info(term_id)
+
+    if term_data is None:
+        print(f"ERROR: Could not fetch {term_id}")
+        return False
+
+    print(f"  Name: {term_data.get('Name')}")
+    print(f"  IsClass: {term_data.get('IsClass')}")
+    print(f"  IsIndividual: {term_data.get('IsIndividual')}")
+    print(f"  Tags: {term_data.get('Tags')}")
+    print(f"  Queries: {len(term_data.get('Queries', []))}")
+    print(f"  Images: {len(term_data.get('Images', {}))}")
+    print(f"  Examples: {len(term_data.get('Examples', {}))}")
+    print(f"  Synonyms: {len(term_data.get('Synonyms', []))}")
+    print(f"  Licenses: {len(term_data.get('Licenses', {}))}")
+
+    print(f"\nGenerating {term_type} page...")
+    page_content = generate_page(term_data)
+
+    filename = f"{term_id}_v{version}.md"
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(page_content)
+
+    print(f"  Written to {filename} ({len(page_content)} bytes)")
+
+    # Verify key sections
+    checks = {
+        "Front matter": "canonicalUrl:" in page_content,
+        "Hero card": 'class="card mb-4' in page_content,
+        "VFB browser link": VFB_BROWSER_BASE in page_content,
+        "Tags badges": 'badge bg-secondary' in page_content,
+    }
+
+    if term_data.get("Meta", {}).get("Types"):
+        checks["Classification"] = "## Classification" in page_content
+    if term_data.get("Meta", {}).get("Relationships"):
+        checks["Relationships"] = "## Relationships" in page_content
+    if term_data.get("Synonyms"):
+        checks["Synonyms"] = "## Alternative Names" in page_content
+    if term_data.get("Licenses"):
+        checks["Licenses"] = "## License" in page_content
+    if term_data.get("Images"):
+        checks["Downloads"] = "## Downloads" in page_content
+    if any(q.get("preview_results", {}).get("rows") for q in term_data.get("Queries", [])):
+        checks["Query previews"] = "table-responsive" in page_content
+
+    all_pass = True
+    for check_name, result in checks.items():
+        status = "PASS" if result else "FAIL"
+        if not result:
+            all_pass = False
+        print(f"  [{status}] {check_name}")
+
+    return all_pass
 
 def test_medulla_page():
-    """Test full term page creation for medulla using actual VFB connection"""
-    print("Fetching medulla data from VFB...")
-    terms = vc.neo_query_wrapper.get_TermInfo(["FBbt_00003748"])
-    
-    if terms.empty:
-        print("ERROR: Could not fetch medulla data")
+    """Test page generation for medulla (class) and fru-M-200266 (individual)."""
+    print("=" * 60)
+    print("Test 1: Class term — medulla (FBbt_00003748)")
+    print("=" * 60)
+    result1 = test_term_page("FBbt_00003748", "class")
+
+    print()
+    print("=" * 60)
+    print("Test 2: Individual term — fru-M-200266 (VFB_00000001)")
+    print("=" * 60)
+    result2 = test_term_page("VFB_00000001", "individual")
+
+    print()
+    if result1 and result2:
+        print("All tests PASSED")
+        return True
+    else:
+        print("Some tests FAILED")
         return False
-        
-    print("\nRaw terms data:")
-    print(terms)
-    print("\nColumns:")
-    print(terms.columns)
-    
-    # Process first row
-    row = terms.iloc[0]
-    print("\nFirst row data:")
-    for col in terms.columns:
-        print(f"\n{col}:")
-        print(row[col])
-    
-    # Generate actual content
-    print("\nGenerating medulla page...")
-    
-    # Process the term in current directory
-    for _, row in terms.iterrows():
-        # Build full term data structure according to schema
-        term_data = {
-            "term": {
-                "core": {
-                    "short_form": row["id"],
-                    "label": row["label"],
-                    "types": row["tags"],
-                    "iri": f"http://purl.obolibrary.org/obo/{row['id'].replace(':', '_')}",
-                    "symbol": row["symbol"],
-                    "link": "",
-                    "icon": ""
-                },
-                "description": [row["description"]] if row["description"] else [],
-                "comment": [""],
-            },
-            "anatomy_channel_image": [],
-            "xrefs": [
-                {
-                    "homepage": {
-                        "link_base": "https://insectbraindb.org",
-                        "label": "InsectBrainDB"
-                    },
-                    "link_base": "https://insectbraindb.org/app/structures/",
-                    "accession": xref.split(":")[1] if ":" in xref else xref,
-                    "link_text": xref.split(":")[0] if ":" in xref else "Link",
-                    "site": {
-                        "label": xref.split(":")[0] if ":" in xref else "External Link"
-                    }
-                } for xref in (row["xrefs"] if isinstance(row["xrefs"], list) else [])
-            ],
-            "pub_syn": [],
-            "def_pubs": [],
-            "license": [],
-            "dataset_license": [],
-            "dataset_counts": {
-                "images": 0,
-                "types": 0
-            },
-            "relationships": [],
-            "parents": [
-                {
-                    "short_form": pid,
-                    "label": plabel,
-                    "types": ["Class"],
-                    "iri": f"http://purl.obolibrary.org/obo/{pid.replace(':', '_')}"
-                }
-                for plabel, pid in zip(row["parents_label"], row["parents_id"])
-            ],
-            "channel_image": [],
-            "template_domains": {},
-            "query": "",
-            "version": str(version)
-        }
-        
-        print("\nTerm data structure:")
-        print(term_data)
-        
-        wrapStringInHTMLMac(term_data)
-        
-        filename = f"FBbt_00003748_v{version}.md"
-        if os.path.exists(filename):
-            with open(filename, 'r') as f:
-                actual_content = f.read()
-            print("\nGenerated content:")
-            print(actual_content)
-            return True
-        else:
-            print(f"✗ Test failed: File {filename} was not created")
-            return False
+
+# ─── Main ────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
@@ -422,73 +609,68 @@ if __name__ == "__main__":
         onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
         chdir(mypath + 'fbbt/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbt' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbt' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
         chdir(mypath + 'fbbi/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbi' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbi' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
         chdir(mypath + 'fbcv/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBcv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBcv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
         chdir(mypath + 'fbdv/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBdv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBdv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
         chdir(mypath + 'vfb/')
-        vfb = vc.nc.commit_list(["MATCH (n:Individual) WHERE n.short_form starts with 'VFB_' AND NOT n.short_form starts with 'VFB_internal' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0]
+        vfb = get_vfb_connect().nc.commit_list(["MATCH (n:Individual) WHERE n.short_form starts with 'VFB_' AND NOT n.short_form starts with 'VFB_internal' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0]
         save_terms(vfb)
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'VFBexp_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        # TODO: replace once VFBconnect pub queries added
-        #save_terms(vc.nc.commit_list(["MATCH (n:pub) with n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'VFBexp_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + '../datasets/')
-
-        save_terms(vc.nc.commit_list(["MATCH (n:DataSet) with n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:DataSet) with n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'go/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'GO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'GO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'so/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'SO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'SO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'ioa/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'IAO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'IAO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'geno/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'GENO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'GENO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'pato/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'PATO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'PATO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'pco/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'PCO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'PCO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'uberon/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'UBERON_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'UBERON_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'ro/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'RO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'RO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'obi/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'OBI_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'OBI_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'ncbitaxon/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'NCBITaxon_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'NCBITaxon_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'zp/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'ZP_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'ZP_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'wbphenotype/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'WBPhenotype_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'WBPhenotype_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'caro/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'CARO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'CARO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'bfo/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'BFO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'BFO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
         chdir(mypath + 'flybase/')
-        save_terms(vc.nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FB' AND NOT n.short_form contains '_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FB' AND NOT n.short_form contains '_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
 
     else:
-        print("Testing medulla page generation...")
+        print("Testing term page generation...")
         success = test_medulla_page()
         if not success:
             sys.exit(1)
-
