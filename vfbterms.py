@@ -130,15 +130,19 @@ def get_term_url(label, short_form):
     url = label.replace('\\', '').replace(' ', '-').lower() + "-" + short_form.lower()
     return re.sub("[^0-9a-zA-Z-_]+", "", url)
 
+def get_report_url(identifier):
+    """Create the VFB report URL path for a term identifier."""
+    return f'/reports/{identifier}'
+
 def is_known_id(identifier):
     """Check if an identifier matches a known VFB prefix."""
     return any(identifier.startswith(p) for p in KNOWN_PREFIXES)
 
 def convert_internal_links(text):
-    """Convert API markdown links [label](ID) to site inter-page links.
+    """Convert API markdown links [label](ID) to VFB report links.
 
     Handles:
-    - Simple links: [medulla](FBbt_00003748) → [medulla](/term/slug/)
+    - Simple links: [medulla](FBbt_00003748) → [medulla](/reports/FBbt_00003748)
     - IDs that aren't known prefixes are left as-is
     """
     if not text:
@@ -148,8 +152,7 @@ def convert_internal_links(text):
         label = match.group(1)
         identifier = match.group(2)
         if is_known_id(identifier):
-            slug = get_term_url(label, identifier)
-            return f'[{label}](/term/{slug}/)'
+            return f'[{label}]({get_report_url(identifier)})'
         return match.group(0)
 
     # Use a pattern that handles nested brackets in labels (e.g. gene names with [allele])
@@ -160,7 +163,7 @@ def format_relationships_section(relationships_text):
     """Format Meta.Relationships into markdown bullets.
 
     Input format: [rel_name](rel_id): [target1](id1), [target2](id2); [rel2](id): [target](id)
-    Output: - **rel_name**: [target1](/term/...), [target2](/term/...)
+    Output: - **rel_name**: [target1](/reports/...), [target2](/reports/...)
     """
     if not relationships_text:
         return ""
@@ -192,8 +195,8 @@ def format_types_section(types_text):
     """Format Meta.Types into markdown bullets.
 
     Input format: [type1](id1); [type2](id2)
-    Output: - [type1](/term/slug1/)
-            - [type2](/term/slug2/)
+    Output: - [type1](/reports/id1)
+            - [type2](/reports/id2)
     """
     if not types_text:
         return ""
@@ -291,6 +294,9 @@ def format_query_preview(query, term_id):
         # Extract name — may be markdown link like [name](id)
         name_raw = row.get("label", row.get("name", ""))
         name_converted = convert_internal_links(name_raw)
+        row_id = row.get("id", "")
+        if row_id and is_known_id(row_id) and name_converted == name_raw and name_raw:
+            name_converted = f'[{name_raw}]({get_report_url(row_id)})'
 
         # Extract tags
         tags_raw = row.get("tags", "")
@@ -304,7 +310,6 @@ def format_query_preview(query, term_id):
             img_match = re.search(r'!\[[^\]]*\]\(([^\s)]+)', thumb_raw)
             if img_match:
                 thumb_url = img_match.group(1)
-                row_id = row.get("id", "")
                 thumb_html = f'<a href="{VFB_BROWSER_BASE}?id={row_id}"><img src="{thumb_url}" width="80" style="background:#000; border-radius:2px;"/></a>'
 
         lines.append(f'| {thumb_html} | {name_converted} | {tags_display} |')
@@ -389,6 +394,45 @@ def format_publications(publications):
         lines.append("".join(parts))
     return "\n".join(lines)
 
+def build_hero_card(name, term_id, tags_badges, description_html, comment_html, thumbnails):
+    """Build the hero card without blank lines that break Markdown HTML blocks."""
+    lines = [
+        '<div class="card mb-4 border-primary">',
+        '<div class="card-body">',
+        '<div class="row">',
+        '<div class="col-md-4 text-center">',
+    ]
+
+    for thumb in thumbnails:
+        lines.append(
+            f'    <a href="{VFB_BROWSER_BASE}?id={term_id}">'
+            f'<img src="{thumb["url"]}" alt="{name}" class="img-fluid rounded" '
+            f'style="max-width:200px; background:#000; margin:4px;"/></a>'
+        )
+
+    lines.extend([
+        '</div>',
+        '<div class="col-md-8">',
+        f'    <h4>{name}</h4>',
+        f'    <p class="text-muted"><strong>ID:</strong> {term_id}</p>',
+        f'    <div class="mb-2">{tags_badges}</div>',
+    ])
+
+    if description_html:
+        lines.append(f'    {description_html}')
+    if comment_html:
+        lines.append(f'    {comment_html}')
+
+    lines.extend([
+        f'    <a href="{VFB_BROWSER_BASE}?id={term_id}" class="btn btn-primary btn-lg mt-2">Open in VFB 3D Browser &rarr;</a>',
+        '</div>',
+        '</div>',
+        '</div>',
+        '</div>',
+    ])
+
+    return "\n".join(lines)
+
 # ─── Page Generation ─────────────────────────────────────────────────────────
 
 def generate_page(term_data):
@@ -448,17 +492,6 @@ canonicalUrl: "https://www.virtualflybrain.org/term/{url_slug}/"
 ''')
 
     # ── Hero section ──
-    thumb_html = ""
-    if thumbnails:
-        thumb_imgs = []
-        for t in thumbnails:
-            thumb_imgs.append(
-                f'<a href="{VFB_BROWSER_BASE}?id={term_id}">'
-                f'<img src="{t["url"]}" alt="{name}" class="img-fluid rounded" '
-                f'style="max-width:200px; background:#000; margin:4px;"/></a>'
-            )
-        thumb_html = "\n    ".join(thumb_imgs)
-
     tags_badges = format_tags_badges(tags)
 
     desc_html = ""
@@ -469,24 +502,7 @@ canonicalUrl: "https://www.virtualflybrain.org/term/{url_slug}/"
     if comment:
         comment_html = f'<p class="text-muted"><em>{convert_internal_links(comment)}</em></p>'
 
-    sections.append(f'''<div class="card mb-4 border-primary">
-<div class="card-body">
-<div class="row">
-<div class="col-md-4 text-center">
-    {thumb_html}
-</div>
-<div class="col-md-8">
-    <h4>{name}</h4>
-    <p class="text-muted"><strong>ID:</strong> {term_id}</p>
-    <div class="mb-2">{tags_badges}</div>
-    {desc_html}
-    {comment_html}
-    <a href="{VFB_BROWSER_BASE}?id={term_id}" class="btn btn-primary btn-lg mt-2">Open in VFB 3D Browser &rarr;</a>
-</div>
-</div>
-</div>
-</div>
-''')
+    sections.append(build_hero_card(name, term_id, tags_badges, desc_html, comment_html, thumbnails))
 
     # ── Classification ──
     types_text = meta.get("Types", "")
@@ -647,21 +663,115 @@ def test_term_page(term_id, term_type="class"):
 
     return all_pass
 
+def test_hero_card_regression():
+    """Ensure optional empty fields do not turn the hero CTA into a code block."""
+    print("=" * 60)
+    print("Test 0: Hero card CTA markdown regression")
+    print("=" * 60)
+
+    term_data = {
+        "Name": "adult intercalary segment",
+        "Id": "FBbt_00003013",
+        "Meta": {
+            "Description": "Any intercalary segment of the adult.",
+            "Comment": "",
+            "Types": "[adult procephalic segment](FBbt_00003010); [intercalary segment](FBbt_00000010)",
+        },
+        "Tags": ["Adult", "Anatomy"],
+        "Synonyms": [],
+        "Queries": [],
+        "Licenses": {},
+        "Publications": [],
+        "Technique": [],
+        "Images": {},
+        "Examples": {},
+    }
+
+    page_content = generate_page(term_data)
+    hero_cta = f'<a href="{VFB_BROWSER_BASE}?id=FBbt_00003013" class="btn btn-primary btn-lg mt-2">Open in VFB 3D Browser &rarr;</a>'
+
+    checks = {
+        "Hero CTA present": hero_cta in page_content,
+        "No blank line before hero CTA": "\n    \n    <a href=" not in page_content,
+        "Description directly precedes hero CTA": (
+            '<p>Any intercalary segment of the adult.</p>\n'
+            f'    {hero_cta}'
+        ) in page_content,
+    }
+
+    all_pass = True
+    for check_name, result in checks.items():
+        status = "PASS" if result else "FAIL"
+        if not result:
+            all_pass = False
+        print(f"  [{status}] {check_name}")
+
+    return all_pass
+
+def test_report_link_regression():
+    """Ensure generated term links point at VFB report URLs."""
+    print("=" * 60)
+    print("Test 1: Report link regression")
+    print("=" * 60)
+
+    converted = convert_internal_links("[DNb08](FBbt_20011340)")
+    query_preview = format_query_preview(
+        {
+            "label": "Neurons with some part in adult intercalary segment",
+            "count": 2,
+            "preview_results": {
+                "rows": [
+                    {
+                        "label": "[DNb08](FBbt_20011340)",
+                        "id": "FBbt_20011340",
+                        "tags": "Adult|Cholinergic|Nervous_system|primary_neuron",
+                        "thumbnail": '[![DNb08](https://www.virtualflybrain.org/data/VFB/i/jrmc/37nx/VFB_00101567/thumbnail.png)](FBbt_20011340)',
+                    },
+                    {
+                        "label": "DNp45",
+                        "id": "FBbt_20011346",
+                        "tags": "Adult|Cholinergic|Nervous_system|primary_neuron",
+                    },
+                ]
+            },
+        },
+        "FBbt_00003013",
+    )
+
+    checks = {
+        "Markdown links use report path": converted == "[DNb08](/reports/FBbt_20011340)",
+        "Query preview preserves report link": "[DNb08](/reports/FBbt_20011340)" in query_preview,
+        "Plain row labels get report link": "[DNp45](/reports/FBbt_20011346)" in query_preview,
+    }
+
+    all_pass = True
+    for check_name, result in checks.items():
+        status = "PASS" if result else "FAIL"
+        if not result:
+            all_pass = False
+        print(f"  [{status}] {check_name}")
+
+    return all_pass
+
 def test_medulla_page():
     """Test page generation for medulla (class) and fru-M-200266 (individual)."""
-    print("=" * 60)
-    print("Test 1: Class term — medulla (FBbt_00003748)")
-    print("=" * 60)
-    result1 = test_term_page("FBbt_00003748", "class")
+    result0 = test_hero_card_regression()
+    result1 = test_report_link_regression()
 
     print()
     print("=" * 60)
-    print("Test 2: Individual term — fru-M-200266 (VFB_00000001)")
+    print("Test 2: Class term — medulla (FBbt_00003748)")
     print("=" * 60)
-    result2 = test_term_page("VFB_00000001", "individual")
+    result2 = test_term_page("FBbt_00003748", "class")
 
     print()
-    if result1 and result2:
+    print("=" * 60)
+    print("Test 3: Individual term — fru-M-200266 (VFB_00000001)")
+    print("=" * 60)
+    result3 = test_term_page("VFB_00000001", "individual")
+
+    print()
+    if result0 and result1 and result2 and result3:
         print("All tests PASSED")
         return True
     else:
