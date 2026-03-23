@@ -38,4 +38,20 @@ jobs:
           name: test-results
           path: |
             FBbt_00003748_v*.md
-          retention-days: 7 
+          retention-days: 7
+
+  check_image_refs:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Run external image references check
+        run: |
+          python check_images.py --base content --include-themes
+ 
