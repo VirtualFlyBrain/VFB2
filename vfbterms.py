@@ -10,6 +10,7 @@ import json
 import datetime
 import traceback
 import time
+from urllib.parse import quote
 
 # Suppress the urllib3 warning about OpenSSL
 warnings.filterwarnings('ignore', category=Warning)
@@ -133,6 +134,13 @@ def get_term_url(label, short_form):
 def get_report_url(identifier):
     """Create the VFB report URL path for a term identifier."""
     return f'/reports/{identifier}'
+
+def get_query_results_url(term_id, query_name):
+    """Create a VFB viewer URL for a term query result set."""
+    if not query_name:
+        return f'{VFB_BROWSER_BASE}?id={term_id}'
+    query = quote(f'{term_id},{query_name}', safe=',')
+    return f'{VFB_BROWSER_BASE}?q={query}'
 
 def is_known_id(identifier):
     """Check if an identifier matches a known VFB prefix."""
@@ -317,7 +325,7 @@ def format_query_preview(query, term_id):
     lines.append("")
     lines.append("</div>")
     lines.append("")
-    lines.append(f'<a href="{VFB_BROWSER_BASE}?id={term_id}" class="btn btn-outline-primary btn-sm">View all {count} results in VFB &rarr;</a>')
+    lines.append(f'<a href="{get_query_results_url(term_id, query_name)}" class="btn btn-outline-primary btn-sm">View all {count} results in VFB &rarr;</a>')
     lines.append("")
 
     return "\n".join(lines)
@@ -753,25 +761,68 @@ def test_report_link_regression():
 
     return all_pass
 
+def test_query_button_regression():
+    """Ensure query preview buttons open the matching VFB query."""
+    print("=" * 60)
+    print("Test 2: Query button regression")
+    print("=" * 60)
+
+    query_preview = format_query_preview(
+        {
+            "label": "Neurons with some part in adult intercalary segment",
+            "query": "NeuronsPartHere",
+            "count": 666,
+            "preview_results": {
+                "rows": [
+                    {
+                        "label": "[DNb08](FBbt_20011340)",
+                        "id": "FBbt_20011340",
+                        "tags": "Adult|Cholinergic|Nervous_system|primary_neuron",
+                    },
+                ]
+            },
+        },
+        "FBbt_00003013",
+    )
+
+    expected_query_url = f'{VFB_BROWSER_BASE}?q=FBbt_00003013,NeuronsPartHere'
+    fallback_url = f'{VFB_BROWSER_BASE}?id=FBbt_00003013'
+
+    checks = {
+        "Query button uses VFB query URL": expected_query_url in query_preview,
+        "Query button no longer uses term-only URL": fallback_url not in query_preview,
+        "Helper falls back to term URL when missing query": get_query_results_url("FBbt_00003013", "") == fallback_url,
+    }
+
+    all_pass = True
+    for check_name, result in checks.items():
+        status = "PASS" if result else "FAIL"
+        if not result:
+            all_pass = False
+        print(f"  [{status}] {check_name}")
+
+    return all_pass
+
 def test_medulla_page():
     """Test page generation for medulla (class) and fru-M-200266 (individual)."""
     result0 = test_hero_card_regression()
     result1 = test_report_link_regression()
+    result2 = test_query_button_regression()
 
     print()
     print("=" * 60)
-    print("Test 2: Class term — medulla (FBbt_00003748)")
+    print("Test 3: Class term — medulla (FBbt_00003748)")
     print("=" * 60)
-    result2 = test_term_page("FBbt_00003748", "class")
+    result3 = test_term_page("FBbt_00003748", "class")
 
     print()
     print("=" * 60)
-    print("Test 3: Individual term — fru-M-200266 (VFB_00000001)")
+    print("Test 4: Individual term — fru-M-200266 (VFB_00000001)")
     print("=" * 60)
-    result3 = test_term_page("VFB_00000001", "individual")
+    result4 = test_term_page("VFB_00000001", "individual")
 
     print()
-    if result0 and result1 and result2 and result3:
+    if result0 and result1 and result2 and result3 and result4:
         print("All tests PASSED")
         return True
     else:

@@ -2,3 +2,6 @@ public/*
 .DS_Store
 /.venv
 transcript.en.vtt
+__pycache__
+__pycache__/
+__pycache__/*.pyc
