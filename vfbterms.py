@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 
 import sys
-from os import listdir, chdir
-from os.path import isfile, join
+from os import chdir
+from os.path import join
 import os
 import warnings
 import re
 import json
-import datetime
 import traceback
 import time
 from urllib.parse import quote
 
 # Suppress the urllib3 warning about OpenSSL
 warnings.filterwarnings('ignore', category=Warning)
+
+# Ensure progress logs appear promptly in non-interactive runners (e.g. Jenkins)
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(line_buffering=True)
 
 # Set environment variable to skip GUI dependencies
 os.environ['VFB_SKIP_GUI'] = '1'
@@ -30,8 +33,9 @@ VFB_BROWSER_BASE = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppett
 
 # Throttle settings — stay under 20 concurrent to keep API reliable
 MAX_ACTIVE_BEFORE_BACKOFF = 20  # Back off when this many queries are active
-BACKOFF_SECONDS = 120           # How long to wait when server is busy
 STATUS_CHECK_INTERVAL = 10     # Seconds between status checks while waiting
+MAX_CAPACITY_WAIT_SECONDS = 600  # Give up waiting for capacity after this long
+API_TIMEOUT_SECONDS = int(os.environ.get("VFB_API_TIMEOUT_SECONDS", "900"))
 
 # Known ID prefixes for internal link conversion
 KNOWN_PREFIXES = (
@@ -74,29 +78,50 @@ def check_server_status():
         print(f"WARNING: Could not check server status: {e}")
         return None
 
-def wait_for_server_capacity():
+def wait_for_server_capacity(term_id=""):
     """Block until the server has capacity below our threshold.
 
     Monitors the /status endpoint and waits when active queries >= MAX_ACTIVE_BEFORE_BACKOFF
-    or when any queries are waiting in the queue. This is a low-priority process
-    and should not flood the API servers.
+    and retries when the status endpoint is unavailable. Waits are bounded so a
+    single term cannot block forever.
     """
+    start_time = time.time()
+    term_label = term_id or "request"
     while True:
         status = check_server_status()
+        elapsed = time.time() - start_time
+
         if status is None:
-            # Can't reach status endpoint — back off to be safe
-            print(f"  Status endpoint unreachable, backing off {BACKOFF_SECONDS}s...")
-            time.sleep(BACKOFF_SECONDS)
+            if elapsed >= MAX_CAPACITY_WAIT_SECONDS:
+                print(
+                    f"WARNING: Proceeding with {term_label} after {int(elapsed)}s because status checks failed."
+                )
+                return
+            print(f"  Status endpoint unreachable, retrying in {STATUS_CHECK_INTERVAL}s...")
+            time.sleep(STATUS_CHECK_INTERVAL)
             continue
 
         active, waiting = status
-        if waiting > 0 or active >= MAX_ACTIVE_BEFORE_BACKOFF:
-            print(f"  Server busy: {active} active, {waiting} queued. "
-                  f"Backing off {BACKOFF_SECONDS}s... (threshold: {MAX_ACTIVE_BEFORE_BACKOFF})")
-            time.sleep(BACKOFF_SECONDS)
+        if active >= MAX_ACTIVE_BEFORE_BACKOFF:
+            if elapsed >= MAX_CAPACITY_WAIT_SECONDS:
+                print(
+                    f"WARNING: Proceeding with {term_label} after {int(elapsed)}s "
+                    f"while busy (active={active}, waiting={waiting})."
+                )
+                return
+            print(
+                f"  Server busy: {active} active, {waiting} queued. "
+                f"Retrying in {STATUS_CHECK_INTERVAL}s... (threshold: {MAX_ACTIVE_BEFORE_BACKOFF})"
+            )
+            time.sleep(STATUS_CHECK_INTERVAL)
             continue
 
-        # Server has capacity
+        if waiting > 0:
+            print(
+                f"  Server queue detected ({waiting}) but active load is {active}; proceeding."
+            )
+
+        # Server has usable capacity
         return
 
 # ─── Data Fetching ───────────────────────────────────────────────────────────
@@ -107,10 +132,10 @@ def fetch_term_info(term_id):
     Checks server capacity before making the request to avoid flooding.
     """
     # Wait until the server isn't overloaded
-    wait_for_server_capacity()
+    wait_for_server_capacity(term_id)
 
     try:
-        resp = session.get(API_BASE, params={"id": term_id}, timeout=9000)
+        resp = session.get(API_BASE, params={"id": term_id}, timeout=API_TIMEOUT_SECONDS)
         resp.raise_for_status()
         data = resp.json()
         if not data or not data.get("Id"):
@@ -570,6 +595,21 @@ def get_vfb_connect():
         _vc = VfbConnect()
     return _vc
 
+def fetch_ids(label, query):
+    """Fetch and log IDs for one query."""
+    print(f"Fetching ID list for {label}...")
+    data = get_vfb_connect().nc.commit_list([query])
+    ids = data[0]['data'][0]['row'][0]
+    print(f"  Retrieved {len(ids)} IDs for {label}")
+    return ids
+
+def process_group(base_path, relative_dir, label, query):
+    """Change directory, fetch IDs, and generate pages for one ontology group."""
+    target_dir = os.path.normpath(join(base_path, relative_dir))
+    print(f"\n[{label}] {target_dir}")
+    chdir(target_dir)
+    save_terms(fetch_ids(label, query))
+
 def save_terms(ids):
     """Fetch and save term pages for a list of IDs."""
     total = len(ids)
@@ -835,68 +875,33 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         mypath = sys.argv[1]
         print("Updating all files in " + mypath)
-        onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+        groups = [
+            ('fbbt/', 'FBbt classes', "MATCH (n:Class) WHERE n.short_form starts with 'FBbt' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('fbbi/', 'FBbi classes', "MATCH (n:Class) WHERE n.short_form starts with 'FBbi' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('fbcv/', 'FBcv classes', "MATCH (n:Class) WHERE n.short_form starts with 'FBcv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('fbdv/', 'FBdv classes', "MATCH (n:Class) WHERE n.short_form starts with 'FBdv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('vfb/', 'VFB individuals', "MATCH (n:Individual) WHERE n.short_form starts with 'VFB_' AND NOT n.short_form starts with 'VFB_internal' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('vfb/', 'VFBexp classes', "MATCH (n:Class) WHERE n.short_form starts with 'VFBexp_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('../datasets/', 'Datasets', "MATCH (n:DataSet) with n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('go/', 'GO classes', "MATCH (n:Class) WHERE n.short_form starts with 'GO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('so/', 'SO classes', "MATCH (n:Class) WHERE n.short_form starts with 'SO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('ioa/', 'IAO classes', "MATCH (n:Class) WHERE n.short_form starts with 'IAO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('geno/', 'GENO classes', "MATCH (n:Class) WHERE n.short_form starts with 'GENO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('pato/', 'PATO classes', "MATCH (n:Class) WHERE n.short_form starts with 'PATO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('pco/', 'PCO classes', "MATCH (n:Class) WHERE n.short_form starts with 'PCO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('uberon/', 'UBERON classes', "MATCH (n:Class) WHERE n.short_form starts with 'UBERON_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('ro/', 'RO classes', "MATCH (n:Class) WHERE n.short_form starts with 'RO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('obi/', 'OBI classes', "MATCH (n:Class) WHERE n.short_form starts with 'OBI_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('ncbitaxon/', 'NCBITaxon classes', "MATCH (n:Class) WHERE n.short_form starts with 'NCBITaxon_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('zp/', 'ZP classes', "MATCH (n:Class) WHERE n.short_form starts with 'ZP_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('wbphenotype/', 'WBPhenotype classes', "MATCH (n:Class) WHERE n.short_form starts with 'WBPhenotype_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('caro/', 'CARO classes', "MATCH (n:Class) WHERE n.short_form starts with 'CARO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('bfo/', 'BFO classes', "MATCH (n:Class) WHERE n.short_form starts with 'BFO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+            ('flybase/', 'FlyBase classes', "MATCH (n:Class) WHERE n.short_form starts with 'FB' AND NOT n.short_form contains '_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
+        ]
 
-        chdir(mypath + 'fbbt/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbt' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-        chdir(mypath + 'fbbi/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBbi' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-        chdir(mypath + 'fbcv/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBcv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-        chdir(mypath + 'fbdv/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FBdv' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-        chdir(mypath + 'vfb/')
-        vfb = get_vfb_connect().nc.commit_list(["MATCH (n:Individual) WHERE n.short_form starts with 'VFB_' AND NOT n.short_form starts with 'VFB_internal' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0]
-        save_terms(vfb)
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'VFBexp_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + '../datasets/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:DataSet) with n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'go/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'GO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'so/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'SO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'ioa/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'IAO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'geno/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'GENO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'pato/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'PATO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'pco/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'PCO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'uberon/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'UBERON_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'ro/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'RO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'obi/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'OBI_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'ncbitaxon/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'NCBITaxon_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'zp/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'ZP_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'wbphenotype/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'WBPhenotype_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'caro/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'CARO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'bfo/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'BFO_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
-
-        chdir(mypath + 'flybase/')
-        save_terms(get_vfb_connect().nc.commit_list(["MATCH (n:Class) WHERE n.short_form starts with 'FB' AND NOT n.short_form contains '_' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"])[0]['data'][0]['row'][0])
+        for relative_dir, label, query in groups:
+            process_group(mypath, relative_dir, label, query)
 
     else:
         print("Testing term page generation...")
