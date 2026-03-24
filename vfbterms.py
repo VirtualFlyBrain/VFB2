@@ -25,7 +25,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-version = 7
+version = 8
 
 API_BASE = "https://v3-cached.virtualflybrain.org/get_term_info"
 STATUS_URL = "https://vfbquery.virtualflybrain.org/status"
