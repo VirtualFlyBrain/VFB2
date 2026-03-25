@@ -35,7 +35,7 @@ VFB_BROWSER_BASE = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppett
 MAX_ACTIVE_BEFORE_BACKOFF = 20  # Back off when this many queries are active
 STATUS_CHECK_INTERVAL = 10     # Seconds between status checks while waiting
 MAX_CAPACITY_WAIT_SECONDS = 600  # Give up waiting for capacity after this long
-API_TIMEOUT_SECONDS = int(os.environ.get("VFB_API_TIMEOUT_SECONDS", "900"))
+API_TIMEOUT_SECONDS = int(os.environ.get("VFB_API_TIMEOUT_SECONDS", "9000"))
 
 # Known ID prefixes for internal link conversion
 KNOWN_PREFIXES = (
