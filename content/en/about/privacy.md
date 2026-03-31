@@ -2,9 +2,6 @@
 title: "Privacy Notice"
 linkTitle: "Privacy Notice"
 weight: 20
-menu:
-  main:
-    weight: 20
 ---
 
 ## Virtual Fly Brain Privacy Notice
