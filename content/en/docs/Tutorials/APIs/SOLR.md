@@ -1,5 +1,5 @@
 ---
-title: "SOLR search example"
+title: "Programmatic search using SOLR"
 linkTitle: "SOLR API"
 weight: 100
 description: >-

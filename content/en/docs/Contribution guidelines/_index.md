@@ -1,10 +1,10 @@
 ---
 title: "Contribution Guidelines"
 linkTitle: "Contribution Guidelines"
-weight: 10
+weight: 20
 categories: ["help"]
 description: >
-  Contribute or update Virtual Fly Brain data/sites
+  Contribute or update Virtual Fly Brain data/sites.
 ---
 
 Submitting new data to VFB
