@@ -5,3 +5,6 @@ transcript.en.vtt
 .idea/*
 .hugo_build.lock
 resources/*
+__pycache__
+__pycache__/
+__pycache__/*.pyc
