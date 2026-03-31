@@ -13,7 +13,7 @@ cascade:
 
 [Geppetto](https://geppetto.org) is an open source project that VFB is an active developer of in partnership with [MetaCell](https://www.metacell.us/)
 
-<video autoplay="" loop="" muted="" playsinline=""><source src="https://www.metacell.us/assets/video/VirtualFlyBrain.mp4" type="video/mp4"></video>
+{{< youtube id="OmwXCGPBhNo" autoplay="true" >}}
 
 For full details on the project see [Geppetto.org](https://geppetto.org)
 
