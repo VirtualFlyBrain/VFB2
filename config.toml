@@ -219,7 +219,7 @@ enable = false
   name = "Launch VFB"
   post = '<i class="fas fa-desktop ml-2 "></i>'
   pre = ""
-  url = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto"
+  url = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00101567&i=VFB_00101567"
   weight = -100
 
 [params.links]
