@@ -5,8 +5,8 @@ categories: [circuit diagram]
 description: >
   Graphical glossary of adult Drosophila olfactory neuroanatomy and the canonical neuron classes that make up the olfactory pathway, from Figure 1 of Schlegel et al. (2021). The left-hand schematic shows the feed-forward course of olfactory information from antenna and antennal lobe (AL) to mushroom body (MB) and lateral horn (LH), with antennal-lobe receptor neurons (ORNs / ALRNs), antennal lobe local neurons (ALLNs), uniglomerular and multiglomerular projection neurons (uPNs, mPNs), Kenyon cells (KCs), MBONs, DANs, lateral horn neurons (LHNs / LHLNs / LHCENT), and wedge projection neurons (WEDPNs). Click a labelled element to open the corresponding term in Virtual Fly Brain.
 ---
-<div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto;zoom: 0.5;">
-<img src="https://www.virtualflybrain.org/images/elife-66018-fig1-v2.jpg" style="max-width:2410px;max-height:1575px;width:2410px;height:1575px;" usemap="#Schlegel_Figure_1" border="0">
+<div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto;">
+<img src="https://www.virtualflybrain.org/images/elife-66018-fig1-v2.jpg" style="max-width:1205px;max-height:788px;width:1205px;height:788px;" usemap="#Schlegel_Figure_1" border="0">
 <map name="Schlegel_Figure_1">
     <area shape="rect" coords="170,420,310,490" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00004511" title="antenna">
     <area shape="rect" coords="370,510,490,580" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003924" title="antennal lobe (AL)">

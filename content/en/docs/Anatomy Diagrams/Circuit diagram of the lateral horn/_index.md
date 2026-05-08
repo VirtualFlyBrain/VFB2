@@ -6,8 +6,8 @@ description: >
   Schematic overview of olfactory and multimodal input to the adult lateral horn (LH) and the major target neuropils of LH output neurons, based on Frechter et al. (2019). Panel A shows the four antennal-lobe tracts (mALT, mlALT, tALT, lALT) by which projection neurons (PNs) reach the LH. Panel B groups PN axonal arbours in the LH by presumptive sensory modality: excitatory uniglomerular olfactory, inhibitory olfactory, multiglomerular olfactory, multiglomerular + gustatory, gustatory, mechanosensory, thermosensory, and neuromodulatory. Panel E shows the major (AVLP, PVLP, SLP, SIP, SMP) and minor (LH, MB calyx, SCL, IB, ICL, SPS, CRE) target neuropils of core LH output neurons (LHONs). Click a labelled element to open the corresponding term in Virtual Fly Brain.
 ---
 
-<div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto;zoom: 0.5;">
-<img src="https://www.virtualflybrain.org/images/elife-44590-fig2-v2.jpg" style="max-width:2445px;max-height:3428px;width:2445px;height:3428px;" usemap="#Frechter_Figure_2" border="0">
+<div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto;">
+<img src="https://www.virtualflybrain.org/images/elife-44590-fig2-v2.jpg" style="max-width:1223px;max-height:1714px;width:1223px;height:1714px;" usemap="#Frechter_Figure_2" border="0">
 <map name="Frechter_Figure_2">
     <area shape="rect" coords="277,24,538,88" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003985" title="medial antennal lobe tract (mALT)">
     <area shape="rect" coords="277,90,538,148" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00007482" title="transverse antennal lobe tract (tALT)">

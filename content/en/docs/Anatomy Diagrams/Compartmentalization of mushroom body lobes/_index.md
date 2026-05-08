@@ -5,8 +5,8 @@ categories: [circuit diagram]
 description: >
   Compartmental organisation of the adult mushroom body lobes, showing how the dendrites of mushroom body output neurons (MBONs) and the axon terminals of dopaminergic neurons (DANs) tile the lobes into a stereotyped grid of 15 compartments. Adapted from Figure 10 of Aso et al. (2014a). Panels A–F show single examples of γ-lobe MBONs (MBON-γ5β′2a, MBON-γ4>γ1γ2, MBON-γ3, MBON-γ3β′1, MBON-γ2α′1, MBON-γ1pedc>α/β). Panels G/I/K give an MBON-side colour-coded map of the γ, α′/β′ and α/β lobes; panels H/J/L give the matching DAN-side map. Together these panels make explicit the compartments (γ1–γ5, β′1–β′2, β1–β2, α′1–α′3, α1–α3) used to organise input from PPL1 and PAM cluster DANs and output via MBONs. Click a labelled compartment to open the corresponding MB lobe slice in Virtual Fly Brain.
 ---
-<div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto;zoom: 0.5;">
-<img src="https://www.virtualflybrain.org/images/elife-04577-fig10-v1.jpg" style="max-width:3960px;max-height:1900px;width:3960px;height:1900px;" usemap="#Aso_2014a_Figure_10" border="0">
+<div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto;">
+<img src="https://www.virtualflybrain.org/images/elife-04577-fig10-v1.jpg" style="max-width:1980px;max-height:950px;width:1980px;height:950px;" usemap="#Aso_2014a_Figure_10" border="0">
 <map name="Aso_2014a_Figure_10">
     <area shape="rect" coords="20,360,90,470" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100277" title="mushroom body gamma lobe slice 5 (γ5)">
     <area shape="rect" coords="100,360,170,470" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100276" title="mushroom body gamma lobe slice 4 (γ4)">

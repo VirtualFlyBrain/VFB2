@@ -5,8 +5,8 @@ categories: [circuit diagram]
 description: >
   Anatomical overview of the adult central complex (CX) and its accessory neuropils, from Figure 1 of Hulse et al. (2021). Panel A places the CX within the hemibrain volume alongside the medulla (ME), lobula (LO) and subesophageal zone (SEZ). Panel B shows the immediate surrounds — superior protocerebrum (SLP, SIP, SMP), inferior neuropils (CRE, RUB, ROB) and lateral neuropils (BU, GA, LAL). Panels C–E give frontal, lateral, and dorsal views of the five core CX structures: ellipsoid body (EB), fan-shaped body (FB), protocerebral bridge (PB), paired noduli (NO), and the asymmetric body (AB). Click a labelled neuropil to open the corresponding term in Virtual Fly Brain.
 ---
-<div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto;zoom: 0.5;">
-<img src="https://www.virtualflybrain.org/images/elife-66039-fig1-v4.jpg" style="max-width:2401px;max-height:2169px;width:2401px;height:2169px;" usemap="#Hulse_Figure_1" border="0">
+<div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto;">
+<img src="https://www.virtualflybrain.org/images/elife-66039-fig1-v4.jpg" style="max-width:1201px;max-height:1085px;width:1201px;height:1085px;" usemap="#Hulse_Figure_1" border="0">
 <map name="Hulse_Figure_1">
     <area shape="rect" coords="80,140,310,200" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003748" title="medulla (ME)">
     <area shape="rect" coords="160,260,300,320" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003852" title="lobula (LO)">
