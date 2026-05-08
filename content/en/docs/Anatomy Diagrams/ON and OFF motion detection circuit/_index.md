@@ -13,6 +13,8 @@ description: >
     <area shape="rect" coords="60,140,150,200" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003784" title="Mi9 — medulla intrinsic neuron Mi9">
     <area shape="rect" coords="155,140,250,200" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003776" title="Mi1 — medulla intrinsic neuron Mi1">
     <area shape="rect" coords="155,205,250,265" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003791" title="Tm3 — transmedullary neuron Tm3">
+    <area shape="rect" coords="255,140,365,200" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00048246" title="TmY15 — transmedullary Y neuron TmY15">
+    <area shape="rect" coords="290,205,395,265" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003744" title="C3 — centrifugal neuron C3">
     <area shape="rect" coords="380,140,460,200" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003779" title="Mi4 — medulla intrinsic neuron Mi4">
     <area shape="rect" coords="40,400,160,470" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003731" title="T4 neuron">
     <area shape="rect" coords="540,290,640,360" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00048245" title="CT1 — tangential neuron CT1">
@@ -25,6 +27,9 @@ description: >
     <area shape="rect" coords="900,140,990,200" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003792" title="Tm4">
     <area shape="rect" coords="990,140,1080,200" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003789" title="Tm1">
     <area shape="rect" coords="990,205,1080,265" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003790" title="Tm2">
+    <area shape="rect" coords="900,205,985,265" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00048246" title="TmY15 — transmedullary Y neuron TmY15">
+    <area shape="rect" coords="900,475,1100,540" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00049516" title="LT33 — lobula tangential neuron LT33">
+    <area shape="rect" coords="900,540,1100,600" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003811" title="Tm23 — transmedullary neuron Tm23">
     <area shape="rect" coords="780,400,900,470" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003736" title="T5 neuron">
     <area shape="rect" coords="1280,290,1380,360" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00048245" title="CT1">
     <area shape="rect" coords="1280,140,1380,210" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003789" title="Tm1">
