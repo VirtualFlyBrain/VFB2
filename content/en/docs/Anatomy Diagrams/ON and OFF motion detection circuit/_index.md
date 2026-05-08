@@ -5,8 +5,8 @@ categories: [circuit diagram]
 description: >
   Schematic wiring of the ON-edge (T4) and OFF-edge (T5) motion-detection circuits, from Figure 6 of Shinomiya et al. (2019). Panels A and B show the columnar inputs that converge on T4 and T5 dendrites — Mi1, Mi4, Mi9, Tm3, TmY15, C3 (and CT1 feedback) for T4; Tm1, Tm2, Tm4, Tm9, TmY15 (and CT1) for T5 — with arrow weights indicating relative synapse counts. Panel C is the canonical summary cartoon: photoreceptors R1-6 → lamina monopolar cells L1/L2/L3 → medulla cells (Mi1/Mi4/Mi9/Tm3 driving T4 ON-edge; Tm1/Tm2/Tm4/Tm9 driving T5 OFF-edge) → T4/T5 → lobula plate. Click a labelled neuron type or neuropil to open the corresponding term in Virtual Fly Brain.
 ---
-<div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto;zoom: 0.6;">
-<img src="https://www.virtualflybrain.org/images/elife-40025-fig6-v2.jpg" style="max-width:2362px;max-height:948px;width:2362px;height:948px;" usemap="#Shinomiya_Figure_6" border="0">
+<div style="border:1px solid grey;width:100%;height:fit-content;overflow:auto;">
+<img src="https://www.virtualflybrain.org/images/elife-40025-fig6-v2.jpg" style="max-width:1417px;max-height:569px;width:1417px;height:569px;" usemap="#Shinomiya_Figure_6" border="0">
 <map name="Shinomiya_Figure_6">
     <area shape="rect" coords="130,15,250,90" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003721" title="L3 — lamina monopolar neuron L3">
     <area shape="rect" coords="320,15,440,90" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003719" title="L1 — lamina monopolar neuron L1">
