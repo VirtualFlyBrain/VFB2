@@ -1,3 +1,4 @@
-FROM nginx:stable
-COPY html /usr/share/nginx/html
-COPY default.conf /etc/nginx/conf.d/default.conf
+FROM klakegg/hugo:ext-alpine
+
+RUN apk add git && \
+  git config --global --add safe.directory /src

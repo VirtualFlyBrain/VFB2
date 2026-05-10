@@ -1,0 +1,20 @@
+/*
+  Project-level Docsy overrides.
+*/
+
+/* Image-map figures escape the main column at wide viewports because the
+   <img> is given a fixed pixel width via inline CSS, but the surrounding
+   .taxonomy-terms-cloud sidebar in <aside class="td-sidebar-toc"> sits in
+   the same row. Without a stacking context the AREA hit-tests at the
+   right-hand edge of the image are intercepted by the sidebar, even though
+   the image visibly covers them. Promote the wrapper to a stacking context
+   above the sidebar so AREA clicks always reach the image map. */
+main img[usemap] {
+  position: relative;
+  z-index: 5;
+}
+main img[usemap] + map,
+main div:has(> img[usemap]) {
+  position: relative;
+  z-index: 5;
+}
