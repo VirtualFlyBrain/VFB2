@@ -27,7 +27,7 @@ description: >
     <area shape="rect" coords="190,505,245,540" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003678" title="ellipsoid body (EB)">
     <area shape="rect" coords="110,590,210,625" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00051240" title="right asymmetrical body (AB(R))">
     <area shape="rect" coords="250,590,360,625" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00051239" title="left asymmetrical body (AB(L))">
-    <area shape="rect" coords="185,620,250,655" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003680" title="nodulus (NO)">
+    <area shape="rect" coords="211,620,250,655" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003680" title="nodulus (NO)">
     <area shape="rect" coords="450,400,555,470" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003679" title="fan-shaped body (FB) — lateral view">
     <area shape="rect" coords="555,500,650,565" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003678" title="ellipsoid body (EB) — lateral view">
     <area shape="rect" coords="615,600,700,645" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003680" title="nodulus (NO) — lateral view">
