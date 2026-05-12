@@ -9,15 +9,15 @@ description: >
 <img src="https://www.virtualflybrain.org/images/elife-66018-fig1-v2.jpg" style="max-width:1205px;max-height:788px;width:1205px;height:788px;" usemap="#Schlegel_Figure_1" border="0">
 <map name="Schlegel_Figure_1">
     <area shape="rect" coords="85,210,155,245" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00004511" title="antenna">
-    <area shape="rect" coords="185,255,245,290" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003924" title="antennal lobe (AL)">
     <area shape="rect" coords="20,85,85,130" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00007053" title="lateral horn (LH)">
     <area shape="rect" coords="270,20,360,55" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003685" title="mushroom body calyx (CA)">
     <area shape="rect" coords="300,90,410,130" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00005801" title="mushroom body (MB)">
     <area shape="rect" coords="145,270,215,305" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00005926" title="olfactory receptor neuron (ORN)">
-    <area shape="rect" coords="156,230,200,260" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00052874" title="antennal lobe local neuron (ALLN)">
+    <area shape="rect" coords="156,230,200,254" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00052874" title="antennal lobe local neuron (ALLN)">
+    <area shape="rect" coords="185,255,245,290" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003924" title="antennal lobe (AL)">
     <area shape="rect" coords="100,165,165,200" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00007383" title="uniglomerular projection neuron (uPN)">
+    <area shape="rect" coords="25,145,79,180" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00049286" title="lateral horn output neuron (LHN)">
     <area shape="rect" coords="80,130,145,165" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00007384" title="multiglomerular projection neuron (mPN)">
-    <area shape="rect" coords="25,145,85,180" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00049286" title="lateral horn output neuron (LHN)">
     <area shape="rect" coords="0,45,45,85" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00049285" title="lateral horn local neuron (LHLN)">
     <area shape="rect" coords="85,40,155,75" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00049661" title="adult lateral horn centrifugal neuron (LHCENT)">
     <area shape="rect" coords="300,60,360,90" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00003686" title="Kenyon cell (KC)">
