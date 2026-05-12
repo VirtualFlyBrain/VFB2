@@ -15,10 +15,10 @@ description: >
     <area shape="rect" coords="170,180,205,235" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100273" title="mushroom body gamma lobe slice 1 (γ1)">
     <area shape="rect" coords="350,20,770,390" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100234" title="MBON-γ5β′2a">
     <area shape="rect" coords="775,20,1195,390" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00111004" title="MBON-γ4>γ1γ2">
-    <area shape="rect" coords="0,400,172,770" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00111006" title="MBON-γ3">
-    <area shape="rect" coords="173,400,345,770" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00111007" title="MBON-γ3β′1">
-    <area shape="rect" coords="350,400,770,770" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00111009" title="MBON-γ2α′1">
-    <area shape="rect" coords="775,400,1195,770" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100246" title="MBON-γ1pedc>α/β">
+    <area shape="rect" coords="0,400,172,890" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00111006" title="MBON-γ3">
+    <area shape="rect" coords="173,400,345,890" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00111007" title="MBON-γ3β′1">
+    <area shape="rect" coords="350,400,770,940" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00111009" title="MBON-γ2α′1">
+    <area shape="rect" coords="775,400,1195,940" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00100246" title="MBON-γ1pedc>α/β">
     <area shape="rect" coords="1935,100,1980,250" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00013695" title="adult mushroom body gamma-lobe">
     <area shape="rect" coords="1935,400,1980,590" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00013691" title="adult mushroom body alpha'-lobe">
     <area shape="rect" coords="1935,690,1980,925" target="_blank" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?i=VFB_00101567&id=FBbt_00110657" title="adult mushroom body alpha-lobe">
