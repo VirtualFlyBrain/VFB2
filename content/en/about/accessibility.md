@@ -28,8 +28,6 @@ The 3D web client (Geppetto-based) and the embedded CATMAID connectome viewers h
 
 [AbilityNet — My Computer My Way](https://mcmw.abilitynet.org.uk/) has advice on making your device easier to use if you have a disability.
 
-University of Edinburgh staff and students can use the free [SensusAccess document conversion service](https://www.ed.ac.uk/information-services/computing/computing-infrastructure/disability-information/sensusaccess) for converting accessible PDFs, captions and large print.
-
 ### How accessible this website is
 
 We know parts of the website are not fully accessible:
