@@ -109,7 +109,10 @@ section = ["HTML", "print", "RSS"]
   [privacy.disqus]
     disable = false
   [privacy.googleAnalytics]
-    anonymizeIP = false
+    # anonymizeIP is a no-op for GA4 (Universal Analytics-era flag) but is set
+    # to true here to signal intent — GA4 itself transiently uses the IP for
+    # geolocation only and does not store it. See content/en/about/cookies.md.
+    anonymizeIP = true
     disable = false
     respectDoNotTrack = true
     useSessionStorage = true
