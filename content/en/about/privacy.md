@@ -6,22 +6,23 @@ weight: 20
 
 ## Virtual Fly Brain Privacy Notice
 
-**Last updated: February 2026**
+**Last updated: May 2026**
 
 The Virtual Fly Brain (VFB) project is committed to protecting your privacy and keeping you informed about how your personal information is used. This privacy notice explains how we collect, use, and protect your personal data when you visit our website.
 
 ### What information do we collect?
 
-We collect information about your visit to our website through Google Analytics, a web analytics service provided by Google, Inc. This includes:
+**Website analytics (Google Analytics 4).** We use Google Analytics 4 to understand how the site is used. When you visit a page, your IP address is sent to Google for the purpose of deriving an approximate geographic location, and is then discarded; the raw IP is not stored against your analytics record. The data we receive is aggregated and includes:
 
-- Your IP address (anonymized)
+- Approximate geographic location (city/country level)
 - Browser type and version
 - Operating system
 - Referring website
 - Pages visited and time spent on each page
-- Geographic location (country/city level only)
 
-We do not collect any personally identifiable information such as names, email addresses, or contact details unless you voluntarily provide them (for example, through our contact forms or feedback mechanisms).
+**Web-server logs.** Our front-end load balancers and application containers produce request logs that include your IP address. These logs are short-lived and operational only — they are not persisted beyond the lifetime of the running container and are lost on restart.
+
+We do not collect personally identifiable information such as names, email addresses or contact details unless you voluntarily provide them through our contact forms, feedback links or community channels.
 
 ### How do we use this information?
 
@@ -33,11 +34,11 @@ The information collected helps us:
 - Analyze website traffic patterns
 - Support our research by understanding user interests in neuroanatomical data
 
-### Cookies and Website Privacy
+### Cookies
 
-We use Google Analytics cookies to collect this information. These are small text files stored on your device. You can control cookies through your browser settings, and you can opt out of Google Analytics tracking by visiting [Google Analytics Opt-out](https://tools.google.com/dlpage/gaoptout).
+Google Analytics 4 sets cookies on your browser to distinguish your visits. The Geppetto 3D web client sets a session cookie to maintain application state during a visit. A full list of cookies set by Virtual Fly Brain, with their purposes and expiry, is on the [Cookies page](/about/cookies/), which also explains how to opt out of Google Analytics.
 
-For more information about Google's privacy practices, please see [Google's Privacy Policy](https://policies.google.com/privacy).
+For Google's processing details see [Google's Privacy & Terms](https://policies.google.com/privacy).
 
 ### Legal Basis for Processing
 
@@ -48,7 +49,9 @@ Our processing of your personal data is based on:
 
 ### Data Sharing and Disclosure
 
-We do not sell, rent, or trade your personal information. Information collected by Google Analytics may be processed by Google on servers located in the United States. Google is committed to complying with the EU-U.S. Privacy Shield framework.
+We do not sell, rent or trade your personal information.
+
+Analytics data collected by Google Analytics may be processed by Google on servers located in the United States. International transfers are covered by the EU-U.S. Data Privacy Framework (Commission Implementing Decision (EU) 2023/1795); Google is [certified under the framework](https://www.dataprivacyframework.gov/list). The UK extension to the framework applies for UK-origin data.
 
 ### Data Retention
 
