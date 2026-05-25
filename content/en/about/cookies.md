@@ -4,7 +4,7 @@ linkTitle: "Cookies"
 weight: 21
 ---
 
-## Cookies we use on Virtual Fly Brain
+## Cookies used by Virtual Fly Brain
 
 **Last updated: May 2026**
 

@@ -32,7 +32,7 @@ The information collected helps us:
 - Improve the user experience and content
 - Identify technical issues
 - Analyze website traffic patterns
-- Support our research by understanding user interests in neuroanatomical data
+- Understand user interests in our neuroanatomical data
 
 ### Cookies
 
