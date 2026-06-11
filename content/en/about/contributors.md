@@ -71,6 +71,7 @@ img {
 [![actions-user](https://avatars.githubusercontent.com/u/65916846?v=4&s=100)](https://github.com/actions-user) 
 [![NeZanyat](https://avatars.githubusercontent.com/u/1211953?v=4&s=100)](https://github.com/NeZanyat) 
 [![afonsobspinto](https://avatars.githubusercontent.com/u/19196034?v=4&s=100)](https://github.com/afonsobspinto) 
+[![Copilot](https://avatars.githubusercontent.com/in/1143301?v=4&s=100)](https://github.com/apps/copilot-swe-agent) 
 [![snyk-bot](https://avatars.githubusercontent.com/u/19733683?v=4&s=100)](https://github.com/snyk-bot) 
 [![leechuck](https://avatars.githubusercontent.com/u/362161?v=4&s=100)](https://github.com/leechuck) 
 [![MiguelAngelRG](https://avatars.githubusercontent.com/u/12188797?v=4&s=100)](https://github.com/MiguelAngelRG) 
@@ -135,4 +136,3 @@ img {
 [![vidhyalongani](https://avatars.githubusercontent.com/u/71261494?v=4&s=100)](https://github.com/vidhyalongani) 
 [![Salam-Dalloul](https://avatars.githubusercontent.com/u/32265731?v=4&s=100)](https://github.com/Salam-Dalloul) 
 [![Aiga115](https://avatars.githubusercontent.com/u/67194168?v=4&s=100)](https://github.com/Aiga115) 
-[![Copilot](https://avatars.githubusercontent.com/in/1143301?v=4&s=100)](https://github.com/apps/copilot-swe-agent) 
