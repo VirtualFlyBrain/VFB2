@@ -8,12 +8,6 @@ description: >
 
 We're excited to announce the launch of the **Virtual Fly Brain Model Context Protocol (MCP) Tool** — a powerful new way to explore VFB data through Large Language Models (LLMs) like Claude, providing natural language access to VFB's comprehensive neuroanatomical database.
 
-## Now described in a preprint
-
-The tool and its evaluation are now described in a preprint: McLachlan et al. (2026), *VFB-MCP: Natural-Language Access to Drosophila Neuroscience Grounded by an Expert-Curated Ontology-Led Knowledgebase*, bioRxiv. [doi:10.64898/2026.06.16.732577](https://doi.org/10.64898/2026.06.16.732577).
-
-Benchmarked on 30 neuroscience tasks, an LLM equipped with the VFB MCP produced precise, verifiable and appropriately quantified answers on 25/30 tasks, against 14/30 for a web-search-assisted LLM and 2/30 for a bare LLM (Wilcoxon *p* < 0.01, Holm-corrected across all pairwise comparisons). The advantage was largest where answers required data quantification — 89% of those tasks were answered correctly with the MCP, against 11% with web search — reflecting the precision that VFB's expert-curated, ontology-backed knowledge graph brings to the recently integrated connectomes. The MCP server code is available at [VirtualFlyBrain/VFB3-MCP](https://github.com/VirtualFlyBrain/VFB3-MCP).
-
 ## What is the VFB MCP Tool?
 
 The VFB MCP tool integrates Virtual Fly Brain's rich neuroanatomical data with LLM capabilities, allowing researchers to:
@@ -59,3 +53,9 @@ This tool democratizes access to VFB's complex neuroanatomical data, making it a
 Check out our new [**VFB MCP Tutorial**](/docs/tutorials/vfb-mcp-guide/) for detailed guidance on using the tool, example queries, and best practices for exploring VFB data through your favorite LLM.
 
 The VFB MCP tool represents an exciting new frontier in how researchers interact with neuroanatomical databases. We hope it accelerates your discoveries about *Drosophila* neurobiology!
+
+## Now described in a preprint
+
+The tool and its evaluation are now described in a preprint: McLachlan et al. (2026), *VFB-MCP: Natural-Language Access to Drosophila Neuroscience Grounded by an Expert-Curated Ontology-Led Knowledgebase*, bioRxiv. [doi:10.64898/2026.06.16.732577](https://doi.org/10.64898/2026.06.16.732577).
+
+Benchmarked on 30 neuroscience tasks, an LLM equipped with the VFB MCP produced precise, verifiable and appropriately quantified answers on 25/30 tasks, against 14/30 for a web-search-assisted LLM and 2/30 for a bare LLM (Wilcoxon *p* < 0.01, Holm-corrected across all pairwise comparisons). The advantage was largest where answers required data quantification — 89% of those tasks were answered correctly with the MCP, against 11% with web search — reflecting the precision that VFB's expert-curated, ontology-backed knowledge graph brings to the recently integrated connectomes. The MCP server code is available at [VirtualFlyBrain/VFB3-MCP](https://github.com/VirtualFlyBrain/VFB3-MCP).
