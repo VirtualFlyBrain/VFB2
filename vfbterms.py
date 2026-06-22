@@ -497,11 +497,14 @@ def generate_page(term_data):
     url_slug = get_term_url(name, term_id)
 
     # Tags for front matter
-    tags_csv = ",".join(tags)
+    # Build a clean list and drop empties, otherwise a term with no Tags
+    # yields a leading comma (e.g. "[,VFB]") which is invalid YAML flow syntax
+    tag_list = list(tags)
     if "_" in term_id:
-        tags_csv += "," + term_id.split("_")[0]
+        tag_list.append(term_id.split("_")[0])
     elif term_id.startswith("FB"):
-        tags_csv += "," + term_id[0:4]
+        tag_list.append(term_id[0:4])
+    tags_csv = ",".join(t for t in tag_list if t)
 
     # Thumbnails
     thumbnails = get_thumbnails(term_data)
