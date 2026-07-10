@@ -24,16 +24,16 @@ A connectomic dataset is represented in VFB by several types of graph node and e
 |--------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **DataSet nodes**                                      | A specific released version of a dataset (e.g. a FlyWire release). Neurons are attached to it via `has_source`.                                                                                                                 |
 | **Site (data source) nodes**                           | The external resource that hosts the data (e.g. Codex, NeuPrint, CATMAID). Holds the `link_base` used to build cross-reference links, and is flagged `is_data_source = [true]` when it is the canonical source for its neurons. |
-| **Neuron (Individual) nodes**                          | A single reconstructed neuron, cell typed by linking to anatomy ontology (FBbt) nodes via `INSTANCEOF` edges, with other annotations (soma location, developmental origin, sex etc.) linked via other edge types.               |
-| **Image / Channel nodes**                              | The neuron's aligned image(s) and the channel(s) registered to a template.                                                                                                                                                      |
-| **Connectivity edges**                                 | Synaptic connectivity (`synapsed_to`) between neurons.                                                                                                                                                                          |
-| **Cross-reference edges** (`database_cross_reference`) | Links a neuron to a Site, carrying the `accession` (the neuron's ID in that resource).                                                                                                                                          |
+| **Neuron (Individual) nodes**                          | A single reconstructed neuron, cell typed by linking to anatomy ontology (FBbt) nodes via `INSTANCEOF` edges, with other annotations (soma location, developmental origin, sex, etc.) linked via other edge types.               |
+| **Image / Channel nodes**                              | The Neuron's aligned image(s) and the channel(s) registered to a template.                                                                                                                                                      |
+| **Connectivity edges**                                 | Synaptic connectivity (`synapsed_to`) between Neurons.                                                                                                                                                                          |
+| **Cross-reference edges** (`database_cross_reference`) | Links a Neuron to a Site, carrying the `accession` (the Neuron's ID in that resource).                                                                                                                                          |
 
-## Core principle: site and neuron deprecation are independent
+## Core principle: Site and Neuron deprecation are independent
 
-Whether a **site** is deprecated and whether a **neuron** is deprecated are decided
-separately. A neuron can be valid while its data source is deprecated, and a data source can
-remain live while individual neurons within it are retired. The two states are tracked
+Whether a **Site** is deprecated and whether a **Neuron** is deprecated are decided
+separately. A Neuron can be valid while its data source is deprecated, and a data source can
+remain live while individual Neurons within it are retired. The two states are tracked
 independently and have different consequences (below).
 
 Deprecation does **not** delete a node. The node and its identifier are retained (so old
@@ -43,42 +43,42 @@ IDs resolve), but it is marked deprecated and treated accordingly.
 
 e.g. BANC v626 to v888.
 
-- New nodes are created for the new Site and DataSet, and for any new neurons in the release (accessions that were not previously in VFB). The new Site uses the same symbol as the old Site. The `is_data_source` flag, `Connectome` label and symbol are removed from the old Site.
+- New nodes are created for the new Site and DataSet, and for any new Neurons in the release (accessions that were not previously in VFB). The new Site uses the same symbol as the old Site. The `is_data_source` flag, `Connectome` label and symbol are removed from the old Site.
 - A `term_replaced_by` edge is added to link the old and new DataSet/Site.
 - **Old DataSet** — **deprecated**.
-- **Old Sites that still exist, i.e. linkouts will still resolve** — _not_ deprecated. 
-- **Old Sites that no longer exist, i.e. linkouts will not resolve** — **deprecated**.
+- **Old Sites that still exist, i.e. links will still resolve** — _not_ deprecated.
+- **Old Sites that no longer exist, i.e. links will not resolve** — **deprecated**.
 - **Neurons with accessions that persist in the new data** — _not_ deprecated. They keep their `database_cross_reference` edge to the
   old Site **and** gain an edge to the new Site.
 - **Neurons with accessions that are not present in the new data** — **deprecated**. They have no `database_cross_reference` edge to the new 
  Site; their only cross-reference is to the old, deprecated Site.
-- **Connectivity edges** are replaced with edges from the new data for neurons that are not deprecated.
-- **Images** are replaced with images from the new data for neurons that are not deprecated, old Channel nodes are _not_ deprecated when their Neurons are.
-- **Cell type / FBbt links** are replaced with annotations based on the new data for neurons that are not deprecated.
+- **Connectivity edges** are replaced with edges from the new data for Neurons that are not deprecated.
+- **Images** are replaced with images from the new data for Neurons that are not deprecated; old Channel nodes are _not_ deprecated when their Neurons are.
+- **Cell type / FBbt links** are replaced with annotations based on the new data for Neurons that are not deprecated.
 
 ## What happens when a dataset/site is retired with no replacement
 
-The site is **deprecated** and there is no new site.
+The Site is **deprecated** and there is no new Site.
 
 - **Neurons** — remain valid (_not_ deprecated) and **remain valid query targets**.
-  Their only data source is now a deprecated site, so no link can be built to a live
-  resource, but the neurons, their connectivity and their images are still served.
-- **The Site** — **deprecated**. But the `is_data_source` flag remains true, so the site is still treated as the canonical source for its neurons.
+  Their only data source is now a deprecated Site, so no link can be built to a live
+  resource, but the Neurons, their connectivity and their images are still served.
+- **The Site** — **deprecated**. But the `is_data_source` flag remains true, so the Site is still treated as the canonical source for its Neurons.
 - **The DataSet** — _not_ deprecated.
 
 ## Effects on the website and queries
 
 These follow from the states above and are enforced when results are generated:
 
-- **Deprecated neurons** are excluded from connectivity results and from the neuron counts
+- **Deprecated Neurons** are excluded from connectivity results and from the Neuron counts
   used in connectivity summaries (so they do not appear as partners and do not affect
   percentages).
-- **Deprecated sites** never produce a clickable external link. Where a results table has
+- **Deprecated Sites** never produce a clickable external link. Where a results table has
   source / accession columns (e.g. instance and similar-neuron tables, connectivity
   tables), the source name and accession are still shown as **plain text** — they are just
   not linked. In the [Term Info](/docs/website-features/terminfo/) cross-reference list,
-  whose entries exist specifically to be links, a deprecated site's entry is omitted.
-- **Neurons whose only data source is a deprecated site** remain valid query
+  whose entries exist specifically to be links, a deprecated Site's entry is omitted.
+- **Neurons whose only data source is a deprecated Site** remain valid query
   targets and are returned normally; only their outbound link to the dead resource is
   suppressed.
 
@@ -86,7 +86,7 @@ These follow from the states above and are enforced when results are generated:
 
 Deprecation is recorded with a `Deprecated` label on the node (Neo4j), which is also
 surfaced in the search index as a `Deprecated` value in the node's types. Result-generating
-code keys off this to apply the behaviours above. Site and neuron deprecation are checked
+code keys off this to apply the behaviours above. Site and Neuron deprecation are checked
 independently.
 
 ## See also
