@@ -41,11 +41,11 @@ IDs resolve), but it is marked deprecated and treated accordingly.
 
 ## What happens when a new dataset version is released
 
-e.g. BANC v626 to v888.
+For example, when BANC v626 (the *old* version) is replaced by v888 (the *new* version):
 
-- New nodes are created for the new Site and DataSet, and for any new Neurons in the release (accessions that were not previously in VFB). The new Site uses the same symbol as the old Site. The `is_data_source` flag, `Connectome` label and symbol are removed from the old Site.
+- New nodes are created for the new Site and DataSet, and for any new Neurons in the release (accessions that were not previously in VFB). The markers that identify a Site as the live, canonical connectome source — its symbol (the short dataset code listed in [EM Data](/docs/data/em/)), `Connectome` label and `is_data_source` flag — are transferred from the old Site to the new one (removed from the old, added to the new), so the new Site takes over as the canonical source.
 - A `term_replaced_by` edge is added to link the old and new DataSet/Site.
-- **Old DataSet** — **deprecated**.
+- **Old DataSet** — **deprecated** (superseded by the new DataSet, which it links to via `term_replaced_by`).
 - **Old Sites that still exist, i.e. links will still resolve** — _not_ deprecated.
 - **Old Sites that no longer exist, i.e. links will not resolve** — **deprecated**.
 - **Neurons with accessions that persist in the new data** — _not_ deprecated. They keep their `database_cross_reference` edge to the
@@ -53,8 +53,9 @@ e.g. BANC v626 to v888.
 - **Neurons with accessions that are not present in the new data** — **deprecated**. They have no `database_cross_reference` edge to the new 
  Site; their only cross-reference is to the old, deprecated Site.
 - **Connectivity edges** are replaced with edges from the new data for Neurons that are not deprecated.
-- **Images** are replaced with images from the new data for Neurons that are not deprecated; old Channel nodes are _not_ deprecated when their Neurons are.
-- **Cell type / FBbt links** are replaced with annotations based on the new data for Neurons that are not deprecated.
+- **Old images** are removed. Images from the new data are loaded for Neurons that are not deprecated.
+- **Cell type / FBbt links** are replaced with annotations based on the new data for Neurons that are not deprecated. These may be removed from deprecated Neurons if they are incorrect based on the new data, or retained if they are still valid.
+- **Channel** nodes are always retained (_not_ deprecated). Deprecation is not necessary, as all queries are keyed off of the Neuron node.
 
 ## What happens when a dataset/site is retired with no replacement
 
@@ -63,8 +64,8 @@ The Site is **deprecated** and there is no new Site.
 - **Neurons** — remain valid (_not_ deprecated) and **remain valid query targets**.
   Their only data source is now a deprecated Site, so no link can be built to a live
   resource, but the Neurons, their connectivity and their images are still served.
-- **The Site** — **deprecated**. But the `is_data_source` flag remains true, so the Site is still treated as the canonical source for its Neurons.
-- **The DataSet** — _not_ deprecated.
+- **The Site** — **deprecated**, but its `is_data_source` flag remains `[true]` so the Site stays the canonical source for its Neurons. That attribution is what keeps those Neurons discoverable: they continue to be picked up by queries even though their Site is deprecated.
+- **The DataSet** — _not_ deprecated: with no replacement version to supersede it, it remains the current representation of the data.
 
 ## Effects on the website and queries
 
@@ -84,9 +85,10 @@ These follow from the states above and are enforced when results are generated:
 
 ## Technical note
 
-Deprecation is recorded with a `Deprecated` label on the node (Neo4j), which is also
-surfaced in the search index as a `Deprecated` value in the node's types. Result-generating
-code keys off this to apply the behaviours above. Site and Neuron deprecation are checked
+Both `is_data_source` and the deprecation flag are stored as list-valued annotations in the
+database (e.g. `is_data_source = [true]`). Deprecation also surfaces in the search index as
+`Deprecated` within the node's `types` list. Result-generating code keys off these
+annotations to apply the behaviours above; Site and Neuron deprecation are checked
 independently.
 
 ## See also
