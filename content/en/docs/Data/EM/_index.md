@@ -18,7 +18,7 @@ The table below summarises EM datasets that have been integrated into VFB, inclu
 | BANC | BANC       | Full CNS (adult female)      | Dense         | Codex | [Bates et al. (2025)](https://doi.org/10.1101/2025.07.31.667571)                                                                             |
 | male-CNS | mc         | Full CNS (adult male)        | Dense         | NeuPrint; Codex | [Berg et al. (2025)](https://www.biorxiv.org/content/10.1101/2025.10.09.680999)                                                              |
 | Optic-lobe | ol         | Optic lobe (adult male)      | Dense         | NeuPrint; Codex | [Nern et al. (2025)](https://doi.org/10.1038/s41586-025-08746-0)                                                                             |
-| FAFB (FlyWire) | fw         | Full brain (female larva)    | Dense         | Codex | [Dorkenwald et al. (2024)](https://doi.org/10.1038/s41586-024-07558-y); [Schlegel et al. (2024)](https://doi.org/10.1038/s41586-024-07686-5) |
+| FAFB (FlyWire) | fw         | Full brain (adult female)    | Dense         | Codex | [Dorkenwald et al. (2024)](https://doi.org/10.1038/s41586-024-07558-y); [Schlegel et al. (2024)](https://doi.org/10.1038/s41586-024-07686-5) |
 | MANC | mv         | Full VNC (adult male)        | Dense         | NeuPrint; Codex | [Takemura et al. (2024)](https://doi.org/10.7554/eLife.97769.1)                                                                              |
 | FANC | N/A        | Full VNS (adult female)      | Sparse         | CATMAID | [Phelps et al. (2021)](https://doi.org/10.1016/j.cell.2020.12.013)   |
 | Hemibrain | hb         | Partial brain (adult female) | Dense          | NeuPrint | [Scheffer et al. (2020)](https://doi.org/10.7554/eLife.57443)       
