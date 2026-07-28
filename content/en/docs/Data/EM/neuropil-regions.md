@@ -32,9 +32,9 @@ nomenclature at the ontology level.
 | Dataset | VFB symbol | ROI content | Region source | Alignment template(s) | Reference |
 |---------|-----------|-------------|---------------|-----------------------|-----------|
 | Hemibrain | hb | ~230 painted domains: brain neuropils incl. individual antennal-lobe glomeruli, protocerebral-bridge glomeruli, mushroom-body lobe slices, fan-shaped-body layers and ellipsoid-body domains (adult female) | neuprint `hemibrain:v1.2.1` painted domains | [JRC_FlyEM_Hemibrain](/docs/data/templates/) | [Scheffer et al. (2020)](https://doi.org/10.7554/eLife.57443) |
-| MANC | mv | 59 VNC neuropils, tracts and nerves (adult male) | neuprint `manc:v1.2.3` `roiInfo` | [JRC2018 Unisex VNC](/docs/data/templates/) | [Takemura et al. (2024)](https://doi.org/10.7554/eLife.97769.1) |
+| MANC | mv | 59 VNC neuropils, tracts and nerves (adult male) | neuprint `manc:v1.2.1` `roiInfo` | [JRC2018 Unisex VNC](/docs/data/templates/) | [Takemura et al. (2024)](https://doi.org/10.7554/eLife.97769.1) |
 | male-CNS | mc | ~400 brain + VNC neuropils incl. antennal-lobe & protocerebral-bridge glomeruli, mushroom-body slices, fan-shaped-body layers, ellipsoid-body domains and optic-lobe layers (adult male) | neuprint `male-cns:v1.0` `roiInfo` | [JRC2018 Unisex](/docs/data/templates/) (brain) + [JRC2018 Unisex VNC](/docs/data/templates/) (VNC) | [Berg et al. (2025)](https://doi.org/10.1101/2025.10.09.680999) |
-| Optic-lobe | ol | ~106 optic-lobe neuropils and their layers (ME, LO, LOP layers) (adult male) | neuprint `optic-lobe:v1.1` `roiInfo` | [JRC2018 Unisex](/docs/data/templates/) | [Nern et al. (2025)](https://doi.org/10.1038/s41586-025-08746-0) |
+| Optic-lobe | ol | ~106 optic-lobe neuropils and their layers (ME, LO, LOP layers) (adult male) | neuprint `optic-lobe:v1.0.1` `roiInfo` | [JRC2018 Unisex](/docs/data/templates/) | [Nern et al. (2025)](https://doi.org/10.1038/s41586-025-08746-0) |
 | FAFB (FlyWire) | fw | 78 lateralised brain neuropils (adult female) | FlyWire [Codex](https://codex.flywire.ai/) neuropil synapse table (materialization 783) | [JRC2018 Unisex](/docs/data/templates/) | [Dorkenwald et al. (2024)](https://doi.org/10.1038/s41586-024-07558-y); [Schlegel et al. (2024)](https://doi.org/10.1038/s41586-024-07686-5) |
 | BANC | BANC | ~305 regions: brain neuropils (Ito) and antennal-lobe glomeruli (Schlegel) plus VNC neuropils, tracts and nerves (Court and MANC atlases), warped into BANC space (adult female) | BANC `region_outlines` meshes (`v888`) | [JRC2018 Unisex](/docs/data/templates/) (brain) + [JRC2018 Unisex VNC](/docs/data/templates/) (VNC) | [Bates et al. (2026)](https://doi.org/10.1038/s41586-026-10735-w) |
 
@@ -74,5 +74,6 @@ space so that they can be compared.
 ## See also
 
 - [EM Data](/docs/data/em/) — the neuron and connectivity datasets these regions accompany
+- [Region Connectivity](/docs/data/em/region-connectivity/) — per-neuron synapse tallies attached to these regions
 - [Templates](/docs/data/templates/) — reference templates and their painted domains
 - [Dataset Versions and Deprecation](/docs/data/em/versioning/) — how region and neuron datasets change between releases

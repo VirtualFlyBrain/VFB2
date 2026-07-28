@@ -7,7 +7,7 @@ description: >
 
 ---
 
-Virtual Fly Brain brings together data from multiple [electron microscopy (EM) resources](/docs/resources/), providing access to high-resolution neuroanatomical datasets. These datasets include complete EM volumes of Drosophila brains and ventral nerve cords, neuron reconstructions, connectivity information and neurotransmitter predictions. Each connectome is also accompanied by a set of neuropil (and tract/nerve) regions of interest — see [Neuropil Regions](/docs/data/em/neuropil-regions/) for these region sets and their sources. Data can be visualised using the web browser or accessed programmatically via [APIs](/docs/apis/).
+Virtual Fly Brain brings together data from multiple [electron microscopy (EM) resources](/docs/resources/), providing access to high-resolution neuroanatomical datasets. These datasets include complete EM volumes of Drosophila brains and ventral nerve cords, neuron reconstructions, connectivity information and neurotransmitter predictions. Each connectome is also accompanied by a set of neuropil (and tract/nerve) regions of interest — see [Neuropil Regions](/docs/data/em/neuropil-regions/) for these region sets and their sources, and [Region Connectivity](/docs/data/em/region-connectivity/) for each neuron's synapse tallies per region. Data can be visualised using the web browser or accessed programmatically via [APIs](/docs/apis/).
 
 ## Comparison Table of Integrated Datasets
 

@@ -26,7 +26,7 @@ A connectomic dataset is represented in VFB by several types of graph node and e
 | **Site (data source) nodes**                           | The external resource that hosts the data (e.g. Codex, NeuPrint, CATMAID). Holds the `link_base` used to build cross-reference links, and is flagged `is_data_source = [true]` when it is the canonical source for its neurons. |
 | **Neuron (Individual) nodes**                          | A single reconstructed neuron, cell typed by linking to anatomy ontology (FBbt) nodes via `INSTANCEOF` edges, with other annotations (soma location, developmental origin, sex, etc.) linked via other edge types.               |
 | **Image / Channel nodes**                              | The Neuron's aligned image(s) and the channel(s) registered to a template.                                                                                                                                                      |
-| **Connectivity edges**                                 | Synaptic connectivity (`synapsed_to`) between Neurons.                                                                                                                                                                          |
+| **Connectivity edges**                                 | Synaptic connectivity (`synapsed_to`) between Neurons, and [regional connectivity](/docs/data/em/region-connectivity/) — each Neuron's synapse tallies per neuropil region.                                                     |
 | **Cross-reference edges** (`database_cross_reference`) | Links a Neuron to a Site, carrying the `accession` (the Neuron's ID in that resource).                                                                                                                                          |
 
 ## Core principle: Site and Neuron deprecation are independent
@@ -94,5 +94,6 @@ independently.
 ## See also
 
 - [EM Data](/docs/data/em/) — the integrated connectomic datasets and their versions.
+- [Region Connectivity](/docs/data/em/region-connectivity/) — per-neuron regional synapse tallies, versioned alongside neurons.
 - [Resources](/docs/resources/) — the external sites/resources that host the data.
 - [Term Info](/docs/website-features/terminfo/) — where cross-references and connectivity are shown.
