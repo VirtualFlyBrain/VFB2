@@ -132,6 +132,7 @@ img {
 [![kha7iq](https://avatars.githubusercontent.com/u/79246862?v=4&s=100)](https://github.com/kha7iq) 
 [![hoeghh](https://avatars.githubusercontent.com/u/11328908?v=4&s=100)](https://github.com/hoeghh) 
 [![github-actions[bot]](https://avatars.githubusercontent.com/in/15368?v=4&s=100)](https://github.com/apps/github-actions) 
+[![claude](https://avatars.githubusercontent.com/u/81847?v=4&s=100)](https://github.com/claude) 
 [![enicolasgomez](https://avatars.githubusercontent.com/u/5366927?v=4&s=100)](https://github.com/enicolasgomez) 
 [![vidhyalongani](https://avatars.githubusercontent.com/u/71261494?v=4&s=100)](https://github.com/vidhyalongani) 
 [![Salam-Dalloul](https://avatars.githubusercontent.com/u/32265731?v=4&s=100)](https://github.com/Salam-Dalloul) 
