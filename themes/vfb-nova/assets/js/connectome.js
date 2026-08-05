@@ -151,21 +151,32 @@
            60px smudge next to a fly that fills the frame; nothing of the graph
            survives. The body stays at true scale as context. This is a figure
            convention, and it is stated in the theme README. */
+        /* Each structure is enlarged about ITS OWN centroid, not about a
+           shared one. Scaling the pair together threw the brain forward out of
+           the head; scaling separately keeps each where the bake placed it —
+           brain in the head, VNC in the thorax — which is the arrangement in
+           Hartenstein's stage figures (central brain and optic lobe dorsal in
+           the head, suboesophageal below it, thoracico-abdominal ganglion in
+           the thorax, joined by a short cervical connective).
+
+           The enlargement is a figure convention: at true relative scale the
+           brain is ~1/6 of body length and resolves to a smudge. See README. */
         const CNS_SCALE = 2.0;
-        const TARGET = [0.20, 0, 0.10];   /* where the enlarged CNS should sit */
-        let sx = 0, sy = 0, sz = 0, sn = 0;
-        for (let i = brainRange[0]; i < vncRange[1]; i++) {
-          sx += nodes[i].x; sy += nodes[i].y; sz += nodes[i].z; sn++;
-        }
-        if (sn) {
-          sx /= sn; sy /= sn; sz /= sn;
-          for (let i = brainRange[0]; i < vncRange[1]; i++) {
-            const n = nodes[i];
-            n.x = TARGET[0] + (n.x - sx) * CNS_SCALE;
-            n.y = TARGET[1] + (n.y - sy) * CNS_SCALE;
-            n.z = TARGET[2] + (n.z - sz) * CNS_SCALE;
+        const grow = (from, to, pull) => {
+          let sx = 0, sy = 0, sz = 0, n = 0;
+          for (let i = from; i < to; i++) { sx += nodes[i].x; sy += nodes[i].y; sz += nodes[i].z; n++; }
+          if (!n) return;
+          sx /= n; sy /= n; sz /= n;
+          for (let i = from; i < to; i++) {
+            const q = nodes[i];
+            q.x = sx + pull + (q.x - sx) * CNS_SCALE;
+            q.y = sy + (q.y - sy) * CNS_SCALE;
+            q.z = sz + (q.z - sz) * CNS_SCALE;
           }
-        }
+        };
+        /* pull the two towards each other so the connective stays short */
+        grow(brainRange[0], brainRange[1], -0.06);
+        grow(vncRange[0], vncRange[1], 0.04);
 
         edges = [];
         /* Link radii are in the normalised frame and sit just above mean point
@@ -180,7 +191,7 @@
             const dd = dx * dx + dy * dy + dz * dz;
             if (dd < bd) { bd = dd; best = j; }
           }
-          if (best >= 0 && bd < 0.055 * CNS_SCALE * CNS_SCALE) edges.push([i, best, true]);
+          if (best >= 0 && bd < 0.020) edges.push([i, best, true]);
         }
         finalise(brainRange[0], vncRange[1]);
         resize();
