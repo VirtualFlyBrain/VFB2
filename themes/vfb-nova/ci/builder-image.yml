@@ -1,0 +1,65 @@
+# NOT ACTIVE where it sits. Move it into place to enable:
+#   git mv themes/vfb-nova/ci/builder-image.yml .github/workflows/builder-image.yml
+# Parked here because the token used to push this branch has no `workflow`
+# scope, and GitHub rejects any push touching .github/workflows/ without it.
+#
+# Publishes the image the Rancher `hugo` service runs. It lives here, next to
+# the site it builds, rather than in Robbie1977/docsy-builder — that repo is a
+# fork of docsy-example whose only functional content is a two-line Dockerfile
+# (klakegg/hugo + git); everything else in it is Docsy's demo content. Once
+# Docsy is gone the name is wrong and the demo content is dead weight, so it
+# should be retired rather than rewritten.
+#
+# Uses the org-level Docker Hub secrets (DOCKER_HUB_USER / DOCKER_HUB_PASSWORD),
+# same as the other VirtualFlyBrain workflows.
+name: builder image
+
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - "Dockerfile"
+      - "deploy.sh"
+      - ".github/workflows/builder-image.yml"
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: virtualflybrain/vfb-static-builder
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=tag
+            type=sha,format=short
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Smoke test the published image
+        run: |
+          docker run --rm virtualflybrain/vfb-static-builder:latest hugo version
+          docker run --rm --entrypoint /bin/sh virtualflybrain/vfb-static-builder:latest \
+            -c 'command -v rsync && command -v bash && command -v find'
