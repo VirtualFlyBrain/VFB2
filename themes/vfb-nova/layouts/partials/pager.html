@@ -1,0 +1,23 @@
+{{- /* Previous/next within the section.
+
+     Cheap guard first: on a site with hundreds of thousands of generated term
+     pages, `where` over RegularPagesRecursive must never run for a section
+     that large. len() on the already-built slice is O(1); the filter is not. */ -}}
+{{- $all := .FirstSection.RegularPagesRecursive -}}
+{{- if and (gt (len $all) 1) (le (len $all) 400) -}}
+  {{- $sib := sort (where $all "Params.content" "==" nil) "Weight" -}}
+  {{- $idx := -1 -}}
+  {{- range $i, $p := $sib }}{{ if eq $p.RelPermalink $.RelPermalink }}{{ $idx = $i }}{{ end }}{{ end -}}
+  {{- if ge $idx 0 -}}
+<nav class="pager" aria-label="Page navigation">
+  {{- if gt $idx 0 -}}
+    {{- $p := index $sib (sub $idx 1) -}}
+    <a class="prev" href="{{ $p.RelPermalink }}"><small><i class="fas fa-arrow-left"></i> Previous</small>{{ $p.LinkTitle }}</a>
+  {{- end -}}
+  {{- if lt $idx (sub (len $sib) 1) -}}
+    {{- $p := index $sib (add $idx 1) -}}
+    <a class="next" href="{{ $p.RelPermalink }}"><small>Next <i class="fas fa-arrow-right"></i></small>{{ $p.LinkTitle }}</a>
+  {{- end -}}
+</nav>
+  {{- end -}}
+{{- end -}}

@@ -1,0 +1,55 @@
+{{ define "main" }}
+{{ $isTerm := in (.Params.content | default slice) "term" }}
+{{ $withNav := and (not $isTerm) (in (slice "docs" "about" "hosted") .Section) }}
+
+{{ if $withNav }}
+<div class="doc">
+  {{ partial "sidebar.html" . }}
+  <article class="doc__main">
+    {{ partial "breadcrumb.html" . }}
+    <header class="doc__header">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . | markdownify }}</p>{{ end }}
+      {{ partial "page-meta.html" . }}
+    </header>
+    <div class="prose">{{ .Content }}</div>
+    {{ partial "pager.html" . }}
+  </article>
+  {{ partial "toc.html" . }}
+</div>
+
+{{ else if $isTerm }}
+{{/* Generated ontology term page. The hero card that vfbterms.py emits already
+     carries the name, ID, tags and definition, so the page header is reduced to
+     a title split into label + accession — no sibling nav (a term's section can
+     hold hundreds of thousands of pages) and no repeated description. */}}
+{{ $parts := split .Title " [" }}
+<div class="page">
+  <div class="wrap">
+    {{ partial "breadcrumb.html" . }}
+    <header class="page__header">
+      <h1>
+        {{ index $parts 0 }}
+        {{ if gt (len $parts) 1 }}<span class="term-id">{{ replace (index $parts 1) "]" "" }}</span>{{ end }}
+      </h1>
+      {{ partial "page-meta.html" . }}
+    </header>
+    <div class="prose">{{ .Content }}</div>
+  </div>
+</div>
+
+{{ else }}
+<div class="page">
+  <div class="wrap wrap--narrow">
+    {{ partial "breadcrumb.html" . }}
+    <header class="page__header">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . | markdownify }}</p>{{ end }}
+      {{ partial "page-meta.html" . }}
+    </header>
+    <div class="prose">{{ .Content }}</div>
+    {{ partial "pager.html" . }}
+  </div>
+</div>
+{{ end }}
+{{ end }}

@@ -1,0 +1,51 @@
+{{- $p := .page -}}
+{{- $subs := .subs -}}
+{{- $pages := .pages -}}
+{{- $count := .count -}}
+
+{{ if $subs }}
+<div class="grid" style="margin-top:var(--sp-6)">
+  {{ range $subs }}
+    {{ $n := len .RegularPagesRecursive }}
+    <a class="card reveal" href="{{ .RelPermalink }}">
+      <span class="card__icon"><i class="fas {{ partial "section-icon.html" . }}"></i></span>
+      <h3 class="card__title">{{ .LinkTitle }}</h3>
+      <p class="card__body">{{ .Description | default (.Summary | plainify) | truncate 130 }}</p>
+      {{ if $n }}<span class="card__meta">{{ lang.FormatNumberCustom 0 $n }} page{{ if ne $n 1 }}s{{ end }}</span>{{ end }}
+    </a>
+  {{ end }}
+</div>
+{{ end }}
+
+{{ if .huge }}
+  {{/* Generated term space: listing it is neither possible nor useful. */}}
+  <p class="lede" style="margin-top:var(--sp-6)">
+    This section holds {{ lang.FormatNumberCustom 0 $count }} generated pages.
+    Use <button class="btn btn--sm js-search" type="button">search <kbd>⌘K</kbd></button>
+    or the <a href="{{ $p.Site.Params.app_url }}" target="_blank" rel="noopener">3D browser</a> to reach a specific term.
+  </p>
+{{ else if $pages }}
+  {{ if .dated }}
+    <div class="post-list" style="margin-top:var(--sp-6)">
+      {{ range (sort $pages "Date" "desc") }}
+        <article class="post reveal">
+          <div class="post__date">{{ with .Date }}{{ .Format "02 Jan 2006" }}{{ end }}</div>
+          <div>
+            <h2 class="post__title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+            <p class="post__excerpt">{{ .Description | default (.Summary | plainify) | truncate 220 }}</p>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  {{ else }}
+    <div class="grid" style="margin-top:var(--sp-6)">
+      {{ range (sort $pages "Weight") }}
+        <a class="card reveal" href="{{ .RelPermalink }}">
+          <h3 class="card__title">{{ .LinkTitle }}</h3>
+          <p class="card__body">{{ .Description | default (.Summary | plainify) | truncate 140 }}</p>
+          <span class="card__arrow">Open <i class="fas fa-arrow-right"></i></span>
+        </a>
+      {{ end }}
+    </div>
+  {{ end }}
+{{ end }}

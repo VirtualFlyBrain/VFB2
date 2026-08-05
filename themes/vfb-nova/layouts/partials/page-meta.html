@@ -1,0 +1,14 @@
+{{- $tags := .Params.tags | default slice -}}
+{{- $hasDate := and .Date (not .Date.IsZero) -}}
+{{- if or $tags $hasDate -}}
+<div class="doc__meta">
+  {{- if $hasDate -}}
+    <span class="pill"><i class="far fa-calendar"></i> {{ .Date.Format "02 Jan 2006" }}</span>
+  {{- end -}}
+  {{- with $tags -}}
+    {{- range first 8 . -}}
+      {{- if . }}<span class="pill">{{ . }}</span>{{ end -}}
+    {{- end -}}
+  {{- end -}}
+</div>
+{{- end -}}

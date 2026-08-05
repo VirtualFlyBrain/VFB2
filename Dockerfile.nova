@@ -1,0 +1,16 @@
+# Build the vfb-nova presentation layer.
+#
+#   docker build -f Dockerfile.nova -t vfb-nova .
+#   docker run --rm -p 1313:1313 vfb-nova
+#
+# The standard (non-extended) Hugo image is deliberate: vfb-nova ships plain
+# CSS concatenated by Hugo rather than Sass, so it needs neither the extended
+# edition nor a Dart Sass binary. The existing Dockerfile (klakegg/hugo) is
+# unchanged and still builds the Docsy site.
+FROM ghcr.io/gohugoio/hugo:v0.164.0
+
+WORKDIR /src
+COPY . /src
+
+EXPOSE 1313
+CMD ["server", "--config", "hugo.nova.toml", "--bind", "0.0.0.0", "--port", "1313", "--disableFastRender"]

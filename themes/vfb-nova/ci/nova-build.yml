@@ -1,0 +1,75 @@
+# NOT ACTIVE where it sits. Move it into place to enable:
+#   git mv themes/vfb-nova/ci/nova-build.yml themes/vfb-nova/ci/nova-build.yml
+# It is parked here because the token used to push this branch has no
+# `workflow` scope, and GitHub rejects any push that touches
+# .github/workflows/ without it.
+#
+# Build-only check for the vfb-nova presentation layer.
+#
+# Nothing here deploys. It builds the site with the standard (non-extended)
+# Hugo edition, fails on any warning, greps the output for template markers
+# that escaped rendering, and uploads public/ so the result can be downloaded
+# and opened locally.
+name: nova build
+
+on:
+  push:
+    branches: ["feature/vfb-nova-theme"]
+  pull_request:
+    branches: ["master"]
+    paths:
+      - "themes/vfb-nova/**"
+      - "hugo.nova.toml"
+      - "themes/vfb-nova/ci/nova-build.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.164.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Hugo (standard edition — vfb-nova needs no Sass)
+        run: |
+          curl -sSLo hugo.tar.gz \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.tar.gz"
+          tar xzf hugo.tar.gz hugo
+          sudo install hugo /usr/local/bin/hugo
+          hugo version
+
+      - name: Build
+        run: hugo --config hugo.nova.toml --destination public --printPathWarnings --logLevel warn 2>&1 | tee build.log
+
+      - name: Fail on warnings
+        run: |
+          if grep -qiE "^(WARN|ERROR)" build.log; then
+            echo "::error::Hugo emitted warnings or errors"
+            grep -iE "^(WARN|ERROR)" build.log
+            exit 1
+          fi
+
+      - name: Check for unrendered shortcodes
+        run: |
+          if grep -rlE '\{\{[<%]' public --include='*.html' | grep -q .; then
+            echo "::error::Unrendered shortcode markers in output"
+            grep -rlE '\{\{[<%]' public --include='*.html' | head
+            exit 1
+          fi
+
+      - name: Check key pages exist
+        run: |
+          for p in index.html docs/index.html blog/news/index.html hosted/index.html \
+                   about/index.html 404.html index.json; do
+            test -s "public/$p" || { echo "::error::missing or empty public/$p"; exit 1; }
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vfb-nova-site
+          path: public
+          retention-days: 7

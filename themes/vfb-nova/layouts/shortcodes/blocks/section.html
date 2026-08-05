@@ -1,0 +1,7 @@
+{{- /* blocks/section — Docsy-compatible container. `color` is accepted; "dark"
+     switches to the recessed band treatment. Direct children are usually
+     blocks/feature calls, which emit .card elements, so the inner content is
+     dropped into an auto-fitting grid. */ -}}
+{{- $color := .Get "color" | default "" -}}
+{{- $type := .Get "type" | default "" -}}
+<section class="section {{ if eq $color "dark" }}band{{ end }}"><div class="wrap"><div class="grid {{ if eq $type "row" }}grid--2{{ end }}">{{ .Inner }}</div></div></section>

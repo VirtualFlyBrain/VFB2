@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="wrap oops">
+  <div>
+    <div class="oops__code">404</div>
+    <h1 style="margin-top:1rem">This page isn’t registered to any template.</h1>
+    <p class="lede" style="margin-inline:auto">The address may have moved. Anatomy terms live under
+      <code>/term/</code> and are best reached through search or the 3D browser.</p>
+    <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
+      <button class="btn btn--primary js-search" type="button"><i class="fas fa-magnifying-glass"></i> Search the site</button>
+      <a class="btn" href="{{ "/" | relURL }}">Home</a>
+      <a class="btn" href="{{ "/docs/" | relURL }}">Documentation</a>
+    </div>
+  </div>
+</div>
+{{ end }}

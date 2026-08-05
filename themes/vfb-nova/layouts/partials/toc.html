@@ -1,0 +1,17 @@
+{{- $repo := .Site.Params.github_repo -}}
+{{- $branch := .Site.Params.github_branch | default "master" -}}
+<aside class="doc__toc" aria-label="On this page">
+  {{ with .TableOfContents }}
+    {{ if gt (len .) 60 }}
+      <h4>On this page</h4>
+      <nav>{{ . }}</nav>
+    {{ end }}
+  {{ end }}
+  <div class="doc__aside-actions">
+    {{ if and $repo .File }}
+      <a href="{{ $repo }}/edit/{{ $branch }}/content/en/{{ .File.Path }}" target="_blank" rel="noopener"><i class="fas fa-pen"></i> Edit this page</a>
+      <a href="{{ $repo }}/issues/new?title={{ .Title }}" target="_blank" rel="noopener"><i class="fas fa-bug"></i> Report an issue</a>
+    {{ end }}
+    <a href="#" onclick="window.print();return false"><i class="fas fa-print"></i> Print</a>
+  </div>
+</aside>
