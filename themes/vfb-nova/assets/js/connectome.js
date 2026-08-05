@@ -238,7 +238,9 @@
   /* Negative yaw swings the head towards the camera; 0 is a flat lateral view
      and -pi/2 is head-on. Three-quarter anterior foreshortens the legs, which
      is the angle that stops it reading as a spider. */
-  const VIEW = window.__heroView || { yaw: -1.18, pitch: -0.28, sway: 0.17 };
+  /* yaw pi is the lateral view from the fly's other side, which puts the head on
+     the left; 0 is lateral head-right, negative swings the head to the camera. */
+  const VIEW = window.__heroView || { yaw: Math.PI, pitch: -0.24, sway: 0.16 };
 
   let w = 0, h = 0, dpr = 1, cx = 0, cy = 0, scale = 1;
   let mx = 0, my = 0, tmx = 0, tmy = 0;
@@ -251,9 +253,9 @@
     canvas.width = Math.round(w * dpr);
     canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    cx = w * (VIEW.cx != null ? VIEW.cx : (w > 980 ? 0.62 : 0.5));
-    cy = h * (VIEW.cy != null ? VIEW.cy : (w > 980 ? 0.55 : 0.47));
-    scale = Math.min(w * 0.46, h * 0.95) * (VIEW.zoom != null ? VIEW.zoom : (w > 980 ? 0.84 : 0.62));
+    cx = w * (VIEW.cx != null ? VIEW.cx : (w > 980 ? 0.80 : 0.5));
+    cy = h * (VIEW.cy != null ? VIEW.cy : (w > 980 ? 0.40 : 0.47));
+    scale = Math.min(w * 0.46, h * 0.95) * (VIEW.zoom != null ? VIEW.zoom : (w > 980 ? 0.74 : 0.62));
   }
 
   function frame(time) {

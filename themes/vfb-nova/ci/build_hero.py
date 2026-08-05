@@ -235,7 +235,8 @@ def main():
                          axis_ranks=(1, 0, 2), flip=(2,))
     vnc, vs = fit_into(vnc_raw, seg['thorax'], scale=UM_TO_CM,
                        axis_ranks=(0, 1, 2), flip=(0,),
-                       offset=(-0.008, 0.0, -0.012))
+                       # forward in the thorax, close under the neck connective
+                       offset=(0.014, 0.0, -0.012))
     print('  fitted brain scale %.4f (um->cm implies %.4f)' % (bs, UM_TO_CM))
     print('  fitted vnc   scale %.4f' % vs)
 
