@@ -27,5 +27,14 @@ FROM ghcr.io/gohugoio/hugo:v0.164.0
 USER root
 RUN apk add --no-cache bash rsync findutils
 
+# The upstream image sets HUGO_CACHEDIR=/cache and WORKDIR /project. Both are
+# wrong here and neither can be left to deploy.sh's defaults: the script uses
+# ${HUGO_CACHEDIR:-/tmp/hugo_cache}, which never fires while the image has the
+# variable set, so the cache would land in the container's writable layer
+# instead of the volume mounted at /tmp — discarded every run, and growing host
+# disk in between. Rancher mounts the workspace at /src and the cache at /tmp.
+ENV HUGO_CACHEDIR=/tmp/hugo_cache
+WORKDIR /src
+
 ENTRYPOINT []
 CMD ["/bin/bash", "/src/deploy.sh"]
