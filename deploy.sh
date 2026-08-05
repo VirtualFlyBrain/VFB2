@@ -37,7 +37,22 @@ cd "$SRC"
 
 # ---------------------------------------------------------------- build ------
 rm -rf "$STAGE"
-hugo --gc --minify --destination "$STAGE"
+
+# --noBuildLock, and a stale lock cleared first.
+#
+# Hugo takes an flock on .hugo_build.lock at startup and waits for it forever if
+# it cannot get one — no message, no error, no timeout. The symptom is a build
+# that copies the static files, then hangs: on 2026-08-05 that was ~66 files and
+# 16 MB in the staging tree, a sleeping process at near-zero CPU, and nothing
+# else for as long as anyone cared to wait.
+#
+# The workspace is on NFS, where a lock left behind by an uncleanly killed build
+# survives the process that took it. And the lock guards against a second
+# concurrent build, which cannot happen here: this container is the only builder
+# and Rancher runs it start_once. So it protects nothing and its failure mode is
+# an invisible hang.
+rm -f "$SRC/.hugo_build.lock"
+hugo --noBuildLock --gc --minify --destination "$STAGE"
 
 # ---------------------------------------------------------------- gates ------
 # Never publish an obviously broken build. The term corpus comes from an API
