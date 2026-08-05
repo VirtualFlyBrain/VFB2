@@ -1,3 +1,0 @@
-{{ $mailto := "&#109;&#097;&#105;&#108;&#116;&#111;:" -}}
-{{ $email := index .Site.Data.emails (.Get 0 | default "contact") | default .Site.Data.emails.contact }}
-<a {{ print "href=" $mailto $email | safeHTMLAttr }}>{{ safeHTML $email }}</a>

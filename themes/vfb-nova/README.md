@@ -1,19 +1,20 @@
 # vfb-nova
 
-A second presentation layer for the Virtual Fly Brain static site. It renders
-the existing `content/en` tree — every markdown file, the generated term pages,
-the home page shortcodes — with no content changes and no Docsy.
+The presentation layer for the Virtual Fly Brain static site. It renders the
+existing `content/en` tree — every markdown file, the generated term pages, the
+home page shortcodes — with no content changes and no Docsy.
 
 ## Run it
 
 ```bash
-hugo server --config hugo.nova.toml     # side by side with the current site
-hugo --config hugo.nova.toml            # build to public/
+hugo server     # local preview
+hugo            # build to public/
 ```
 
-`config.toml` is untouched, so the Docsy build keeps working exactly as before.
-The two configs can be built from the same checkout. `Dockerfile.nova` and
-`.github/workflows/nova-build.yml` build and check this config only.
+This replaced the Docsy setup rather than sitting alongside it. Docsy, its
+submodule, the project-level `layouts/` and `assets/scss/` overrides that
+existed only to patch it, `config.toml` and the npm/postcss step are all gone;
+`deploy.sh` is now a single `hugo` invocation.
 
 ## Toolchain
 
@@ -32,14 +33,11 @@ was deprecated in Hugo v0.153.0 and Dart Sass is a separate binary the build
 host would have to install; avoiding both removes the migration and drops the
 extended-edition requirement.
 
-Minimum version is 0.128.0 (`[pagination] pagerSize`). The repo's existing
-`Dockerfile` pins `klakegg/hugo`, which is unmaintained and too old — use
-`Dockerfile.nova` or the workflow instead.
+Minimum version is **0.128.0** (`[pagination] pagerSize`). `Dockerfile` and
+`docker-compose.yaml` pin `ghcr.io/gohugoio/hugo:v0.164.0`; the Rancher `hugo`
+service needs the same, as `rcourt/docsy-builder` predates the minimum.
 
 ### Two config keys that are not optional on current Hugo
-
-Both apply to the Docsy build too, and `config.toml` will need them before it
-can move past Hugo 0.162:
 
 ```toml
 [security]
@@ -48,8 +46,7 @@ can move past Hugo 0.162:
 Hugo ≥ 0.163 refuses `text/html` content files by default. Without this the
 build fails at assembly with `access denied: "text/html" is not whitelisted`.
 
-`cascade._target` was renamed to `cascade.target` in v0.156.0. Both are fixed on
-this branch.
+`cascade._target` was renamed to `cascade.target` in v0.156.0. Both are fixed.
 
 ## Building at scale
 
@@ -88,9 +85,9 @@ Templates are written so that nothing scans the page set per page:
 * **`disableKinds = ["taxonomy", "term"]`.** The generated pages carry tags like
   `Adult` and `Nervous_system`, so `/tags/adult/` would paginate into thousands
   of files nobody browses. Enabling taxonomies costs ~16% more wall time at 40k
-  pages and the penalty grows with the corpus. Comment the line out to restore
-  Docsy's behaviour — `_default/taxonomy.html` and `_default/term.html` are
-  shipped and paginated, so it is safe either way.
+  pages and the penalty grows with the corpus. Comment the line out to enable
+  them — `_default/taxonomy.html` and `_default/term.html` are shipped and
+  paginated, so it is safe either way.
 
 ## Layout map
 
@@ -104,9 +101,10 @@ Templates are written so that nothing scans the page set per page:
 
 ## Shortcodes
 
-Docsy's `blocks/cover`, `blocks/lead`, `blocks/section`, `blocks/feature` and
-`blocks/link-down` are reimplemented with the same parameters, plus the repo's
-own `button` and `email`. Two constraints drove how they are written:
+The content still calls Docsy's `blocks/cover`, `blocks/lead`, `blocks/section`,
+`blocks/feature` and `blocks/link-down`, so they are reimplemented here with the
+same parameters, along with the repo's own `button` and `email`. That is what
+lets Docsy be removed without touching a single content file. Two constraints drove how they are written:
 
 1. They are called with the `{{%…%}}` form, so Hugo hands their output back to
    Goldmark. Goldmark ends an HTML block at the first blank line and does not

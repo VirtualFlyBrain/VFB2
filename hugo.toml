@@ -1,13 +1,12 @@
 # =============================================================================
-# hugo.nova.toml — build the existing VFB2 content with the vfb-nova theme.
+# hugo.toml — the site config.
 #
-#   hugo --config hugo.nova.toml
-#   hugo server --config hugo.nova.toml
+#   hugo server        # local preview
+#   hugo               # build to public/
 #
-# Nothing here touches config.toml, so the current Docsy build is unaffected and
-# the two can be run side by side. The theme is mounted explicitly rather than
-# via `theme =` so that the repo's Docsy-specific layouts/ and assets/ are NOT
-# picked up (project files outrank theme files and would otherwise collide).
+# Replaces the former config.toml + Docsy setup. Docsy, its submodule, the
+# project-level layout and asset overrides that existed only to patch it, and
+# the npm/postcss step are all gone; vfb-nova needs none of them.
 # =============================================================================
 
 baseURL = "https://www.virtualflybrain.org/"
@@ -15,11 +14,12 @@ title = "Virtual Fly Brain"
 locale = "en-gb"          # `languageCode` was deprecated in Hugo v0.158.0
 defaultContentLanguage = "en"
 enableRobotsTXT = true
+theme = "vfb-nova"
 # Taxonomy pages are the single largest build cost on this site: the generated
 # term pages carry tags such as Adult and Nervous_system, so a term page like
 # /tags/adult/ paginates into thousands of files that nobody browses. Comment
-# this line out to restore Docsy's behaviour — _default/taxonomy.html and
-# _default/term.html are shipped and paginated, so it is safe either way.
+# this line out to enable them — _default/taxonomy.html and _default/term.html
+# are shipped and paginated, so it is safe either way.
 disableKinds = ["taxonomy", "term"]
 
 enableGitInfo = false
@@ -28,32 +28,17 @@ timeZone = "Europe/London"
 # Hugo >= 0.163 blocks text/html content files by default
 # (security.allowContent = ['! ^text/html$']). The home page is
 # content/en/_index.html, so the policy has to allow HTML back in.
-# NOTE: config.toml needs the same line before the Docsy build can move past
-# Hugo 0.162.
 [security]
   allowContent = ['^text/html$', '^text/markdown$', '^text/x-org$', '^text/asciidoc$']
 
+# The only mount still needed: content lives under content/en rather than
+# content/. Everything else resolves through the theme.
 [module]
   [[module.mounts]]
     source = "content/en"
     target = "content"
-  [[module.mounts]]
-    source = "static"
-    target = "static"
-  [[module.mounts]]
-    source = "data"
-    target = "data"
-  [[module.mounts]]
-    source = "themes/vfb-nova/layouts"
-    target = "layouts"
-  [[module.mounts]]
-    source = "themes/vfb-nova/assets"
-    target = "assets"
-  [[module.mounts]]
-    source = "themes/vfb-nova/static"
-    target = "static"
 
-# Same permalink scheme as the Docsy build — no URLs change.
+# Unchanged from the previous config — no URLs move.
 [permalinks]
   blog = "/:section/:year/:month/:day/:slug/"
 

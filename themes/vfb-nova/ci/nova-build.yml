@@ -10,11 +10,11 @@
 # Hugo edition, fails on any warning, greps the output for template markers
 # that escaped rendering, and uploads public/ so the result can be downloaded
 # and opened locally.
-name: nova build
+name: site build
 
 on:
   push:
-    branches: ["feature/vfb-nova-theme"]
+    branches: ["master", "feature/vfb-nova-theme"]
   pull_request:
     branches: ["master"]
     paths:
@@ -43,7 +43,7 @@ jobs:
           hugo version
 
       - name: Build
-        run: hugo --config hugo.nova.toml --destination public --printPathWarnings --logLevel warn 2>&1 | tee build.log
+        run: hugo --destination public --printPathWarnings --logLevel warn 2>&1 | tee build.log
 
       - name: Fail on warnings
         run: |

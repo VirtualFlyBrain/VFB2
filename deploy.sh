@@ -1,41 +1,20 @@
-#Copyright 2018 Google LLC
+#!/bin/bash
+# Build the static site into public/.
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Run by the Rancher `hugo` service (start_once), which mounts the Jenkins
+# workspace jenkins_home/workspace/update_vfb_static_site at /src. The output
+# directory is then served read-only by vfb-services-live/vfb-static-site.
 #
-#    https://www.apache.org/licenses/LICENSE-2.0
+# Deliberately does NOT pass --enableGitInfo: hugo.toml sets enableGitInfo=false
+# and the flag would override it. Collecting git metadata across the generated
+# term corpus costs a great deal and nothing in the theme uses it.
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-#
-HUGO_ENV="production"
-
+# The npm/yarn/postcss install and the `hugo mod` calls this script used to
+# carry were Docsy's requirements. vfb-nova has no modules, no node
+# dependencies and no Sass, so a single Hugo invocation is the whole build.
+set -euo pipefail
 set -x
 
+cd /src
 
-
-
-cd /src/
-
-npm install -g npm
-
-npm install --global yarn
-
-npm install --save-dev autoprefixer postcss-cli postcss
-
-cd /src/themes/docsy/ 
-npm install
-
-cd /src/
-
-hugo --enableGitInfo --gc -v
-
-hugo mod clean --all
-
-hugo mod graph
-
-hugo --enableGitInfo --gc -v
+hugo --gc --minify

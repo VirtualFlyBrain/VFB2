@@ -1,12 +1,9 @@
 version: "3.3"
 
 services:
-
   site:
-    image: docsy/docsy-example
-    build:
-      context: .
-    command: server
+    image: ghcr.io/gohugoio/hugo:v0.164.0
+    command: server --bind 0.0.0.0 --port 1313 --disableFastRender
     ports:
       - "1313:1313"
     volumes:
