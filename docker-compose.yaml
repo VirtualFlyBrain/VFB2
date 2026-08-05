@@ -1,9 +1,18 @@
-version: "3.3"
-
+# Local preview only. The nightly build runs the image built from ./Dockerfile;
+# this uses the official Hugo image unmodified because `hugo server` needs
+# neither bash nor rsync.
+#
+#   docker compose up
+#   open http://localhost:1313/
+#
+# The image's ENTRYPOINT is Hugo's own wrapper, so `command:` is Hugo's
+# arguments. Its WORKDIR is /project, hence the explicit working_dir — the
+# source is mounted at /src to match the Rancher build service.
 services:
   site:
     image: ghcr.io/gohugoio/hugo:v0.164.0
     command: server --bind 0.0.0.0 --port 1313 --disableFastRender
+    working_dir: /src
     ports:
       - "1313:1313"
     volumes:
