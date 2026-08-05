@@ -5,7 +5,7 @@ linkTitle: "News"
 weight: 20
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

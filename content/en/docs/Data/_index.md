@@ -7,7 +7,7 @@ description: >
   Types of data and datasets that are available on Virtual Fly Brain.
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

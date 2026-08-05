@@ -10,7 +10,7 @@ Description: >
 ontology: "iao"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

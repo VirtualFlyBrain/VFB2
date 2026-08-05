@@ -10,7 +10,7 @@ Description: >
 ontology: "fb"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

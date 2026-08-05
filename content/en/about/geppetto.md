@@ -7,7 +7,7 @@ description: >
     The ultimate neuroscience platform.
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

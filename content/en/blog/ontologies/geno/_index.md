@@ -10,7 +10,7 @@ Description: >
 ontology: "geno"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 
