@@ -153,7 +153,7 @@ def extents(pts):
     lo, hi = bbox(pts)
     return [hi[i] - lo[i] for i in range(3)]
 
-def fit_into(pts, cavity, fill=0.92, offset=(0.0, 0.0, 0.0)):
+def fit_into(pts, cavity, fill=None, scale=None, offset=(0.0, 0.0, 0.0)):
     """Fit a CNS mesh into a body cavity by matching axes, not by guessing them.
 
     The earlier version hand-picked an axis permutation, which put the brain's
@@ -181,7 +181,8 @@ def fit_into(pts, cavity, fill=0.92, offset=(0.0, 0.0, 0.0)):
     rest_s = [s_order[1], s_order[2]]
     for c, sidx in zip(rest_c, rest_s):
         mapping[c] = sidx
-    scale = min((ce[c] * fill) / se[mapping[c]] for c in range(3) if se[mapping[c]] > 0)
+    if scale is None:
+        scale = min((ce[c] * fill) / se[mapping[c]] for c in range(3) if se[mapping[c]] > 0)
     sc, cc = centre(pts), centre(cavity)
     out = []
     for q in pts:
@@ -210,8 +211,14 @@ def main():
 
     # The brain fills the head capsule; the VNC sits in the ventral thorax, so it
     # takes a smaller share and is pushed down and back a little.
-    brain, bs = fit_into(brain_raw, seg['head'], fill=0.90)
-    vnc, vs = fit_into(vnc_raw, seg['thorax'], fill=0.62,
+    # Size comes from the true micron-to-centimetre conversion, NOT from filling
+    # the cavity. JRC2018Unisex does not include the lamina — the optic lobe in
+    # that template starts at the medulla — so scaling the mesh to fill the head
+    # would push the medulla out to where the lamina and retina actually are.
+    # The gap between the mesh and the eye is correct for what the mesh contains.
+    # fit_into is used only to orient and centre.
+    brain, bs = fit_into(brain_raw, seg['head'], scale=UM_TO_CM)
+    vnc, vs = fit_into(vnc_raw, seg['thorax'], scale=UM_TO_CM,
                        offset=(-0.008, 0.0, -0.012))
     print('  fitted brain scale %.4f (um->cm implies %.4f)' % (bs, UM_TO_CM))
     print('  fitted vnc   scale %.4f' % vs)
