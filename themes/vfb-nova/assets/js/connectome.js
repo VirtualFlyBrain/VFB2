@@ -151,6 +151,15 @@
            60px smudge next to a fly that fills the frame; nothing of the graph
            survives. The body stays at true scale as context. This is a figure
            convention, and it is stated in the theme README. */
+        /* Legs and wings are what makes a side-on fly read as a spider. They
+           are not separated in the bake, so classify them here: the head,
+           thorax and abdomen form a compact tube near the midline, while the
+           appendages swing wide in y or hang below in z. */
+        for (let i = bodyRange[0]; i < bodyRange[1]; i++) {
+          const q = nodes[i];
+          q.limb = (Math.abs(q.y) > 0.30 || q.z < -0.22) ? 1 : 0;
+        }
+
         /* Each structure is enlarged about ITS OWN centroid, not about a
            shared one. Scaling the pair together threw the brain forward out of
            the head; scaling separately keeps each where the bake placed it —
@@ -226,6 +235,11 @@
   }
 
   /* --- render ------------------------------------------------------------- */
+  /* Negative yaw swings the head towards the camera; 0 is a flat lateral view
+     and -pi/2 is head-on. Three-quarter anterior foreshortens the legs, which
+     is the angle that stops it reading as a spider. */
+  const VIEW = window.__heroView || { yaw: -1.18, pitch: -0.28, sway: 0.17 };
+
   let w = 0, h = 0, dpr = 1, cx = 0, cy = 0, scale = 1;
   let mx = 0, my = 0, tmx = 0, tmy = 0;
   const proj = [];
@@ -237,9 +251,9 @@
     canvas.width = Math.round(w * dpr);
     canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    cx = w > 980 ? w * 0.52 : w * 0.5;
-    cy = h * (w > 980 ? 0.50 : 0.44);
-    scale = Math.min(w * 0.46, h * 0.95) * (w > 980 ? 0.80 : 0.62);
+    cx = w > 980 ? w * 0.62 : w * 0.5;
+    cy = h * (w > 980 ? 0.55 : 0.47);
+    scale = Math.min(w * 0.46, h * 0.95) * (w > 980 ? 0.84 : 0.62);
   }
 
   function frame(time) {
@@ -252,8 +266,8 @@
     /* Hold near a lateral view and sway, rather than spinning: side-on is the
        only angle where head, thorax and abdomen — and so brain and VNC — are
        all legible at once. */
-    const ay = 0.34 + Math.sin(t * 0.62) * 0.5 + mx * 0.35;
-    const ax = -0.26 + Math.sin(t * 1.1) * 0.06 + my * 0.22;
+    const ay = VIEW.yaw + Math.sin(t * 0.62) * VIEW.sway + mx * 0.35;
+    const ax = VIEW.pitch + Math.sin(t * 1.1) * 0.06 + my * 0.22;
     const cosY = Math.cos(ay), sinY = Math.sin(ay);
     const cosX = Math.cos(ax), sinX = Math.sin(ax);
 
@@ -276,9 +290,9 @@
       if (nodes[i].k !== 0) continue;
       const p = proj[i];
       const fade = 0.35 + 0.65 * (1 - (p.d + 1) / 2);
-      ctx.globalAlpha = 0.10 + 0.26 * fade;
+      ctx.globalAlpha = (nodes[i].limb ? 0.05 + 0.11 * fade : 0.14 + 0.34 * fade);
       ctx.beginPath();
-      ctx.arc(p.x, p.y, nodes[i].r * p.p * 1.25, 0, 6.283);
+      ctx.arc(p.x, p.y, nodes[i].r * p.p * (nodes[i].limb ? 0.95 : 1.35), 0, 6.283);
       ctx.fill();
     }
     ctx.globalAlpha = 1;
