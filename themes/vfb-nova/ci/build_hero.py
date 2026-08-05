@@ -153,33 +153,33 @@ def extents(pts):
     lo, hi = bbox(pts)
     return [hi[i] - lo[i] for i in range(3)]
 
-def fit_into(pts, cavity, scale=None, fill=None, long_axis=1, narrow_end=None,
+def fit_into(pts, cavity, scale=None, fill=None, axis_ranks=(1, 0, 2),
              flip=(), offset=(0.0, 0.0, 0.0)):
     """Orient, scale and centre a CNS mesh inside a body cavity.
 
-    `long_axis` says which MODEL axis the structure's longest extent belongs on
-    (0 = antero-posterior, 1 = medio-lateral, 2 = dorso-ventral). This cannot be
-    inferred by ranking the cavity, and it differs per structure:
+    `axis_ranks` gives, for each MODEL axis (x = antero-posterior, y =
+    medio-lateral, z = dorso-ventral), which of the structure's extents goes
+    there by rank — 0 being its longest.
 
-      brain  longest extent IS medio-lateral (580 x 259 x 159 um)  -> 1
-      VNC    longest extent is antero-posterior (422 x 177 x 127)  -> 0
+      brain  580 x 259 x 159 um   (1, 0, 2)
+             longest is medio-lateral -> y; next antero-posterior -> x;
+             shortest dorso-ventral -> z
+      VNC    422 x 177 x 127 um   (0, 1, 2)
+             longest runs head-to-abdomen -> x; next left/right -> y;
+             flattest towards the back and wings -> z
 
-    Pinning the VNC's longest axis to the midline, as an earlier version did,
-    rotated it 90 degrees: the leg neuromeres ended up stacked across the body
-    instead of running along it.
+    Nothing is inferred from the cavity. Two earlier bugs came from ranking the
+    cavity's extents to decide the remaining axes: the head is 905 vs 913 um and
+    the thorax 0.1060 vs 0.1077 cm in the relevant pairs, so both were settled on
+    a hair's breadth, and both settled wrongly — the brain ended up on its side
+    and the VNC flat-side-on.
 
-    `narrow_end` is (model_axis, sign): the end of that axis where the structure
-    is narrowest medio-laterally. Both structures taper, and both tapers are
-    anatomically identifiable, so this resolves the remaining sign ambiguity
-    without hand-tuning. See the comment at the flip for which is which.
+    `flip` mirrors the given model axes after placement, for the sign ambiguities
+    that no extent can resolve.
     """
     se, ce = extents(pts), extents(cavity)
-    s_order = sorted(range(3), key=lambda i: -se[i])       # structure axes, widest first
-    others_m = [a for a in (0, 1, 2) if a != long_axis]    # remaining model axes
-    others_m.sort(key=lambda i: -ce[i])                    # widest cavity axis first
-    mapping = {long_axis: s_order[0]}
-    for m, sidx in zip(others_m, s_order[1:]):
-        mapping[m] = sidx
+    s_order = sorted(range(3), key=lambda i: -se[i])       # structure axes, longest first
+    mapping = {m: s_order[r] for m, r in enumerate(axis_ranks)}
 
     if scale is None:
         scale = min((ce[c] * fill) / se[mapping[c]] for c in range(3) if se[mapping[c]] > 0)
@@ -189,34 +189,6 @@ def fit_into(pts, cavity, scale=None, fill=None, long_axis=1, narrow_end=None,
     for q in pts:
         v = [q[i] - sc[i] for i in range(3)]
         out.append([v[mapping[c]] * scale + cc[c] + offset[c] for c in range(3)])
-
-    if narrow_end:
-        # Orient along `axis` by shape, not by guesswork. Both structures taper
-        # in MEDIO-LATERAL width towards one end, and in both cases that narrow
-        # end is anatomically identifiable:
-        #   VNC   the abdominal neuromere is narrow; the three leg neuromeres
-        #         bulge out towards their leg pairs.  narrow end -> posterior
-        #   brain the gnathal/suboesophageal region is narrow; the dorsal brain
-        #         spans the full width of the optic lobes.  narrow end -> ventral
-        # Measured on the outer 30% at each end, because the taper is terminal.
-        axis, want = narrow_end
-        vals = sorted(q[axis] for q in out)
-        lo_cut, hi_cut = vals[int(len(vals) * 0.30)], vals[int(len(vals) * 0.70)]
-        def ml_width(group):
-            if not group:
-                return 0.0
-            return sum(abs(q[1] - cc[1] - offset[1]) for q in group) / len(group)
-        w_lo = ml_width([q for q in out if q[axis] <= lo_cut])
-        w_hi = ml_width([q for q in out if q[axis] >= hi_cut])
-        narrow_is_low = w_lo < w_hi
-        want_low = want < 0
-        flip = narrow_is_low != want_low
-        if flip:
-            pivot = cc[axis] + offset[axis]
-            for q in out:
-                q[axis] = 2 * pivot - q[axis]
-        print('    ml width  low=%.5f high=%.5f  -> %s' % (
-            w_lo, w_hi, 'flipped' if flip else 'kept'))
 
     for axis in flip:
         pivot = cc[axis] + offset[axis]
@@ -253,17 +225,16 @@ def main():
     # The gap between the mesh and the eye is correct for what the mesh contains.
     # fit_into is used only to orient and centre.
     # Brain: widest axis is medio-lateral; gnathal region narrow and ventral.
-    # Dorso-ventral is flipped explicitly rather than inferred. The medio-lateral
-    # taper test does not separate the two ends reliably here (0.0101 vs 0.0139),
-    # and Robbie confirmed by eye that the brain was inverted: the central complex
-    # V must point ventrally. Shape statistics are the wrong tool for this — the
-    # principled fix is to derive the axes from VFB's own painted domains on the
-    # template (antennal lobe ventro-anterior, calyx dorso-posterior), which
-    # removes the guesswork for both structures. See README.
-    brain, bs = fit_into(brain_raw, seg['head'], scale=UM_TO_CM, long_axis=1,
-                         flip=(2,))
-    # VNC: long axis runs antero-posteriorly, abdominal neuromere at the back.
-    vnc, vs = fit_into(vnc_raw, seg['thorax'], scale=UM_TO_CM, long_axis=0,
+    # Signs are set by inspection, not inferred: the medio-lateral taper test I
+    # tried separates neither structure reliably (brain 0.0101 vs 0.0139, VNC
+    # 0.00298 vs 0.00303). Confirmed against the reference figures — the central
+    # complex V points ventrally, and the abdominal neuromere sits posteriorly.
+    # The durable fix is to derive both from VFB's own painted domains on each
+    # template rather than from shape statistics. See README.
+    brain, bs = fit_into(brain_raw, seg['head'], scale=UM_TO_CM,
+                         axis_ranks=(1, 0, 2), flip=(2,))
+    vnc, vs = fit_into(vnc_raw, seg['thorax'], scale=UM_TO_CM,
+                       axis_ranks=(0, 1, 2), flip=(0,),
                        offset=(-0.008, 0.0, -0.012))
     print('  fitted brain scale %.4f (um->cm implies %.4f)' % (bs, UM_TO_CM))
     print('  fitted vnc   scale %.4f' % vs)
