@@ -22,7 +22,10 @@
 {{ end }}
 
 <section class="hero">
-  <canvas id="connectome" aria-hidden="true"></canvas>
+  {{/* Baked by build_hero.py: flybody body silhouette + VFB JRC2018Unisex
+       brain and JRC2018UnisexVNC meshes, voxel-downsampled to int16 points. */}}
+  {{ $geo := resources.Get "data/hero-geometry.json" | fingerprint }}
+  <canvas id="connectome" aria-hidden="true" data-geometry="{{ $geo.RelPermalink }}"></canvas>
   <div class="wrap">
     <div class="hero__grid">
       <div class="hero__main">
