@@ -10,7 +10,7 @@ Description: >
 ontology: "zp"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

@@ -10,7 +10,7 @@ Description: >
   An ontology for the description of Drosophila melanogaster phenotypes.
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

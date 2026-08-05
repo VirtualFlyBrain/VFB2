@@ -8,7 +8,7 @@ menu:
     weight: 20
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 description: "By maintaining these archives, VFB ensures that valuable scientific resources remain accessible to researchers even after the original sites become unavailable."
 ---

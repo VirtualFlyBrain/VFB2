@@ -10,7 +10,7 @@ Description: >
 ontology: "obi"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

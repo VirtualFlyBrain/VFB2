@@ -1,0 +1,38 @@
+{{- /* Client-side search index for the ⌘K palette.
+
+     Built by walking the hand-authored sections explicitly rather than
+     filtering .Site.RegularPages. The generated term corpus is orders of
+     magnitude larger than everything else here, so a site-wide `where` would
+     scan the whole page set to throw almost all of it away — and the terms
+     belong in the 3D browser's search, not in a JSON file the visitor
+     downloads.
+
+     Add a section name here to make it searchable. */ -}}
+{{- $roots := slice "/docs" "/about" "/hosted" "/blog/news" "/blog/releases" -}}
+{{- $pinned := slice "/docs/" "/docs/overview/" "/docs/tutorials/" "/docs/apis/" "/hosted/" "/blog/news/" "/about/whatisvfb/" "/about/citeus/" -}}
+{{- $out := slice -}}
+
+{{- range $roots -}}
+  {{- with site.GetPage . -}}
+    {{- $out = $out | append (dict
+        "title" .LinkTitle "url" .RelPermalink "section" .Section
+        "desc" (.Description | plainify | truncate 120 | chomp)
+        "body" "" "pinned" (in $pinned .RelPermalink)) -}}
+    {{- range .Sections -}}
+      {{- $out = $out | append (dict
+          "title" .LinkTitle "url" .RelPermalink "section" .Section
+          "desc" (.Description | plainify | truncate 120 | chomp)
+          "body" "" "pinned" (in $pinned .RelPermalink)) -}}
+    {{- end -}}
+    {{- range .RegularPagesRecursive -}}
+      {{- if not .Params.content -}}
+        {{- $out = $out | append (dict
+            "title" .LinkTitle "url" .RelPermalink "section" .Section
+            "desc" (.Description | default (.Summary | plainify) | truncate 120 | chomp)
+            "body" (.Plain | truncate 900 | chomp)
+            "pinned" (in $pinned .RelPermalink)) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $out | jsonify -}}

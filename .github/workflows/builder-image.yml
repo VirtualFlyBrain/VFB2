@@ -1,0 +1,90 @@
+# NOT ACTIVE where it sits. Move it into place to enable:
+#   git mv themes/vfb-nova/ci/builder-image.yml .github/workflows/builder-image.yml
+# Parked here because the token used to push this branch has no `workflow`
+# scope, and GitHub rejects any push touching .github/workflows/ without it.
+# Pushing from a checkout with normal credentials has no such problem.
+#
+# Until it is moved, virtualflybrain/vfb-static-builder DOES NOT EXIST and the
+# Rancher service has nothing to pull. This has to happen before the switchover.
+#
+# Publishes the image the Rancher build service runs. It lives here, next to
+# deploy.sh, because deploy.sh is what dictates the image's contents — bash,
+# rsync and findutils are in the Dockerfile for its sake. Splitting the two
+# across repos is how rcourt/docsy-builder:Feb2023 ended up frozen on a floating
+# base tag for two years.
+#
+# Uses the org-level Docker Hub secrets (DOCKER_HUB_USER / DOCKER_HUB_PASSWORD),
+# which vfb-status and vfbquery already use to publish into the virtualflybrain
+# namespace. Docker Hub creates the repository on first push.
+name: builder image
+
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - "Dockerfile"
+      - "deploy.sh"
+      - ".github/workflows/builder-image.yml"
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: virtualflybrain/vfb-static-builder
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=tag
+            type=sha,format=short
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      # Tests the first tag this run actually pushed. The previous version
+      # tested :latest, which metadata-action only emits on the default branch,
+      # so a tag-triggered run would have failed on an image that did not exist.
+      #
+      # Pin the Rancher service to the sha- tag printed at the end, not :latest.
+      - name: Smoke test the published image
+        env:
+          TAGS: ${{ steps.meta.outputs.tags }}
+        run: |
+          set -euo pipefail
+          image=$(printf '%s\n' "$TAGS" | head -n1)
+          echo "testing $image"
+          docker run --rm --entrypoint hugo "$image" version
+          docker run --rm --entrypoint /bin/sh "$image" -c '
+            set -e
+            command -v bash
+            command -v rsync
+            command -v find
+            test "$HUGO_CACHEDIR" = /tmp/hugo_cache
+            test "$(pwd)" = /src
+            test "$(id -u)" = 0
+          '
+          echo "pushed tags:"
+          printf '%s\n' "$TAGS"

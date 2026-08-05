@@ -1,0 +1,57 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{ hugo.Generator }}
+<title>{{ if .IsHome }}{{ .Site.Title }} — {{ .Site.Params.tagline | default "Drosophila neuroanatomy, imaging and connectomics" }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+
+{{/* Branch rather than `default`: Go templates evaluate every argument, so
+     `.Description | default (.Summary | ...)` extracts a summary for every page
+     even when the front matter already has a description. Across the generated
+     term corpus that is hundreds of thousands of needless summary extractions. */}}
+{{ $desc := "" }}
+{{ if .Description }}{{ $desc = .Description }}
+{{ else if .Summary }}{{ $desc = .Summary | plainify | truncate 180 }}
+{{ else }}{{ $desc = .Site.Params.description }}{{ end }}
+{{ $desc = $desc | plainify | chomp }}
+<meta name="description" content="{{ $desc }}">
+{{ with .Params.canonicalUrl }}<link rel="canonical" href="{{ . }}">{{ else }}<link rel="canonical" href="{{ .Permalink }}">{{ end }}
+{{ range .AlternativeOutputFormats -}}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+{{ end -}}
+
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:title" content="{{ .Title | default .Site.Title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/favicons/favicon.ico">
+
+{{/* Theme is applied before first paint so there is no light-to-dark flash. */}}
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('vfb-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.classList.add('js');
+    } catch (e) {}
+  })();
+</script>
+
+{{ partialCached "head-assets.html" . }}
+
+{{/* jQuery surface used by the ontology pages' inline OLS widget. Gated on a
+     front-matter key, not a content scan, so it costs one map lookup per page. */}}
+{{ if .Params.ontology }}{{ partialCached "script-shim.html" . }}{{ end }}
+
+<link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin-wght-normal.woff2" crossorigin>
+
+{{/* Font Awesome is self-hosted rather than pulled from cdnjs: one less
+     third-party request, and nothing to declare in the cookie policy. */}}
+<link rel="stylesheet" href="{{ "/fa/css/all.min.css" | relURL }}">
+
+{{ if and hugo.IsProduction .Site.Config.Services.GoogleAnalytics.ID }}
+{{ template "_internal/google_analytics.html" . }}
+{{ end }}

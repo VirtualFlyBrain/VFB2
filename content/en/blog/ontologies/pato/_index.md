@@ -10,7 +10,7 @@ Description: >
 ontology: "pato"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

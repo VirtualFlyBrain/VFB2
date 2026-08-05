@@ -1,0 +1,225 @@
+/* ==========================================================================
+   top navigation
+   ========================================================================== */
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--nav-h);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  transition: background .3s var(--ease), border-color .3s var(--ease), backdrop-filter .3s;
+  border-bottom: 1px solid transparent;
+}
+.nav.is-stuck {
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: saturate(160%) blur(16px);
+  -webkit-backdrop-filter: saturate(160%) blur(16px);
+  border-bottom-color: var(--line-soft);
+}
+
+.nav__inner {
+  width: min(100% - 2.5rem, calc(var(--wrap) + 120px));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 650;
+  letter-spacing: -.02em;
+  font-size: 1.06rem;
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+.brand:hover { color: var(--text); text-decoration: none; }
+.brand__mark {
+  width: 30px; height: 30px;
+  display: grid; place-items: center;
+  border-radius: 9px;
+  background: var(--grad-brand);
+  box-shadow: var(--glow);
+}
+.fly-glyph {
+  display: block;
+  width: 21px;
+  height: 12px;
+  background: var(--bg);
+  -webkit-mask: url("/images/vfb-fly.svg") no-repeat center / contain;
+  mask: url("/images/vfb-fly.svg") no-repeat center / contain;
+}
+.brand__sub {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-top: 1px;
+  font-weight: 400;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+  margin-left: auto;
+  list-style: none;
+  padding: 0;
+}
+.nav__link {
+  padding: .5rem .85rem;
+  border-radius: var(--r-pill);
+  color: var(--text-dim);
+  font-size: .93rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color .2s var(--ease), background .2s var(--ease);
+}
+.nav__link:hover, .nav__link.is-active {
+  color: var(--text);
+  background: var(--surface);
+  text-decoration: none;
+}
+
+.nav__tools { display: flex; align-items: center; gap: .5rem; }
+
+.icon-btn {
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color .2s, border-color .2s, transform .2s var(--ease);
+}
+.icon-btn:hover { color: var(--text); border-color: var(--brand); transform: translateY(-1px); }
+
+.search-trigger {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .45rem .6rem .45rem .8rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: .86rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  min-width: 190px;
+  transition: border-color .2s, color .2s;
+}
+.search-trigger:hover { border-color: var(--brand); color: var(--text-dim); }
+.search-trigger kbd {
+  margin-left: auto;
+  font-size: .7rem;
+  padding: .15rem .38rem;
+  border-radius: 5px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+.nav__burger { display: none; }
+
+@media (max-width: 1080px) {
+  .search-trigger { min-width: 0; }
+  .search-trigger span { display: none; }
+  .search-trigger kbd { display: none; }
+}
+@media (max-width: 760px) {
+  .nav__inner { gap: var(--sp-3); }
+  .nav__tools .btn--primary { display: none; }
+  .brand__sub { display: none; }
+  .brand { font-size: 1rem; }
+}
+@media (max-width: 900px) {
+  .nav__links {
+    position: fixed;
+    inset: var(--nav-h) 0 auto 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--sp-4) 1.25rem var(--sp-6);
+    background: var(--elev-1);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow-2);
+    transform: translateY(-120%);
+    visibility: hidden;
+    opacity: 0;
+    transition: transform .38s var(--ease), opacity .25s var(--ease), visibility .38s;
+  }
+  .nav__links.is-open { transform: none; visibility: visible; opacity: 1; }
+  .nav__link { padding: .85rem .6rem; font-size: 1.02rem; }
+  .nav__burger { display: grid; }
+}
+
+/* --- reading progress --------------------------------------------------- */
+.progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0;
+  z-index: 95;
+  background: var(--grad-brand);
+  transition: width .1s linear;
+}
+
+/* --- footer ------------------------------------------------------------- */
+.footer {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--sp-8);
+  padding: var(--sp-8) 0 var(--sp-6);
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr);
+  gap: var(--sp-6);
+}
+@media (max-width: 860px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .footer__grid { grid-template-columns: 1fr; } }
+
+.footer h4 {
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--sp-4);
+}
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.footer a { color: var(--text-dim); font-size: .92rem; }
+.footer a:hover { color: var(--cyan); }
+.footer__legal {
+  margin-top: var(--sp-7);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  align-items: center;
+  justify-content: space-between;
+  font-size: .82rem;
+  color: var(--muted);
+}
+.footer__social { display: flex; gap: .5rem; }
+.footer__social a {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+}
+.footer__social a:hover { border-color: var(--brand); color: var(--text); background: var(--surface); }

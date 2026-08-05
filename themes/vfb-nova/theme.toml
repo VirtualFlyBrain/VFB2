@@ -1,0 +1,7 @@
+name = "VFB Nova"
+license = "MIT"
+description = "A modern, dark-first presentation layer for the Virtual Fly Brain static site. Drop-in for the existing content tree: no content changes, no Bootstrap, no Docsy."
+homepage = "https://github.com/VirtualFlyBrain/VFB2"
+min_version = "0.128.0"
+tags = ["documentation", "science", "dark", "docs"]
+features = ["command palette search", "docs sidebar", "dark/light", "canvas hero"]

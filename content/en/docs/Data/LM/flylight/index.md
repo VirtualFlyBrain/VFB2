@@ -7,7 +7,7 @@ description: >
     The FlyLight Project produces large anatomical data sets and highly characterized collections of GAL4, LexA and Split-GAL4 drivers in order to enable the visualization and precise manipulation of individual cell types in the Drosophila nervous system.
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

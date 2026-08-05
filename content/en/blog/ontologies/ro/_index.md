@@ -10,7 +10,7 @@ Description: >
 ontology: "ro"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

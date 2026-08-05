@@ -1,0 +1,43 @@
+{{ define "main" }}
+{{/* Section size is measured before anything is filtered or sorted. The
+     ontology sections hold the generated term corpus; running `where` over
+     them would cost a full scan on every list page. */}}
+{{ $count := len .RegularPagesRecursive }}
+{{ $huge := gt $count 400 }}
+{{ $pages := slice }}
+{{ if not $huge }}{{ $pages = where .RegularPages "Params.content" "==" nil }}{{ end }}
+
+{{ $withNav := in (slice "docs" "about" "hosted") .Section }}
+{{ $subs := .Sections.ByWeight }}
+{{ $dated := and (gt (len $pages) 0) (in (slice "news" "releases" "blog") .Section) }}
+{{ $ctx := dict "page" . "subs" $subs "pages" $pages "dated" $dated "huge" $huge "count" $count }}
+
+{{ if $withNav }}
+<div class="doc">
+  {{ partial "sidebar.html" . }}
+  <article class="doc__main">
+    {{ partial "breadcrumb.html" . }}
+    <header class="doc__header">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . | markdownify }}</p>{{ end }}
+    </header>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    {{ partial "list-body.html" $ctx }}
+  </article>
+  {{ partial "toc.html" . }}
+</div>
+
+{{ else }}
+<div class="page">
+  <div class="wrap">
+    {{ partial "breadcrumb.html" . }}
+    <header class="page__header">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . | markdownify }}</p>{{ end }}
+    </header>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    {{ partial "list-body.html" $ctx }}
+  </div>
+</div>
+{{ end }}
+{{ end }}
