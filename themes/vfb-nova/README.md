@@ -13,8 +13,31 @@ hugo            # build to public/
 
 This replaced the Docsy setup rather than sitting alongside it. Docsy, its
 submodule, the project-level `layouts/` and `assets/scss/` overrides that
-existed only to patch it, `config.toml` and the npm/postcss step are all gone;
-`deploy.sh` is now a single `hugo` invocation.
+existed only to patch it, `config.toml` and the npm/postcss step are all gone.
+
+## Publishing
+
+`deploy.sh` builds to a staging directory and rsyncs into the served one; it
+never writes into `public/` directly. A full run over the term corpus takes
+minutes, `public/` is live traffic, and a theme change rewrites every page — so
+building in place would serve a mixture of old and new markup, with
+fingerprinted asset URLs that may not exist yet, for the whole window.
+
+`rsync -a --delete-after` replaces pages one at a time and defers removals to
+the end, so nothing is ever missing mid-run. A directory swap is not available:
+`public/` is bind-mounted into the nginx container, which holds the old inode
+and would not follow a rename.
+
+Two gates run before anything is published: `index.html` and `sitemap.xml` must
+be non-empty, and the build is rejected if it has more than 10% fewer pages than
+the live site. The term corpus comes from an API that can fail partially, so a
+sudden shrink is far more likely to be a bad `vfbterms.py` run than a real
+deletion. `ALLOW_SHRINK=1` overrides it when a drop is genuine.
+
+Tunable by environment: `STAGE_DIR` (default `/tmp/build`, the cache volume),
+`RSYNC_OPTS`, `HUGO_CACHEDIR`. Adding `--checksum` to `RSYNC_OPTS` avoids
+rewriting pages whose content has not changed, at the cost of reading both
+trees — likely worth it once most nightly term pages are identical.
 
 ## Toolchain
 
