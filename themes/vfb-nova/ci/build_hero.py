@@ -149,15 +149,45 @@ def assemble_body():
     return pts, seg_pts
 
 # ----------------------------------------------------------------- CNS pieces
-def place(pts, axis_map, signs, scale, target_centre):
-    """Reorder VFB image axes onto the model's (x=anterior, y=lateral, z=dorsal)
-    frame, scale microns to centimetres, then centre on a body segment."""
-    c = centre(pts)
+def extents(pts):
+    lo, hi = bbox(pts)
+    return [hi[i] - lo[i] for i in range(3)]
+
+def fit_into(pts, cavity, fill=0.92, offset=(0.0, 0.0, 0.0)):
+    """Fit a CNS mesh into a body cavity by matching axes, not by guessing them.
+
+    The earlier version hand-picked an axis permutation, which put the brain's
+    604 um medio-lateral axis onto a head axis about 500 um across, so it burst
+    out of the head. Instead: rank both the structure's and the cavity's extents,
+    pair widest-with-widest, and scale so the structure fills `fill` of the
+    cavity. In a fly the brain occupies most of the head capsule, so a fill close
+    to 1 is the anatomically right answer, not a fudge.
+
+    Returns the placed points. Signs are resolved by keeping each axis's original
+    direction; the structures are near-symmetric about the midline so a mirror in
+    the medio-lateral axis is not detectable.
+    """
+    se, ce = extents(pts), extents(cavity)
+    s_order = sorted(range(3), key=lambda i: -se[i])   # structure axes, widest first
+
+    # The medio-lateral axis is not a matter of ranking: the model is bilaterally
+    # symmetric about y, so y IS medio-lateral. The head capsule is near-square
+    # in its other two axes (905 vs 913 um), so ranking alone would decide the
+    # brain's orientation on a coin toss and could stand it on its side. Pin the
+    # structure's widest axis — medio-lateral for both brain and VNC — to y, then
+    # rank the remaining two.
+    mapping = {1: s_order[0]}
+    rest_c = sorted([0, 2], key=lambda i: -ce[i])
+    rest_s = [s_order[1], s_order[2]]
+    for c, sidx in zip(rest_c, rest_s):
+        mapping[c] = sidx
+    scale = min((ce[c] * fill) / se[mapping[c]] for c in range(3) if se[mapping[c]] > 0)
+    sc, cc = centre(pts), centre(cavity)
     out = []
-    for p in pts:
-        v = [(p[i] - c[i]) * scale for i in range(3)]
-        out.append(tuple(signs[i] * v[axis_map[i]] + target_centre[i] for i in range(3)))
-    return out
+    for q in pts:
+        v = [q[i] - sc[i] for i in range(3)]
+        out.append(tuple(v[mapping[c]] * scale + cc[c] + offset[c] for c in range(3)))
+    return out, scale
 
 def main():
     print('assembling fly body …')
@@ -171,23 +201,20 @@ def main():
         if seg[s]:
             print('  %-8s centroid %s' % (s, [round(x, 4) for x in centre(seg[s])]))
 
-    head_c = centre(seg['head'])
-    thorax_c = centre(seg['thorax'])
+    brain_raw = voxel_downsample(load_obj(MESHES / 'VFB_00101567.obj'), 1600)
+    vnc_raw = voxel_downsample(load_obj(MESHES / 'VFB_00200000.obj'), 900)
+    print('  brain extents um', [round(x) for x in extents(brain_raw)])
+    print('  vnc   extents um', [round(x) for x in extents(vnc_raw)])
+    print('  head  extents cm', [round(x, 4) for x in extents(seg['head'])])
+    print('  thorax extents cm', [round(x, 4) for x in extents(seg['thorax'])])
 
-    brain_raw = voxel_downsample(load_obj(MESHES / 'VFB_00101567.obj'), 1100)
-    vnc_raw = voxel_downsample(load_obj(MESHES / 'VFB_00200000.obj'), 620)
-    print('  brain pts', len(brain_raw), 'bbox µm', [round(x) for x in bbox(brain_raw)[1]])
-    print('  vnc   pts', len(vnc_raw), 'bbox µm', [round(x) for x in bbox(vnc_raw)[1]])
-
-    # VFB image axes → model axes.
-    #   brain: x = medio-lateral, y = antero-posterior, z = dorso-ventral
-    #   model: x = antero-posterior (head at +x), y = lateral, z = dorsal
-    brain = place(brain_raw, axis_map=(1, 0, 2), signs=(-1, 1, -1),
-                  scale=UM_TO_CM, target_centre=head_c)
-    # The VNC sits in the thorax, running antero-posteriorly and tilted ventrally.
-    vnc = place(vnc_raw, axis_map=(1, 0, 2), signs=(-1, 1, -1),
-                scale=UM_TO_CM,
-                target_centre=(thorax_c[0] - 0.004, thorax_c[1], thorax_c[2] - 0.012))
+    # The brain fills the head capsule; the VNC sits in the ventral thorax, so it
+    # takes a smaller share and is pushed down and back a little.
+    brain, bs = fit_into(brain_raw, seg['head'], fill=0.90)
+    vnc, vs = fit_into(vnc_raw, seg['thorax'], fill=0.62,
+                       offset=(-0.008, 0.0, -0.012))
+    print('  fitted brain scale %.4f (um->cm implies %.4f)' % (bs, UM_TO_CM))
+    print('  fitted vnc   scale %.4f' % vs)
 
     # ---- normalise everything into one frame centred on the body -------------
     allpts = body + brain + vnc

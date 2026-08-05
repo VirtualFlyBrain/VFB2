@@ -170,7 +170,7 @@
 
            The enlargement is a figure convention: at true relative scale the
            brain is ~1/6 of body length and resolves to a smudge. See README. */
-        const CNS_SCALE = 2.0;
+        const CNS_SCALE = 1.0;   /* the brain fills the head at true scale — see README */
         const grow = (from, to, pull) => {
           let sx = 0, sy = 0, sz = 0, n = 0;
           for (let i = from; i < to; i++) { sx += nodes[i].x; sy += nodes[i].y; sz += nodes[i].z; n++; }
@@ -184,14 +184,14 @@
           }
         };
         /* pull the two towards each other so the connective stays short */
-        grow(brainRange[0], brainRange[1], -0.06);
-        grow(vncRange[0], vncRange[1], 0.04);
+        grow(brainRange[0], brainRange[1], 0);
+        grow(vncRange[0], vncRange[1], 0);
 
         edges = [];
         /* Link radii are in the normalised frame and sit just above mean point
            spacing: too large and the graph collapses into a smear. */
-        buildEdges(brainRange[0], brainRange[1], 0.021 * CNS_SCALE, 2);
-        buildEdges(vncRange[0], vncRange[1], 0.034 * CNS_SCALE, 3);
+        buildEdges(brainRange[0], brainRange[1], 0.020, 3);
+        buildEdges(vncRange[0], vncRange[1], 0.026, 3);
         /* neck connective: nearest pairs between the two structures */
         for (let i = brainRange[0]; i < brainRange[1]; i += 37) {
           let best = -1, bd = 1e9;
@@ -290,7 +290,7 @@
       if (nodes[i].k !== 0) continue;
       const p = proj[i];
       const fade = 0.35 + 0.65 * (1 - (p.d + 1) / 2);
-      ctx.globalAlpha = (nodes[i].limb ? 0.05 + 0.11 * fade : 0.14 + 0.34 * fade);
+      ctx.globalAlpha = (nodes[i].limb ? 0.05 + 0.10 * fade : 0.22 + 0.48 * fade);
       ctx.beginPath();
       ctx.arc(p.x, p.y, nodes[i].r * p.p * (nodes[i].limb ? 0.95 : 1.35), 0, 6.283);
       ctx.fill();
