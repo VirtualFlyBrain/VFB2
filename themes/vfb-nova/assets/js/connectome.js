@@ -251,9 +251,9 @@
     canvas.width = Math.round(w * dpr);
     canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    cx = w > 980 ? w * 0.62 : w * 0.5;
-    cy = h * (w > 980 ? 0.55 : 0.47);
-    scale = Math.min(w * 0.46, h * 0.95) * (w > 980 ? 0.84 : 0.62);
+    cx = w * (VIEW.cx != null ? VIEW.cx : (w > 980 ? 0.62 : 0.5));
+    cy = h * (VIEW.cy != null ? VIEW.cy : (w > 980 ? 0.55 : 0.47));
+    scale = Math.min(w * 0.46, h * 0.95) * (VIEW.zoom != null ? VIEW.zoom : (w > 980 ? 0.84 : 0.62));
   }
 
   function frame(time) {
