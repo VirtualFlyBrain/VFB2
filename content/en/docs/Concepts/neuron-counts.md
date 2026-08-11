@@ -9,8 +9,7 @@ description: >
 ---
 
 *Every figure on this page was checked against its primary paper. Where a figure could
-not be verified from the original, it is marked. The machine-readable version of this
-page is published at [/data/fly-neuron-counts.json](/data/fly-neuron-counts.json).*
+not be verified from the original, it is marked.*
 
 ## The short answer
 

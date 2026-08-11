@@ -3,7 +3,7 @@
   "id": "fly-neuron-counts",
   "title": "How many neurons are in the fly brain?",
   "compiled": "2026-08-11",
-  "article": "/docs/concepts/neuron-counts/",
+  "article": "outputs/reports/how-many-neurons-in-the-fly-brain.md",
   "review_status": "draft-for-curator-review",
   "answer_rules": [
     "There is no single species-level neuron count. Do not give one.",
@@ -397,5 +397,40 @@
       "Berg2025_technique": "Technique reads 'serial block face SEM (SBFSEM)'. The paper describes enhanced focused ion beam SEM (eFIB-SEM), 8x8x8 nm isotropic. Likely a metadata error."
     }
   },
-  "canonical_url": "https://www.virtualflybrain.org/data/fly-neuron-counts.json"
+  "service_fundamentals": {
+    "$comment": "The most basic facts about what VFB is about. Added 11 Aug 2026 after 'what fly is this?' / 'that VFB is on?' produced a clarification loop and then a failed run: the service had no way to answer the single most fundamental question about itself.",
+    "species": {
+      "name": "Drosophila melanogaster",
+      "common_names": [
+        "the fruit fly",
+        "the vinegar fly",
+        "the fly"
+      ],
+      "answer": "Virtual Fly Brain is about Drosophila melanogaster — the fruit fly. Every anatomical term, image, connectome and expression record in VFB describes this one species.",
+      "nomenclature": "Italicise the binomial in prose: *Drosophila melanogaster*. VFB ontology labels never contain 'Drosophila', 'melanogaster' or 'fly' — that is why those words are stripped before a term search (lib/curatedNeuronCounts.mjs and stripSpeciesWords in lib/orchestrator.mjs)."
+    },
+    "what_vfb_covers": "Adult, larval and embryonic stages; both sexes. Anatomy is organised by the Drosophila anatomy ontology (FBbt), with individual specimens, images and connectome reconstructions attached to ontology classes.",
+    "no_single_specimen": "VFB is not 'on' one fly. It aggregates many specimens across many datasets, aligned to shared template brains. Any question of the form 'which fly is VFB on?' should be answered that way, then narrowed: a specific dataset IS one specimen, and those are listed under connectomes above with their sex, stage and imaging technique.",
+    "template_brains": {
+      "$comment": "Aligned images are registered to template brains, which is what makes data from different specimens comparable. Observed in VFB dataset records on 11 Aug 2026; the full template list was NOT enumerated and should be verified before publishing a complete list.",
+      "observed": [
+        {
+          "id": "VFB_00101567",
+          "label": "JRC2018U",
+          "seen_in": "FlyWire and hemibrain aligned images"
+        },
+        {
+          "id": "VFB_00101384",
+          "label": "JRCFIB2018Fum",
+          "seen_in": "hemibrain aligned images"
+        }
+      ],
+      "verified": "partial"
+    },
+    "answer_rules": [
+      "'What fly is VFB on?' is answered by naming the species first — Drosophila melanogaster — and only then by explaining that VFB aggregates many specimens rather than describing one animal.",
+      "Never answer a species question with a request for clarification. The species is the one fact that never needs disambiguating.",
+      "If the user then asks about a specific specimen, route to the connectomes list, where each entry names its sex, stage, technique and paper."
+    ]
+  }
 }
