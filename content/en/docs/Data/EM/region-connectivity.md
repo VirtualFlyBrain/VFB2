@@ -27,11 +27,30 @@ neuron's synapse counts in each region as edges from the neuron to the correspon
 side-specific (`part_of` a body side), left/right is carried by the target region and does
 not need to be stored on the edge.
 
-Only regions that resolve to a loaded region individual are included. A dataset's
-higher-level grouping ROIs (neuprint super-ROIs such as `SNP(R)` or `INP`), the
-fine-grained optic-lobe columns, and FlyWire's unassigned bucket (`UNASGD`) are **not**
-emitted as regional-connectivity edges, because their synapses are already counted at the
-parent neuropil they belong to (counting both would double-count).
+A neuron gets an edge for **every** region that resolves to a loaded region
+individual. ROIs with no loaded individual are dropped — e.g. the fine-grained
+optic-lobe columns (thousands of `ME/LO/LOP` columns that have no individual),
+FlyWire's unassigned bucket (`UNASGD`), and neuprint's `NotPrimary` pseudo-ROI —
+and are flagged in the build's ROI-mapping report.
+
+### Counts are multi-level (nested), not a single partition
+
+The region individuals VFB loads span **several nesting levels** — coarse grouping
+neuropils (e.g. `SNP`, `INP`, `CX`), the primary neuropils within them (e.g.
+`SLP`, `SIP`, `AL`), and finer subdivisions (antennal-lobe glomeruli,
+mushroom-body lobe slices, fan-shaped-body layers, ellipsoid-body domains). A
+region-connectivity edge is emitted at **every** level that has a loaded
+individual, and the counts are **nested**: a synapse is counted at its finest
+region **and** at each of its ancestors, so a parent region's count equals the
+sum of its children (for example `AL(R)`'s `upstream` equals the sum over its
+glomeruli). This mirrors how the source data (neuprint's `roiInfo`) reports
+counts at every level of the ROI hierarchy.
+
+This makes the tallies **multi-resolution rather than a sum-safe partition**: they
+are correct *per region* at whichever granularity you query, but **summing across
+nested regions double-counts** the shared synapses. Consumers that need a
+non-overlapping total should pick a single level (e.g. the primary neuropils)
+rather than adding a parent and its children together.
 
 ## Representation
 
