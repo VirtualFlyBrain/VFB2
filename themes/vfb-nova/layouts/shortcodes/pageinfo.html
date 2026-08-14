@@ -1,0 +1,9 @@
+{{/*
+  Docsy's `pageinfo`, for the same reason as alert.html: legacy generated pages
+  call it, and a missing shortcode template is a hard build error rather than a
+  warning. Shipped pre-emptively so the next orphan does not cost another build.
+*/}}
+{{- $color := .Get "color" | default "info" -}}
+<div class="pageinfo pageinfo-{{ $color }} alert alert-{{ $color }}" role="note">
+{{ .Inner | markdownify }}
+</div>
