@@ -106,3 +106,35 @@
   background: var(--surface);
   translate: 0 -.15em;
 }
+
+/* --------------------------------------------------------------------------
+   Bootstrap `alert`, for the legacy Docsy shortcodes reimplemented in
+   layouts/shortcodes/{alert,pageinfo}.html. Superseded term pages call them,
+   and without a template the whole build fails; without these rules they
+   would render as unstyled text. Uses the theme's own tokens rather than
+   Bootstrap's palette so they sit with the rest of the page.
+   -------------------------------------------------------------------------- */
+.prose .alert {
+  display: block;
+  padding: var(--sp-4) var(--sp-5);
+  margin: var(--sp-5) 0;
+  border: 1px solid var(--line);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--elev-1);
+}
+.prose .alert > :first-child { margin-top: 0; }
+.prose .alert > :last-child { margin-bottom: 0; }
+.prose .alert-heading {
+  margin: 0 0 var(--sp-2);
+  font-size: 1rem;
+  font-weight: 600;
+}
+.prose .alert-primary,
+.prose .alert-info    { border-left-color: rgba(76, 141, 255, .7); }
+.prose .alert-success { border-left-color: rgba(64, 192, 128, .7); }
+.prose .alert-warning { border-left-color: rgba(230, 168, 64, .7); }
+.prose .alert-danger  { border-left-color: rgba(230, 96, 96, .7); }
+.prose .alert-secondary,
+.prose .alert-light,
+.prose .alert-dark    { border-left-color: var(--line); }
