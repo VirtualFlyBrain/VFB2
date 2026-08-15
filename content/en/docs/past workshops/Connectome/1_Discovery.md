@@ -23,7 +23,7 @@ This is designed as an interactive tutorial. Feel free to add code cells below e
 
 ### How to find neurons across datasets
 
-VirtualFlyBrain integrates images and connectomics profiles of neurons from many sources.  It classifies and records their properties using a standard, queryable classification ([The Drosophila Anatomy Ontology](https://www.ebi.ac.uk/ols/ontologies/fbbt)). This standardises the names of neuron types across sources, so you don't need to worry about differences in nomenclature uses and supports queries for neurons by their classification. 
+VirtualFlyBrain integrates images and connectomics profiles of neurons from many sources.  It classifies and records their properties using a standard, queryable classification ([The Drosophila Anatomy Ontology](https://www.ebi.ac.uk/ols4/ontologies/fbbt)). This standardises the names of neuron types across sources, so you don't need to worry about differences in nomenclature uses and supports queries for neurons by their classification. 
 
 
 ```python
