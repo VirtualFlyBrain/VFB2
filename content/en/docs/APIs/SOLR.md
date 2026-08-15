@@ -1,7 +1,7 @@
 ---
 title: "SOLR Search API"
 linkTitle: "SOLR API"
-weight: 4
+weight: 608
 date: 2024-01-13
 description: >
   The SOLR Search API provides fast text search and autocomplete functionality for VFB entities, datasets, and publications.

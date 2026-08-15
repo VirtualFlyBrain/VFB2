@@ -1,6 +1,6 @@
 ---
 title: "VFB Model Context Protocol (MCP) Tool Guide"
-weight: 1
+weight: 402
 date: 2026-02-07
 series: ["Tutorials"]
 description: >

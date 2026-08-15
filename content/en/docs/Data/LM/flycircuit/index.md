@@ -1,7 +1,7 @@
 ---
 title: "FlyCircuit — Chiang lab"
 linkTitle: "FlyCircuit"
-weight: 40
+weight: 516
 tags: ["FlyCircuit","single_neuron","Chiang","NBLAST"]
 description: >
     Single-neuron images from the FlyCircuit collection, produced in the Chiang lab.

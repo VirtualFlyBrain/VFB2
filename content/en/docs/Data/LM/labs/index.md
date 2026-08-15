@@ -1,7 +1,7 @@
 ---
 title: "Contributing laboratories"
 linkTitle: "Contributing labs"
-weight: 55
+weight: 520
 tags: ["Expression_pattern","single_neuron","clone","lineage","dataset"]
 description: >
     Light microscopy datasets deposited directly by the laboratory that produced them, rather than through an imaging facility.

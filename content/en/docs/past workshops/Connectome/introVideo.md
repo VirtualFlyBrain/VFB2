@@ -1,7 +1,7 @@
 ---
 title: "Introduction to connectomic data and tools"
 date: 2021-05-04
-weight: 4
+weight: 1002
 series: ["API"]
 alias: ["/docs/tutorials/connectome/"]
 categories: [connectome,python,workshop,tutorials]

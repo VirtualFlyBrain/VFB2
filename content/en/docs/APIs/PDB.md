@@ -1,7 +1,7 @@
 ---
 title: "Production Database (PDB) API"
 linkTitle: "PDB API"
-weight: 1
+weight: 602
 date: 2024-01-13
 description: >
   The VFB Production Database (PDB) is a Neo4j graph database containing integrated neuroanatomical data from multiple sources.

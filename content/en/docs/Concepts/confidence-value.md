@@ -1,5 +1,6 @@
 ---
 title: "Confidence Values"
+weight: 308
 linkTitle: "Confidence Values"
 categories: ["help"]
 tag: ["GO", "classification"]

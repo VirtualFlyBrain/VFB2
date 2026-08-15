@@ -3,7 +3,7 @@ title: "Split Driver Expression Patterns"
 linkTitle: "Split Driver Expression"
 categories: ["overview","help"]
 tags: ["Split","Expression_pattern","transgene","FlyLight"]
-weight: 30
+weight: 314
 description: >
   Split driver expression patterns in Virtual Fly Brain.
 ---

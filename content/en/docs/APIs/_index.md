@@ -2,7 +2,7 @@
 ---
 title: "VFB APIs"
 linkTitle: "VFB APIs"
-weight: 15
+weight: 600
 date: 2017-01-05
 description: >
   All available VFB APIs and underlying schemas.

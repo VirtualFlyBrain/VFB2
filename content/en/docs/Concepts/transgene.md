@@ -3,7 +3,7 @@ title: "Curation of Transgene Expression in VFB"
 linkTitle: "Transgene Expression Curation"
 categories: ["overview","help"]
 tags: ["Expression_pattern","transgene","FlyLight"]
-weight: 20
+weight: 312
 description: >
   Details of the curation procedure for transgene expression patterns.
 ---
