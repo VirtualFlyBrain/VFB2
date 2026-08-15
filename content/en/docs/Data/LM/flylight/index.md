@@ -33,11 +33,12 @@ Also see [FlyLight Imaging Tile Documentation](/docs/concepts/flylight_tiles/).
 
 ## Datasets
 
-These are the datasets whose images carry a FlyLight or Janelia source cross-reference in
-VFB, or whose description names Janelia as the source. They fall into three kinds: the
-Generation 1 GMR enhancer-fragment collection with its MCFO single-neuron derivatives, the
-per-paper split-GAL4 sets characterised in individual publications, and larval material
-from the Truman flip-out collection.
+These are the datasets produced through the FlyLight project or otherwise sourced at
+Janelia, identified from the FlyLight and Janelia source cross-references carried by their
+images, from the dataset description, or from the release paper. They fall into three
+kinds: the Generation 1 GMR enhancer-fragment collection with its MCFO single-neuron
+derivatives, the per-paper split-GAL4 sets characterised in individual publications, and
+larval material from the Truman flip-out collection.
 
 | Dataset | Contents | Records in VFB |
 |---|---|---|
@@ -63,6 +64,7 @@ from the Truman flip-out collection.
 | [SplitSchretter2020](http://virtualflybrain.org/reports/SplitSchretter2020) | Split-GAL4 lines from Schretter et al., 2020 | 61 |
 | [SplitBogovic2020](http://virtualflybrain.org/reports/SplitBogovic2020) | Split-GAL4 lines from Bogovic et al., 2020 | 52 |
 | [SplitEhrhardt2023](http://virtualflybrain.org/reports/SplitEhrhardt2023) | Split-GAL4 lines from Ehrhardt et al., 2023 | 33 |
+| [FlyLight2019Strother2017](http://virtualflybrain.org/reports/FlyLight2019Strother2017) | Splits targetting the visual motion pathway, Strother2017 | 32 |
 | [AsoRubin2016](http://virtualflybrain.org/reports/AsoRubin2016) | split-GAL4 lines for dopaminergic neurons (AsoRubin2016) | 30 |
 | [FlyLight2019Wolff2018](http://virtualflybrain.org/reports/FlyLight2019Wolff2018) | Splits targetting CX neurons, Wolff2018 | 21 |
 | [SplitVogt2016](http://virtualflybrain.org/reports/SplitVogt2016) | Split-GAL4 lines from Vogt et al., 2016 | 21 |
@@ -99,11 +101,17 @@ from the Truman flip-out collection.
 | [FlyLight2019Klapoetke2017](http://virtualflybrain.org/reports/FlyLight2019Klapoetke2017) | Split-GAL4 lines from Klapoetke et al. 2017 | 1 |
 | [FlyLight2019Robie2017](http://virtualflybrain.org/reports/FlyLight2019Robie2017) | split-GAL4 lines for EB neurons (Robie2017) | 1 |
 | [SplitTurner_Evans2017](http://virtualflybrain.org/reports/SplitTurner_Evans2017) | Split-GAL4 lines from Turner-Evans et al., 2017 | 1 |
+| [FlyLight2019Hampel2015](http://virtualflybrain.org/reports/FlyLight2019Hampel2015) | Grooming neurons and drivers (Hampel 2015) | none loaded |
+| [Gen1MCFOJovanic2019](http://virtualflybrain.org/reports/Gen1MCFOJovanic2019) | MCFO images of GMR-GAL4 lines from Jovanic et al., 2019 | none loaded |
 | [LateralHorn2019](http://virtualflybrain.org/reports/LateralHorn2019) | FlyLight split-GAL4 lines for Lateral Horn | none loaded |
 
 Records are the individuals VFB holds from each dataset — whole expression patterns,
 fragments and single neurons. Where a row reads *none loaded*, the dataset record exists
 and is linkable but no images have been loaded into VFB.
+
+Datasets from Janelia laboratories that were deposited directly rather than through the
+FlyLight project are listed under
+[Contributing laboratories](/docs/data/lm/labs/).
 
 VT lines are listed under [VDRC](/docs/data/lm/vdrc/), including the subset re-imaged
 through the FlyLight pipeline.
