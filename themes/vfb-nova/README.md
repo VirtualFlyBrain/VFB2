@@ -41,7 +41,8 @@ trees — likely worth it once most nightly term pages are identical.
 
 ## Toolchain
 
-Verified on **Hugo 0.164.0, standard edition** — zero warnings, zero errors.
+Verified on **Hugo 0.122.0 extended** (what production runs) — zero warnings,
+zero errors. Also builds clean on 0.164.0 standard.
 Output is byte-identical between the standard and extended editions.
 
 | | |
@@ -56,9 +57,16 @@ was deprecated in Hugo v0.153.0 and Dart Sass is a separate binary the build
 host would have to install; avoiding both removes the migration and drops the
 extended-edition requirement.
 
-Minimum version is **0.128.0** (`[pagination] pagerSize`). `Dockerfile` and
-`docker-compose.yaml` pin `ghcr.io/gohugoio/hugo:v0.164.0`; the Rancher `hugo`
-service needs the same, as `rcourt/docsy-builder` predates the minimum.
+Minimum version is **0.122.0**, which is what production runs. `Dockerfile` pins
+`HUGO_VERSION=0.122.0` deliberately: per-page filesystem cost rose at v0.123.0,
+which rewrote page assembly, and the term corpus is read over NFS from a
+Synology. Do not raise it without measuring that first.
+
+Two config keys follow from that pin rather than from taste. `paginate = 100`
+rather than `[pagination] pagerSize` — the pagination block arrived at v0.128.0.
+`languageCode` rather than `locale` — `locale` arrived at v0.158.0. Both are the
+newer spelling everywhere else in the Hugo docs; on 0.122 the newer spelling is
+silently ignored.
 
 ### Two config keys that are not optional on current Hugo
 
