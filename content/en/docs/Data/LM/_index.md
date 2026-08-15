@@ -40,28 +40,27 @@ pattern can be scored for overlap against any region or neuron.
 ## Data providers
 
 VFB holds 125 light microscopy datasets. Each is grouped below by where its images were
-produced, which VFB records either through the source cross-references carried by the
-images or in the dataset's own description. Follow a provider for the full list of its
-datasets.
+produced. For the large collections that is recorded in VFB, through the source
+cross-references carried by the images or the dataset's own description; for the
+directly-deposited sets it was established by reading the cited paper.
 
 | Provider | What it contributes | Datasets | Records in VFB |
 |---|---|---|---|
-| [Janelia FlyLight](/docs/data/lm/flylight/) | The Generation 1 GMR GAL4/LexA collection, its MCFO single-neuron derivatives, the Truman larval flip-out collection, and the per-paper split-GAL4 sets | 59 | 72,325 |
+| [Janelia FlyLight](/docs/data/lm/flylight/) | The Generation 1 GMR GAL4/LexA collection, its MCFO single-neuron derivatives, the Truman larval flip-out collection, and the per-paper split-GAL4 sets | 62 | 72,357 |
 | [VDRC](/docs/data/lm/vdrc/) | The Dickson lab VT enhancer-fragment collection, imaged at VDRC and re-imaged at Janelia | 3 | 23,395 |
 | [FlyCircuit](/docs/data/lm/flycircuit/) | Single neurons from the Chiang lab collection, one neuron per image | 1 | 16,127 |
+| [Contributing laboratories](/docs/data/lm/labs/) | Lineage clone sets, *fru* clones and single-study collections deposited directly by the lab that produced them | 12 | 1,048 |
 | [BrainTrap](/docs/data/lm/braintrap/) | Protein-trap expression patterns in the adult brain | 1 | 501 |
-| [Source not recorded](/docs/data/lm/other/) | Lineage and clone sets, direct lab deposits, and the per-paper split-GAL4 sets with no images loaded | 52 | 1,080 |
+| [No images loaded](/docs/data/lm/other/) | Dataset records whose split combinations are searchable but whose imagery is not held by VFB | 37 | none |
 | [Templates and painted domains](/docs/data/templates/) | Reference templates and the neuropil domains drawn onto them | 9 | 865 |
 
 Records are the individuals VFB holds from a dataset — expression patterns, fragments,
 single neurons or painted domains. They count what VFB has loaded, not what a collection
 contains at source.
 
-The 52 datasets under *Source not recorded* hold only 1,080 records between them. That
-grouping reflects a gap in VFB's own metadata rather than anything about the images: a
-dataset lands there when neither its images nor its description name a source, which
-includes every dataset whose record exists but whose images have not been loaded. Those
-are flagged individually on that page.
+Every dataset that holds images has an attributed source. The 37 under *No images loaded*
+are dataset records without imagery: their split combinations are recorded as FlyBase
+features and are searchable, but there is no image data to attribute.
 
 Citations are recorded on each dataset's own page on VFB rather than repeated here, so
 that they stay correct if a record is updated. Cite the original study, not VFB, when you
