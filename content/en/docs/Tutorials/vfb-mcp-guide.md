@@ -1,6 +1,6 @@
 ---
 title: "VFB Model Context Protocol (MCP) Tool Guide"
-weight: 1
+weight: 402
 date: 2026-02-07
 series: ["Tutorials"]
 description: >
@@ -25,60 +25,38 @@ The VFB MCP tool is available at: **[vfb3-mcp.virtualflybrain.org](https://vfb3-
 
 The easiest way to use VFB3-MCP is through our hosted service. This requires no installation or setup on your machine.
 
-##### Claude Desktop Setup
+The server speaks MCP over **streamable HTTP** at
+`https://vfb3-mcp.virtualflybrain.org`. There is no API key and no account to create. Every client
+below needs the same two facts — that URL and the HTTP transport — so if your client is not listed,
+those are what to give it.
 
-1. Open Claude Desktop and go to Settings
-2. Navigate to the MCP section
-3. Add a new MCP server with these settings:
-   - Server Name: `virtual-fly-brain` (or any name you prefer)
-   - Type: HTTP
-   - Server URL: `https://vfb3-mcp.virtualflybrain.org`
+Client menus and config formats change faster than this page can track. Where a client offers a
+first-class command or UI for adding a remote MCP server, use that in preference to hand-editing
+configuration, and follow the client's own current documentation if the steps below have drifted.
 
-Configuration JSON (alternative method):
+##### Claude Desktop
 
-```json
-{
-  "mcpServers": {
-    "virtual-fly-brain": {
-      "type": "http",
-      "url": "https://vfb3-mcp.virtualflybrain.org",
-      "tools": ["*"]
-    }
-  }
-}
+Add it as a custom connector: **Settings → Connectors → Add custom connector**, then give the name
+`virtual-fly-brain` and the URL `https://vfb3-mcp.virtualflybrain.org`. Remote MCP servers are added
+through Connectors; `claude_desktop_config.json` is for locally-run servers and is not the route for
+this one.
+
+##### Claude Code
+
+One command, from any directory:
+
+```bash
+claude mcp add --transport http virtual-fly-brain https://vfb3-mcp.virtualflybrain.org
 ```
 
-##### Claude Code Setup
+Add `--scope user` to make it available in every project rather than the current one. Check it
+registered with `claude mcp list`. Editing `~/.claude.json` by hand also works but is easy to get
+wrong and is not needed.
 
-1. Locate your Claude configuration file:
-   - macOS/Linux: `~/.claude.json`
-   - Windows: `%USERPROFILE%\.claude.json`
-2. Add the VFB3-MCP server to your configuration:
+##### VS Code and GitHub Copilot
 
-```json
-{
-  "mcpServers": {
-    "virtual-fly-brain": {
-      "type": "http",
-      "url": "https://vfb3-mcp.virtualflybrain.org",
-      "tools": ["*"]
-    }
-  }
-}
-```
-
-3. Restart Claude Code for changes to take effect
-
-##### GitHub Copilot Setup
-
-1. Open VS Code with GitHub Copilot installed
-2. Open Settings (`Ctrl/Cmd + ,`)
-3. Search for "MCP" in the settings search
-4. Find the MCP Servers setting
-5. Add the server URL: `https://vfb3-mcp.virtualflybrain.org`
-6. Give it a name like "Virtual Fly Brain"
-
-Alternative JSON configuration (in `mcp.json`):
+Run **MCP: Add Server** from the Command Palette, choose the HTTP option, and give the same name and
+URL. This writes an `mcp.json` for you:
 
 ```json
 {
@@ -91,46 +69,33 @@ Alternative JSON configuration (in `mcp.json`):
 }
 ```
 
-##### Visual Studio Code (with MCP Extension)
+##### Other MCP clients
 
-1. Install the MCP extension for VS Code from the marketplace
-2. Open the Command Palette (`Ctrl/Cmd + Shift + P`)
-3. Type "MCP: Add server" and select it
-4. Choose "HTTP" as the server type
-5. Enter the server details:
-   - Name: `virtual-fly-brain`
-   - URL: `https://vfb3-mcp.virtualflybrain.org`
-6. Save and restart VS Code if prompted
-
-##### Other MCP Clients
-
-For any MCP-compatible client that supports HTTP servers:
+Most clients take a block of this shape. Consult your client's documentation for the exact key names
+— `type`, `transport` and `url` are spelled differently across implementations.
 
 ```json
 {
   "mcpServers": {
     "virtual-fly-brain": {
       "type": "http",
-      "url": "https://vfb3-mcp.virtualflybrain.org",
-      "tools": ["*"]
+      "url": "https://vfb3-mcp.virtualflybrain.org"
     }
   }
 }
 ```
 
-##### Gemini Setup
+##### Gemini and other models without built-in MCP support
 
-To use the Virtual Fly Brain (VFB) Model Context Protocol (MCP) server with Google Gemini, you can connect through custom Python/Node.js clients that support MCP.
+There is no MCP support in the Gemini web interface, so you connect from your own code: use the
+`mcp` Python package to open a streamable-HTTP session against the VFB URL, call `list_tools()`, and
+pass the returned schemas to the model as function declarations. The same pattern works for any
+model with function calling — the MCP client does the transport, and the model only ever sees tool
+schemas.
 
-Note: Direct Gemini web interface integration with MCP is not currently supported. Developer tools are needed to connect the two.
-
-Option 1: Using Python
-
-For application development, use the `mcp` and `google-genai` libraries to connect.
-
-Setup: `pip install google-genai mcp`
-
-Implementation: Use an `SSEClientTransport` to connect to the VFB URL, list its tools, and pass their schemas to the Gemini model as Function Declarations.
+```bash
+pip install google-genai mcp
+```
 
 #### Testing the Connection
 
@@ -165,7 +130,15 @@ If you prefer to run the MCP server locally, see the [VFB3-MCP repository README
 
 ## Core Features
 
-The tool provides access to three main capabilities:
+The server exposes a set of tools covering search, term lookup, connectivity and the precomputed
+queries behind the VFB website. The three below are the ones you will use most; the server's own
+page at [vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/) lists the full set as
+deployed, which is the authoritative source if this page has fallen behind.
+
+Connectivity is worth calling out because the examples further down rely on it: `query_connectivity`
+answers "what connects to this neuron" directly, and `list_connectome_datasets` gives the dataset
+symbols you need to include or exclude a connectome from that query. Ask your assistant in plain
+language and it will pick the tool; you do not need to name them.
 
 ### 1. **Term Information Queries** (`get_term_info`)
 

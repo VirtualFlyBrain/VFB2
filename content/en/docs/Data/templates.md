@@ -2,7 +2,7 @@
 title: "Templates"
 linkTitle: "Templates"
 tags: [fly brain atlas,Template,Synaptic_neuropil]
-weight: 100
+weight: 524
 description: >-
       Reference templates used on Virtual Fly Brain and the painted domains/regions available in each.
 ---

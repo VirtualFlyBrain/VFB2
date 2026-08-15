@@ -5,7 +5,7 @@ title: "Search and Query Tools on VFB"
 linkTitle: "Search and Query"
 description: >
   Text search and query tools and how to explore the 3D images.
-weight: 20
+weight: 202
 ---
 
 VFB integrates data curated from the literature with image data from many sources. Searches and queries can be used to explore this data.

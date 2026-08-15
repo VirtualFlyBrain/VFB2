@@ -1,5 +1,6 @@
 ---
 title: "FlyLight Adult CNS Imaging Tiles"
+weight: 302
 linkTitle: "FlyLight Imaging Tiles"
 categories: ["help"]
 tag: ["FlyLight","Expression_pattern"]

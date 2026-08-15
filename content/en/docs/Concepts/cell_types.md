@@ -1,5 +1,6 @@
 ---
 title: "Cell Types"
+weight: 306
 linkTitle: "Cell Types"
 categories: ["overview","help"]
 tag: ["FBbt", "Anatomy", "Ontology", "Typing", "Classification", "Class"]

@@ -1,6 +1,6 @@
 ---
 title: "Exploring Neurons in Navis"
-weight: 110
+weight: 422
 series: ["API"]
 alias: ["/docs/tutorials/1_datatypes/"]
 date: 2021-12-27

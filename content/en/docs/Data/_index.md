@@ -1,7 +1,7 @@
 ---
 title: "Data on VFB"
 linkTitle: "Data"
-weight: 9
+weight: 500
 date: 2026-08-15
 description: >
   Types of data and datasets that are available on Virtual Fly Brain.

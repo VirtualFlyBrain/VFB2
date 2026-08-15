@@ -1,7 +1,7 @@
 ---
 title: "Connectivity Data"
 linkTitle: "Connectivity"
-weight: 3
+weight: 504
 date: 2026-08-15
 tags: ["connectome","EM","connectivity"]
 description: >-

@@ -1,5 +1,5 @@
 ---
-title: Archived sites hosted by Virtual Fly Brain
+title: Sites hosted by Virtual Fly Brain
 linkTitle: Hosted Sites
 tags: [sites,hosted]
 categories: [how to cite]
@@ -10,6 +10,16 @@ cascade:
 - type: "docs"
   target:
     path: "/**"
-description: "By maintaining these archives, VFB ensures that valuable scientific resources remain accessible to researchers even after the original sites become unavailable."
+description: "Data viewers and databases that VFB runs — archives of resources whose original hosts went offline, alongside instances hosted here because VFB serves the dataset."
 ---
+VFB runs a number of sites and CATMAID instances in addition to the main knowledge base. They fall
+into two kinds.
 
+**Archives.** Several are resources whose original hosts have gone offline, which VFB keeps
+available so that the data behind published work does not disappear — in some cases VFB is the only
+remaining public copy.
+
+**Active instances.** Others are current, hosted here because VFB is where the dataset is being
+served from. The larva1099 eFIB-SEM volume is the most recent of these.
+
+Each site has its own page below, with what it contains, how to open it and how to cite it.

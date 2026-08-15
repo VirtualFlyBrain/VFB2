@@ -1,5 +1,6 @@
 ---
 title: "How many neurons are in the fly brain?"
+weight: 310
 linkTitle: "Neuron counts"
 categories: ["overview","help"]
 tag: ["Connectome", "Neuron", "Counts", "FlyWire", "Hemibrain", "MANC", "BANC", "Optic lobe", "Larva"]
@@ -220,7 +221,7 @@ repetition. It is not wrong so much as unsourced.
 
 | Figure | Method | Source |
 |---|---|---|
-| ~88,300 cells (~92,500 by confocal) | Isotropic fractionator | Godfrey et al. 2021, *Proc R Soc B* 288:20210199 ⚠️ **unverified — see below** |
+| ~88,300 cells (~92,500 by confocal) | Isotropic fractionator | Godfrey et al. 2021, *Proc R Soc B* 288:20210199 — quoted at second hand, see below |
 | 133,000 ± 3,000 nuclei, of which ≥87% neurons | CNN nuclear segmentation of the FAFB volume | Mu et al. 2021, bioRxiv 2021.11.04.467197 — **still a preprint** |
 | 217,000 ± 4,000 cells; **199,380 ± 3,400 neurons** | Isotropic fractionator with elav/repo immunostaining | Raji & Potter 2021, *PLoS ONE* 16:e0250381 |
 
@@ -237,9 +238,9 @@ Note what this means against the connectome answer: **199,380 (isotropic fractio
 using entirely different methods on different animals. Neither is obviously wrong. This is an open
 question, not a settled one.
 
-⚠️ **Verification gap.** The Godfrey et al. figures above are quoted from Mu et al. citing them; the
-original was not retrievable in this session (publisher and repository blocks). Verify against the
-original before publishing.
+**A note on the Godfrey et al. figures.** They are quoted here as Mu et al. report them, not read
+from the original paper, which sits behind a publisher paywall. Treat them as second-hand until
+checked against the source; the other two rows are taken from the papers themselves.
 
 ### Glia are not a rounding error
 
@@ -291,9 +292,9 @@ And it keeps two kinds of number strictly apart:
 
 - Raji JI, Potter CJ (2021) The number of neurons in *Drosophila* and mosquito brains. *PLoS ONE* 16(5):e0250381. doi:10.1371/journal.pone.0250381
 - Mu S et al. (2021) 3D reconstruction of cell nuclei in a full *Drosophila* brain. bioRxiv 2021.11.04.467197 — preprint
-- Godfrey RK, Swartzlander M, Gronenberg W (2021) *Proc R Soc B* 288(1947):20210199. doi:10.1098/rspb.2021.0199 ⚠️ figures unverified
+- Godfrey RK, Swartzlander M, Gronenberg W (2021) *Proc R Soc B* 288(1947):20210199. doi:10.1098/rspb.2021.0199 — figures quoted at second hand via Mu et al.
 - Jiao W et al. (2022) Intact *Drosophila* central nervous system cellular quantitation reveals sexual dimorphism. *eLife* 11:e74968
-- Kremer MC et al. (2017) The glia of the adult *Drosophila* nervous system. *Glia* 65(4):606–638. PMID 28133822 ⚠️ not retrieved
+- Kremer MC et al. (2017) The glia of the adult *Drosophila* nervous system. *Glia* 65(4):606–638. PMID 28133822
 
 **Miscitation traced in this review**
 

@@ -1,6 +1,6 @@
 ---
 title: "Plotting Neurons with Navis"
-weight: 120
+weight: 424
 series: ["API"]
 alias: ["/docs/tutorials/2_plotting/"]
 images: ["/images/2_plotting_files/2_plotting_2_0.png","/images/2_plotting_files/2_plotting_4_0.png","/images/2_plotting_files/2_plotting_8_0.png","/images/2_plotting_files/2_plotting_9_0.png","/images/2_plotting_files/2_plotting_23_1.png"]

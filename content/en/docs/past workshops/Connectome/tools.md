@@ -1,6 +1,6 @@
 ---
 title: "Tool landscape"
-weight: 4
+weight: 1004
 series: ["API"]
 date: 2021-12-27
 categories: [connectome,python,workshop,tutorials]
@@ -72,7 +72,7 @@ of the workshop.
 
 ### NBLAST
 NBLAST is an algorithm that computes morphological similarity between neurons
-([Costa et al., 2016](https://www.cell.com/neuron/fulltext/S0896-6273(16)30265-3?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0896627316302653%3Fshowall%3Dtrue)). This has proven incredibly useful to find similar
+([Costa et al., 2016](https://doi.org/10.1016/j.neuron.2016.06.012)). This has proven incredibly useful to find similar
 neurons across datasets but also to cluster neurons into cell types.
 
 On the R side the algorithm is implemented in
