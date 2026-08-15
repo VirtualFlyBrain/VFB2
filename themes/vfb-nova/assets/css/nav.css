@@ -223,3 +223,14 @@
   color: var(--text-dim);
 }
 .footer__social a:hover { border-color: var(--brand); color: var(--text); background: var(--surface); }
+
+/* Attribution for the hero body model. Apache-2.0 requires the notice to be
+   distributed with the work, and an HTML comment is not that. Sits in the legal
+   row, sized down so it reads as a credit rather than navigation. */
+.footer__credit {
+  font-size: .78rem;
+  color: var(--muted);
+  flex: 1 1 22rem;
+  min-width: 0;
+}
+.footer__credit a { font-size: inherit; }

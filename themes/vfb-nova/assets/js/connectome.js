@@ -292,9 +292,14 @@
       if (nodes[i].k !== 0) continue;
       const p = proj[i];
       const fade = 0.35 + 0.65 * (1 - (p.d + 1) / 2);
-      ctx.globalAlpha = (nodes[i].limb ? 0.05 + 0.10 * fade : 0.22 + 0.48 * fade);
+      /* Raised from 0.05/0.22 base. At the original values the silhouette read
+         as scattered dust rather than a fly, especially on the light theme where
+         the body colour is a muted blue-grey on near-white. Limbs stay dimmer
+         than the torso so the outline still recedes behind the CNS, which is
+         the subject. */
+      ctx.globalAlpha = (nodes[i].limb ? 0.11 + 0.19 * fade : 0.32 + 0.55 * fade);
       ctx.beginPath();
-      ctx.arc(p.x, p.y, nodes[i].r * p.p * (nodes[i].limb ? 0.95 : 1.35), 0, 6.283);
+      ctx.arc(p.x, p.y, nodes[i].r * p.p * (nodes[i].limb ? 1.05 : 1.45), 0, 6.283);
       ctx.fill();
     }
     ctx.globalAlpha = 1;
