@@ -24,7 +24,7 @@ For full details on the project see [Geppetto.org](https://geppetto.org)
 Build robust neuroscience applications.
 
 
-| [Paper](https://royalsocietypublishing.org/doi/10.1098/rstb.2017.0380) | [Docs](http://docs.geppetto.org/en/latest/) | [Source](https://github.com/openworm/org.geppetto) |
+| [Live demo](http://live.geppetto.org) | [Paper](http://paper.geppetto.org) | [Docs](http://docs.geppetto.org/en/latest/) |
 --------------------------------
 
 
@@ -147,7 +147,7 @@ For the full list of contributors see [here](https://github.com/orgs/openworm/te
 
 Besides the functional requirements, Geppetto's goal is to move away from the monolithic approach to software that is usually found in academic programming projects.
 
-Computational neuroscience has produced software systems, including NEURON and Genesis, that are extremely useful for simulating systems of neurons that include biophysical details ([Brette et al, 2007](http://arxiv.org/abs/q-bio.NC/0611089)). A range of other algorithms have been devised in other areas of computational biology (Barnes & Chu, 2010) for which simulators have been produced ([Takahashi, 2004](http://web.sfc.keio.ac.jp/%7Eshafi/takahashi-thesis.pdf)). Several investigations have pointed to the challenges in building a single system that integrates multiple simulation algorithms together into a single biological model (Takahashi et al., 2002, [Dada and Mendes, 2007](https://doi.org/10.1007/978-3-642-02879-3), Cornelis et al., 2012).
+Computational neuroscience has produced software systems, including NEURON and Genesis, that are extremely useful for simulating systems of neurons that include biophysical details ([Brette et al, 2007](http://arxiv.org/abs/q-bio.NC/0611089)). A range of other algorithms have been devised in other areas of computational biology ([Barnes & Chu, 2010](http://g.ua/MhoV)) for which simulators have been produced ([Takahashi, 2004](http://web.sfc.keio.ac.jp/%7Eshafi/takahashi-thesis.pdf)). Several investigations have pointed to the challenges in building a single system that integrates multiple simulation algorithms together into a single biological model ([Takahashi et al., 2002](http://g.ua/Mhx1), [Dada and Mendes, 2007](http://dx.doi.org/10.1007/978-3-642-02879-3), [Cornelis et al., 2012](http://g.ua/Mhxa)).
 
 Geppetto aims to address these scientific and engineering challenges. Geppetto's design leverages cutting edge software technologies. Its architecture and development follows industry standards.
 
@@ -157,8 +157,9 @@ Building great software takes time. And money. Geppetto is no exception and as m
 
 *   [OpenWorm](http://openworm.org)
 *   [MetaCell](http://metacell.us)
-*   [Wellcome Trust](https://wellcome.org/) via the [Open Source Brain](http://www.opensourcebrain.org/) initiative
-*   [Wellcome Trust](https://wellcome.org/) via [Virtual Fly Brain](http://www.virtualflybrain.org/)
+*   [Wellcome Trust](http://www.wellcome.ac.uk/) via the [Open Source Brain](http://www.opensourcebrain.org/) initiative
+*   [Wellcome Trust](http://www.wellcome.ac.uk/) via [Virtual Fly Brain](http://www.virtualflybrain.org/)
+*   [Orion Bionetworks](http://www.orionbionetworks.org/)
 
 Commercial companies, academic institutions and independent research labs are welcome to get in touch with [us](mailto:info@geppetto.org) to discuss collaborations and grant applications.
 

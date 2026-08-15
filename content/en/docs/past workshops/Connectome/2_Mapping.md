@@ -1,6 +1,6 @@
 ---
 title: "Mapping"
-weight: 120
+weight: 1010
 series: ["API"]
 alias: ["/docs/tutorials/connectome/3_Mapping/"]
 images: ["/images/2_Mapping_files/2_Mapping_15_1.png"]

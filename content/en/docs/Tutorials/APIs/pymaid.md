@@ -1,6 +1,6 @@
 ---
 title: "pymaid"
-weight: 130
+weight: 426
 series: ["API"]
 alias: ["/docs/tutorials/3_pymaid/"]
 images: ["/images/3_pymaid_files/3_pymaid_26_1.png"]

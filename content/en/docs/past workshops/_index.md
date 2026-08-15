@@ -1,7 +1,7 @@
 ---
 title: "Workshop Materials"
 linkTitle: "Workshop Materials"
-weight: 2000
+weight: 1000
 date: 2025-01-30
 categories: [connectome,python,workshop,tutorials]
 tags: [api,python,vfbconnect]

@@ -1,5 +1,6 @@
 ---
 title: "Bridging Registrations"
+weight: 304
 tag: [Template,Registration,Alignment,nat,navis,flybrains,Transforms]
 description: >
   Transformations to map between different canonical Drosophila templates.

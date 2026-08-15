@@ -1,7 +1,7 @@
 ---
 title: "BrainTrap"
 linkTitle: "BrainTrap"
-weight: 50
+weight: 518
 tags: ["BrainTrap","protein_trap","expression_pattern"]
 description: >
     Protein-trap expression patterns in the adult brain, from the BrainTrap collection.

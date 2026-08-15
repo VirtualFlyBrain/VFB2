@@ -1,6 +1,6 @@
 ---
 title: "Discovery"
-weight: 110
+weight: 1008
 series: ["API"]
 alias: ["/docs/tutorials/connectome/1_Discovery/"]
 date: 2021-12-27

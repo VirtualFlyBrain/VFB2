@@ -1,5 +1,6 @@
 ---
 title: "ON and OFF motion detection circuit"
+weight: 910
 tag: [optic lobe, T4, T5, motion detection, ON-edge, OFF-edge, medulla]
 categories: [circuit diagram]
 description: >

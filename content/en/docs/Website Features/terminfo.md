@@ -5,7 +5,7 @@ title: "The Term Info tab"
 linkTitle: "Term Info"
 description: >
    Term Info displays information on the currently selected entity.
-weight: 50
+weight: 208
 ---
 <link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
 

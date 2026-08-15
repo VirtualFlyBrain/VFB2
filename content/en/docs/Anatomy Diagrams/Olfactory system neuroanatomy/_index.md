@@ -1,5 +1,6 @@
 ---
 title: "Olfactory system neuroanatomy"
+weight: 912
 tag: [olfactory, antennal lobe, projection neuron, Kenyon cell, MBON, lateral horn]
 categories: [circuit diagram]
 description: >

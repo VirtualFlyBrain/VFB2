@@ -1,6 +1,6 @@
 ---
 title: "VFB connect API overview"
-weight: 1
+weight: 404
 series: ["API"]
 alias: ["/docs/tutorials/0_vfb_api_overview/"]
 date: 2021-12-27

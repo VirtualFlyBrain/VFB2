@@ -1,7 +1,7 @@
 ---
 title: "VDRC — Dickson VT collection"
 linkTitle: "VDRC"
-weight: 30
+weight: 514
 tags: ["Expression_pattern","transgene","VDRC","VT","Dickson"]
 description: >
     VT enhancer-fragment GAL4 and LexA lines from the Dickson lab, imaged at the Vienna Drosophila Resource Center.

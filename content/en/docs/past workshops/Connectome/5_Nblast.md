@@ -1,6 +1,6 @@
 ---
 title: "NBLAST"
-weight: 150
+weight: 1016
 series: ["API"]
 alias: ["/docs/tutorials/connectome/5_nblast/"]
 images: ["/images/5_Nblast_files/5_Nblast_22_0.png"]

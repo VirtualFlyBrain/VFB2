@@ -1,5 +1,6 @@
 ---
 title: "How many neurons are in the fly brain?"
+weight: 310
 linkTitle: "Neuron counts"
 categories: ["overview","help"]
 tag: ["Connectome", "Neuron", "Counts", "FlyWire", "Hemibrain", "MANC", "BANC", "Optic lobe", "Larva"]

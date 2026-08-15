@@ -1,6 +1,6 @@
 ---
 title: "neuprint"
-weight: 140
+weight: 430
 series: ["API"]
 alias: ["/docs/tutorials/4_neuprint/"]
 images: ["/images/4_neuprint_files/4_neuprint_14_1.png","/images/4_neuprint_files/4_neuprint_21_0.png"]

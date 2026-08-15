@@ -1,7 +1,7 @@
 ---
 title: "Light Microscopy Data"
 linkTitle: "LM Data"
-weight: 5
+weight: 508
 date: 2026-08-15
 description: >
     Light Microscopy Data available on Virtual Fly Brain.

@@ -1,7 +1,7 @@
 ---
 title: "Electron Microscopy Data"
 linkTitle: "EM Data"
-weight: 1
+weight: 502
 description: >
     Electron Microscopy Data available on Virtual Fly Brain.
 
