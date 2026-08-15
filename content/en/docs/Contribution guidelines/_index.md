@@ -30,11 +30,11 @@ How to register your image data
 
 It is essential for successful registrations that the images are of good quality.
 
-Follow [this protocol](http://www.dx.doi.org/10.1101/pdb.prot071720) to acquire stacks that can be used for registration.
+Follow [this protocol](https://doi.org/10.1101/pdb.prot071720) to acquire stacks that can be used for registration.
 
-Once you have the images, follow [this protocol](http://www.dx.doi.org/10.1101/pdb.prot071738) to register your images.
+Once you have the images, follow [this protocol](https://doi.org/10.1101/pdb.prot071738) to register your images.
 
-Information on publicly available template brains and bridging data is available [here](http://jefferislab.org/si/bridging).
+Information on publicly available template brains is on the [Templates](/docs/data/templates/) page, and the registrations that map between them are described under [Bridging registrations](/docs/concepts/bridging/).
 
 
 How to contribute to these docs
