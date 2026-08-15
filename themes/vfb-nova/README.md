@@ -145,6 +145,19 @@ lets Docsy be removed without touching a single content file. Two constraints dr
 `assets/css/compat.css` re-implements exactly the classes the generator uses,
 scoped to `.prose`. **`vfbterms.py` needs no change.**
 
+## What the hero geometry does and does not show
+
+The CNS is sized by the true micron-to-centimetre conversion and only oriented
+and centred by the cavity fit — it is not scaled to fill the head. That matters
+because **JRC2018Unisex does not include the lamina**: the optic lobe in that
+template starts at the medulla. Scaling the mesh to fill the head capsule would
+push the medulla out to where the lamina and retina actually sit. The gap
+between the mesh and the eye is therefore correct for what the mesh contains,
+not an alignment error.
+
+The body silhouette and the CNS come from unrelated sources with no common
+coordinate frame, so the placement is anatomical rather than registered.
+
 ## The ontology OLS widget
 
 The 22 ontology index pages carry an inline
