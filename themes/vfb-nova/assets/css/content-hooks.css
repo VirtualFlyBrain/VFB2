@@ -37,21 +37,17 @@
 .btn-secondary { background: var(--surface-2); color: var(--text); }
 a.btn { text-decoration: none; }
 
-/* The FlyBase appeal box is hard-styled inline in content/en/_index.html.
-   Neutralise the yellow block and re-cast it as the theme's notice band. */
+/* The FlyBase appeal box. It used to be a Docsy panel hard-styled inline
+   (#fe0 background, black border, red heading) and this rule neutralised it.
+   It is now written as the theme's .notice band directly, so all that is left
+   is the hero placement: margin, and the paragraph rhythm inside the band.
+   The heading is a <strong> rather than coloured text — --signal is #ffe406 in
+   both themes, which is unreadable on the light background. */
 #contributeBox {
-  background: linear-gradient(120deg, rgba(255,228,6,.10), rgba(255,107,154,.07)) !important;
-  border: 1px solid rgba(255,228,6,.35) !important;
-  border-radius: var(--r-lg) !important;
-  color: var(--text-dim) !important;
-  margin: var(--sp-4) 0 0 !important;
-  max-width: none !important;
+  margin: var(--sp-4) 0 0;
   font-size: .88rem;
 }
-#contributeBox .panel-body { padding: var(--sp-4) var(--sp-5); text-align: left !important; }
-#contributeBox b, #contributeBox strong { font-weight: 550; color: var(--text-dim); }
-#contributeBox b[style*="red"] { color: var(--signal) !important; font-weight: 650; }
-#contributeBox b[style*="red"] a { color: var(--signal); }
+#contributeBox p { margin-bottom: .6rem; }
 #contributeBox p:last-child { margin-bottom: 0; }
 
 /* link-down chevron */
