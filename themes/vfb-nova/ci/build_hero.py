@@ -10,7 +10,7 @@ Inputs
       JRC2018UnisexVNC adult VNC  VFB_00200000
 
 Output
-  themes/vfb-nova/assets/data/hero-geometry.json
+  themes/vfb-nova/assets/hero/hero-geometry.json
     { body: [...], brain: [...], vnc: [...] } — voxel-downsampled point sets in
     one normalised frame, quantised to int16 (1/10000 of the frame).
 
@@ -23,7 +23,7 @@ import xml.etree.ElementTree as ET
 
 FLYBODY = pathlib.Path('/tmp/flybody/flybody/fruitfly/assets')
 MESHES = pathlib.Path('/tmp/meshes')
-OUT = pathlib.Path('/tmp/vfb2/themes/vfb-nova/assets/data/hero-geometry.json')
+OUT = pathlib.Path('/tmp/vfb2/themes/vfb-nova/assets/hero/hero-geometry.json')
 
 UM_TO_CM = 1e-4
 

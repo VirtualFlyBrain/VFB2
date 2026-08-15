@@ -25,8 +25,15 @@
 
 <section class="hero">
   {{/* Baked by build_hero.py: flybody body silhouette + VFB JRC2018Unisex
-       brain and JRC2018UnisexVNC meshes, voxel-downsampled to int16 points. */}}
-  {{ $geo := resources.Get "data/hero-geometry.json" | fingerprint }}
+       brain and JRC2018UnisexVNC meshes, voxel-downsampled to int16 points.
+
+       Published under /hero/, not /hero-geometry under /data/: the production
+       load balancer routes /data/ to the IRI-routing service at a higher
+       priority than the static site, so anything served from /data/ is 302ed
+       into the Geppetto app and the fetch in connectome.js gets HTML. That
+       failure is silent — the canvas falls back to its procedural cloud — so it
+       only shows up as the wrong hero, never as an error. */}}
+  {{ $geo := resources.Get "hero/hero-geometry.json" | fingerprint }}
   <canvas id="connectome" aria-hidden="true" data-geometry="{{ $geo.RelPermalink }}"></canvas>
   <div class="wrap">
     <div class="hero__grid">
