@@ -15,11 +15,13 @@
 {{ with .Site.GetPage "/blog/news" }}{{ $latest = first 3 (sort .RegularPages "Date" "desc") }}{{ end }}
 {{ $docs := 0 }}{{ with .Site.GetPage "/docs" }}{{ $docs = len .RegularPagesRecursive }}{{ end }}
 {{ $hosted := 0 }}{{ with .Site.GetPage "/hosted" }}{{ $hosted = len .RegularPages }}{{ end }}
-{{ $onto := 0 }}{{ $terms := 0 }}
-{{ with .Site.GetPage "/blog/ontologies" }}
-  {{ $onto = len .Sections }}
-  {{ $terms = len .RegularPagesRecursive }}
-{{ end }}
+{{ $onto := 0 }}
+{{ with .Site.GetPage "/blog/ontologies" }}{{ $onto = len .Sections }}{{ end }}
+
+{{/* Headline figures come from the content report, which is regenerated
+     against the production knowledge base after every data release. See
+     partials/content-stats.html. */}}
+{{ $c := partial "content-stats.html" . }}
 
 <section class="hero">
   {{/* Baked by build_hero.py: flybody body silhouette + VFB JRC2018Unisex
@@ -36,13 +38,50 @@
         </div>
 
         <div class="stats">
-          {{/* The term corpus is only present in a full build (Jenkins runs vfbterms.py
-               into this tree first); below 1000 it is a local checkout, so the stat is
-               a scale claim that would read as false. */}}
-          {{ if gt $terms 1000 }}<div class="stat"><div class="stat__num">{{ lang.FormatNumberCustom 0 $terms }}</div><div class="stat__label">indexed anatomy terms</div></div>{{ end }}
-          {{ with $docs }}<div class="stat"><div class="stat__num">{{ . }}</div><div class="stat__label">documentation &amp; tutorial pages</div></div>{{ end }}
-          {{ with $hosted }}<div class="stat"><div class="stat__num">{{ . }}</div><div class="stat__label">hosted community datasets</div></div>{{ end }}
-          {{ with $onto }}<div class="stat"><div class="stat__num">{{ . }}</div><div class="stat__label">ontologies integrated</div></div>{{ end }}
+          {{/* Every figure here is a count of data in the knowledge base, taken from
+               the content report. The previous version counted pages in this site:
+               the largest tile read "indexed anatomy terms" but was the size of the
+               generated term corpus across all 22 integrated ontologies, most of
+               which is NCBITaxon and none of which is a count of anatomy.
+
+               A checkout without the report built into the tree gets the site-shape
+               tiles instead — fewer figures, but none of them wrong. */}}
+          {{ if $c }}
+            {{ with $c.images }}
+              <div class="stat">
+                <div class="stat__num">{{ lang.FormatNumberCustom 0 . }}</div>
+                <div class="stat__label">registered 3D images{{ with $c.datasets }} from {{ . }} datasets{{ end }}</div>
+              </div>
+            {{ end }}
+            {{ with $c.connected_neurons }}
+              <div class="stat">
+                <div class="stat__num">{{ lang.FormatNumberCustom 0 . }}</div>
+                <div class="stat__label">neurons with connectomics</div>
+              </div>
+            {{ end }}
+            {{ with $c.connections }}
+              <div class="stat">
+                <div class="stat__num">{{ if ge . 1000000 }}{{ lang.FormatNumberCustom 1 (div (float .) 1000000) }} M{{ else }}{{ lang.FormatNumberCustom 0 . }}{{ end }}</div>
+                <div class="stat__label">synaptic connections</div>
+              </div>
+            {{ end }}
+            {{ with $c.anatomy_terms }}
+              <div class="stat">
+                <div class="stat__num">{{ lang.FormatNumberCustom 0 . }}</div>
+                <div class="stat__label">anatomy ontology terms</div>
+              </div>
+            {{ end }}
+            {{ with $c.sc_clusters }}
+              <div class="stat">
+                <div class="stat__num">{{ lang.FormatNumberCustom 0 . }}</div>
+                <div class="stat__label">single-cell clusters{{ with $c.sc_datasets }} from {{ . }} datasets{{ end }}</div>
+              </div>
+            {{ end }}
+          {{ else }}
+            {{ with $onto }}<div class="stat"><div class="stat__num">{{ . }}</div><div class="stat__label">ontologies integrated</div></div>{{ end }}
+            {{ with $hosted }}<div class="stat"><div class="stat__num">{{ . }}</div><div class="stat__label">community services hosted</div></div>{{ end }}
+            {{ with $docs }}<div class="stat"><div class="stat__num">{{ . }}</div><div class="stat__label">documentation &amp; tutorial pages</div></div>{{ end }}
+          {{ end }}
         </div>
       </div>
 

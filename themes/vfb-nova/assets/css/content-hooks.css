@@ -164,3 +164,14 @@ a.btn { text-decoration: none; }
   color: var(--muted);
 }
 .pagination .btn[aria-disabled="true"] { opacity: .4; pointer-events: none; }
+
+/* --- figure strip inside a documentation page ---------------------------- */
+/* The hero's .stats grid, scaled down for use in prose by the vfb-figures
+   shortcode. Sits between paragraphs rather than under a page title, so it
+   needs its own vertical rhythm and a lighter number. */
+.vfb-figures {
+  margin: var(--sp-5) 0;
+  padding-top: var(--sp-4);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+.vfb-figures .stat__num { font-size: var(--step-1); }
