@@ -113,6 +113,24 @@
 .doc__header { margin-bottom: var(--sp-6); }
 .doc__header h1 { font-size: var(--step-3); margin-bottom: var(--sp-3); }
 .doc__header .lede { font-size: var(--step-1); }
+
+/* --- standalone page shell ---------------------------------------------- */
+/* Everything outside the docs shell renders through .page: blog posts, news,
+   releases, the generated term pages, and the taxonomy and tag lists. The
+   class was used by five layouts but had no rule, so those pages carried no
+   offset for the fixed nav and their breadcrumb rendered underneath it. Only
+   .hero and .doc reserved the space. */
+.page {
+  position: relative;
+  z-index: 1;
+  padding-top: calc(var(--nav-h) + var(--sp-6));
+  padding-bottom: var(--sp-8);
+}
+
+.page__header { margin-bottom: var(--sp-6); }
+.page__header h1 { font-size: var(--step-3); margin-bottom: var(--sp-3); }
+.page__header .lede { font-size: var(--step-1); }
+
 .doc__meta {
   margin-top: var(--sp-4);
   display: flex;

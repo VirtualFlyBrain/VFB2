@@ -1,0 +1,54 @@
+{{- /* ---------------------------------------------------------------------------
+     content-stats — the headline figures for the home page hero.
+
+     Source is the VFB content report, not the size of this site. The report is
+     regenerated against pdb.virtualflybrain.org after every data release and
+     injected into /blog/releases by the reporting pipeline, so it is the only
+     figure source in the built tree that tracks the knowledge base. It is not
+     in this repository, which is why the caller must handle an empty result:
+     a local checkout has no such page and must not print a constant that would
+     go stale the next time data lands.
+
+     Returns a dict. Absent keys mean the report was not found or its wording
+     changed; the caller falls back rather than guessing.
+     --------------------------------------------------------------------------- */ -}}
+
+{{- $raw := "" -}}
+{{- with site.GetPage "/blog/releases" -}}
+  {{- range .RegularPages -}}
+    {{- if and (eq $raw "") (in (lower .Title) "content report") -}}
+      {{- $raw = .RawContent -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $s := dict -}}
+{{- if $raw -}}
+
+  {{- /* "**608512** total images from **136** datasets" */ -}}
+  {{- with first 1 (findRESubmatch `\*\*([0-9]+)\*\* total images from \*\*([0-9]+)\*\* datasets` $raw 1) -}}
+    {{- $m := index . 0 -}}
+    {{- $s = merge $s (dict "images" (int (index $m 1)) "datasets" (int (index $m 2))) -}}
+  {{- end -}}
+
+  {{- /* First row of the connectivity table: neuron-to-neuron individuals.
+         "|Any neuron (individuals)|488111|Any neuron (individuals)|488111|34715655|" */ -}}
+  {{- with first 1 (findRESubmatch `\|Any neuron \(individuals\)\|([0-9]+)\|Any neuron \(individuals\)\|[0-9]+\|([0-9]+)\|` $raw 1) -}}
+    {{- $m := index . 0 -}}
+    {{- $s = merge $s (dict "connected_neurons" (int (index $m 1)) "connections" (int (index $m 2))) -}}
+  {{- end -}}
+
+  {{- /* Ontology content table: "|All Terms|28772|2224|" */ -}}
+  {{- with first 1 (findRESubmatch `\|All Terms\|([0-9]+)\|` $raw 1) -}}
+    {{- $s = merge $s (dict "anatomy_terms" (int (index (index . 0) 1))) -}}
+  {{- end -}}
+
+  {{- /* "**3290** clusters from **24** datasets" */ -}}
+  {{- with first 1 (findRESubmatch `\*\*([0-9]+)\*\* clusters from \*\*([0-9]+)\*\* datasets` $raw 1) -}}
+    {{- $m := index . 0 -}}
+    {{- $s = merge $s (dict "sc_clusters" (int (index $m 1)) "sc_datasets" (int (index $m 2))) -}}
+  {{- end -}}
+
+{{- end -}}
+
+{{- return $s -}}
