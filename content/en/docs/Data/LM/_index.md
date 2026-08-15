@@ -37,27 +37,34 @@ Every one of these is registered to a template, so a single-neuron image from on
 can be compared directly against an EM reconstruction from another, and a driver's
 pattern can be scored for overlap against any region or neuron.
 
-## Major collections
+## Data providers
 
-Collections are grouped here by what they contain. VFB holds around 120 LM datasets in
-total, most of them the per-paper split-GAL4 sets described below; the full list is
-reachable from any template's `All datasets` query.
+VFB holds 125 light microscopy datasets. Each is grouped below by where its images were
+produced. For the large collections that is recorded in VFB, through the source
+cross-references carried by the images or the dataset's own description; for the
+directly-deposited sets it was established by reading the cited paper.
 
-| Collection | Anatomy / stage | What the images show | VFB dataset | Publication |
-|---|---|---|---|---|
-| FlyLight Gen1 GAL4/LexA | Adult brain and VNC | Whole expression patterns of the GMR enhancer-fragment collection | [FlyLightGen1Set2019](http://virtualflybrain.org/reports/FlyLightGen1Set2019) | [Jenett et al., 2012](https://doi.org/10.1016/j.celrep.2012.09.011) |
-| FlyLight Gen1 MCFO | Adult brain and VNC | Single neurons stochastically labelled within Gen1 lines | [Gen1MCFOJenett2012](http://virtualflybrain.org/reports/Gen1MCFOJenett2012) and four further sets | [Jenett et al., 2012](https://doi.org/10.1016/j.celrep.2012.09.011) |
-| VT collection (Dickson lab) | Adult brain | Whole expression patterns of the VT GAL4, LexA and split lines, imaged at VDRC | [Dickson_VT](http://virtualflybrain.org/reports/Dickson_VT) | [Tirian and Dickson, 2017](https://doi.org/10.1101/198648) |
-| FlyCircuit 1.0 | Adult brain | Single neurons from the Chiang lab collection, one neuron per image | [Chiang2010](http://virtualflybrain.org/reports/Chiang2010) | [Chiang et al., 2011](https://doi.org/10.1016/j.cub.2010.11.056) |
-| *fru* clones | Adult brain | Clonal units of the *fruitless*-positive circuitry | [Cachero2010](http://virtualflybrain.org/reports/Cachero2010) | [Cachero et al., 2010](https://doi.org/10.1016/j.cub.2010.07.045) |
-| Per-paper split-GAL4 sets | Mostly adult brain and VNC | Split combinations characterised in one publication each — around 70 sets, from Aso and Rubin's dopaminergic lines through to Nern, Wolff, Zhao and Zung in 2025 | Search `Split` in datasets | Per dataset page |
-| Truman larval flip-out | Larval CNS | Single neurons and small clones in the larval CNS | [TrumanWood2018](http://virtualflybrain.org/reports/TrumanWood2018) | Per dataset page |
-| Lineage and clone sets | Adult brain | Neuroblast lineage clones from the Ito, Yu and Lee collections | [Ito2013](http://virtualflybrain.org/reports/Ito2013), [Yu2013](http://virtualflybrain.org/reports/Yu2013), [Lee_Lineage2020](http://virtualflybrain.org/reports/Lee_Lineage2020) | Per dataset page |
-| BrainTrap | Adult brain | Protein-trap expression patterns | [Knowles_Barley2010](http://virtualflybrain.org/reports/Knowles_Barley2010) | Per dataset page |
+| Provider | What it contributes | Datasets | Records in VFB |
+|---|---|---|---|
+| [Janelia FlyLight](/docs/data/lm/flylight/) | The Generation 1 GMR GAL4/LexA collection, its MCFO single-neuron derivatives, the Truman larval flip-out collection, and the per-paper split-GAL4 sets | 62 | 72,357 |
+| [VDRC](/docs/data/lm/vdrc/) | The Dickson lab VT enhancer-fragment collection, imaged at VDRC and re-imaged at Janelia | 3 | 23,395 |
+| [FlyCircuit](/docs/data/lm/flycircuit/) | Single neurons from the Chiang lab collection, one neuron per image | 1 | 16,127 |
+| [Contributing laboratories](/docs/data/lm/labs/) | Lineage clone sets, *fru* clones and single-study collections deposited directly by the lab that produced them | 12 | 1,048 |
+| [BrainTrap](/docs/data/lm/braintrap/) | Protein-trap expression patterns in the adult brain | 1 | 501 |
+| [No images loaded](/docs/data/lm/other/) | Dataset records whose split combinations are searchable but whose imagery is not held by VFB | 37 | none |
+| [Templates and painted domains](/docs/data/templates/) | Reference templates and the neuropil domains drawn onto them | 9 | 865 |
 
-Where the Publication column says *per dataset page*, the citation is recorded on the
-dataset's own page on VFB rather than repeated here, so that it stays correct if the
-record is updated. Cite the original study, not VFB, when you use the images.
+Records are the individuals VFB holds from a dataset — expression patterns, fragments,
+single neurons or painted domains. They count what VFB has loaded, not what a collection
+contains at source.
+
+Every dataset that holds images has an attributed source. The 37 under *No images loaded*
+are dataset records without imagery: their split combinations are recorded as FlyBase
+features and are searchable, but there is no image data to attribute.
+
+Citations are recorded on each dataset's own page on VFB rather than repeated here, so
+that they stay correct if a record is updated. Cite the original study, not VFB, when you
+use the images.
 
 ## Expression annotations
 
