@@ -11,7 +11,8 @@
 
 baseURL = "https://www.virtualflybrain.org/"
 title = "Virtual Fly Brain"
-locale = "en-gb"          # `languageCode` was deprecated in Hugo v0.158.0
+languageCode = "en-gb"    # `locale` replaces this at Hugo v0.158.0; the build
+                          # is pinned to 0.122.0, which does not know that key.
 defaultContentLanguage = "en"
 enableRobotsTXT = true
 theme = "vfb-nova"
@@ -52,8 +53,12 @@ timeZone = "Europe/London"
 [services.rss]
   limit = 20
 
-[pagination]
-  pagerSize = 100
+# `paginate`, not `[pagination] pagerSize`: the pagination block arrived in Hugo
+# v0.128.0 and the build is pinned to v0.122.0 (see Dockerfile — per-page
+# filesystem cost rose at v0.123.0 and the term corpus is on NFS). With the
+# block, 0.122 silently ignored it and every list page fell back to the default
+# of 10; the build summary read "Paginator pages | 0".
+paginate = 100
 
 
 [markup]
