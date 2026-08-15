@@ -151,14 +151,13 @@
            60px smudge next to a fly that fills the frame; nothing of the graph
            survives. The body stays at true scale as context. This is a figure
            convention, and it is stated in the theme README. */
-        /* Legs and wings are what makes a side-on fly read as a spider. They
-           are not separated in the bake, so classify them here: the head,
-           thorax and abdomen form a compact tube near the midline, while the
-           appendages swing wide in y or hang below in z. */
-        for (let i = bodyRange[0]; i < bodyRange[1]; i++) {
-          const q = nodes[i];
-          q.limb = (Math.abs(q.y) > 0.30 || q.z < -0.22) ? 1 : 0;
-        }
+        /* Legs and wings used to be classified here (wide in y, or hanging
+           below in z) and drawn at roughly a third of the torso's alpha, on the
+           theory that a side-on fly with prominent appendages reads as a
+           spider. With the brain sitting upright in the head that no longer
+           holds: the appendages give the silhouette its scale and its posture,
+           and suppressing them left the fly looking clipped. The whole body is
+           now drawn at one weight. */
 
         /* Each structure is enlarged about ITS OWN centroid, not about a
            shared one. Scaling the pair together threw the brain forward out of
@@ -294,12 +293,12 @@
       const fade = 0.35 + 0.65 * (1 - (p.d + 1) / 2);
       /* Raised from 0.05/0.22 base. At the original values the silhouette read
          as scattered dust rather than a fly, especially on the light theme where
-         the body colour is a muted blue-grey on near-white. Limbs stay dimmer
-         than the torso so the outline still recedes behind the CNS, which is
-         the subject. */
-      ctx.globalAlpha = (nodes[i].limb ? 0.11 + 0.19 * fade : 0.32 + 0.55 * fade);
+         the body colour is a muted blue-grey on near-white. One weight for the
+         whole body, appendages included — see the note above. Depth fade alone
+         keeps the outline behind the CNS, which is the subject. */
+      ctx.globalAlpha = 0.32 + 0.55 * fade;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, nodes[i].r * p.p * (nodes[i].limb ? 1.05 : 1.45), 0, 6.283);
+      ctx.arc(p.x, p.y, nodes[i].r * p.p * 1.45, 0, 6.283);
       ctx.fill();
     }
     ctx.globalAlpha = 1;
