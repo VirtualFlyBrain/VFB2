@@ -24,20 +24,22 @@ NBLAST operates on "dotprops" - a representation of neurons as tangent vectors t
 
 ## NBLAST on VFB
 
-VFB provides precomputed NBLAST scores for all neurons in its database, making morphological similarity searches fast and accessible without requiring computational expertise.
+VFB precomputes NBLAST scores so that morphological similarity searches are fast and need no
+computational expertise. Coverage is not uniform: scores exist where a neuron has a registered
+morphology in a template space that has been scored, and they are added as new data lands. The
+reliable way to tell whether a given neuron has them is to open its
+[Term Info](/docs/website-features/terminfo/) — the similarity query appears only when scores exist
+for that neuron.
 
 ### What's included
 
-VFB NBLAST scores cover:
+Scores cover individual neurons from the EM connectome datasets listed on the
+[EM data](/docs/data/em/) page, single neurons from the [FlyCircuit collection](/docs/data/lm/flycircuit/),
+and split-GAL4 expression patterns from [FlyLight](/docs/data/lm/flylight/) — the last of these being
+what lets you go from a neuron to a driver line that might label it.
 
-- **All individual neurons** from major connectome datasets including:
-  - FAFB-FlyWire
-  - Male-CNS optic lobe  
-  - Hemibrain
-  - FlyCircuit
-  - FAFB-CATMAID datasets
-
-- **Split-GAL4 expression patterns** from FlyLight, enabling discovery of potential driver lines that label specific morphological types
+The most recent expansion of coverage is described in the
+[precomputed similarity scores announcement](/blog/2025/05/29/new-precomputed-neuron-and-expression-pattern-similarity-scores-on-vfb/).
 
 ### Types of comparisons
 
@@ -52,13 +54,15 @@ VFB NBLAST scores cover:
 
 ### Interpreting results
 
-NBLAST scores range from -1 to 1:
-- **1.0**: Perfect match (identical morphology)
-- **0.5-1.0**: High similarity
-- **0.0-0.5**: Moderate similarity  
-- **Below 0.0**: Low similarity or dissimilar morphologies
+Scores on VFB are normalised against a self-self comparison, so 1.0 is the score a neuron gets
+against itself and is the practical ceiling. Higher is more similar; negative scores indicate
+morphologies with little in common.
 
-Results are typically ranked by score, with the most similar items appearing first.
+There is no universal threshold that separates a real match from a spurious one. The cut-off depends
+on the neuron, the datasets being compared and the quality of the reconstructions, so a score should
+be read against the other scores in the same ranked list rather than against a fixed scale. A hit at
+the top of a list of otherwise low scores is worth inspecting; the same absolute value buried in a
+list of high scores is not. Always look at the morphology before accepting a match.
 
 ## Applications
 
