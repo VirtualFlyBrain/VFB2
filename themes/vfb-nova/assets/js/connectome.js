@@ -7,7 +7,7 @@
    travelling along it. The graph is the point of the thing — it is what the
    connectomic data on VFB looks like.
 
-   Geometry comes from assets/data/hero-geometry.json, baked by build_hero.py:
+   Geometry comes from assets/hero/hero-geometry.json, baked by build_hero.py:
      body   flybody, Vaxenburg et al. 2024 (bioRxiv 2024.03.11.584515), Apache-2.0
      brain  VFB JRC2018Unisex adult brain template  (VFB_00101567)
      vnc    VFB JRC2018UnisexVNC adult VNC template (VFB_00200000)
@@ -367,5 +367,5 @@
 
   resize();
   if (!reduce) requestAnimationFrame(frame);
-  loadGeometry(canvas.dataset.geometry || '/data/hero-geometry.json');
+  loadGeometry(canvas.dataset.geometry || '/hero/hero-geometry.json');
 })();
