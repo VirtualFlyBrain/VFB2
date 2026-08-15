@@ -9,6 +9,12 @@ description: >
 
 Virtual Fly Brain brings together data from multiple [electron microscopy (EM) resources](/docs/resources/), providing access to high-resolution neuroanatomical datasets. These datasets include complete EM volumes of Drosophila brains and ventral nerve cords, neuron reconstructions, connectivity information and neurotransmitter predictions. Data can be visualised using the web browser or accessed programmatically via [APIs](/docs/apis/).
 
+{{< vfb-figures set="em" >}}
+
+The synaptic connectivity derived from these datasets is described on its own page. See
+[Connectivity data](/docs/data/connectivity/) for what an edge means, which connectomes
+contribute one, and how to handle reconstructions that cover the same tissue.
+
 ## Comparison Table of Integrated Datasets
 
 The table below summarises EM datasets that have been integrated into VFB, including the portion of the organism covered (`Anatomy`), the resource(s) where the original data can be found, The level of reconstruction (sparse or dense) and the original publication for the dataset.
