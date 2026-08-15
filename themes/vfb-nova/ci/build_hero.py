@@ -90,6 +90,30 @@ def centre(pts):
     lo, hi = bbox(pts)
     return tuple((a+b)/2 for a, b in zip(lo, hi))
 
+def rotate_y(pts, deg):
+    """Rotate about the medio-lateral axis, through the cloud's own mean point.
+
+    y is the axis the hero camera looks down — connectome.js projects with
+    yaw = pi, so screen-right is -x and screen-up is +z. A positive angle here
+    is therefore anticlockwise as the visitor sees it: it carries screen-right
+    round to screen-up. This sets a structure's pitch within the sagittal
+    plane, which `axis_ranks` cannot express — that only assigns whole axes to
+    whole axes, so it can put the brain's long axis medio-laterally but not
+    tell you which way up the gnathal region ends.
+
+    The pivot is the mean rather than the bounding-box centre, so the structure
+    turns about its own mass and does not drift within the cavity.
+    """
+    t = math.radians(deg)
+    c, s = math.cos(t), math.sin(t)
+    cx = sum(p[0] for p in pts) / len(pts)
+    cz = sum(p[2] for p in pts) / len(pts)
+    out = []
+    for x, y, z in pts:
+        dx, dz = x - cx, z - cz
+        out.append((cx + dx * c + dz * s, y, cz - dx * s + dz * c))
+    return out
+
 # ------------------------------------------------------- assemble the fly body
 SEGMENTS = ('head', 'thorax', 'abdomen')
 
@@ -233,6 +257,11 @@ def main():
     # template rather than from shape statistics. See README.
     brain, bs = fit_into(brain_raw, seg['head'], scale=UM_TO_CM,
                          axis_ranks=(1, 0, 2), flip=(2,))
+    # axis_ranks leaves the brain tipped, with the gnathal region pointing
+    # antero-ventrally rather than straight down. 45 deg anticlockwise in the
+    # sagittal plane (as seen from the fly's left, which is the hero's
+    # viewpoint) brings it upright.
+    brain = rotate_y(brain, 45)
     vnc, vs = fit_into(vnc_raw, seg['thorax'], scale=UM_TO_CM,
                        axis_ranks=(0, 1, 2), flip=(0,),
                        # forward in the thorax, close under the neck connective
