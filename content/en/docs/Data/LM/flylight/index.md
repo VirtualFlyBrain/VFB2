@@ -101,13 +101,9 @@ larval material from the Truman flip-out collection.
 | [FlyLight2019Klapoetke2017](http://virtualflybrain.org/reports/FlyLight2019Klapoetke2017) | Split-GAL4 lines from Klapoetke et al. 2017 | 1 |
 | [FlyLight2019Robie2017](http://virtualflybrain.org/reports/FlyLight2019Robie2017) | split-GAL4 lines for EB neurons (Robie2017) | 1 |
 | [SplitTurner_Evans2017](http://virtualflybrain.org/reports/SplitTurner_Evans2017) | Split-GAL4 lines from Turner-Evans et al., 2017 | 1 |
-| [FlyLight2019Hampel2015](http://virtualflybrain.org/reports/FlyLight2019Hampel2015) | Grooming neurons and drivers (Hampel 2015) | none loaded |
-| [Gen1MCFOJovanic2019](http://virtualflybrain.org/reports/Gen1MCFOJovanic2019) | MCFO images of GMR-GAL4 lines from Jovanic et al., 2019 | none loaded |
-| [LateralHorn2019](http://virtualflybrain.org/reports/LateralHorn2019) | FlyLight split-GAL4 lines for Lateral Horn | none loaded |
 
 Records are the individuals VFB holds from each dataset — whole expression patterns,
-fragments and single neurons. Where a row reads *none loaded*, the dataset record exists
-and is linkable but no images have been loaded into VFB.
+fragments and single neurons.
 
 Datasets from Janelia laboratories that were deposited directly rather than through the
 FlyLight project are listed under
