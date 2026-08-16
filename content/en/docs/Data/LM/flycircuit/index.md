@@ -22,7 +22,7 @@ the raw and unsegmented data live.
 
 | Dataset | Contents | Records in VFB |
 |---|---|---|
-| [Chiang2010](http://virtualflybrain.org/reports/Chiang2010) | FlyCircuit 1.0 - single neurons (Chiang2010) | 16,127 |
+| [Chiang2010](https://virtualflybrain.org/reports/Chiang2010) | FlyCircuit 1.0 - single neurons (Chiang2010) | 16,127 |
 
 Records are the individuals VFB holds from each dataset. Citations are on each dataset's
 own page on VFB; cite the original study rather than VFB when you use the images.

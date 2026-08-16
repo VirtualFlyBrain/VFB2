@@ -231,7 +231,7 @@ Where:
 (anatomical_image)<-[:depicts]-(image_channel:Individual {short_form: 'VFBc_00020468', label: 'GMR_10A06_AE_01_08-fA01b_c'})
 
 // Registration to template channel
-(image_channel)-[:in_register_with {thumbnail: 'http://www.virtualflybrain.org/data/VFB/i/0002/0468/VFB_00017894/thumbnail.png', nrrd: 'http://www.virtualflybrain.org/data/VFB/i/0002/0468/VFB_00017894/volume.nrrd'}]->(template_channel:Template:Individual {short_form: 'VFBc_00017894', label: 'JFRC2_template_c'})
+(image_channel)-[:in_register_with {thumbnail: 'https://www.virtualflybrain.org/data/VFB/i/0002/0468/VFB_00017894/thumbnail.png', nrrd: 'https://www.virtualflybrain.org/data/VFB/i/0002/0468/VFB_00017894/volume.nrrd'}]->(template_channel:Template:Individual {short_form: 'VFBc_00017894', label: 'JFRC2_template_c'})
 
 // Template depicted by template channel
 (template_channel)-[:depicts]->(template:Individual {short_form: 'VFB_00017894', label: 'adult brain template JFRC2'})

@@ -16,7 +16,7 @@ The provenance of information, textual or image, is always acknowledged.
 ### Tell us about your paper
 
 **Have you just had a paper published which describes new anatomical or expression information?**  
-The best way to make us aware of your paper, and to put it on our curation list is to act on an email you will receive from FlyBase after your paper has been published. The link on the email points to the [Fast-Track Your Paper Tool](http://flybase.org/submission/publication/).  
+The best way to make us aware of your paper, and to put it on our curation list is to act on an email you will receive from FlyBase after your paper has been published. The link on the email points to the [Fast-Track Your Paper Tool](https://flybase.org/submission/publication/).  
 Using this tool you can provide information on what types of data your paper contains. If it has new anatomical or expression information you'll need to fill the sections, _Anatomical data_ or _Expression_, respectively, in addition to any other suitable ones.  
 You can also use this tool for any other, previously published paper.
 

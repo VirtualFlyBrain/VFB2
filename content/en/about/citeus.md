@@ -45,7 +45,7 @@ Court, Robert, Costa, Marta, Pilgrim, Clare, Millburn, Gillian, Holmes, Alex, Mc
 
 If you specifically use or reference the Drosophila anatomy ontology developed as part of Virtual Fly Brain, please also cite:
 
-* Osumi-Sutherland, D., Reeve, S., Mungall, C. J., Neuhaus, F., Ruttenberg, A., Jefferis, G. S. and Armstrong, J. D. (2012). [A strategy for building neuroanatomy ontologies](http://dx.doi.org/doi:10.1093/bioinformatics/bts113)
+* Osumi-Sutherland, D., Reeve, S., Mungall, C. J., Neuhaus, F., Ruttenberg, A., Jefferis, G. S. and Armstrong, J. D. (2012). [A strategy for building neuroanatomy ontologies](https://dx.doi.org/doi:10.1093/bioinformatics/bts113)
 
 
 ## Acknowledgements

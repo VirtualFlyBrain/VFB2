@@ -25,9 +25,9 @@ under [Janelia FlyLight](/docs/data/lm/flylight/).
 
 | Dataset | Contents | Records in VFB |
 |---|---|---|
-| [Dickson_VT](http://virtualflybrain.org/reports/Dickson_VT) | Dickson lab VT line collection - VDRC images | 18,016 |
-| [Dickson2017](http://virtualflybrain.org/reports/Dickson2017) | Dickson lab VT lines - FlyLight/Janelia images (2017) | 5,378 |
-| [Hampel2017](http://virtualflybrain.org/reports/Hampel2017) | LexA driver targetting mechanosensory eye bristles (Hampel2017) | 1 |
+| [Dickson_VT](https://virtualflybrain.org/reports/Dickson_VT) | Dickson lab VT line collection - VDRC images | 18,016 |
+| [Dickson2017](https://virtualflybrain.org/reports/Dickson2017) | Dickson lab VT lines - FlyLight/Janelia images (2017) | 5,378 |
+| [Hampel2017](https://virtualflybrain.org/reports/Hampel2017) | LexA driver targetting mechanosensory eye bristles (Hampel2017) | 1 |
 
 Records are the individuals VFB holds from each dataset. Citations are on each dataset's
 own page on VFB; cite the original study rather than VFB when you use the images.
