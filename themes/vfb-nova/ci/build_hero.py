@@ -257,11 +257,13 @@ def main():
     # template rather than from shape statistics. See README.
     brain, bs = fit_into(brain_raw, seg['head'], scale=UM_TO_CM,
                          axis_ranks=(1, 0, 2), flip=(2,))
-    # axis_ranks leaves the brain tipped, with the gnathal region pointing
-    # antero-ventrally rather than straight down. 45 deg anticlockwise in the
-    # sagittal plane (as seen from the fly's left, which is the hero's
-    # viewpoint) brings it upright.
-    brain = rotate_y(brain, 45)
+    # axis_ranks leaves the brain tipped. 135 deg anticlockwise in the sagittal
+    # plane (as seen from the fly's left, which is the hero's viewpoint) is the
+    # settled orientation — chosen by eye against the reference figures at the
+    # size the hero actually draws it, not derived. An earlier 45 shipped in
+    # #433 and was too little. The angle is absolute, applied to the output of
+    # fit_into; it does not compose with anything above it.
+    brain = rotate_y(brain, 135)
     vnc, vs = fit_into(vnc_raw, seg['thorax'], scale=UM_TO_CM,
                        axis_ranks=(0, 1, 2), flip=(0,),
                        # forward in the thorax, close under the neck connective
