@@ -203,31 +203,31 @@ properties. The caution is that the exception is a well-studied, functionally ce
 
 ## 4. What people said before connectomics
 
-This is where the article gets uncomfortable, because the most-quoted number has no source.
+### "About 100,000 neurons" — a convention, not a measurement
 
-### "About 100,000 neurons" — no primary measurement found
-
-We could not trace this figure to any original measurement. It appears without citation in the papers
-that popularised it, including work from the FlyCircuit group (Lee et al. 2012, *PLoS Comput Biol*
-8:e1002658), in the FAFB paper's abstract (Zheng et al. 2018), and in the hemibrain paper's lay
-summary. Where a modern paper does attach citations to a range, they resolve to reviews or to
-measurements that give different numbers: Jiao et al. 2022 cite a 100,000–199,000 range to five
+The figure is not attached to a primary measurement in the papers that popularised it. It appears
+without citation in work from the FlyCircuit group (Lee et al. 2012, *PLoS Comput Biol* 8:e1002658),
+in the FAFB paper's abstract (Zheng et al. 2018), and in the hemibrain paper's lay summary. Where a
+modern paper does attach citations to a range, they resolve to reviews or to measurements that give different numbers: Jiao et al. 2022 cite a 100,000–199,000 range to five
 sources, of which only one is an actual measurement — and it reports 199,000.
 
-The honest description is that ~100,000 is an order-of-magnitude convention that became canonical by
-repetition. It is not wrong so much as unsourced.
+~100,000 is an order-of-magnitude convention that became canonical by repetition. It is not wrong so
+much as unsourced.
 
-### The three real non-connectome measurements disagree by 2.5×
+### The three non-connectome measurements disagree by 2.5×
 
 | Figure | Method | Source |
 |---|---|---|
-| ~88,300 cells (~92,500 by confocal) | Isotropic fractionator | Godfrey et al. 2021, *Proc R Soc B* 288:20210199 — quoted at second hand, see below |
+| **88,290 ± 13,810 nuclei** (n = 13 brains) | Isotropic fractionator, DAPI-stained nuclei | Godfrey et al. 2021, *Proc R Soc B* 288:20210199, table S1 |
 | 133,000 ± 3,000 nuclei, of which ≥87% neurons | CNN nuclear segmentation of the FAFB volume | Mu et al. 2021, bioRxiv 2021.11.04.467197 — **still a preprint** |
 | 217,000 ± 4,000 cells; **199,380 ± 3,400 neurons** | Isotropic fractionator with elav/repo immunostaining | Raji & Potter 2021, *PLoS ONE* 16:e0250381 |
 
-Two studies using nominally the same technique — isotropic fractionation — differ by a factor of about
-2.5. That is arguably the most interesting fact in the pre-connectome literature, and it is rarely
-mentioned. Mu et al. observe that their nuclear count lands within 3% of the geometric mean of the two.
+Godfrey et al. is a survey of 32 Hymenoptera species in which *Drosophila* is the dipteran control
+for the method; a single sectioned-brain count of the same material came out about 5% higher. Two
+studies using nominally the same technique — isotropic fractionation — differ by a factor of about
+2.5 on total brain cells (88,290 against 217,000). Compare cells with cells: Godfrey et al. count
+all nuclei and do not separate neurons from glia. Mu et al. observe that their own count lands
+within 3% of the geometric mean of the two.
 
 Raji & Potter's figure is brain only (optic lobes plus central brain, VNC excluded), which matters
 because it is frequently misquoted as a CNS number. They also report the glia fraction directly:
@@ -237,10 +237,6 @@ Note what this means against the connectome answer: **199,380 (isotropic fractio
 139,255 (FlyWire, brain)** — a 43% discrepancy between the two best-documented adult brain figures,
 using entirely different methods on different animals. Neither is obviously wrong. This is an open
 question, not a settled one.
-
-**A note on the Godfrey et al. figures.** They are quoted here as Mu et al. report them, not read
-from the original paper, which sits behind a publisher paywall. Treat them as second-hand until
-checked against the source; the other two rows are taken from the papers themselves.
 
 ### Glia are not a rounding error
 
@@ -292,10 +288,10 @@ And it keeps two kinds of number strictly apart:
 
 - Raji JI, Potter CJ (2021) The number of neurons in *Drosophila* and mosquito brains. *PLoS ONE* 16(5):e0250381. doi:10.1371/journal.pone.0250381
 - Mu S et al. (2021) 3D reconstruction of cell nuclei in a full *Drosophila* brain. bioRxiv 2021.11.04.467197 — preprint
-- Godfrey RK, Swartzlander M, Gronenberg W (2021) *Proc R Soc B* 288(1947):20210199. doi:10.1098/rspb.2021.0199 — figures quoted at second hand via Mu et al.
+- Godfrey RK, Swartzlander M, Gronenberg W (2021) Allometric analysis of brain cell number in Hymenoptera suggests ant brains diverge from general trends. *Proc R Soc B* 288(1947):20210199. PMID 33757353. doi:10.1098/rspb.2021.0199
 - Jiao W et al. (2022) Intact *Drosophila* central nervous system cellular quantitation reveals sexual dimorphism. *eLife* 11:e74968
 - Kremer MC et al. (2017) The glia of the adult *Drosophila* nervous system. *Glia* 65(4):606–638. PMID 28133822
 
-**Miscitation traced in this review**
+**A miscitation worth knowing about**
 
 - Shiu PK et al. (2024) A *Drosophila* computational brain model reveals sensorimotor processing. *Nature*. PMID 39358519. — Describes ">125,000 neurons" as a *central brain* connectome. The number is FlyWire's **whole-brain** count (the paper's own model uses 127,400 neurons from FlyWire v630), and FlyWire reports only 32,388 neurons fully contained in the central brain. The scope label is wrong at source. Cite Dorkenwald et al. directly instead.
