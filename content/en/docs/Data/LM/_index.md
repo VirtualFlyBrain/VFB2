@@ -45,7 +45,7 @@ pattern can be scored for overlap against any region or neuron.
 VFB holds 85 light microscopy datasets. Each is grouped below by where its images were
 produced. For the large collections that is recorded in VFB, through the source
 cross-references carried by the images or the dataset's own description; for the
-directly-deposited sets it was established by reading the cited paper.
+directly-deposited sets it is taken from the cited paper.
 
 | Provider | What it contributes | Datasets | Records in VFB |
 |---|---|---|---|
