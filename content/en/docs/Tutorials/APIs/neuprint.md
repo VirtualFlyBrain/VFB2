@@ -11,7 +11,7 @@ description: >
 
 
 ## The neuprint data and database
-The Janelia hemibrain ([Scheffer _et al._, 2020](http://dx.doi.org/10.7554/eLife.57443)), MANC ([Takemura _et al._, 2024](https://doi.org/10.7554/eLife.97769.1)) and male-cns ([Berg _et al._, 2025](https://www.biorxiv.org/content/10.1101/2025.10.09.680999v2)) datasets are accessible via neuprint at https://neuprint.janelia.org. The web interface lets you run a few pre-built queries and you can also run custom queries directly against the underlying neo4j graph data base using cypher queries.
+The Janelia hemibrain ([Scheffer _et al._, 2020](https://dx.doi.org/10.7554/eLife.57443)), MANC ([Takemura _et al._, 2024](https://doi.org/10.7554/eLife.97769.1)) and male-cns ([Berg _et al._, 2025](https://www.biorxiv.org/content/10.1101/2025.10.09.680999v2)) datasets are accessible via neuprint at https://neuprint.janelia.org. The web interface lets you run a few pre-built queries and you can also run custom queries directly against the underlying neo4j graph data base using cypher queries.
 
 To access neuprint programmatically, we will use `neuprint-python` ([link](https://connectome-neuprint.github.io/neuprint-python/docs/index.html)). It requires a free API token, which you can get by logging into the website using a Google account.
 

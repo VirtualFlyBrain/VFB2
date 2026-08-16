@@ -12,5 +12,5 @@ The workshop will introduce the VFB API through practical examples, including qu
 
 ---
 
-Thank you to everyone who attended our workshop at NeuroFly 2024. Our workshop notebook is available here: [tinyurl.com/workshopVFB](http://tinyurl.com/workshopVFB) for anyone who would like to explore the VFB API. We will keep this available and up to date.
+Thank you to everyone who attended our workshop at NeuroFly 2024. Our workshop notebook is available here: [tinyurl.com/workshopVFB](https://tinyurl.com/workshopVFB) for anyone who would like to explore the VFB API. We will keep this available and up to date.
 

@@ -17,7 +17,7 @@ weight: 400
 - [Nick Brown](https://www.pdn.cam.ac.uk/research/groups/flybase/flybase-group-members) (Current Project PI) [2]
 - [Greg Jefferis](http://www2.mrc-lmb.cam.ac.uk/group-leaders/h-to-m/gregory-jefferis/) (Current Project PI) [4,5]
 - [David Osumi-Sutherland](https://orcid.org/0000-0002-7073-9172) (Current Project Co-I) [3]
-- [Marta Costa](http://www.neuroscience.cam.ac.uk/directory/profile.php?mcosta) (Current Project Co-I) [4]
+- [Marta Costa](https://www.neuroscience.cam.ac.uk/directory/profile.php?mcosta) (Current Project Co-I) [4]
 
 
 ## Past Team Members
@@ -30,7 +30,7 @@ weight: 400
 - Nicole Staudt (2015-2016) [7]
 
 - [Helen Parkinson](https://www.ebi.ac.uk/about/people/helen-parkinson) (Former PI) [6]
-- [Cahir O'Kane](http://www.neuroscience.cam.ac.uk/directory/profile.php?cokane) (Former PI) [7]
+- [Cahir O'Kane](https://www.neuroscience.cam.ac.uk/directory/profile.php?cokane) (Former PI) [7]
 - [Michael Ashburner](https://orcid.org/0000-0002-6962-2807) (Original PI and Grant Holder) [7]
 
 ### Affiliations
@@ -42,17 +42,17 @@ weight: 400
 6. European Bioinformatics Institute (EMBL-EBI), Cambridge
 7. Department of Genetics, University of Cambridge
 
-## [MetaCell](http://www.metacell.us)
+## [MetaCell](https://www.metacell.us)
 
-MetaCell collaborates with Virtual Fly Brain on the development and enhancement of the open source [Geppetto](http://www.geppetto.org) visualization platform that powers our 3D brain viewer.
+MetaCell collaborates with Virtual Fly Brain on the development and enhancement of the open source [Geppetto](https://www.geppetto.org) visualization platform that powers our 3D brain viewer.
 
 ---
 <!--- width set to 55 here to prevent bunching onto same line -->
-<a href='http://www.anc.ed.ac.uk/index.php?option=com_content&task=view&id=12&Itemid=68' target='_blank'>
+<a href='https://www.anc.ed.ac.uk/index.php?option=com_content&task=view&id=12&Itemid=68' target='_blank'>
   <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/InformaticsLogo.gif' style="max-width: 55%"/>
 </a>
 
-<a href='http://www.gen.cam.ac.uk/' target='_blank'>
+<a href='https://www.gen.cam.ac.uk/' target='_blank'>
   <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/CUnibig.png' style="max-width: 55%"/>
 </a>
 
@@ -64,11 +64,11 @@ MetaCell collaborates with Virtual Fly Brain on the development and enhancement 
   <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/MRC-LMB_logo.png' style="max-width: 55%"/>
 </a>  
 
-<a href='http://www.ebi.ac.uk/' target='_blank'>
+<a href='https://www.ebi.ac.uk/' target='_blank'>
   <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/EMBL_EBI_logo_180pixels_RGB.png' style="max-width: 55%"/>
 </a>  
 
-<a href='http://www.metacell.us/' target='_blank'>
+<a href='https://www.metacell.us/' target='_blank'>
   <img src='https://github.com/tarelli/bucket/raw/master/MetaCellLogoWhite300ppi.png' style="max-width: 55%"/>
 </a>
 

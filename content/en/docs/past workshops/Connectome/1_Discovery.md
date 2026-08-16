@@ -55,7 +55,7 @@ print(f'Server is running CATMAID version {rm.catmaid_version}')
 
 We can use the `vc.get_instances` method in combination with the name of a neuron type on VFB to find individual neurons from multiple sources.
 
-Use the search tool on [VFB](http://virtualflybrain.org) to find neuron types by name or synonym:
+Use the search tool on [VFB](https://virtualflybrain.org) to find neuron types by name or synonym:
 
 <img src="https://user-images.githubusercontent.com/112839/109564687-535c9380-7ad9-11eb-80e9-5a5bc21cd915.png" width=30% height=30%>
 <img src="https://user-images.githubusercontent.com/112839/109565128-eac1e680-7ad9-11eb-9649-1ec55a298a1b.png" width=30% height=30%>
