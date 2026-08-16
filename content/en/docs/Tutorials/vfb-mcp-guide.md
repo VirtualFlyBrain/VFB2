@@ -19,6 +19,10 @@ The Model Context Protocol is a standard that allows LLMs to interact with exter
 
 The VFB MCP tool is available at: **[vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/)**
 
+The hosted service is currently **v1.11.0**. That page always states the deployed version and the
+full client setup instructions, including GitHub Copilot, VS Code and Gemini, so check it there
+rather than here if the two disagree.
+
 ### Quick Start
 
 #### Use the Live Service (Recommended)
@@ -130,8 +134,9 @@ If you prefer to run the MCP server locally, see the [VFB3-MCP repository README
 
 ## Core Features
 
-The server exposes a set of tools covering search, term lookup, connectivity and the precomputed
-queries behind the VFB website. The three below are the ones you will use most; the server's own
+The server exposes a set of tools covering search, term lookup, hierarchy, connectivity, name
+resolution and the precomputed queries behind the VFB website. The ones below are the tools as
+deployed in v1.11.0; the server's own
 page at [vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/) lists the full set as
 deployed, which is the authoritative source if this page has fallen behind.
 
@@ -178,6 +183,58 @@ Execute specific queries on VFB terms, including NBLAST similarity analysis.
 **Example Query:**
 ```text
 "What neurons are morphologically similar to IN02A049?"
+```
+
+### 4. **Hierarchy Trees** (`get_hierarchy`)
+
+Walk the ontology up or down from a term. Use `part_of` for how a region is built from its parts,
+and `subclass_of` for cell type taxonomies. Start one level deep and go further only if you need to.
+
+**Example Query:**
+```text
+"What are the parts of the mushroom body?"
+"What types of Kenyon cell are there?"
+```
+
+Asking for the parts of the mushroom body (FBbt_00005801) one level down returns 17 children,
+including the calyx, pedunculus, spur and lobe system, each for adult and larval stages.
+
+### 5. **Search Facets** (`list_search_facets`)
+
+List the type names that searches can filter, exclude, boost or demote by, with the number of terms
+carrying each. There are 233 of them and they come from the index's own annotations rather than a
+curated list, so they change as data is added. Worth listing rather than guessing.
+
+**Example Query:**
+```text
+"What connectivity filters can I search by?"
+```
+
+That returns `has_neuron_connectivity` (488,110 terms) and `has_region_connectivity` (22,587).
+
+### 6. **Name Resolution** (`resolve_entity`)
+
+Turn a name as written in a paper into FlyBase and VFB IDs — gene symbols, driver lines, construct
+names. It tries an exact match first, then synonyms, then a broad pattern match, and tells you which
+of the three it used.
+
+**Example Query:**
+```text
+"What is Hb9-GAL4?"
+"Tell me about P{VT054895-GAL4.DBD}"
+```
+
+⚠️ When the match came from a synonym or a broad pattern rather than an exact name, check the
+result is the entity you meant before building on it. Your assistant should say which it was.
+
+### 7. **Split-GAL4 Combinations** (`resolve_combination`)
+
+Resolve a split-GAL4 combination name to its FBco ID and the component hemidrivers that make it up.
+
+**Example Query:**
+```text
+"What are the components of SS04495?"
+"What is MB002B?"
 ```
 
 ## Example Use Cases
