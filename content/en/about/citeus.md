@@ -47,18 +47,18 @@ If you used the VFB MCP tool — querying VFB through Claude or another AI assis
 cite the paper describing it and its evaluation:
 
 #### APA
-McLachlan, A. D., Court, R., Pilgrim, C., Longden, K., Brown, N. H., Osumi-Sutherland, D., Jefferis, G. S. X. E., & Armstrong, J. D. (2026). *VFB-MCP: Natural-language access to Drosophila neuroscience grounded by an expert-curated ontology-led knowledgebase* [Preprint]. bioRxiv. https://doi.org/10.64898/2026.06.16.732577
+McLachlan, A. D., Court, R., Pilgrim, C., Longden, K. D., Brown, N. H., Osumi-Sutherland, D., Jefferis, G. S. X. E., & Armstrong, J. D. (2026). *VFB-MCP: Natural-language access to Drosophila neuroscience grounded by an expert-curated ontology-led knowledgebase* [Preprint]. bioRxiv. https://doi.org/10.64898/2026.06.16.732577
 
 #### MLA
 McLachlan, Alex D., et al. "VFB-MCP: Natural-Language Access to Drosophila Neuroscience Grounded by an Expert-Curated Ontology-Led Knowledgebase." *bioRxiv*, 2026, https://doi.org/10.64898/2026.06.16.732577. Preprint.
 
 #### Chicago
-McLachlan, Alex D., Robert Court, Clare Pilgrim, Kit Longden, Nicolas H. Brown, David Osumi-Sutherland, Gregory S. X. E. Jefferis, and J. Douglas Armstrong. "VFB-MCP: Natural-Language Access to Drosophila Neuroscience Grounded by an Expert-Curated Ontology-Led Knowledgebase." *bioRxiv* (2026). https://doi.org/10.64898/2026.06.16.732577.
+McLachlan, Alex D., Robert Court, Clare Pilgrim, Kit D. Longden, Nicolas H. Brown, David Osumi-Sutherland, Gregory S. X. E. Jefferis, and J. Douglas Armstrong. "VFB-MCP: Natural-Language Access to Drosophila Neuroscience Grounded by an Expert-Curated Ontology-Led Knowledgebase." *bioRxiv* (2026). https://doi.org/10.64898/2026.06.16.732577.
 
 #### BibTeX
 ```BibTeX
 @article{McLachlan_2026,
-  author = {Alex D. McLachlan and Robert Court and Clare Pilgrim and Kit Longden and Nicolas H. Brown and David Osumi-Sutherland and Gregory S. X. E. Jefferis and J. Douglas Armstrong},
+  author = {Alex D. McLachlan and Robert Court and Clare Pilgrim and Kit D. Longden and Nicolas H. Brown and David Osumi-Sutherland and Gregory S. X. E. Jefferis and J. Douglas Armstrong},
   title = "{VFB-MCP: Natural-Language Access to Drosophila Neuroscience Grounded by an Expert-Curated Ontology-Led Knowledgebase}",
   journal = {bioRxiv},
   year = {2026},
