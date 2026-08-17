@@ -46,6 +46,11 @@ Court, Robert, Costa, Marta, Pilgrim, Clare, Millburn, Gillian, Holmes, Alex, Mc
 If you used the VFB MCP tool — querying VFB through Claude or another AI assistant — please also
 cite the paper describing it and its evaluation:
 
+**Read it:** [doi.org/10.64898/2026.06.16.732577](https://doi.org/10.64898/2026.06.16.732577)
+
+The DOI always resolves to the newest version — v2 at the time of writing — so it is the link to
+share. Open access under CC-BY.
+
 #### APA
 McLachlan, A. D., Court, R., Pilgrim, C., Longden, K. D., Brown, N. H., Osumi-Sutherland, D., Jefferis, G. S. X. E., & Armstrong, J. D. (2026). *VFB-MCP: Natural-language access to Drosophila neuroscience grounded by an expert-curated ontology-led knowledgebase* [Preprint]. bioRxiv. https://doi.org/10.64898/2026.06.16.732577
 
