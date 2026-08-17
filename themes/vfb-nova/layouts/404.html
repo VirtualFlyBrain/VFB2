@@ -4,13 +4,12 @@
     <div class="oops__code">404</div>
     <h1 style="margin-top:1rem">We can’t find that page</h1>
     <p class="lede">The link may be out of date, or the address may have a typo.</p>
-    <p class="lede">Looking for a neuron or a brain region? Those pages live under
-      <code>/term/</code>, and the quickest way to one is the search box above or the
-      3D browser.</p>
+    <p class="lede">Looking for a neuron, a brain region or an expression pattern?
+      Open the 3D browser and search there — that is where the anatomy lives.</p>
     <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
-      <button class="btn btn--primary js-search" type="button"><i class="fas fa-magnifying-glass"></i> Search the site</button>
+      <a class="btn btn--primary" href="{{ .Site.Params.app_url }}" target="_blank" rel="noopener"><i class="fas fa-cube"></i> Open the 3D browser</a>
+      <button class="btn js-search" type="button"><i class="fas fa-magnifying-glass"></i> Search this site</button>
       <a class="btn" href="{{ "/" | relURL }}">Home</a>
-      <a class="btn" href="{{ "/docs/" | relURL }}">Documentation</a>
     </div>
   </div>
 </div>
