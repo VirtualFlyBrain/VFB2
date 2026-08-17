@@ -82,5 +82,10 @@ If you specifically use or reference the Drosophila anatomy ontology developed a
 * Osumi-Sutherland, D., Reeve, S., Mungall, C. J., Neuhaus, F., Ruttenberg, A., Jefferis, G. S. and Armstrong, J. D. (2012). [A strategy for building neuroanatomy ontologies](https://dx.doi.org/doi:10.1093/bioinformatics/bts113)
 
 
+## Papers citing VFB
+
+For examples of how other groups have used Virtual Fly Brain in published work, see
+[papers citing VFB](/about/papers-citing-vfb/).
+
 ## Acknowledgements
 When appropriate, please also acknowledge the specific data sources integrated into Virtual Fly Brain that you have used, such as JFRC, FlyBase, FlyCircuit, and datasets from individual research groups.
