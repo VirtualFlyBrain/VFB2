@@ -313,16 +313,27 @@ segmentation with human proofreading
 **Names.** None of the above is comparable across studies without agreed terms. VFB is
 built around the **Drosophila Anatomy Ontology**
 ([Costa et al., 2013](https://doi.org/10.1186/2041-1480-4-32)), a manually curated,
-queryable classification expressed in OWL, using a schema that records a neuron's
-location, connectivity, lineage and function and supports basic spatial reasoning
-([Osumi-Sutherland et al., 2012](https://doi.org/10.1093/bioinformatics/bts113)). Built
+queryable classification expressed in OWL. The schema behind it is a small, deliberate set
+of relations — `part_of` and `has_part`, `overlaps` derived from them, and then the ones
+that carry the neurobiology: `has_soma_location`, `fasciculates_with`,
+`has_synaptic_terminal_in` with its pre- and post-synaptic forms, `synapsed_to`,
+`upstream_in_neural_path_with`, `innervates`, `develops_from`
+([Osumi-Sutherland et al., 2012](https://doi.org/10.1093/bioinformatics/bts113)). Properties
+are asserted at the leaves and the hierarchy is left to a reasoner, because the alternative
+does not scale: "a conventional relational database approach provides no means to automate
+classification. Without this, maintaining the multiple inheritance classification schemes
+biologists typically use quickly becomes impractical." Built
 from over 1,000 curated papers, the DAO represents some 13,000 neuroanatomical structures
 and cell types, including over 9,800 terms for neuron types — of which more than 3,800 are
 predicted from connectomics data
-([Court et al., 2023](https://doi.org/10.3389/fphys.2023.1076533)). The region names
-themselves come from the community nomenclatures for the brain
-([Ito et al., 2014](https://doi.org/10.1016/j.neuron.2013.12.017)) and the ventral nerve
-cord ([Court et al., 2020](https://doi.org/10.1016/j.neuron.2020.08.005)). See
+([Court et al., 2023](https://doi.org/10.3389/fphys.2023.1076533)). The region names came
+in from outside: VFB "adapted and updated the *Drosophila* anatomy ontology to incorporate
+the BrainName standard terminology"
+([Milyaev et al., 2012](https://doi.org/10.1093/bioinformatics/btr677)), the community
+standard later published as the systematic nomenclature for the insect brain
+([Ito et al., 2014](https://doi.org/10.1016/j.neuron.2013.12.017)); the ventral nerve cord
+got the same treatment
+([Court et al., 2020](https://doi.org/10.1016/j.neuron.2020.08.005)). See
 [Cell types](/docs/concepts/cell_types/).
 
 The ontology has its own inclusion rule, and it is the reason a VFB term can be treated as
