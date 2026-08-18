@@ -144,7 +144,9 @@ bithorax complex and its role in segment identity
 Wieschaus ran a saturation screen for mutations affecting the segmental pattern of the
 embryo, and in doing so demonstrated that a developmental programme could be enumerated
 gene by gene ([Nüsslein-Volhard and Wieschaus, 1980](https://doi.org/10.1038/287795a0)).
-The three shared the 1995 Nobel Prize in Physiology or Medicine.
+Lewis, Nüsslein-Volhard and Wieschaus shared the
+[1995 Nobel Prize in Physiology or Medicine](https://www.nobelprize.org/prizes/medicine/1995/summary/)
+"for their discoveries concerning the genetic control of early embryonic development".
 
 **2000: the genome.** The roughly 120-megabase euchromatic portion of the genome was
 sequenced by a whole-genome shotgun strategy, and reported to encode about 13,600 genes
