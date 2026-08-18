@@ -104,11 +104,12 @@ mirroring registration, and bridging transforms are used wherever possible to br
 from external templates, or from one VFB template to another, into a common space
 ([Court et al., 2023](https://doi.org/10.3389/fphys.2023.1076533)).
 
-Those bridging transforms are not kept privately. VFB works through **navis-flybrains** and
-its R counterpart **nat.flybrains** so that the registrations are available to everyone and
-consistent between users — the same transform, giving the same answer, whether it is
-applied inside VFB or in someone's own analysis. See
-[bridging registrations](/docs/concepts/bridging/).
+Those bridging transforms are not kept privately. VFB publishes them through
+[**navis-flybrains**](https://github.com/navis-org/navis-flybrains) and its R counterpart
+[**nat.flybrains**](https://natverse.org/nat.flybrains/index.html), where they are a named
+set retrievable with `flybrains.download_vfb_transforms()`. The point is that the same
+transform gives the same answer whether it runs inside VFB or in someone else's analysis.
+See [bridging registrations](/docs/concepts/bridging/).
 
 The point of all this is comparison at scale: VFB's main adult brain template carries
 almost 100,000 cross-registered images from 64 datasets — EM reconstructions, single
@@ -120,10 +121,13 @@ neuron IDs between them.
 ## Working with it
 
 Transforms between the common fly template spaces are packaged for programmatic use in
-the natverse ecosystem — `nat.templatebrains` and `navis-flybrains` — described in
-[Bates et al. (2020)](https://doi.org/10.7554/eLife.53350). VFB's own
-[APIs](/docs/apis/) return coordinates in template space, and the
-[bridging registrations](/docs/concepts/bridging/) page shows which conversions exist.
+[navis-flybrains](https://github.com/navis-org/navis-flybrains) for Python and the natverse
+packages `nat.templatebrains` / `nat.flybrains` for R
+([Bates et al., 2020](https://doi.org/10.7554/eLife.53350)); the
+[navis transforms tutorial](https://navis-org.github.io/navis/stable/generated/gallery/6_misc/tutorial_misc_01_transforms/)
+covers applying them. VFB's own [APIs](/docs/apis/) return coordinates in template space,
+and the [bridging registrations](/docs/concepts/bridging/) page shows which conversions
+exist and how a route between two spaces is chosen.
 
 ## Sources
 
