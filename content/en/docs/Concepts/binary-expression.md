@@ -96,6 +96,20 @@ Both are searchable on VFB, registered to the [standard templates](/docs/data/te
 and classified with anatomy ontology terms, so you can ask which lines label a region or
 cell type rather than reading pattern images one at a time.
 
+## What "expression pattern" means on VFB, formally
+
+The term has a precise definition behind it. VFB defines a relation `expresses` holding
+between an anatomical entity and a gene or transgene, and then defines an **expression
+pattern** as the anatomical entity consisting of the mereological sum of *all* cells that
+express that gene or transgene
+([Osumi-Sutherland et al., 2014](https://ceur-ws.org/Vol-1265/owled2014_submission_12.pdf)).
+
+That is why VFB distinguishes an expression pattern from an **expression pattern
+fragment**. An image of a single neuron or a clone picked out of a driver's pattern depicts
+only part of that sum, so it is modelled as a part of the expression pattern rather than as
+the pattern itself. The distinction is not cosmetic: it is what stops a sparse MCFO image
+of one cell being treated as the full extent of what a driver labels.
+
 ## What an expression pattern image is, and is not
 
 - **It is the whole pattern of that driver**, not of one cell type. A GAL4 line usually
@@ -149,3 +163,4 @@ both from each transgene record. See
 - Kvon EZ et al. (2014) Genome-scale functional characterization of *Drosophila* developmental enhancers in vivo. *Nature* 512:91–95. doi:10.1038/nature13395
 - Perkins LA et al. (2015) The Transgenic RNAi Project at Harvard Medical School: resources and validation. *Genetics* 201:843–852. doi:10.1534/genetics.115.180208
 - Talay M et al. (2017) Transsynaptic mapping of second-order taste neurons in flies by trans-Tango. *Neuron* 96:783–795. doi:10.1016/j.neuron.2017.10.011
+- Osumi-Sutherland D, Costa M, Court R, O'Kane CJ (2014) Virtual Fly Brain — using OWL to support the mapping and genetic dissection of the *Drosophila* brain. *Proceedings of OWLED 2014*, CEUR Workshop Proceedings 1265:85–96. [PDF](https://ceur-ws.org/Vol-1265/owled2014_submission_12.pdf)

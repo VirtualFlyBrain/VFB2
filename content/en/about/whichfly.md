@@ -338,6 +338,27 @@ the classification is not hand-asserted but inferred: relations such as `part_of
 reasoner derive the hierarchy and let disjointness axioms catch contradictions
 ([Costa et al., 2013](https://doi.org/10.1186/2041-1480-4-32)).
 
+**How an image becomes a queryable fact.** The bridge between the pictures and the
+ontology is that images are modelled as OWL *individuals*. The painted neuropil domains on
+a template are individuals of the relevant class, tied to it by a `has_exemplar` axiom, so
+a term page can find its own illustration with a query. Every other image — single neuron,
+clone, expression pattern — is registered onto that same template, and image analysis of
+which regions it overlaps is written back as a type assertion on the individual. That is
+what makes "show me neurons with a synaptic terminal in the antennal lobe" answerable at
+all: the answer is inferred, not looked up. Reasoning propagates over partonomy through
+property chains on `overlaps` and its subproperties — `fasciculates_with`,
+`has_synaptic_terminal_in` — so a query at one level of the part hierarchy also returns
+what was asserted further down it
+([Osumi-Sutherland et al., 2014](https://ceur-ws.org/Vol-1265/owled2014_submission_12.pdf)).
+
+There is a deliberate limit here, and it is worth knowing because it shapes what you can
+ask. To keep reasoning fast enough to run live, VFB confines the ontology almost entirely
+to the **EL profile** of OWL and uses the ELK reasoner. The payoff is speed. The cost is
+expressiveness: EL has no negation, so VFB's compound queries combine their legs with
+*and* and cannot express "neurons that synapse in the mushroom body but **not** in the
+lateral horn" — a query the same paper argues would be genuinely useful for choosing
+specific reagents, and sets out closure-axiom and disjointness patterns to support.
+
 VFB itself began as an interface onto that idea. The original paper describes two aims —
 "a hub for neuro-anatomical data integration" and "an easily accessible and usable tool to
 disseminate community agreed anatomical standards" — built over the BrainName reference
@@ -441,4 +462,5 @@ datasets and connectomes described on this page were added to that frame.
 
 - Milyaev N et al. (2012) The Virtual Fly Brain browser and query interface. *Bioinformatics* 28:411–415. doi:10.1093/bioinformatics/btr677
 - Costa M, Reeve S, Grumbling G, Osumi-Sutherland D (2013) The *Drosophila* anatomy ontology. *J Biomed Semantics* 4:32. doi:10.1186/2041-1480-4-32
+- Osumi-Sutherland D, Costa M, Court R, O'Kane CJ (2014) Virtual Fly Brain — using OWL to support the mapping and genetic dissection of the *Drosophila* brain. *Proceedings of OWLED 2014*, CEUR Workshop Proceedings 1265:85–96. [PDF](https://ceur-ws.org/Vol-1265/owled2014_submission_12.pdf)
 - Court R et al. (2023) Virtual Fly Brain — an interactive atlas of the *Drosophila* nervous system. *Front Physiol* 14:1076533. doi:10.3389/fphys.2023.1076533
