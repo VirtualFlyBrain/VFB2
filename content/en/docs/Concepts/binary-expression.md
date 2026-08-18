@@ -52,9 +52,12 @@ another ([Lai and Lee, 2006](https://doi.org/10.1038/nn1681);
 ## Control in time as well as space
 
 GAL80 represses GAL4. A temperature-sensitive GAL80 therefore gates GAL4 activity by
-temperature, which converts a spatial tool into a spatiotemporal one
-([McGuire et al., 2003](https://doi.org/10.1126/science.1089035)). GAL80 is also what makes
-MARCM work — see [stochastic labelling](/docs/concepts/stochastic-labelling/).
+temperature, converting a spatial tool into a spatiotemporal one — the **TARGET** system,
+"temporal and regional gene expression targeting", which McGuire et al. used to rescue a
+memory defect transiently in the adult mushroom bodies and so rule out a developmental
+cause ([McGuire et al., 2003](https://doi.org/10.1126/science.1089035)). GAL80 is also what
+makes MARCM work — see
+[stochastic labelling](/docs/concepts/stochastic-labelling/).
 
 ## Where the driver lines came from
 
@@ -73,11 +76,13 @@ driver line genotypes on VFB so often read `w[1118];P{w[+mW.hs]=GawB}…`, and w
 *Drosophila* mutant ever described is still the standard way of telling that a transgene
 went in.
 
-Two changes made large collections possible. First, φC31 integrase allowed constructs to
-be placed at a defined attP landing site, so lines differ only in their enhancer fragment
-and not in where the construct sits
-([Groth et al., 2004](https://doi.org/10.1534/genetics.166.4.1775)). Second, defined
-genomic fragments were cloned systematically rather than trapped
+Two changes made large collections possible. First, the φC31 integrase — which catalyses
+unidirectional site-specific recombination between attB and attP sites — was shown to work
+in *Drosophila*, and attP sites were integrated into the genome to act as defined landing
+sites ([Groth et al., 2004](https://doi.org/10.1534/genetics.166.4.1775)). Constructs
+placed there differ only in their enhancer fragment, not in where they sit, so patterns
+can be compared without position effects confounding them. Second, defined genomic
+fragments were cloned systematically rather than trapped
 ([Pfeiffer et al., 2008](https://doi.org/10.1073/pnas.0803697105)).
 
 The two collections that dominate VFB's light microscopy followed:

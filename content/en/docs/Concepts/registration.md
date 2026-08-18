@@ -36,13 +36,15 @@ The transformation is found in stages of increasing freedom:
    structures into correspondence.
 
 The non-rigid step is what actually does the work, and it is why registration is expensive
-and imperfect. Two toolkits dominate fly registration: **CMTK**, whose B-spline non-rigid
-implementation was developed with fly brains among its target applications
-([Rohlfing and Maurer, 2003](https://doi.org/10.1109/TITB.2003.808506)), and **ANTs**, whose
-symmetric diffeomorphic model (SyN) guarantees an invertible transformation
-([Avants et al., 2008](https://doi.org/10.1016/j.media.2007.06.004)). The approach was
-established for *Drosophila* olfactory anatomy by
-[Jefferis et al. (2007)](https://doi.org/10.1016/j.cell.2007.01.040).
+and imperfect. Two toolkits dominate fly registration. **CMTK** is the more common; the
+paper usually cited for it describes a parallel implementation of non-rigid registration,
+demonstrated on clinical and other biomedical problems rather than on flies
+([Rohlfing and Maurer, 2003](https://doi.org/10.1109/TITB.2003.808506)) — it was
+[Jefferis et al. (2007)](https://doi.org/10.1016/j.cell.2007.01.040) who established the
+approach for *Drosophila*, registering brains to a common template to build comparable maps
+of olfactory projections. **ANTs** is the other, whose symmetric diffeomorphic model (SyN)
+yields an invertible transformation
+([Avants et al., 2008](https://doi.org/10.1016/j.media.2007.06.004)).
 
 ## Why templates are built from many brains
 

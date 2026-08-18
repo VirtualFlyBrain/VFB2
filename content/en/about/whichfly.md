@@ -122,10 +122,13 @@ embryo, and in doing so demonstrated that a developmental programme could be enu
 gene by gene ([Nüsslein-Volhard and Wieschaus, 1980](https://doi.org/10.1038/287795a0)).
 The three shared the 1995 Nobel Prize in Physiology or Medicine.
 
-**2000: the genome.** The *Drosophila* sequence was the largest genome assembled by
-whole-genome shotgun sequencing at the time, and served as the proof of principle for the
-human assembly that followed ([Adams et al., 2000](https://doi.org/10.1126/science.287.5461.2185);
-[Rubin and Lewis, 2000](https://doi.org/10.1126/science.287.5461.2216)).
+**2000: the genome.** The roughly 120-megabase euchromatic portion of the genome was
+sequenced by a whole-genome shotgun strategy, and reported to encode about 13,600 genes
+([Adams et al., 2000](https://doi.org/10.1126/science.287.5461.2185)). Rubin and Lewis,
+reviewing the nine decades behind it, note that genetic and physical mapping, whole-genome
+mutational screens, and functional alteration of the genome by gene transfer were all
+pioneered in metazoans using this fly
+([Rubin and Lewis, 2000](https://doi.org/10.1126/science.287.5461.2216)).
 
 What accumulated alongside those results is the part that matters for VFB: balancer
 chromosomes that hold a mutation stable over generations, isogenic wild-type stocks,
@@ -150,13 +153,16 @@ scored by eye — which is why so many classical markers are visible ones such a
 colour, wing shape and bristle morphology.
 
 A typical light microscopy dataset on VFB is the end of a chain of crosses. Virgin females
-of one genotype are collected — they must be picked within hours of eclosion, before they
-mate — and crossed to males of another. Where a genotype cannot be made homozygous,
-**balancer chromosomes** hold it stable: multiply-inverted chromosomes that suppress
-recombination and carry a dominant visible marker and a recessive lethal, so the stock
-maintains itself and the right progeny can be picked out by their markers. This machinery,
-and the isogenic wild-type stocks it accompanies, is the classical genetics described in
-[Kaufman (2017)](https://doi.org/10.1534/genetics.117.199950).
+of one genotype are collected — they must be picked before they mate — and crossed to
+males of another. Where a genotype cannot be made homozygous, **balancer chromosomes**
+hold it stable. A balancer carries "one or more inverted sequences relative to a normal
+chromosome to prevent the recovery of exchange events", so the arrangement it is paired
+with is passed on intact; to be useful it should also carry "a recessive lethal mutation
+not related to the lesion being balanced", which stops the balancer going homozygous, and
+"a dominant visible mutation so that it can be easily followed in crossing schemes"
+([Kaufman, 2017](https://doi.org/10.1534/genetics.117.199950)). That is what lets a lethal
+mutation, or a chromosome carrying a particular set of transgenes, sit in a stock
+indefinitely and still be identified by eye in the next generation.
 
 The animal is then dissected — a CNS is taken out under saline in a few minutes — fixed,
 immunostained (typically an antibody against the tag on the reporter, plus a neuropil
@@ -211,8 +217,11 @@ regulatory element the transposon landed near, turning random insertion into a s
 expression patterns ([O'Kane and Gehring, 1987](https://doi.org/10.1073/pnas.84.24.9123)).
 
 **Separating "where" from "what".** The decisive step was Brand and Perrimon's
-adaptation of yeast GAL4: one line carries GAL4 under a genomic fragment, another carries
-the effector under UAS, and the cross determines what happens where
+adaptation of yeast GAL4. In their system the GAL4 gene "is inserted randomly into the
+*Drosophila* genome to drive GAL4 expression from one of a diverse array of genomic
+enhancers", and a separate transgene carrying GAL4 binding sites in its promoter is
+activated wherever GAL4 is present — so one line supplies the pattern, another the
+payload, and the cross decides what happens where
 ([Brand and Perrimon, 1993](https://doi.org/10.1242/dev.118.2.401)). Every driver line on
 VFB is downstream of this. See
 [Binary expression systems](/docs/concepts/binary-expression/).

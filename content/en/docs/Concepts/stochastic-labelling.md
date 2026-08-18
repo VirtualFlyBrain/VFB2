@@ -22,23 +22,28 @@ from, and it is what makes LM morphologies comparable against EM reconstructions
 
 ## The mechanism
 
-All of these methods use site-specific recombination. The FLP recombinase excises or
-swaps DNA between FRT sites
-([Golic and Lindquist, 1989](https://doi.org/10.1016/0092-8674(89)90033-0)). Give FLP only
-a brief window or a weak promoter and it acts in some cells and not others — the
-randomness is the point.
+All of these methods use site-specific recombination. Golic and Lindquist moved the yeast
+FLP recombinase and its FRT target sites into *Drosophila*, put FLP under *hsp70* control,
+and flanked a *white* gene with FRTs: heat shock triggered recombination, read out as
+white patches in the eye, with the frequency of events varying with the severity of the
+heat shock and the pattern of mosaicism with the stage at which it was applied
+([Golic and Lindquist, 1989](https://doi.org/10.1016/0092-8674(89)90033-0)). That is the
+whole basis of the methods below — give FLP only a brief window and it acts in some cells
+and not others. The randomness is the point.
 
 **FLP-out.** A transcription-terminating cassette flanked by FRT sites sits between the
 promoter and the reporter. The reporter is silent until FLP removes the cassette. Because
 excision is stochastic, only some cells in the driver's pattern ever express it.
 
-**MARCM** (Mosaic Analysis with a Repressible Cell Marker) uses mitotic recombination at
-an FRT to produce, from a heterozygous dividing cell, one daughter homozygous for the
-absence of GAL80. Only that daughter and its progeny lose GAL4 repression and become
-labelled ([Lee and Luo, 1999](https://doi.org/10.1016/S0896-6273(00)80701-1)). Because the
-event happens at a cell division, the labelled unit is a **clone** — a neuroblast and its
-progeny — which is why MARCM is the standard method for lineage work, and why VFB holds
-clonal as well as single-cell images.
+**MARCM** (Mosaic Analysis with a Repressible Cell Marker) puts a dominant repressor of a
+cell marker — GAL80 — in *trans* to the mutant gene of interest. Mitotic recombination
+between homologous chromosomes generates homozygous mutant cells, and those cells are
+"exclusively labeled due to loss of the repressor"
+([Lee and Luo, 1999](https://doi.org/10.1016/S0896-6273(00)80701-1)). Because the event
+happens at a cell division, the labelled unit is a **clone**: Lee and Luo used it to
+visualise both "large neuroblast clones and single neuron clones" with membrane-targeted
+GFP. That is why MARCM is the standard method for lineage work, and why VFB holds clonal
+as well as single-cell images.
 
 **MCFO** (MultiColor FlpOut) extends FLP-out with several differently epitope-tagged,
 membrane-targeted reporters, each behind its own excisable cassette. Different cells end
