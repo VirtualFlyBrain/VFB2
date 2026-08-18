@@ -244,10 +244,10 @@
       .slice(0, 24);
 
     sel = 0;
-    const pagesHTML = items.map((x, i) => {
+    const pageHTML = (x) => {
       const d = x.d;
       const icon = ICONS[d.section] || ICONS[''];
-      return '<li class="res ' + (i === 0 ? 'is-sel' : '') + '">' +
+      return '<li class="res">' +
         '<a href="' + d.url + '">' +
           '<i class="r-icon fas ' + icon + '"></i>' +
           '<span class="r-title">' + mark(d.title, q) +
@@ -255,10 +255,20 @@
           '</span>' +
           '<span class="r-sec">' + esc(d.section || 'page') + '</span>' +
         '</a></li>';
-    }).join('');
+    };
+
+    /* A page whose *title* matches outranks any anatomy term: someone typing
+       "solr api" wants the doc. A page that merely mentions the word in its
+       body does not — "medulla" must not bury the medulla under two API
+       tutorials that happen to use it as their example query. So title-tier
+       hits sit above the terms group and the rest below it. */
+    const strongHTML = items.filter((x) => x.s <= 2).map(pageHTML).join('');
+    const weakHTML = items.filter((x) => x.s > 2).map(pageHTML).join('');
+    const pagesHTML = strongHTML + weakHTML;
 
     const mine = ++seq;
     list.innerHTML = pagesHTML || '<li class="palette__empty">Searching anatomy terms…</li>';
+    markFirst();
 
     fetchTerms(q, mine).then((terms) => {
       if (mine !== seq) return;
@@ -267,11 +277,15 @@
         list.innerHTML = '<li class="palette__empty">No match for “' + esc(q) + '”.</li>';
         return;
       }
-      list.innerHTML = pagesHTML + th;
-      const first = list.querySelector('li.res');
-      if (first && !list.querySelector('li.is-sel')) first.classList.add('is-sel');
-      sel = 0;
+      list.innerHTML = th ? strongHTML + th + weakHTML : pagesHTML;
+      markFirst();
     });
+  }
+
+  function markFirst() {
+    const first = list.querySelector('li.res');
+    if (first) first.classList.add('is-sel');
+    sel = 0;
   }
 
   function recent() {
