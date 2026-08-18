@@ -61,18 +61,22 @@ dataset record for exactly this reason.
 Both halves of the cross have FlyBase records, and reading them turns the genotype into a
 short history of the field.
 
-**Canton-S** ([FBsn0000274](https://flybase.org/reports/FBsn0000274)) is a wild-type
-strain derived from a natural population collected at Canton, Ohio. FlyBase records that
-it was selected by **C. Bridges**, who established that its salivary chromosomes were
-normal — the same Bridges whose salivary gland maps are cited below. It is still
-distributed, by Bloomington (64349) and Kyoto (105666). The report also notes a recessive
-for multiple thoracic and scutellar bristles that surfaces sporadically in strains partly
-derived from it, which is a useful reminder that "wild type" names a stock, not an
-absence of variation.
+**Canton-S**, or Canton-Special
+([FBsn0000274](https://flybase.org/reports/FBsn0000274)), is one of the standard wild-type
+laboratory strains. FlyBase records that it was "selected by C. Bridges", and that
+"C. Bridges found that salivary chromosomes were normal" — the same Bridges whose salivary
+gland maps are cited below, vetting the stock with the technique he had just built. It is
+still distributed, by Bloomington (64349) and Kyoto (105666). The report also notes that
+it "contains a recessive for multiple thoracic and scutellar bristles, which overlaps wild
+type in most flies but appears sporadically in strains partly derived from Canton-S" — a
+useful reminder that "wild type" names a stock, not an absence of variation.
 
 ***w<sup>1118</sup>*** ([FBal0018186](https://flybase.org/reports/FBal0018186)) is a
-spontaneous partial deletion of *white*, attributed to R. Levis — a loss-of-function
-allele of the very gene Morgan reported in 1910. It is the standard white-eyed background
+loss-of-function allele of the very gene Morgan reported in 1910: FlyBase gives the
+mutagen as spontaneous and the lesion as a "partial deletion of the w locus", citing
+[Hazelrigg et al. (1984)](https://doi.org/10.1016/0092-8674(84)90240-X) — the same paper
+that worked out how transduced copies of *white* behave, which is what made it usable as
+a transformation marker. It is the standard white-eyed background
 for transgenics, and not by accident: P-element and φC31 constructs are typically marked
 with **mini-*white*** — the P{GawB} enhancer-trap construct that produced many early GAL4
 lines carries *w<sup>+mW.hs</sup>*
@@ -327,6 +331,7 @@ using the strategy described in
 **Techniques**
 
 - Rubin GM, Spradling AC (1982) Genetic transformation of *Drosophila* with transposable element vectors. *Science* 218:348–353. doi:10.1126/science.6289436
+- Hazelrigg T, Levis R, Rubin GM (1984) Transformation of *white* locus DNA in *Drosophila*: dosage compensation, zeste interaction, and position effects. *Cell* 36:469–481. doi:10.1016/0092-8674(84)90240-X
 - O'Kane CJ, Gehring WJ (1987) Detection in situ of genomic regulatory elements in *Drosophila*. *PNAS* 84:9123–9127. doi:10.1073/pnas.84.24.9123
 - Golic KG, Lindquist S (1989) The FLP recombinase of yeast catalyzes site-specific recombination in the *Drosophila* genome. *Cell* 59:499–509. doi:10.1016/0092-8674(89)90033-0
 - Brand AH, Perrimon N (1993) Targeted gene expression as a means of altering cell fates and generating dominant phenotypes. *Development* 118:401–415. doi:10.1242/dev.118.2.401
