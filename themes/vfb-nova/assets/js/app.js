@@ -135,8 +135,13 @@
   const input = $('#palette-input');
   const list = $('#palette-results');
   const indexURL = pal.dataset.index;
+  const solrURL = pal.dataset.solr;
+  const browserURL = pal.dataset.browser;
   let docs = null;
   let sel = 0;
+  let seq = 0;            /* guards against out-of-order SOLR responses */
+  let termCtl = null;     /* aborts the in-flight SOLR request when typing */
+  let termTimer = null;
 
   const ICONS = {
     docs: 'fa-book', blog: 'fa-newspaper', about: 'fa-circle-info',
@@ -172,6 +177,65 @@
     return 99;
   }
 
+  /* --- anatomy terms, live from SOLR ---------------------------------------
+     The ~763k generated term pages are not in the Hugo index, so the site
+     search alone answers "medulla" with nothing. These come from the same
+     ontology core and the same query the 3D browser's own search uses
+     (geppetto-vfb searchConfiguration.js): identical qf/pf/bq/fq weighting, so
+     ranking matches what users get in the browser. rows is 8 rather than 500
+     because this is a palette, not a results page.
+
+     Fails silently. SOLR being down must never break search over site pages. */
+  const SOLR_FQ = [
+    '(short_form:VFB* OR short_form:FB* OR facets_annotation:DataSet OR facets_annotation:pub) AND NOT short_form:VFBc_*',
+    'NOT facets_annotation:Deprecated',
+  ];
+  const SOLR_BQ = 'short_form:VFBexp*^10.0 short_form:VFB*^50.0 facets_annotation:Class^200.0 ' +
+    'short_form:FBbt*^150.0 short_form:FBbt_00003982^2 facets_annotation:Deprecated^0.001 ' +
+    'facets_annotation:DataSet^500.0 facets_annotation:pub^100.0';
+
+  /* SOLR labels can carry a stray backslash before a quote from over-escaped
+     source data ("y5B\'2a" for "y5B'2a"). Never legitimate; safe to strip. */
+  const cleanLabel = (l) => (typeof l === 'string' ? l.replace(/\\(['"])/g, '$1') : l);
+
+  async function fetchTerms(q, mine) {
+    if (!solrURL || q.length < 2) return null;
+    if (termCtl) termCtl.abort();
+    termCtl = new AbortController();
+    const p = new URLSearchParams({
+      q: q, 'q.op': 'OR', defType: 'edismax', mm: '45%',
+      qf: 'label^110 synonym^100 label_autosuggest synonym_autosuggest shortform_autosuggest',
+      pf: 'label^250 synonym^120', ps: '0',
+      fl: 'short_form,label,unique_facets',
+      bq: SOLR_BQ, rows: '8', start: '0', wt: 'json',
+    });
+    SOLR_FQ.forEach((f) => p.append('fq', f));
+    try {
+      const r = await fetch(solrURL + '?' + p.toString(), { signal: termCtl.signal });
+      if (!r.ok) return null;
+      const j = await r.json();
+      if (mine !== seq) return null;      /* a newer query has since been typed */
+      return (j.response && j.response.docs) || [];
+    } catch (e) { return null; }
+  }
+
+  function termsHTML(terms, q) {
+    if (!terms || !terms.length) return '';
+    return '<li class="palette__group" aria-hidden="true">Anatomy terms &middot; opens in the 3D browser</li>' +
+      terms.map((t) => {
+        const label = cleanLabel(t.label) || t.short_form;
+        const facets = (t.unique_facets || []).slice(0, 3).join(' · ');
+        return '<li class="res">' +
+          '<a href="' + browserURL + '?id=' + encodeURIComponent(t.short_form) + '" target="_blank" rel="noopener">' +
+            '<i class="r-icon fas fa-diagram-project"></i>' +
+            '<span class="r-title">' + mark(label, q) +
+              '<span class="r-desc">' + esc(t.short_form) + (facets ? ' — ' + esc(facets) : '') + '</span>' +
+            '</span>' +
+            '<span class="r-sec">term</span>' +
+          '</a></li>';
+      }).join('');
+  }
+
   function render(q) {
     const items = (docs || [])
       .map((d) => ({ d, s: score(d, q) }))
@@ -179,16 +243,11 @@
       .sort((a, b) => a.s - b.s || a.d.title.length - b.d.title.length)
       .slice(0, 24);
 
-    if (!items.length) {
-      list.innerHTML = '<li class="palette__empty">No match for “' + esc(q) + '”. ' +
-        'Anatomy terms live in the <a href="/term/">term index</a>.</li>';
-      return;
-    }
     sel = 0;
-    list.innerHTML = items.map((x, i) => {
+    const pagesHTML = items.map((x, i) => {
       const d = x.d;
       const icon = ICONS[d.section] || ICONS[''];
-      return '<li class="' + (i === 0 ? 'is-sel' : '') + '">' +
+      return '<li class="res ' + (i === 0 ? 'is-sel' : '') + '">' +
         '<a href="' + d.url + '">' +
           '<i class="r-icon fas ' + icon + '"></i>' +
           '<span class="r-title">' + mark(d.title, q) +
@@ -197,11 +256,27 @@
           '<span class="r-sec">' + esc(d.section || 'page') + '</span>' +
         '</a></li>';
     }).join('');
+
+    const mine = ++seq;
+    list.innerHTML = pagesHTML || '<li class="palette__empty">Searching anatomy terms…</li>';
+
+    fetchTerms(q, mine).then((terms) => {
+      if (mine !== seq) return;
+      const th = termsHTML(terms, q);
+      if (!pagesHTML && !th) {
+        list.innerHTML = '<li class="palette__empty">No match for “' + esc(q) + '”.</li>';
+        return;
+      }
+      list.innerHTML = pagesHTML + th;
+      const first = list.querySelector('li.res');
+      if (first && !list.querySelector('li.is-sel')) first.classList.add('is-sel');
+      sel = 0;
+    });
   }
 
   function recent() {
     list.innerHTML = (docs || []).filter((d) => d.pinned).slice(0, 8).map((d, i) =>
-      '<li class="' + (i === 0 ? 'is-sel' : '') + '"><a href="' + d.url + '">' +
+      '<li class="res ' + (i === 0 ? 'is-sel' : '') + '"><a href="' + d.url + '">' +
       '<i class="r-icon fas ' + (ICONS[d.section] || ICONS['']) + '"></i>' +
       '<span class="r-title">' + esc(d.title) + '</span>' +
       '<span class="r-sec">' + esc(d.section || 'page') + '</span></a></li>').join('');
@@ -232,7 +307,7 @@
   });
 
   function move(step) {
-    const items = $$('#palette-results li');
+    const items = $$('#palette-results li.res');
     if (!items.length) return;
     items[sel]?.classList.remove('is-sel');
     sel = (sel + step + items.length) % items.length;
@@ -249,7 +324,12 @@
     else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
     else if (e.key === 'Enter') {
       const a = $('#palette-results li.is-sel a');
-      if (a) { e.preventDefault(); window.location.href = a.getAttribute('href'); }
+      if (a) {
+        e.preventDefault();
+        /* term results carry target=_blank; Enter should honour that too */
+        if (a.target === '_blank') window.open(a.href, '_blank', 'noopener');
+        else window.location.href = a.getAttribute('href');
+      }
     }
   });
 })();

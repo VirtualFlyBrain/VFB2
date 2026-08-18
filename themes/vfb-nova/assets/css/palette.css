@@ -123,3 +123,17 @@
   padding: .1rem .35rem;
   font-size: .68rem;
 }
+
+/* Group heading separating anatomy terms from site pages in the palette.
+   aria-hidden and not selectable: move() skips it by matching li.res only. */
+.palette__group {
+  padding: var(--sp-3) var(--sp-5) var(--sp-2);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 1px solid var(--line-soft);
+  margin-top: var(--sp-2);
+}
+.palette__results li:first-child.palette__group { border-top: 0; margin-top: 0; }
