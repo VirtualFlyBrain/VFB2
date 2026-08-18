@@ -56,11 +56,37 @@ connectome is a six-hour-old first instar. A cell type present in one is not gua
 to be present, or to have the same partners, in another. VFB keeps sex and stage on the
 dataset record for exactly this reason.
 
-The choice of that particular cross is not arbitrary. Canton-S is a long-standing
-wild-type laboratory strain; *w<sup>1118</sup>* is a white-eyed mutant used as a
-standard genetic background. Crossing two isogenic stocks gives an F1 that is
-genetically uniform between individuals, so the specimen is reproducible in a way a
-wild-caught fly would not be. Isogenic backgrounds are also what the
+### What that genotype actually is
+
+Both halves of the cross have FlyBase records, and reading them turns the genotype into a
+short history of the field.
+
+**Canton-S** ([FBsn0000274](https://flybase.org/reports/FBsn0000274)) is a wild-type
+strain derived from a natural population collected at Canton, Ohio. FlyBase records that
+it was selected by **C. Bridges**, who established that its salivary chromosomes were
+normal — the same Bridges whose salivary gland maps are cited below. It is still
+distributed, by Bloomington (64349) and Kyoto (105666). The report also notes a recessive
+for multiple thoracic and scutellar bristles that surfaces sporadically in strains partly
+derived from it, which is a useful reminder that "wild type" names a stock, not an
+absence of variation.
+
+***w<sup>1118</sup>*** ([FBal0018186](https://flybase.org/reports/FBal0018186)) is a
+spontaneous partial deletion of *white*, attributed to R. Levis — a loss-of-function
+allele of the very gene Morgan reported in 1910. It is the standard white-eyed background
+for transgenics, and not by accident: P-element and φC31 constructs are typically marked
+with **mini-*white*** — the P{GawB} enhancer-trap construct that produced many early GAL4
+lines carries *w<sup>+mW.hs</sup>*
+([FBtp0000352](https://flybase.org/reports/FBtp0000352)) — and a *white*<sup>+</sup> marker
+can only be scored in a *white*-mutant animal. The first mutant Morgan ever described is
+still the thing that tells you a transgene went in.
+
+You can see this in VFB itself: driver line records carry genotypes such as
+`w[1118];P{w[+mW.hs]=GawB}c135`, with the mutant background and the mini-*white* marker
+both written out, and each links to its FlyBase report.
+
+Crossing two isogenic stocks gives an F1 that is genetically uniform between individuals,
+so the specimen is reproducible in a way a wild-caught fly would not be. Isogenic
+backgrounds are also what the
 [*Drosophila* Genetic Reference Panel](https://doi.org/10.1038/nature10811) exploits at
 population scale.
 
@@ -101,7 +127,10 @@ What accumulated alongside those results is the part that matters for VFB: balan
 chromosomes that hold a mutation stable over generations, isogenic wild-type stocks,
 public stock centres that will post you a fly, and a curated genetic literature in
 [FlyBase](https://flybase.org)
-([Öztürk-Çolak et al., 2024](https://doi.org/10.1093/genetics/iyad211)). For the history
+([Öztürk-Çolak et al., 2024](https://doi.org/10.1093/genetics/iyad211)) — which is why the
+strains named above can be looked up a century later, and why a driver line in a 2012
+paper is still orderable today. FlyBase release FB2026_02 is current at the time of
+writing. For the history
 of the classical toolkit,
 [Kaufman (2017)](https://doi.org/10.1534/genetics.117.199950) is the readable account;
 [Hales et al. (2015)](https://doi.org/10.1534/genetics.115.183392) is a primer on the
@@ -277,6 +306,12 @@ using the strategy described in
 - Mackay TFC et al. (2012) The *Drosophila melanogaster* Genetic Reference Panel. *Nature* 482:173–178. doi:10.1038/nature10811
 - Öztürk-Çolak A et al. (2024) FlyBase: updates to the *Drosophila* genes and genomes database. *Genetics* 227:iyad211. doi:10.1093/genetics/iyad211
 - Zheng S et al. (2024) An introductory guide to using Bloomington Drosophila Stock Center and FlyBase for aging research. *Cells* 13:1192. doi:10.3390/cells13141192
+
+**FlyBase records for the strains above** (release FB2026_02)
+
+- Canton-S — strain report [FBsn0000274](https://flybase.org/reports/FBsn0000274)
+- *w<sup>1118</sup>* — allele report [FBal0018186](https://flybase.org/reports/FBal0018186)
+- P{GawB}, carrying the mini-*white* marker *w<sup>+mW.hs</sup>* — construct report [FBtp0000352](https://flybase.org/reports/FBtp0000352)
 
 **Specimens behind the EM volumes**
 

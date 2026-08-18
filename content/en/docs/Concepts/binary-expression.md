@@ -63,6 +63,16 @@ next to it reported on whatever regulatory element it landed near
 ([O'Kane and Gehring, 1987](https://doi.org/10.1073/pnas.84.24.9123)). Useful, but neither
 systematic nor reproducible in insertion site.
 
+This is also where the *w<sup>1118</sup>* background in so many stock genotypes comes
+from. Transformation constructs carry a selectable marker, and the classical one is
+**mini-*white***: the P{GawB} enhancer-trap construct behind many early GAL4 lines is
+marked with *w<sup>+mW.hs</sup>*
+([FBtp0000352](https://flybase.org/reports/FBtp0000352)). A *white*<sup>+</sup> marker
+restores eye pigment, so it can only be scored in a *white*-mutant animal — which is why
+driver line genotypes on VFB so often read `w[1118];P{w[+mW.hs]=GawB}…`, and why the first
+*Drosophila* mutant ever described is still the standard way of telling that a transgene
+went in.
+
 Two changes made large collections possible. First, φC31 integrase allowed constructs to
 be placed at a defined attP landing site, so lines differ only in their enhancer fragment
 and not in where the construct sits
