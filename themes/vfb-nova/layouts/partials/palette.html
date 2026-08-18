@@ -1,17 +1,23 @@
+{{/* Anatomy terms are not in the Hugo index - there are ~763k of them and they are
+     generated, not authored. They come from the same SOLR ontology core the 3D
+     browser uses, queried live, and open in the browser rather than on this site. */}}
+{{- $browser := index (split .Site.Params.app_url "?") 0 -}}
 <div class="palette" hidden role="dialog" aria-modal="true" aria-label="Search"
-     data-index="{{ "/index.json" | relURL }}">
+     data-index="{{ "/index.json" | relURL }}"
+     data-solr="https://solr.virtualflybrain.org/solr/ontology/select"
+     data-browser="{{ $browser }}">
   <div class="palette__box">
     <div class="palette__field">
       <i class="fas fa-magnifying-glass"></i>
       <input id="palette-input" type="search" autocomplete="off" spellcheck="false"
-             placeholder="Search documentation, news, datasets…" aria-label="Search query">
+             placeholder="Search VFB — pages, neurons, brain regions…" aria-label="Search query">
       <kbd class="js-close-palette" role="button" tabindex="0">esc</kbd>
     </div>
     <ul class="palette__results" id="palette-results"></ul>
     <div class="palette__foot">
       <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
       <span><kbd>↵</kbd> open</span>
-      <span style="margin-left:auto">Anatomy terms: <a href="{{ .Site.Params.app_url }}" target="_blank" rel="noopener">3D&nbsp;browser</a></span>
+      <span style="margin-left:auto">Anatomy terms open in the <a href="{{ .Site.Params.app_url }}" target="_blank" rel="noopener">3D&nbsp;browser</a></span>
     </div>
   </div>
 </div>
