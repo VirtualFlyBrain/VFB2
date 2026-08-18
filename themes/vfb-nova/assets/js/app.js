@@ -166,11 +166,26 @@
     return esc(text.slice(0, i)) + '<mark>' + esc(text.slice(i, i + q.length)) + '</mark>' + esc(text.slice(i + q.length));
   }
 
+  /* Does q appear in s at the start of a word? "api" is in "SOLR API"; "mb" is
+     in "Thumbnails" too, but only mid-word — and a two-letter query buried
+     inside a longer word is a coincidence, not a hit. Without this, "MB"
+     answered with Thumbnails and "EB" with Website Features, both ranked as
+     title matches above the mushroom body and the ellipsoid body. */
+  function wordHit(s, q) {
+    let i = s.indexOf(q);
+    while (i > -1) {
+      if (i === 0 || !/[a-z0-9]/.test(s[i - 1])) return true;
+      i = s.indexOf(q, i + 1);
+    }
+    return false;
+  }
+
   function score(d, q) {
     const t = d.title.toLowerCase();
     if (t === q) return 0;
     if (t.startsWith(q)) return 1;
-    if (t.includes(q)) return 2;
+    if (wordHit(t, q)) return 2;
+    if (t.includes(q)) return 3;                                  /* mid-word only */
     if ((d.section || '').toLowerCase().includes(q)) return 4;
     if ((d.desc || '').toLowerCase().includes(q)) return 5;
     if ((d.body || '').toLowerCase().includes(q)) return 7;
@@ -198,6 +213,30 @@
      source data ("y5B\'2a" for "y5B'2a"). Never legitimate; safe to strip. */
   const cleanLabel = (l) => (typeof l === 'string' ? l.replace(/\\(['"])/g, '$1') : l);
 
+  /* --- exact-match promotion -----------------------------------------------
+     edismax scores a long label containing the query above a short label that
+     *is* the query, because more matched text earns more. So "medulla" came
+     back under "medulla anlage", "MB" under a dataset title, "EB" under two
+     split-GAL4 collections. The 3D browser hides this in its autocomplete's
+     own reordering; a plain list has nowhere to hide it.
+
+     So: ask SOLR for a deeper page, lift the rows that match the query
+     *exactly* — on ID, on label, then on a synonym — and leave everything
+     else in SOLR's order. Only exact equality promotes. A prefix rule was
+     tried and rejected: it pushed "lobe system of adult mushroom body" over
+     the optic lobe connectome for "lobe", which is worse than the problem. */
+  const norm = (s) => String(s == null ? '' : s).toLowerCase().replace(/\s+/g, ' ').trim();
+
+  function exactness(t, q) {
+    if (norm(t.short_form) === q) return 0;
+    if (norm(cleanLabel(t.label)) === q) return 1;
+    if ((t.synonym || []).some((s) => norm(cleanLabel(s)) === q)) return 2;
+    return 3;
+  }
+
+  const TERM_ROWS = 8;      /* shown */
+  const TERM_FETCH = 40;    /* fetched, so a buried exact match can be found */
+
   async function fetchTerms(q, mine) {
     if (!solrURL || q.length < 2) return null;
     if (termCtl) termCtl.abort();
@@ -206,8 +245,8 @@
       q: q, 'q.op': 'OR', defType: 'edismax', mm: '45%',
       qf: 'label^110 synonym^100 label_autosuggest synonym_autosuggest shortform_autosuggest',
       pf: 'label^250 synonym^120', ps: '0',
-      fl: 'short_form,label,unique_facets',
-      bq: SOLR_BQ, rows: '8', start: '0', wt: 'json',
+      fl: 'short_form,label,synonym,unique_facets',
+      bq: SOLR_BQ, rows: String(TERM_FETCH), start: '0', wt: 'json',
     });
     SOLR_FQ.forEach((f) => p.append('fq', f));
     try {
@@ -215,7 +254,13 @@
       if (!r.ok) return null;
       const j = await r.json();
       if (mine !== seq) return null;      /* a newer query has since been typed */
-      return (j.response && j.response.docs) || [];
+      const docs = (j.response && j.response.docs) || [];
+      const qn = norm(q);
+      return docs
+        .map((t, i) => ({ t: t, e: exactness(t, qn), i: i }))
+        .sort((a, b) => a.e - b.e || a.i - b.i)   /* stable: SOLR order within a tier */
+        .slice(0, TERM_ROWS)
+        .map((x) => x.t);
     } catch (e) { return null; }
   }
 
@@ -244,10 +289,10 @@
       .slice(0, 24);
 
     sel = 0;
-    const pagesHTML = items.map((x, i) => {
+    const pageHTML = (x) => {
       const d = x.d;
       const icon = ICONS[d.section] || ICONS[''];
-      return '<li class="res ' + (i === 0 ? 'is-sel' : '') + '">' +
+      return '<li class="res">' +
         '<a href="' + d.url + '">' +
           '<i class="r-icon fas ' + icon + '"></i>' +
           '<span class="r-title">' + mark(d.title, q) +
@@ -255,10 +300,20 @@
           '</span>' +
           '<span class="r-sec">' + esc(d.section || 'page') + '</span>' +
         '</a></li>';
-    }).join('');
+    };
+
+    /* A page whose *title* matches outranks any anatomy term: someone typing
+       "solr api" wants the doc. A page that merely mentions the word in its
+       body does not — "medulla" must not bury the medulla under two API
+       tutorials that happen to use it as their example query. So title-tier
+       hits sit above the terms group and the rest below it. */
+    const strongHTML = items.filter((x) => x.s <= 2).map(pageHTML).join('');
+    const weakHTML = items.filter((x) => x.s > 2).map(pageHTML).join('');
+    const pagesHTML = strongHTML + weakHTML;
 
     const mine = ++seq;
     list.innerHTML = pagesHTML || '<li class="palette__empty">Searching anatomy terms…</li>';
+    markFirst();
 
     fetchTerms(q, mine).then((terms) => {
       if (mine !== seq) return;
@@ -267,11 +322,15 @@
         list.innerHTML = '<li class="palette__empty">No match for “' + esc(q) + '”.</li>';
         return;
       }
-      list.innerHTML = pagesHTML + th;
-      const first = list.querySelector('li.res');
-      if (first && !list.querySelector('li.is-sel')) first.classList.add('is-sel');
-      sel = 0;
+      list.innerHTML = th ? strongHTML + th + weakHTML : pagesHTML;
+      markFirst();
     });
+  }
+
+  function markFirst() {
+    const first = list.querySelector('li.res');
+    if (first) first.classList.add('is-sel');
+    sel = 0;
   }
 
   function recent() {
