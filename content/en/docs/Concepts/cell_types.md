@@ -24,3 +24,11 @@ Neurons on VFB are annotated with cell types from the Drosophila Anatomy Ontolog
 
 
 We also use terms from the Drosophila Anatomy Ontology to annotate CNS regions (for the `Template ROI Browser` tool and neuron `connectivity per region` query) and other anatomical features.
+
+## What is in the ontology, and what is not
+
+The DAO admits a named class only where there is good scientific evidence for the presence of that structure in wild-type animals, with links to the literature supporting it; classes added in error have been obsoleted. Much of the hierarchy is not asserted by hand but inferred — `part_of` and `capable_of` relations combined with Gene Ontology process terms let a reasoner derive classifications, and disjointness axioms catch contradictions ([Costa et al., 2013](https://doi.org/10.1186/2041-1480-4-32)).
+
+At the time of the VFB 2023 paper the ontology covered around 13,000 neuroanatomical structures and cell types, including over 9,800 terms for neuron types, curated from more than 1,000 papers; over 3,800 of those neuron types are predicted from connectomics data, and over 2,750 have curated lineage ([Court et al., 2023](https://doi.org/10.3389/fphys.2023.1076533)).
+
+For where the underlying data and the naming standards came from, see [which fly is this?](/about/whichfly/)

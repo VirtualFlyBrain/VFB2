@@ -23,8 +23,9 @@ all.
 *Drosophila melanogaster*: the fruit fly Thomas Hunt Morgan's group bred in the Fly Room
 at Columbia, and the animal almost every technique described below was built around.
 
-The more precise answer is that most of the connectomic data on VFB came from one
-laboratory cross, repeated for five different specimens.
+The more precise answer is that the connectomic data on VFB came from one laboratory
+cross, repeated — and in two cases, from a single individual whose brain and optic lobe
+were reconstructed separately.
 
 ## The same cross, every time
 
@@ -309,13 +310,42 @@ segmentation with human proofreading
 [Dorkenwald et al., 2022](https://doi.org/10.1038/s41592-021-01330-0)). See
 [EM reconstruction](/docs/concepts/em-reconstruction/).
 
-**Names.** None of the above is comparable across studies without agreed terms. VFB's
-data is classified with the Drosophila Anatomy Ontology, built on the systematic
-nomenclatures for the brain ([Ito et al., 2014](https://doi.org/10.1016/j.neuron.2013.12.017))
-and the ventral nerve cord ([Court et al., 2020](https://doi.org/10.1016/j.neuron.2020.08.005)),
-using the strategy described in
-[Osumi-Sutherland et al. (2012)](https://doi.org/10.1093/bioinformatics/bts113). See
+**Names.** None of the above is comparable across studies without agreed terms. VFB is
+built around the **Drosophila Anatomy Ontology**
+([Costa et al., 2013](https://doi.org/10.1186/2041-1480-4-32)), a manually curated,
+queryable classification expressed in OWL, using a schema that records a neuron's
+location, connectivity, lineage and function and supports basic spatial reasoning
+([Osumi-Sutherland et al., 2012](https://doi.org/10.1093/bioinformatics/bts113)). Built
+from over 1,000 curated papers, the DAO represents some 13,000 neuroanatomical structures
+and cell types, including over 9,800 terms for neuron types — of which more than 3,800 are
+predicted from connectomics data
+([Court et al., 2023](https://doi.org/10.3389/fphys.2023.1076533)). The region names
+themselves come from the community nomenclatures for the brain
+([Ito et al., 2014](https://doi.org/10.1016/j.neuron.2013.12.017)) and the ventral nerve
+cord ([Court et al., 2020](https://doi.org/10.1016/j.neuron.2020.08.005)). See
 [Cell types](/docs/concepts/cell_types/).
+
+The ontology has its own inclusion rule, and it is the reason a VFB term can be treated as
+evidence rather than opinion: the DAO includes a named class "only ... where there is good
+scientific evidence for the presence in wild-type animals of structures with the properties
+described", with links to the literature that supports it, and classes added in error have
+been obsoleted. Terminology varies between groups and over time, so terms carry multiple
+synonyms wherever possible, "linked to papers where they originate or that provide
+examples of their usage", with disambiguation comments where usage conflicts — which is
+why searching VFB for an old or lab-specific name still finds the right structure. Much of
+the classification is not hand-asserted but inferred: relations such as `part_of` and
+`capable_of`, combined with Gene Ontology process terms and property chains, let a
+reasoner derive the hierarchy and let disjointness axioms catch contradictions
+([Costa et al., 2013](https://doi.org/10.1186/2041-1480-4-32)).
+
+VFB itself began as an interface onto that idea. The original paper describes two aims —
+"a hub for neuro-anatomical data integration" and "an easily accessible and usable tool to
+disseminate community agreed anatomical standards" — built over the BrainName reference
+stack for the adult brain, with queries answered by an OWL2 reasoner rather than by
+lookup, so that asking for neurons with presynaptic terminals in one region and
+postsynaptic terminals in another was a question the ontology could answer
+([Milyaev et al., 2012](https://doi.org/10.1093/bioinformatics/btr677)). The templates,
+datasets and connectomes described on this page were added to that frame.
 
 ## What to keep in mind when you use VFB
 
@@ -410,4 +440,5 @@ using the strategy described in
 **Virtual Fly Brain**
 
 - Milyaev N et al. (2012) The Virtual Fly Brain browser and query interface. *Bioinformatics* 28:411–415. doi:10.1093/bioinformatics/btr677
+- Costa M, Reeve S, Grumbling G, Osumi-Sutherland D (2013) The *Drosophila* anatomy ontology. *J Biomed Semantics* 4:32. doi:10.1186/2041-1480-4-32
 - Court R et al. (2023) Virtual Fly Brain — an interactive atlas of the *Drosophila* nervous system. *Front Physiol* 14:1076533. doi:10.3389/fphys.2023.1076533

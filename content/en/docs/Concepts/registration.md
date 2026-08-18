@@ -95,6 +95,22 @@ comparison across two bridges is weaker evidence than one within a single space.
   stack to another, and the transforms involved are listed with the
   [templates](/docs/data/templates/).
 
+## What VFB actually does
+
+Most data arrives already registered by the group that produced it. Where it does not, VFB
+registers it with **CMTK, using nine degrees of freedom followed by a non-rigid
+registration**. Data can be moved to one side of the brain by flipping and applying a
+mirroring registration, and bridging transforms are used wherever possible to bring images
+from external templates, or from one VFB template to another, into a common space
+([Court et al., 2023](https://doi.org/10.3389/fphys.2023.1076533)).
+
+The point of all this is comparison at scale: VFB's main adult brain template carries
+almost 100,000 cross-registered images from 64 datasets — EM reconstructions, single
+neurons, lineage clones and expression patterns — in one coordinate space. Every image is
+given a persistent, resolvable VFB URL, which matters because local identifiers from
+source resources are not globally unique; the CATMAID instances VFB hosts have clashing
+neuron IDs between them.
+
 ## Working with it
 
 Transforms between the common fly template spaces are packaged for programmatic use in
@@ -110,3 +126,4 @@ the natverse ecosystem — `nat.templatebrains` and `navis-flybrains` — descri
 - Avants BB et al. (2008) Symmetric diffeomorphic image registration with cross-correlation. *Med Image Anal* 12:26–41. doi:10.1016/j.media.2007.06.004
 - Bates AS et al. (2020) The natverse, a versatile toolbox for combining and analysing neuroanatomical data. *eLife* 9:e53350. doi:10.7554/eLife.53350
 - Bogovic JA et al. (2020) An unbiased template of the *Drosophila* brain and ventral nerve cord. *PLoS ONE* 15(12):e0236495. doi:10.1371/journal.pone.0236495
+- Court R et al. (2023) Virtual Fly Brain — an interactive atlas of the *Drosophila* nervous system. *Front Physiol* 14:1076533. doi:10.3389/fphys.2023.1076533
