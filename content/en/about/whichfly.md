@@ -293,7 +293,19 @@ onto a common template ([Rohlfing and Maurer, 2003](https://doi.org/10.1109/TITB
 comparison possible at all. The current standard, JRC2018, was built by groupwise
 registration — the unisex brain template from 62 individuals, 124 images counting
 left–right flips ([Bogovic et al., 2020](https://doi.org/10.1371/journal.pone.0236495)).
-See [Registration](/docs/concepts/registration/) and [Templates](/docs/data/templates/).
+
+No single template ever won, so comparing across studies means bridging between them. The
+transforms form a graph, maintained in the community `navis-flybrains` and `nat.flybrains`
+packages so that everyone gets the same answer, and a conversion between two spaces is a
+computed route through it — often several transforms deep:
+
+<p align="center">
+<img src="https://github.com/schlegelp/navis-flybrains/blob/main/_static/bridging_graph.png?raw=true" width="800" alt="Graph of bridging registrations between Drosophila template spaces">
+</p>
+
+See [Registration](/docs/concepts/registration/),
+[Bridging registrations](/docs/concepts/bridging/) and
+[Templates](/docs/data/templates/).
 
 **Wiring diagrams.** Volume EM at synaptic resolution, then reconstruction: serial-section
 TEM for FAFB and the larval CNS

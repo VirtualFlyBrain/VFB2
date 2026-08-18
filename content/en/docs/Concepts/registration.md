@@ -104,6 +104,12 @@ mirroring registration, and bridging transforms are used wherever possible to br
 from external templates, or from one VFB template to another, into a common space
 ([Court et al., 2023](https://doi.org/10.3389/fphys.2023.1076533)).
 
+Those bridging transforms are not kept privately. VFB works through **navis-flybrains** and
+its R counterpart **nat.flybrains** so that the registrations are available to everyone and
+consistent between users — the same transform, giving the same answer, whether it is
+applied inside VFB or in someone's own analysis. See
+[bridging registrations](/docs/concepts/bridging/).
+
 The point of all this is comparison at scale: VFB's main adult brain template carries
 almost 100,000 cross-registered images from 64 datasets — EM reconstructions, single
 neurons, lineage clones and expression patterns — in one coordinate space. Every image is
