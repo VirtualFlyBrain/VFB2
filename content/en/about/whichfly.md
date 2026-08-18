@@ -26,12 +26,13 @@ at Columbia, and the animal almost every technique described below was built aro
 The more precise answer is that most of the connectomic data on VFB came from one
 laboratory cross, repeated for five different specimens.
 
-## The same cross, five times
+## The same cross, every time
 
 The flagship EM volumes were not taken from a wild population or from a lab's general
-stock. Four of the five below are the offspring of a cross between the wild-type
-**Canton-S strain G1** and **w<sup>1118</sup>**, both isogenised, reared on a 12-hour
-day/night cycle and dissected 1.5 hours after lights-on.
+stock. Every one of them is the F1 of a cross between the wild-type **Canton-S strain G1**
+and ***w<sup>1118</sup>***. The Janelia volumes were reared on a 12-hour day/night cycle
+and dissected 1.5 hours after lights-on; the direction of the cross as written varies
+between papers.
 
 | Volume in VFB | Stage and sex | Age | Genotype | Source |
 |---|---|---|---|---|
@@ -39,9 +40,19 @@ day/night cycle and dissected 1.5 hours after lights-on.
 | Hemibrain | Adult female | 5 days post-eclosion | Canton-S G1 × *w<sup>1118</sup>* | [Scheffer et al. (2020)](https://doi.org/10.7554/eLife.57443) |
 | MANC (male VNC) | Adult male | 5 days post-eclosion | Canton-S G1 × *w<sup>1118</sup>* | [Takemura et al. (2024)](https://doi.org/10.7554/eLife.97769.1) |
 | Optic lobe | Adult male | 5 days post-eclosion | Canton-S G1 × *w<sup>1118</sup>* | [Nern et al. (2025)](https://doi.org/10.1038/s41586-025-08746-0) |
+| male-CNS | Adult male | 5 days post-eclosion | Canton-S G1 × *w<sup>1118</sup>* | [Berg et al. (2025)](https://doi.org/10.1101/2025.10.09.680999) |
+| BANC | Adult female | 5–6 days post-eclosion | F1 of *w<sup>1118</sup>* × Canton-S | [Bates et al. (2026)](https://doi.org/10.1038/s41586-026-10735-w) |
 | L1 larval CNS | First-instar female larva | 6 hours after hatching | Canton-S G1 [iso] × *w<sup>1118</sup>* [iso] 5905 | [Winding et al. (2023)](https://doi.org/10.1126/science.add9330), volume from [Ohyama et al. (2015)](https://doi.org/10.1038/nature14297) |
 
-Two things follow from this table, and both matter when you read a result off VFB.
+Two rows of that table are the **same individual fly**. Both the optic lobe study and the
+male-CNS study name their specimen `Z0720-07m`, selected as the best of 44 preparations
+screened by X-ray CT; the male-CNS paper describes the optic lobe work as "an earlier
+study of the same sample". Counting neurons across those two datasets therefore
+double-counts the same cells — the male-brain equivalent of the FlyWire/hemibrain problem
+set out on the [neuron counts](/docs/concepts/neuron-counts/) page, except that here it is
+literally one animal rather than two animals imaged in the same region.
+
+Two further things follow from this table, and both matter when you read a result off VFB.
 
 **Each connectome is one animal.** A connectome is not a population average; it is a
 census of the individual that was sectioned. Where two connectomes disagree about a
@@ -50,11 +61,24 @@ The [neuron counts](/docs/concepts/neuron-counts/) page works through what this 
 any number you might want to quote, including the fact that FlyWire and the hemibrain
 partly re-reconstruct the same tissue.
 
-**Sex and stage are properties of the dataset, not of "the fly".** The adult brain
-connectomes are female; the VNC and optic lobe connectomes are male; the larval
-connectome is a six-hour-old first instar. A cell type present in one is not guaranteed
-to be present, or to have the same partners, in another. VFB keeps sex and stage on the
-dataset record for exactly this reason.
+**Sex and stage are properties of the dataset, not of "the fly".** FAFB, the hemibrain and
+BANC are female; MANC, the optic lobe and male-CNS are male; the larval connectome is a
+six-hour-old first instar. A cell type present in one is not guaranteed to be present, or
+to have the same partners, in another — which is the point of the male-CNS study, which
+reports 7,205 isomorphic, 114 dimorphic, 262 male-specific and 69 female-specific types
+between the male and female brain connectomes
+([Berg et al., 2025](https://doi.org/10.1101/2025.10.09.680999)). VFB keeps sex and stage
+on the dataset record for exactly this reason.
+
+**One of them was not a random fly.** The BANC specimen was chosen by behaviour. The
+authors screened 5–6-day-old females and picked one that "turned right 70% of the time
+over 582 choices when walking in an acrylic Y-maze", putting it "at the 97th percentile
+for handedness in the population (n = 1,095)"
+([Bates et al., 2026](https://doi.org/10.1038/s41586-026-10735-w)). That was a deliberate
+and reasonable choice — a strong behavioural phenotype makes the connectome more
+interpretable — but it means the BANC animal is a documented outlier on at least one axis,
+not a draw from the middle of the distribution. Worth knowing before treating it as
+typical.
 
 ### What that genotype actually is
 
@@ -147,10 +171,13 @@ neuroscience gave vertebrate neuroscience.
 ## What making one of these datasets actually involves
 
 The reason the fly scales is that the bench work is cheap in everything except patience.
-A generation takes about ten days at 25 °C. Flies are reared in vials on a cornmeal or
-molasses medium, anaesthetised on CO<sub>2</sub> to be sorted under a dissecting scope, and
-scored by eye — which is why so many classical markers are visible ones such as eye
-colour, wing shape and bristle morphology.
+Flies are reared in vials on a standard medium — the BANC animals, for instance, were
+"raised on standard cornmeal–dextrose medium at room temperature (around 20 °C) in natural
+lighting conditions"
+([Bates et al., 2026](https://doi.org/10.1038/s41586-026-10735-w)) — anaesthetised on
+CO<sub>2</sub> to be sorted under a dissecting scope, and scored by eye, which is why so
+many classical markers are visible ones such as eye colour, wing shape and bristle
+morphology.
 
 A typical light microscopy dataset on VFB is the end of a chain of crosses. Virgin females
 of one genotype are collected — they must be picked before they mate — and crossed to
@@ -334,6 +361,8 @@ using the strategy described in
 - Scheffer LK et al. (2020) A connectome and analysis of the adult *Drosophila* central brain. *eLife* 9:e57443. doi:10.7554/eLife.57443
 - Takemura S et al. (2024) A connectome of the male *Drosophila* ventral nerve cord. *eLife* 13:RP97769. doi:10.7554/eLife.97769.1 — reviewed preprint
 - Nern A et al. (2025) Connectome-driven neural inventory of a complete visual system. *Nature* 641:1225–1237. doi:10.1038/s41586-025-08746-0
+- Berg S et al. (2025) Sexual dimorphism in the complete connectome of the *Drosophila* male central nervous system. bioRxiv 2025.10.09.680999. doi:10.1101/2025.10.09.680999 — preprint
+- Bates AS et al. (2026) Distributed control circuits across a brain-and-cord connectome. *Nature*. doi:10.1038/s41586-026-10735-w
 - Ohyama T et al. (2015) A multilevel multimodal circuit enhances action selection in *Drosophila*. *Nature* 520:633–639. doi:10.1038/nature14297
 - Winding M et al. (2023) The connectome of an insect brain. *Science* 379(6636):eadd9330. doi:10.1126/science.add9330
 - Dorkenwald S et al. (2024) Neuronal wiring diagram of an adult brain. *Nature* 634:124–138. doi:10.1038/s41586-024-07558-y
