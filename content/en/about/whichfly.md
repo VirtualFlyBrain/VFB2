@@ -362,13 +362,16 @@ property chains on `overlaps` and its subproperties — `fasciculates_with`,
 what was asserted further down it
 ([Osumi-Sutherland et al., 2014](https://ceur-ws.org/Vol-1265/owled2014_submission_12.pdf)).
 
-There is a deliberate limit here, and it is worth knowing because it shapes what you can
-ask. To keep reasoning fast enough to run live, VFB confines the ontology almost entirely
-to the **EL profile** of OWL and uses the ELK reasoner. The payoff is speed. The cost is
-expressiveness: EL has no negation, so VFB's compound queries combine their legs with
-*and* and cannot express "neurons that synapse in the mushroom body but **not** in the
-lateral horn" — a query the same paper argues would be genuinely useful for choosing
-specific reagents, and sets out closure-axiom and disjointness patterns to support.
+There is a deliberate design trade-off here. To keep reasoning fast enough to run live, the
+ontology is confined almost entirely to the **EL profile** of OWL, which is what allows the
+ELK reasoner to classify it in well under a second. The cost is expressiveness: EL has no
+negation, which is why the ontology-level compound queries were built to combine their legs
+with *and*. The 2014 paper makes the case that queries such as "neurons that synapse in the
+mushroom body but **not** in the lateral horn" would be genuinely useful for choosing
+specific reagents, and sets out closure-axiom and disjointness patterns that could support
+them ([Osumi-Sutherland et al., 2014](https://ceur-ws.org/Vol-1265/owled2014_submission_12.pdf)).
+What the current interface offers is documented under
+[search and query](/docs/website-features/search_query/).
 
 VFB itself began as an interface onto that idea. The original paper describes two aims —
 "a hub for neuro-anatomical data integration" and "an easily accessible and usable tool to
