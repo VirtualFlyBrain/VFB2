@@ -12,3 +12,5 @@ description: >
 
 Virtual Fly Brain (VFB) and FlyBase curators record information from the literature about the expression of single transgenes using ontology terms and load this into FlyBase. VFB combines curated expression, genetic and publication data from FlyBase with 3D images of the expression patterns aligned to standard [templates](/docs/data/templates/). These annotated images can then be searched and queried via the [web interface](/docs/website-features/search_query/) or [APIs](/docs/apis/).
 
+For what a driver line is and how these patterns are produced, see [binary expression systems](/docs/concepts/binary-expression/); for what "expression pattern" means formally on VFB — and why a single-neuron image is a *fragment* of one — see the same page.
+
