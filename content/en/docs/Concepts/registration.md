@@ -98,7 +98,7 @@ comparison across two bridges is weaker evidence than one within a single space.
 ## What VFB actually does
 
 Most data arrives already registered by the group that produced it. Where it does not, VFB
-registers it with **CMTK, using nine degrees of freedom followed by a non-rigid
+currently registers it with **CMTK, using nine degrees of freedom followed by a non-rigid
 registration**. Data can be moved to one side of the brain by flipping and applying a
 mirroring registration, and bridging transforms are used wherever possible to bring images
 from external templates, or from one VFB template to another, into a common space
