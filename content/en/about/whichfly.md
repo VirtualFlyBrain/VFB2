@@ -243,10 +243,12 @@ more than one cell type. Splitting a transcription factor into an activation dom
 DNA-binding domain, each under a different enhancer, restricts expression to the
 intersection ([Luan et al., 2006](https://doi.org/10.1016/j.neuron.2006.08.028);
 [Pfeiffer et al., 2010](https://doi.org/10.1534/genetics.110.119917);
-[Dionne et al., 2018](https://doi.org/10.1534/genetics.118.300682)). The Janelia
-split-GAL4 resource is the large published application
-([Meissner et al., 2025](https://doi.org/10.7554/eLife.98405)). See
-[Split driver expression](/docs/concepts/splits/).
+[Dionne et al., 2018](https://doi.org/10.1534/genetics.118.300682)). The scale of the
+effort this takes is worth stating: the Janelia resource reports 3,060 cell-type-specific
+split-GAL4 lines for the adult CNS and 1,373 characterised in third-instar larvae, drawn
+from the examination of **over 77,000 split combinations** between 2013 and 2023
+([Meissner et al., 2025](https://doi.org/10.7554/eLife.98405)). Specificity is expensive.
+See [Split driver expression](/docs/concepts/splits/).
 
 **Getting down to one neuron.** Site-specific recombination
 ([Golic and Lindquist, 1989](https://doi.org/10.1016/0092-8674(89)90033-0)) underpins
