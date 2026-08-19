@@ -137,3 +137,54 @@
   margin-top: var(--sp-2);
 }
 .palette__results li:first-child.palette__group { border-top: 0; margin-top: 0; }
+
+/* ==========================================================================
+   /search/ — the standalone search page.
+   Reuses the palette's result rows, but as page content rather than a dialog:
+   no scroll cap, no card chrome.
+   ========================================================================== */
+
+.searchpage__form {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: .75rem;
+  align-items: center;
+  padding: .5rem .9rem;
+  margin: 1.25rem 0 .5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--elev-1);
+}
+.searchpage__form:focus-within { border-color: var(--brand); }
+.searchpage__form i { color: var(--muted); }
+.searchpage__form input {
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 1.05rem;
+  padding: .55rem 0;
+  min-width: 0;
+}
+.searchpage__form input:focus { outline: none; }
+.searchpage__form input::-webkit-search-cancel-button { filter: grayscale(1); }
+
+.searchpage__status {
+  margin: .25rem 0 0;
+  color: var(--muted);
+  font-size: .9rem;
+  min-height: 1.2em;
+}
+
+.searchpage__results {
+  padding: .25rem 0;
+  max-height: none;        /* it is the page, not a dropdown */
+  overflow: visible;
+}
+.searchpage__results li a { padding: .7rem .6rem; }
+
+.searchpage__note {
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font-size: .92rem;
+}

@@ -129,19 +129,17 @@
     targets.forEach((t) => spy.observe(t));
   }
 
-  /* --- command palette ----------------------------------------------------- */
-  const pal = $('.palette');
-  if (!pal) return;
-  const input = $('#palette-input');
-  const list = $('#palette-results');
-  const indexURL = pal.dataset.index;
-  const solrURL = pal.dataset.solr;
-  const browserURL = pal.dataset.browser;
+  /* --- search engine -------------------------------------------------------
+     Shared by the ⌘K palette and the standalone /search/ page. Config comes
+     from whichever element is on the page; both carry the same data-*. */
+  const cfgEl = $('.palette') || $('#search-page');
+  if (!cfgEl) return;
+  const indexURL = cfgEl.dataset.index;
+  const solrURL = cfgEl.dataset.solr;
+  const browserURL = cfgEl.dataset.browser;
   let docs = null;
-  let sel = 0;
   let seq = 0;            /* guards against out-of-order SOLR responses */
   let termCtl = null;     /* aborts the in-flight SOLR request when typing */
-  let termTimer = null;
 
   const ICONS = {
     docs: 'fa-book', blog: 'fa-newspaper', about: 'fa-circle-info',
@@ -281,7 +279,7 @@
       }).join('');
   }
 
-  function render(q) {
+  function render(q, list, selectFirst) {
     const items = (docs || [])
       .map((d) => ({ d, s: score(d, q) }))
       .filter((x) => x.s < 99)
@@ -313,7 +311,7 @@
 
     const mine = ++seq;
     list.innerHTML = pagesHTML || '<li class="palette__empty">Searching anatomy terms…</li>';
-    markFirst();
+    if (selectFirst) markFirst(list);
 
     fetchTerms(q, mine).then((terms) => {
       if (mine !== seq) return;
@@ -323,15 +321,22 @@
         return;
       }
       list.innerHTML = th ? strongHTML + th + weakHTML : pagesHTML;
-      markFirst();
+      if (selectFirst) markFirst(list);
+      list.dispatchEvent(new CustomEvent('vfb:results'));
     });
   }
 
-  function markFirst() {
+  function markFirst(list) {
     const first = list.querySelector('li.res');
     if (first) first.classList.add('is-sel');
     sel = 0;
   }
+
+  /* --- the palette itself --------------------------------------------------- */
+  const pal = $('.palette');
+  const input = pal ? $('#palette-input') : null;
+  const list = pal ? $('#palette-results') : null;
+  let sel = 0;
 
   function recent() {
     list.innerHTML = (docs || []).filter((d) => d.pinned).slice(0, 8).map((d, i) =>
@@ -355,6 +360,7 @@
     document.body.style.overflow = '';
   }
 
+  if (pal) {
   $$('.js-search').forEach((b) => b.addEventListener('click', open));
   pal.addEventListener('click', (e) => { if (e.target === pal) close(); });
   $('.js-close-palette')?.addEventListener('click', close);
@@ -362,7 +368,7 @@
   input.addEventListener('input', () => {
     const q = input.value.trim().toLowerCase();
     if (!q) return recent();
-    render(q);
+    render(q, list, true);
   });
 
   function move(step) {
@@ -391,4 +397,56 @@
       }
     }
   });
+  }   /* end palette */
+
+  /* --- the /search/ page ---------------------------------------------------
+     A real URL that takes a query string, so an external search engine — or a
+     link, or a bookmark — can hand VFB a term: /search/?q=medulla. Same engine
+     and same ranking as the palette; the difference is that this one is a page
+     you can land on. */
+  const page = $('#search-page');
+  if (page) {
+    const pInput = $('#search-input');
+    const pList = $('#search-results');
+    const pStatus = $('#search-status');
+    const getQ = () => new URLSearchParams(window.location.search).get('q') || '';
+
+    function announce(q) {
+      if (!q) { pStatus.textContent = ''; return; }
+      const n = pList.querySelectorAll('li.res').length;
+      pStatus.textContent = n
+        ? n + ' result' + (n === 1 ? '' : 's') + ' for “' + q + '”'
+        : 'No results for “' + q + '”';
+    }
+
+    async function run(q, push) {
+      pInput.value = q;
+      if (push) {
+        const u = q ? '?q=' + encodeURIComponent(q) : window.location.pathname;
+        history.replaceState(null, '', u);
+      }
+      if (!q) {
+        pList.innerHTML = '';
+        pStatus.textContent = '';
+        return;
+      }
+      document.title = q + ' — Search | Virtual Fly Brain';
+      await load();
+      render(q.toLowerCase(), pList, false);
+      announce(q);
+    }
+
+    pList.addEventListener('vfb:results', () => announce(pInput.value.trim()));
+
+    $('#search-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      run(pInput.value.trim(), true);
+    });
+
+    window.addEventListener('popstate', () => run(getQ(), false));
+
+    const initial = getQ();
+    if (initial) run(initial, false);
+    else pInput.focus();
+  }
 })();
