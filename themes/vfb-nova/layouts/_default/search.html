@@ -1,0 +1,57 @@
+{{/*
+  /search/ — a search page with a real query string, so anything outside the
+  site can hand VFB a term: /search/?q=medulla.
+
+  This is what the WebSite/SearchAction JSON-LD on the home page points at, and
+  it is also a usable landing page in its own right: a form that works with the
+  keyboard, results that link to documentation pages, and anatomy terms that
+  open in the 3D browser.
+
+  Results are noindex — they are generated per query and there is nothing here
+  for a crawler to keep. `follow` so the links out are still crawled.
+*/}}
+{{ define "main" }}
+{{- $browser := index (split .Site.Params.app_url "?") 0 -}}
+<div class="page">
+  <div class="wrap wrap--narrow">
+    {{ partial "breadcrumb.html" . }}
+
+    <header class="page__header">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    </header>
+
+    <div id="search-page"
+         data-index="{{ "/index.json" | relURL }}"
+         data-solr="https://solr.virtualflybrain.org/solr/ontology/select"
+         data-browser="{{ $browser }}">
+
+      <form id="search-form" class="searchpage__form" action="{{ "/search/" | relURL }}" method="get" role="search">
+        <label class="visually-hidden" for="search-input">Search Virtual Fly Brain</label>
+        <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+        <input id="search-input" name="q" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Search VFB — pages, neurons, brain regions…"
+               value="{{ .Params.q }}">
+        <button class="btn btn--primary" type="submit">Search</button>
+      </form>
+
+      <p id="search-status" class="searchpage__status" role="status" aria-live="polite"></p>
+
+      <ul class="palette__results searchpage__results" id="search-results"></ul>
+
+      <noscript>
+        <p class="searchpage__note">Site search needs JavaScript. You can still browse the
+          <a href="{{ "/docs/" | relURL }}">documentation</a>, or search anatomy directly in the
+          <a href="{{ .Site.Params.app_url }}" target="_blank" rel="noopener">3D browser</a>.</p>
+      </noscript>
+
+      <p class="searchpage__note">
+        Documentation pages open here. Anatomy terms — neurons, brain regions, expression
+        patterns — open in the
+        <a href="{{ .Site.Params.app_url }}" target="_blank" rel="noopener">3D browser</a>,
+        which is where that data lives.
+      </p>
+    </div>
+  </div>
+</div>
+{{ end }}

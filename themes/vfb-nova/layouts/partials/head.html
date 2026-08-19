@@ -13,6 +13,9 @@
 {{ else }}{{ $desc = .Site.Params.description }}{{ end }}
 {{ $desc = $desc | plainify | chomp }}
 <meta name="description" content="{{ $desc }}">
+{{/* Search results are generated per query: nothing for a crawler to keep, but
+     the links out are still worth following. Set `noindex: true` in front matter. */}}
+{{ if .Params.noindex }}<meta name="robots" content="noindex,follow">{{ end }}
 {{ with .Params.canonicalUrl }}<link rel="canonical" href="{{ . }}">{{ else }}<link rel="canonical" href="{{ .Permalink }}">{{ end }}
 {{ range .AlternativeOutputFormats -}}
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
@@ -38,6 +41,28 @@
     } catch (e) {}
   })();
 </script>
+
+{{/* Sitelinks searchbox: lets an external search engine hand a query straight to
+     /search/?q=… rather than only linking at the home page. Home page only —
+     Google expects one WebSite node per site. */}}
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ .Site.BaseURL }}search/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{{ end }}
 
 {{ partialCached "head-assets.html" . }}
 
