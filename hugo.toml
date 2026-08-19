@@ -44,8 +44,23 @@ timeZone = "Europe/London"
   blog = "/:section/:year/:month/:day/:slug/"
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "OpenSearch"]
   section = ["HTML", "RSS"]
+
+# OpenSearch description, served at /opensearch.xml. Chrome, Edge and Firefox
+# discover it from the <link rel="search"> in the page head and register the
+# site as a search engine, so a user can type the domain, press Tab, and query
+# VFB from the address bar. This is the mechanism that still works: Google
+# retired the sitelinks search box on 21 November 2024, so the WebSite/
+# SearchAction JSON-LD no longer renders a search box in Google results.
+[mediaTypes."application/opensearchdescription+xml"]
+  suffixes = ["xml"]
+
+[outputFormats.OpenSearch]
+  mediaType   = "application/opensearchdescription+xml"
+  baseName    = "opensearch"
+  isPlainText = false
+  rel         = "search"
 
 # The section RSS feeds would otherwise include every page in the section —
 # for an ontology section that is the whole generated term corpus in one XML

@@ -28,6 +28,11 @@
 <meta property="og:site_name" content="{{ .Site.Title }}">
 <meta name="twitter:card" content="summary_large_image">
 
+{{/* Let the browser register VFB as a searchable site: type the domain, Tab,
+     then query. Emitted on every page so any landing page is enough. */}}
+<link rel="search" type="application/opensearchdescription+xml"
+      title="{{ .Site.Title }}" href="{{ "/opensearch.xml" | absURL }}">
+
 <link rel="icon" href="/favicons/favicon.ico">
 
 {{/* Theme is applied before first paint so there is no light-to-dark flash. */}}
