@@ -56,6 +56,8 @@ resolved and checked.
   The Drosophila Anatomy Ontology (FBbt): the curated, reasoned classification of fly anatomy that VFB is built around.
 - **A strategy for building neuroanatomy ontologies** — Osumi-Sutherland et al., *Bioinformatics* (2012). [doi:10.1093/bioinformatics/bts113](https://doi.org/10.1093/bioinformatics/bts113)  
   The schema behind the ontology — the relations for soma location, tract, synaptic terminal and lineage that let a reasoner classify neurons from their properties.
+- **Data driven mapping of the Drosophila larval central nervous system** — Wood, *PhD thesis, University of Edinburgh* (2019). [hdl:1842/35918](http://hdl.handle.net/1842/35918)  
+  The work behind VFB's L3 larval template: a CNS template annotated with neuropil domains, a registration pipeline run over more than 22,000 image stacks, ~6,500 extracted whole-cell images, and NBLAST compared against a convolutional-network approach for ranking cell similarity. The registered cells are served through the larval VFB atlas.
 
 ## Connectomes, annotation and cell typing
 
@@ -278,11 +280,13 @@ resolved and checked.
 - **FlyBase: enhancing Drosophila Gene Ontology annotations** — Tweedie et al., *Nucleic Acids Research* (2009). [doi:10.1093/nar/gkn788](https://doi.org/10.1093/nar/gkn788)  
   Gene Ontology (GO) terms are used to describe three attributes of wild-type gene products: their molecular function, the biological processes in which they play a role, and their subcellular location.
 
-## Not published
+## Theses
 
-Some of what VFB serves has no paper to cite. The third-instar (L3) larval CNS template and
-its 255 painted domains are unpublished work by **David Wood and Volker Hartenstein**,
-credited as such in the VFB resource paper. If you use that template, credit it that way.
+Some of what VFB serves was never published as a paper. The third-instar (L3) larval CNS
+template and its 255 painted domains are credited in the VFB resource paper to **David Wood
+and Volker Hartenstein** as unpublished work; the mapping and registration behind it is
+written up in David Wood's Edinburgh PhD thesis, listed above. If you use that template,
+cite the thesis and credit the domains to Wood and Hartenstein.
 
 ---
 
