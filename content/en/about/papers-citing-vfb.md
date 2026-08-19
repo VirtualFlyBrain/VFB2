@@ -341,7 +341,9 @@ Last author: Benoit Petit-Demoulière, University of Strasbourg, France
 
 ### Heinze S et al. — *eLife (2021)*
 
-Described VFB as the main repository for Drosophila anatomical data and the model for what a unified insect-neuroscience platform should provide.
+Described VFB as the main repository for Drosophila anatomical data and the model for what a unified insect-neuroscience platform should provide. This is the paper introducing the Insect Brain Database, with which VFB cross-links across species.
+
+> "…the main site to locate GAL4 driver lines, single-cell morphologies, and synaptic connectivity data."
 
 Heinze S, El Jundi B, Berg BG, Homberg U, Menzel R, Pfeiffer K, Hensgen R, Zittrell F, Dacke M, Warrant E, Pfuhl G, Rybak J, Tedore K. eLife (2021). [doi:10.7554/eLife.65376](https://doi.org/10.7554/eLife.65376)
 Last author: Kevin Tedore, Lund University, Sweden
