@@ -7,12 +7,14 @@ categories: [how to cite,acknowledgements]
 weight: 21
 ---
 
-# Papers citing Virtual Fly Brain
+**This is a sample, not a citation list.** A literature sweep in 2026 found more than
+200 papers that mention or cite Virtual Fly Brain, and around a quarter of those state
+a concrete thing they did with it. What follows is a selection of those, chosen to show
+the range of ways VFB gets used — from downloading a neuron to citing the site as the
+model for an atlas in another species. It is not exhaustive, it is not ranked, and
+omission means nothing.
 
-A curated selection of published work that used Virtual Fly Brain, with a short note
-on what each paper used it for. It is not a complete citation count — it is a sample
-showing how VFB is used in practice, from retrieving a single template to
-cross-linking transcriptomic and connectome data.
+Each entry says what the paper used VFB for, in the paper's own terms where they said so.
 
 If you have used VFB in a paper we have missed, please [get in touch](/about/contactus/).
 See [how to cite us](/about/citeus/) for the citations to use.
@@ -347,3 +349,73 @@ Described VFB as the main repository for Drosophila anatomical data and the mode
 
 Heinze S, El Jundi B, Berg BG, Homberg U, Menzel R, Pfeiffer K, Hensgen R, Zittrell F, Dacke M, Warrant E, Pfuhl G, Rybak J, Tedore K. eLife (2021). [doi:10.7554/eLife.65376](https://doi.org/10.7554/eLife.65376)
 Last author: Kevin Tedore, Lund University, Sweden
+
+## More examples, grouped by what VFB was used for
+
+A second set, drawn from a wider literature sweep and grouped by the kind of use rather
+than by date. Where a paper states its use explicitly, the note reflects what it says.
+
+### Downloading neurons and reconstructions
+
+- **Molecular characterization of gustatory second-order neurons reveals integrative mechanisms of gustatory and metabolic information** — Mollá-Albaladejo et al., *bioRxiv* (2024). Retrieved sweet and bitter gustatory receptor neuron skeletons from the VFB interface. [doi:10.1101/2024.06.17.598832](https://doi.org/10.1101/2024.06.17.598832)
+- **Synaptic density and relative connectivity conservation maintain circuit stability across development** — Fritz et al., *bioRxiv* (2025). Downloaded L1 and L3 EM skeletons from VFB. [doi:10.1101/2025.07.26.666968](https://doi.org/10.1101/2025.07.26.666968)
+- **The Neuronal Circuit of the Dorsal Circadian Clock Neurons in Drosophila melanogaster** — Reinhard et al., *Frontiers in Physiology* (2022). Obtained clock neuron reconstructions from the FAFB CATMAID server VFB hosts. [doi:10.3389/fphys.2022.886432](https://doi.org/10.3389/fphys.2022.886432)
+- **Octopaminergic neurons have multiple targets in Drosophila larval mushroom body calyx and can modulate behavioral odor discrimination** — Wong et al., *Learning & Memory* (2021). Worked from the larval L1EM CATMAID resource hosted on VFB. [doi:10.1101/lm.052159.120](https://doi.org/10.1101/lm.052159.120)
+- **The natverse, a versatile toolbox for combining and analysing neuroanatomical data** — Bates et al., *eLife* (2020). Reads FAFB data from a live CATMAID project hosted by VFB. [doi:10.7554/elife.53350](https://doi.org/10.7554/elife.53350)
+- **Neuroecology of alcohol risk and reward: Methanol boosts pheromones and courtship success in Drosophila melanogaster** — Keesey et al., *Science Advances* (2025). Compared single-neuron reconstructions against datasets obtained from VFB. [doi:10.1126/sciadv.adi9683](https://doi.org/10.1126/sciadv.adi9683)
+
+### Using the template brains, meshes and neuropil labels
+
+- **Prominent involvement of acetylcholine dynamics in stable olfactory representation across the Drosophila brain** — Fan et al., *Nature Communications* (2025). Sourced the Drosophila brain atlas from VFB. [doi:10.1038/s41467-025-63823-2](https://doi.org/10.1038/s41467-025-63823-2)
+- **Global change in brain state during spontaneous and forced walk in Drosophila is composed of combined activity patterns of different neuron classes** — Aimon et al., *eLife* (2023). Took the anatomical reference and registration template from VFB. [doi:10.7554/elife.85202](https://doi.org/10.7554/elife.85202)
+- **A sex-specific switch between visual and olfactory inputs underlies adaptive sex differences in behavior** — Nojima et al., *Current Biology* (2021). Made schematics by modifying the JFRC2 template and neuropil labels downloaded from VFB. [doi:10.1016/j.cub.2020.12.047](https://doi.org/10.1016/j.cub.2020.12.047)
+- **FlyWire: online community for whole-brain connectomics** — Dorkenwald et al., *Nature Methods* (2021). Acquired the v14 whole-brain neuropil rendering from the VFB website. [doi:10.1038/s41592-021-01330-0](https://doi.org/10.1038/s41592-021-01330-0)
+- **Neuronal wiring diagram of an adult brain** — Dorkenwald et al., *Nature* (2024). Used JFRC2 full-brain segmentation meshes shared with the VFB project. [doi:10.1038/s41586-024-07558-y](https://doi.org/10.1038/s41586-024-07558-y)
+- **Visual Input into the Drosophila melanogaster Mushroom Body** — Li et al., *Cell Reports* (2020). Identified innervated neuropils by comparing confocal images with the JFRC2 template on VFB. [doi:10.1016/j.celrep.2020.108138](https://doi.org/10.1016/j.celrep.2020.108138)
+- **The functional organization of descending sensory-motor pathways in Drosophila** — Namiki et al., *bioRxiv* (2017). Obtained brain segmentation data for figures from VFB. [doi:10.1101/231696](https://doi.org/10.1101/231696)
+- **Synaptic circuitry of identified neurons in the antennal lobe of Drosophila melanogaster** — Rybak et al., *Journal of Comparative Neurology* (2016). Used the Drosophila brain atlas at VFB as the anatomical reference. [doi:10.1002/cne.23966](https://doi.org/10.1002/cne.23966)
+- **A Statistically Representative Atlas for Mapping Neuronal Circuits in the Drosophila Adult Brain** — Arganda-Carreras et al., *Frontiers in Neuroinformatics* (2018). Found VFB to be the only site providing the aligned atlas data the study needed. [doi:10.3389/fninf.2018.00013](https://doi.org/10.3389/fninf.2018.00013)
+- **A protocol to detect neurodegeneration in Drosophila melanogaster whole-brain mounts using advanced microscopy** — Behnke et al., *STAR Protocols* (2021). Points readers to VFB as the reference for normal neuroanatomy when scoring degeneration. [doi:10.1016/j.xpro.2021.100689](https://doi.org/10.1016/j.xpro.2021.100689)
+- **Neural circuit mechanisms for steering control in walking Drosophila** — Rayshubskiy et al., *eLife* (2025). Cites VFB as where an image of the driver line can be found. [doi:10.7554/elife.102230](https://doi.org/10.7554/elife.102230)
+
+### Matching light microscopy to EM, and cell typing
+
+- **Sexually dimorphic neurons in the Drosophila whole-brain connectome** — Deutsch et al., *bioRxiv* (2025). Downloaded light microscopy image collections from VFB to match against EM reconstructions. [doi:10.1101/2025.06.10.658788](https://doi.org/10.1101/2025.06.10.658788)
+- **Olfactory projection neuron rewiring in the brain of an ecological specialist** — Duerr et al., *bioRxiv* (2024). Brought melanogaster light imaging data from VFB and two connectomes into a D. sechellia frame of reference. [doi:10.1101/2024.07.26.605288](https://doi.org/10.1101/2024.07.26.605288)
+- **Whole-brain annotation and multi-connectome cell typing of Drosophila** — Schlegel et al., *Nature* (2024). Annotations link connectome cell types back to the literature through VFB. [doi:10.1038/s41586-024-07686-5](https://doi.org/10.1038/s41586-024-07686-5)
+- **Communication from Learned to Innate Olfactory Processing Centers Is Required for Memory Retrieval in Drosophila** — Dolan et al., *Neuron* (2018). Figures and analysis include data from VFB. [doi:10.1016/j.neuron.2018.08.037](https://doi.org/10.1016/j.neuron.2018.08.037)
+
+### Publishing data through VFB
+
+- **A split-GAL4 driver line resource for Drosophila neuron types** — Meissner et al., *eLife* (2025). Images of every selected split-GAL4 line are made available through VFB. [doi:10.7554/eLife.98405](https://doi.org/10.7554/eLife.98405)
+- **Drosophila gustatory projections are segregated by taste modality and connectivity** — Engert et al., *eLife* (2022). FAFB neuronal reconstructions released through VFB. [doi:10.7554/elife.78110](https://doi.org/10.7554/elife.78110)
+- **Information flow, cell types and stereotypy in a full olfactory connectome** — Schlegel et al., *eLife* (2021). New FAFB tracing made available through the public CATMAID instance VFB hosts. [doi:10.7554/elife.66018](https://doi.org/10.7554/elife.66018)
+- **Neurotransmitter classification from electron microscopy images at synaptic sites in Drosophila melanogaster** — Eckstein et al., *Cell* (2024). Neurotransmitter predictions released through the VFB project. [doi:10.1016/j.cell.2024.03.016](https://doi.org/10.1016/j.cell.2024.03.016)
+- **A Systematic Nomenclature for the Drosophila Ventral Nerve Cord** — Court et al., *Neuron* (2020). The VNC nomenclature it defines is distributed through VFB. [doi:10.1016/j.neuron.2020.08.005](https://doi.org/10.1016/j.neuron.2020.08.005)
+
+### Named among the tools for connectome analysis
+
+- **Connectomics and the neural basis of behaviour** — Galili et al., *Current Opinion in Insect Science* (2022). Lists VFB among the resources recommended for connectome-driven circuit analysis. [doi:10.1016/j.cois.2022.100968](https://doi.org/10.1016/j.cois.2022.100968)
+- **Accelerating with FlyBrainLab the discovery of the functional logic of the Drosophila brain in the connectomic and synaptomic era** — Lazar et al., *eLife* (2021). Integrates VFB alongside FlyCircuit, neuPrint and CATMAID. [doi:10.7554/elife.62362](https://doi.org/10.7554/elife.62362)
+- **The Fruit Fly Brain Observatory: From Structure to Function** — Ukani et al., *bioRxiv* (2019). Compares its own design with VFB’s. [doi:10.1101/580290](https://doi.org/10.1101/580290)
+- **Neuronal cell types in the fly: single-cell anatomy meets single-cell genomics** — Bates et al., *Current Opinion in Neurobiology* (2019). Names VFB as the resource collating fly cell-type anatomy. [doi:10.1016/j.conb.2018.12.012](https://doi.org/10.1016/j.conb.2018.12.012)
+- **Convergent olfactory circuits for courtship in Drosophila revealed by ds -Tango** — Fisher et al., *bioRxiv* (2024). Cites VFB as a database giving ready access to EM volumes. [doi:10.1101/2024.10.23.619891](https://doi.org/10.1101/2024.10.23.619891)
+
+### Cited as a model for other atlases and ontologies
+
+- **iBrAVE: a unified framework for 3D interactive and integrative analysis of brain atlas data across modalities and scales** — Wang et al., *bioRxiv* (2025). Cites VFB as the precedent community atlas portal for Drosophila. [doi:10.1101/2025.10.04.680445](https://doi.org/10.1101/2025.10.04.680445)
+- **A single-cell resolution gene expression atlas of the larval zebrafish brain** — Shainer et al., *bioRxiv* (2022). Names the VFB browser as the exemplar multimodal atlas query resource. [doi:10.1101/2022.02.11.479024](https://doi.org/10.1101/2022.02.11.479024)
+- **Planarian Anatomy Ontology: a resource to connect data within and across experimental platforms** — Nowotarski et al., *Development* (2021). Cites VFB as the exemplar ontology-driven field resource. [doi:10.1242/dev.196097](https://doi.org/10.1242/dev.196097)
+- **InsectBrainDatabase - A unified platform to manage, share, and archive morphological and functional data** — Heinze et al., *bioRxiv* (2020). Positions itself relative to VFB as the established single-species precedent. [doi:10.1101/2020.11.30.397489](https://doi.org/10.1101/2020.11.30.397489)
+- **My Corporis Fabrica Embryo: An ontology-based 3D spatio-temporal modeling of human embryo development** — Rabattu et al., *Journal of Biomedical Semantics* (2015). Cites VFB as the design precedent for linking an ontology to 3D images. [doi:10.1186/s13326-015-0034-0](https://doi.org/10.1186/s13326-015-0034-0)
+- **Representation of anatomy in online atlases and databases: a survey and collection of patterns for interface design** — Clarkson et al., *BMC Developmental Biology* (2016). Analyses VFB as an exemplar of linked term-and-graphic atlas design. [doi:10.1186/s12861-016-0116-y](https://doi.org/10.1186/s12861-016-0116-y)
+- **PhenoImageShare: an image annotation and query infrastructure** — Adebayo et al., *Journal of Biomedical Semantics* (2016). Lists VFB among the integrated image resources. [doi:10.1186/s13326-016-0072-2](https://doi.org/10.1186/s13326-016-0072-2)
+- **The OWL Reasoner Evaluation (ORE) 2015 Competition Report** — Parsia et al., *Journal of Automated Reasoning* (2017). Uses VFB ontologies as reasoner benchmark inputs. [doi:10.1007/s10817-017-9406-8](https://doi.org/10.1007/s10817-017-9406-8)
+- **The Gene Ontology (GO) Cellular Component Ontology: integration with SAO (Subcellular Anatomy Ontology) and other recent developments** — Roncaglia et al., *Journal of Biomedical Semantics* (2013). Cites VFB as the delivery vehicle for FBbt connectivity relations. [doi:10.1186/2041-1480-4-20](https://doi.org/10.1186/2041-1480-4-20)
+- **The Drosophila phenotype ontology** — Osumi-Sutherland et al., *Journal of Biomedical Semantics* (2013). Notes VFB’s custom formalisations for representing neuroanatomy. [doi:10.1186/2041-1480-4-30](https://doi.org/10.1186/2041-1480-4-30)
+
+---
+
+*Compiled from a literature sweep for mentions and citations of Virtual Fly Brain. Every
+DOI above was resolved and checked against its record. Preprints are shown as such; where
+a preprint has since been published, the published version is cited instead.*
