@@ -14,7 +14,7 @@ This resource provides a direct view into the dataset used to study the organiza
 
 This data is from the research published in:
 
-Valdes-Aleman J, et al. (2021). Comparative Connectomics Reveals How Partner Identity, Location, and Activity Specify Synaptic Connectivity in the Drosophila Motor System. Neuron, 109(1), 105-120.e7. https://doi.org/10.1016/j.neuron.2020.10.004
+Valdes-Aleman J, et al. (2021). Comparative Connectomics Reveals How Partner Identity, Location, and Activity Specify Synaptic Connectivity in the Drosophila Motor System. Neuron, 109(1), 105-122.e7. https://doi.org/10.1016/j.neuron.2020.10.004
 
 ## Dataset Contents
 
@@ -61,7 +61,7 @@ This CATMAID instance enables:
 When using this data, please cite both:
 
 1. The original research:
-   Valdes-Aleman J, et al. (2021). Comparative Connectomics Reveals How Partner Identity, Location, and Activity Specify Synaptic Connectivity in the Drosophila Motor System. Neuron, 109(1), 105-120.e7. https://doi.org/10.1016/j.neuron.2020.10.004
+   Valdes-Aleman J, et al. (2021). Comparative Connectomics Reveals How Partner Identity, Location, and Activity Specify Synaptic Connectivity in the Drosophila Motor System. Neuron, 109(1), 105-122.e7. https://doi.org/10.1016/j.neuron.2020.10.004
 
 2. The CATMAID platform:
    Saalfeld S, Cardona A, Hartenstein V, Tomančák P (2009) CATMAID: collaborative annotation toolkit for massive amounts of image data. Bioinformatics 25(15): 1984-1986. https://doi.org/10.1093/bioinformatics/btp266

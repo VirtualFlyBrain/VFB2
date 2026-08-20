@@ -14,11 +14,11 @@ This resource provides wild-type reference data for the abdominal nerve cord of 
 
 This dataset contains neuron reconstructions from multiple foundational connectomics studies:
 
-1. Ohyama T, Schneider-Mizell CM, Fetter RD, Aleman JV, Franconville R, Rivera-Alba M, et al. (2015). A multilevel multimodal circuit enhances action selection in Drosophila. Nature, 520(7545), 633-639. https://doi.org/10.1038/nature14297
+1. Ohyama T, Schneider-Mizell CM, Fetter RD, Aleman JV, Franconville R, Rivera-Alba M, et al. (2015). A multilevel multimodal circuit enhances action selection in Drosophila. Nature, 520(7549), 633-639. https://doi.org/10.1038/nature14297
 
 2. Schneider-Mizell CM, Gerhard S, Longair M, Kazimiers T, Li F, Zwart MF, et al. (2016). Quantitative neuroanatomy for connectomics in Drosophila. eLife, 5, e12059. https://doi.org/10.7554/eLife.12059
 
-3. Valdes-Aleman J, Fetter RD, Sales EC, Heckman EL, Venkatasubramanian L, Doe CQ, et al. (2021). Comparative Connectomics Reveals How Partner Identity, Location, and Activity Specify Synaptic Connectivity in the Drosophila Motor System. Neuron, 109(1), 105-120.e7. https://doi.org/10.1016/j.neuron.2020.10.004
+3. Valdes-Aleman J, Fetter RD, Sales EC, Heckman EL, Venkatasubramanian L, Doe CQ, et al. (2021). Comparative Connectomics Reveals How Partner Identity, Location, and Activity Specify Synaptic Connectivity in the Drosophila Motor System. Neuron, 109(1), 105-122.e7. https://doi.org/10.1016/j.neuron.2020.10.004
 
 ## Dataset Contents
 
@@ -92,10 +92,10 @@ This CATMAID instance enables:
 When using this data, please cite the relevant research:
 
 1. For mechanosensory and motor circuit data:
-   Valdes-Aleman J, et al. (2021). Comparative Connectomics Reveals How Partner Identity, Location, and Activity Specify Synaptic Connectivity in the Drosophila Motor System. Neuron, 109(1), 105-120.e7. https://doi.org/10.1016/j.neuron.2020.10.004
+   Valdes-Aleman J, et al. (2021). Comparative Connectomics Reveals How Partner Identity, Location, and Activity Specify Synaptic Connectivity in the Drosophila Motor System. Neuron, 109(1), 105-122.e7. https://doi.org/10.1016/j.neuron.2020.10.004
 
 2. For foundational circuit architecture and quantitative neuroanatomy:
-   Ohyama T, et al. (2015). A multilevel multimodal circuit enhances action selection in Drosophila. Nature, 520(7545), 633-639. https://doi.org/10.1038/nature14297
+   Ohyama T, et al. (2015). A multilevel multimodal circuit enhances action selection in Drosophila. Nature, 520(7549), 633-639. https://doi.org/10.1038/nature14297
 
 3. For quantitative neuroanatomy methodology:
    Schneider-Mizell CM, et al. (2016). Quantitative neuroanatomy for connectomics in Drosophila. eLife, 5, e12059. https://doi.org/10.7554/eLife.12059
