@@ -49,15 +49,15 @@ MetaCell collaborates with Virtual Fly Brain on the development and enhancement 
 ---
 <!--- width set to 55 here to prevent bunching onto same line -->
 <a href='https://www.anc.ed.ac.uk/index.php?option=com_content&task=view&id=12&Itemid=68' target='_blank'>
-  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/InformaticsLogo.gif' style="max-width: 55%"/>
+  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/InformaticsLogo.gif' class="logo-plate" style="max-width: 55%"/>
 </a>
 
 <a href='https://www.gen.cam.ac.uk/' target='_blank'>
-  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/CUnibig.png' style="max-width: 55%"/>
+  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/CUnibig.png' class="logo-plate" style="max-width: 55%"/>
 </a>
 
 <a href='https://www.sanger.ac.uk/' target='_blank'>
-  <img src='https://virtualflybrain.org/images/logo-sanger-blue.svg' style="max-width: 55%"/>
+  <img src='https://virtualflybrain.org/images/logo-sanger-blue.svg' class="logo-plate" style="max-width: 55%"/>
 </a>  
 
 <a href='http://www2.mrc-lmb.cam.ac.uk/' target='_blank'>
@@ -65,11 +65,11 @@ MetaCell collaborates with Virtual Fly Brain on the development and enhancement 
 </a>  
 
 <a href='https://www.ebi.ac.uk/' target='_blank'>
-  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/EMBL_EBI_logo_180pixels_RGB.png' style="max-width: 55%"/>
+  <img src='https://v2.virtualflybrain.org/images/vfb/project/logos/EMBL_EBI_logo_180pixels_RGB.png' class="logo-plate" style="max-width: 55%"/>
 </a>  
 
 <a href='https://www.metacell.us/' target='_blank'>
-  <img src='https://github.com/tarelli/bucket/raw/master/MetaCellLogoWhite300ppi.png' style="max-width: 55%"/>
+  <img src='https://github.com/tarelli/bucket/raw/master/MetaCellLogoWhite300ppi.png' class="logo-plate logo-plate--dark" style="max-width: 55%"/>
 </a>
 
 ---

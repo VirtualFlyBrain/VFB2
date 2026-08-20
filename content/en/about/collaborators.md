@@ -5,7 +5,7 @@ weight: 500
 
 ## Collaborators
 
-  <a href="http://www.hgu.mrc.ac.uk/"><img src="https://v2.virtualflybrain.org/images/vfb/project/logos/mrchguLogo.png" alt="mrchguLogo.png" width="300" /></a>
+  <a href="http://www.hgu.mrc.ac.uk/"><img src="https://v2.virtualflybrain.org/images/vfb/project/logos/mrchguLogo.png" alt="mrchguLogo.png" class="logo-plate" width="300" /></a>
 
   **The IIP3D server, Woolz software and client-side tools* are developed by**
   MRC Human Genetics Unit (MRC HGU): Richard Baldock, Nick Burton, Bill Hill, Zsolt Husz

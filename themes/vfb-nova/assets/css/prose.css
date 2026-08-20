@@ -109,6 +109,27 @@
   display: block;
   margin: var(--sp-5) auto;
 }
+
+/* Partner, funder and collaborator logos.
+
+   Most are supplied as transparent PNG/SVG drawn in dark ink for a white page.
+   The default plate above is var(--elev-1), which is #0d1322 in the dark theme
+   — the theme's default — so those logos vanish into it. .logo-plate gives them
+   a white plate in both themes: a logo's colours are set by its owner's brand
+   guidelines and do not follow the site theme, so the plate must not either.
+
+   .logo-plate--dark is the exception for artwork drawn in white ink, which a
+   white plate would erase. Both plate colours are literals rather than theme
+   tokens on purpose: var(--elev-1) is #fff in the light theme, which would
+   erase a white-ink logo there exactly as the dark theme erases a dark-ink one.
+   A logo that ships its own opaque background needs neither class. */
+.prose img.logo-plate {
+  background: #fff;
+  padding: var(--sp-3);
+}
+.prose img.logo-plate--dark {
+  background: #0d1322;
+}
 .prose figure { margin: var(--sp-6) 0; }
 .prose figcaption {
   font-size: .84rem;
