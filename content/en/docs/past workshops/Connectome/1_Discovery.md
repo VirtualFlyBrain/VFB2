@@ -1,6 +1,6 @@
 ---
 title: "Discovery"
-weight: 110
+weight: 1008
 series: ["API"]
 alias: ["/docs/tutorials/connectome/1_Discovery/"]
 date: 2021-12-27
@@ -23,7 +23,7 @@ This is designed as an interactive tutorial. Feel free to add code cells below e
 
 ### How to find neurons across datasets
 
-VirtualFlyBrain integrates images and connectomics profiles of neurons from many sources.  It classifies and records their properties using a standard, queryable classification ([The Drosophila Anatomy Ontology](https://www.ebi.ac.uk/ols/ontologies/fbbt)). This standardises the names of neuron types across sources, so you don't need to worry about differences in nomenclature uses and supports queries for neurons by their classification. 
+VirtualFlyBrain integrates images and connectomics profiles of neurons from many sources.  It classifies and records their properties using a standard, queryable classification ([The Drosophila Anatomy Ontology](https://www.ebi.ac.uk/ols4/ontologies/fbbt)). This standardises the names of neuron types across sources, so you don't need to worry about differences in nomenclature uses and supports queries for neurons by their classification. 
 
 
 ```python
@@ -55,7 +55,7 @@ print(f'Server is running CATMAID version {rm.catmaid_version}')
 
 We can use the `vc.get_instances` method in combination with the name of a neuron type on VFB to find individual neurons from multiple sources.
 
-Use the search tool on [VFB](http://virtualflybrain.org) to find neuron types by name or synonym:
+Use the search tool on [VFB](https://virtualflybrain.org) to find neuron types by name or synonym:
 
 <img src="https://user-images.githubusercontent.com/112839/109564687-535c9380-7ad9-11eb-80e9-5a5bc21cd915.png" width=30% height=30%>
 <img src="https://user-images.githubusercontent.com/112839/109565128-eac1e680-7ad9-11eb-9649-1ec55a298a1b.png" width=30% height=30%>

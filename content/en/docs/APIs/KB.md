@@ -1,7 +1,7 @@
 ---
 title: "Knowledge Base (KB) API"
 linkTitle: "KB API"
-weight: 2
+weight: 604
 date: 2024-01-13
 description: >
   The VFB Knowledge Base (KB) provides specialized storage and query capabilities for VFB-specific data and annotations.

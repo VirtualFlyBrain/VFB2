@@ -10,7 +10,7 @@ Description: >
 ontology: "bfo"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

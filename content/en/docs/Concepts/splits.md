@@ -3,12 +3,14 @@ title: "Split Driver Expression Patterns"
 linkTitle: "Split Driver Expression"
 categories: ["overview","help"]
 tags: ["Split","Expression_pattern","transgene","FlyLight"]
-weight: 30
+weight: 314
 description: >
   Split driver expression patterns in Virtual Fly Brain.
 ---
 
 Split drivers comprise at least two partial transcription factors that can reconstitute an active transcription factor when expressed in the same cell. By using different regulatory regions for each component, functional driver expression can be restricted to the intersection of the expression patterns of these regulatory regions. A wide range of regulatory regions have been combined with transcription factor DNA binding domains (DBDs) and Activation Domains (ADs) to form thousands of distinct constructs, referred to as hemidrivers. Millions of combinations are therefore possible, each targeting some precise subset of the many thousands of neurons in the Drosophila nervous system.
+
+Finding the useful ones is the hard part. The Janelia resource reports 3,060 cell-type-specific split-GAL4 lines for the adult CNS and 1,373 characterised in third-instar larvae, identified by examining over 77,000 split combinations between 2013 and 2023 ([Meissner et al., 2025](https://doi.org/10.7554/eLife.98405)). For the underlying method see [binary expression systems](/docs/concepts/binary-expression/).
 
 <img src="/images/splits_images.png" max-width="50%" alt="A split-GAL4 expression pattern at the intersection of the expression patterns of two hemidrivers.">
 

@@ -1,0 +1,9 @@
+{{- with .Paginator -}}
+{{- if gt .TotalPages 1 -}}
+<nav class="pagination" aria-label="Pagination">
+  {{- with .Prev }}<a class="btn btn--sm" href="{{ .URL }}"><i class="fas fa-arrow-left"></i> Previous</a>{{ else }}<span class="btn btn--sm" aria-disabled="true"><i class="fas fa-arrow-left"></i> Previous</span>{{ end }}
+  <span class="pagination__pos">{{ .PageNumber }} / {{ lang.FormatNumberCustom 0 .TotalPages }}</span>
+  {{- with .Next }}<a class="btn btn--sm" href="{{ .URL }}">Next <i class="fas fa-arrow-right"></i></a>{{ else }}<span class="btn btn--sm" aria-disabled="true">Next <i class="fas fa-arrow-right"></i></span>{{ end }}
+</nav>
+{{- end -}}
+{{- end -}}

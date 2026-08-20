@@ -1,0 +1,251 @@
+/* ==========================================================================
+   base + primitives
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 1.5rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  font-feature-settings: "cv05" 1, "ss03" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* A faint field of light that follows the page rather than the hero, so long
+   documents never fall onto flat black. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(60% 45% at 12% 0%, rgba(76,141,255,.10), transparent 70%),
+    radial-gradient(50% 40% at 92% 8%, rgba(164,107,255,.09), transparent 70%);
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  margin: 0 0 var(--sp-4);
+  text-wrap: balance;
+}
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); }
+h4, h5 { font-size: var(--step-0); letter-spacing: 0; }
+
+p { margin: 0 0 var(--sp-4); }
+strong { font-weight: 650; color: var(--text); }
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+  text-underline-offset: .18em;
+  transition: color .18s var(--ease);
+}
+a:hover { color: var(--cyan); text-decoration: underline; }
+
+img, svg, video { max-width: 100%; height: auto; }
+
+code, kbd, pre, samp { font-family: var(--font-mono); font-size: .9em; }
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--line);
+  margin: var(--sp-7) 0;
+}
+
+::selection { background: rgba(76,141,255,.35); color: #fff; }
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --- layout primitives -------------------------------------------------- */
+.wrap {
+  width: min(100% - 2.5rem, var(--wrap));
+  margin-inline: auto;
+}
+.wrap--narrow { width: min(100% - 2.5rem, var(--wrap-narrow)); }
+.section { padding: var(--sp-8) 0; position: relative; z-index: 1; }
+.section--tight { padding: var(--sp-7) 0; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 var(--sp-3);
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.6rem;
+  height: 1px;
+  background: var(--grad-brand);
+}
+
+.gradient-text {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lede {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: var(--text-dim);
+  max-width: 62ch;
+}
+
+/* --- buttons ------------------------------------------------------------ */
+.btn {
+  --btn-bg: var(--surface-2);
+  --btn-fg: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .72rem 1.35rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 550;
+  font-size: .96rem;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease), background .22s var(--ease), border-color .22s var(--ease);
+}
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  border-color: rgba(76,141,255,.5);
+  box-shadow: var(--shadow-1);
+  color: var(--btn-fg);
+}
+.btn i, .btn svg { font-size: .9em; }
+
+.btn--primary {
+  border-color: transparent;
+  background: var(--grad-brand);
+  color: #05070e;
+  font-weight: 650;
+}
+.btn--primary:hover { color: #05070e; box-shadow: var(--glow); }
+
+.btn--ghost { background: transparent; }
+.btn--sm { padding: .5rem 1rem; font-size: .86rem; }
+
+/* --- pills / badges ----------------------------------------------------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .3rem .7rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: .74rem;
+  font-family: var(--font-mono);
+  letter-spacing: .04em;
+  color: var(--text-dim);
+  text-decoration: none;
+}
+a.pill:hover { border-color: var(--brand); color: var(--text); text-decoration: none; }
+
+/* --- reveal on scroll --------------------------------------------------- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
+}
+.js .reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .js .reveal { opacity: 1; transform: none; }
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  padding: .8rem 1.2rem;
+  background: var(--brand);
+  color: #05070e;
+  border-radius: 0 0 var(--r-sm) 0;
+  font-weight: 600;
+}
+.skip-link:focus { left: 0; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   404 page.
+
+   layouts/404.html has always carried .oops and .oops__code, but neither was
+   ever defined, so the page rendered unstyled: the "404" came out at body size
+   tucked under the site logo, the heading ran beneath the fixed navbar, and the
+   block sat jammed against the top with a tall empty band above the footer.
+
+   The header is position:fixed, so the offset has to be --nav-h, the same
+   variable docs.css uses. min-height fills the viewport so the footer sits at
+   the bottom rather than halfway up.
+   -------------------------------------------------------------------------- */
+.oops {
+  min-height: calc(100vh - var(--nav-h) - 12rem);
+  padding-top: calc(var(--nav-h) + var(--sp-7));
+  padding-bottom: var(--sp-7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.oops > div { max-width: 46rem; }
+.oops__code {
+  font-size: clamp(4.5rem, 14vw, 9rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(120deg, var(--violet), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* .lede is max-width:62ch and left-aligned by default; centre it here. */
+.oops .lede { margin-inline: auto; text-align: center; }

@@ -1,6 +1,6 @@
 ---
 title: "VFB Model Context Protocol (MCP) Tool Guide"
-weight: 1
+weight: 402
 date: 2026-02-07
 series: ["Tutorials"]
 description: >
@@ -19,66 +19,48 @@ The Model Context Protocol is a standard that allows LLMs to interact with exter
 
 The VFB MCP tool is available at: **[vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/)**
 
+The hosted service is currently **v1.11.0**. That page always states the deployed version and the
+full client setup instructions, including GitHub Copilot, VS Code and Gemini, so check it there
+rather than here if the two disagree.
+
 ### Quick Start
 
 #### Use the Live Service (Recommended)
 
 The easiest way to use VFB3-MCP is through our hosted service. This requires no installation or setup on your machine.
 
-##### Claude Desktop Setup
+The server speaks MCP over **streamable HTTP** at
+`https://vfb3-mcp.virtualflybrain.org`. There is no API key and no account to create. Every client
+below needs the same two facts — that URL and the HTTP transport — so if your client is not listed,
+those are what to give it.
 
-1. Open Claude Desktop and go to Settings
-2. Navigate to the MCP section
-3. Add a new MCP server with these settings:
-   - Server Name: `virtual-fly-brain` (or any name you prefer)
-   - Type: HTTP
-   - Server URL: `https://vfb3-mcp.virtualflybrain.org`
+Client menus and config formats change faster than this page can track. Where a client offers a
+first-class command or UI for adding a remote MCP server, use that in preference to hand-editing
+configuration, and follow the client's own current documentation if the steps below have drifted.
 
-Configuration JSON (alternative method):
+##### Claude Desktop
 
-```json
-{
-  "mcpServers": {
-    "virtual-fly-brain": {
-      "type": "http",
-      "url": "https://vfb3-mcp.virtualflybrain.org",
-      "tools": ["*"]
-    }
-  }
-}
+Add it as a custom connector: **Settings → Connectors → Add custom connector**, then give the name
+`virtual-fly-brain` and the URL `https://vfb3-mcp.virtualflybrain.org`. Remote MCP servers are added
+through Connectors; `claude_desktop_config.json` is for locally-run servers and is not the route for
+this one.
+
+##### Claude Code
+
+One command, from any directory:
+
+```bash
+claude mcp add --transport http virtual-fly-brain https://vfb3-mcp.virtualflybrain.org
 ```
 
-##### Claude Code Setup
+Add `--scope user` to make it available in every project rather than the current one. Check it
+registered with `claude mcp list`. Editing `~/.claude.json` by hand also works but is easy to get
+wrong and is not needed.
 
-1. Locate your Claude configuration file:
-   - macOS/Linux: `~/.claude.json`
-   - Windows: `%USERPROFILE%\.claude.json`
-2. Add the VFB3-MCP server to your configuration:
+##### VS Code and GitHub Copilot
 
-```json
-{
-  "mcpServers": {
-    "virtual-fly-brain": {
-      "type": "http",
-      "url": "https://vfb3-mcp.virtualflybrain.org",
-      "tools": ["*"]
-    }
-  }
-}
-```
-
-3. Restart Claude Code for changes to take effect
-
-##### GitHub Copilot Setup
-
-1. Open VS Code with GitHub Copilot installed
-2. Open Settings (`Ctrl/Cmd + ,`)
-3. Search for "MCP" in the settings search
-4. Find the MCP Servers setting
-5. Add the server URL: `https://vfb3-mcp.virtualflybrain.org`
-6. Give it a name like "Virtual Fly Brain"
-
-Alternative JSON configuration (in `mcp.json`):
+Run **MCP: Add Server** from the Command Palette, choose the HTTP option, and give the same name and
+URL. This writes an `mcp.json` for you:
 
 ```json
 {
@@ -91,46 +73,33 @@ Alternative JSON configuration (in `mcp.json`):
 }
 ```
 
-##### Visual Studio Code (with MCP Extension)
+##### Other MCP clients
 
-1. Install the MCP extension for VS Code from the marketplace
-2. Open the Command Palette (`Ctrl/Cmd + Shift + P`)
-3. Type "MCP: Add server" and select it
-4. Choose "HTTP" as the server type
-5. Enter the server details:
-   - Name: `virtual-fly-brain`
-   - URL: `https://vfb3-mcp.virtualflybrain.org`
-6. Save and restart VS Code if prompted
-
-##### Other MCP Clients
-
-For any MCP-compatible client that supports HTTP servers:
+Most clients take a block of this shape. Consult your client's documentation for the exact key names
+— `type`, `transport` and `url` are spelled differently across implementations.
 
 ```json
 {
   "mcpServers": {
     "virtual-fly-brain": {
       "type": "http",
-      "url": "https://vfb3-mcp.virtualflybrain.org",
-      "tools": ["*"]
+      "url": "https://vfb3-mcp.virtualflybrain.org"
     }
   }
 }
 ```
 
-##### Gemini Setup
+##### Gemini and other models without built-in MCP support
 
-To use the Virtual Fly Brain (VFB) Model Context Protocol (MCP) server with Google Gemini, you can connect through custom Python/Node.js clients that support MCP.
+There is no MCP support in the Gemini web interface, so you connect from your own code: use the
+`mcp` Python package to open a streamable-HTTP session against the VFB URL, call `list_tools()`, and
+pass the returned schemas to the model as function declarations. The same pattern works for any
+model with function calling — the MCP client does the transport, and the model only ever sees tool
+schemas.
 
-Note: Direct Gemini web interface integration with MCP is not currently supported. Developer tools are needed to connect the two.
-
-Option 1: Using Python
-
-For application development, use the `mcp` and `google-genai` libraries to connect.
-
-Setup: `pip install google-genai mcp`
-
-Implementation: Use an `SSEClientTransport` to connect to the VFB URL, list its tools, and pass their schemas to the Gemini model as Function Declarations.
+```bash
+pip install google-genai mcp
+```
 
 #### Testing the Connection
 
@@ -165,7 +134,16 @@ If you prefer to run the MCP server locally, see the [VFB3-MCP repository README
 
 ## Core Features
 
-The tool provides access to three main capabilities:
+The server exposes a set of tools covering search, term lookup, hierarchy, connectivity, name
+resolution and the precomputed queries behind the VFB website. The ones below are the tools as
+deployed in v1.11.0; the server's own
+page at [vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/) lists the full set as
+deployed, which is the authoritative source if this page has fallen behind.
+
+Connectivity is worth calling out because the examples further down rely on it: `query_connectivity`
+answers "what connects to this neuron" directly, and `list_connectome_datasets` gives the dataset
+symbols you need to include or exclude a connectome from that query. Ask your assistant in plain
+language and it will pick the tool; you do not need to name them.
 
 ### 1. **Term Information Queries** (`get_term_info`)
 
@@ -205,6 +183,58 @@ Execute specific queries on VFB terms, including NBLAST similarity analysis.
 **Example Query:**
 ```text
 "What neurons are morphologically similar to IN02A049?"
+```
+
+### 4. **Hierarchy Trees** (`get_hierarchy`)
+
+Walk the ontology up or down from a term. Use `part_of` for how a region is built from its parts,
+and `subclass_of` for cell type taxonomies. Start one level deep and go further only if you need to.
+
+**Example Query:**
+```text
+"What are the parts of the mushroom body?"
+"What types of Kenyon cell are there?"
+```
+
+Asking for the parts of the mushroom body (FBbt_00005801) one level down returns 17 children,
+including the calyx, pedunculus, spur and lobe system, each for adult and larval stages.
+
+### 5. **Search Facets** (`list_search_facets`)
+
+List the type names that searches can filter, exclude, boost or demote by, with the number of terms
+carrying each. There are 233 of them and they come from the index's own annotations rather than a
+curated list, so they change as data is added. Worth listing rather than guessing.
+
+**Example Query:**
+```text
+"What connectivity filters can I search by?"
+```
+
+That returns `has_neuron_connectivity` (488,110 terms) and `has_region_connectivity` (22,587).
+
+### 6. **Name Resolution** (`resolve_entity`)
+
+Turn a name as written in a paper into FlyBase and VFB IDs — gene symbols, driver lines, construct
+names. It tries an exact match first, then synonyms, then a broad pattern match, and tells you which
+of the three it used.
+
+**Example Query:**
+```text
+"What is Hb9-GAL4?"
+"Tell me about P{VT054895-GAL4.DBD}"
+```
+
+⚠️ When the match came from a synonym or a broad pattern rather than an exact name, check the
+result is the entity you meant before building on it. Your assistant should say which it was.
+
+### 7. **Split-GAL4 Combinations** (`resolve_combination`)
+
+Resolve a split-GAL4 combination name to its FBco ID and the component hemidrivers that make it up.
+
+**Example Query:**
+```text
+"What are the components of SS04495?"
+"What is MB002B?"
 ```
 
 ## Example Use Cases

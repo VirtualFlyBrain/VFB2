@@ -1,0 +1,18 @@
+{{/*
+  Docsy's `alert`, reimplemented so legacy generated pages still render.
+
+  Term pages written by vfbterms.py version 6 and earlier used Docsy
+  shortcodes. Those files are superseded but survive in the corpus whenever a
+  term drops out of one run's ID list, and a single one aborts the entire
+  build — twice now, at 93 and 38 minutes a time. The cost of shipping this is
+  one small template; the cost of not shipping it is a lost build per orphan.
+
+  Same signature as Docsy: {{< alert title="..." color="..." >}} ... {{< /alert >}}
+  `.Inner | markdownify` matches Docsy's own implementation, so pages written
+  against it render as they did.
+*/}}
+{{- $color := .Get "color" | default "primary" -}}
+<div class="alert alert-{{ $color }}" role="alert">
+{{- with .Get "title" }}<h4 class="alert-heading">{{ . }}</h4>{{ end }}
+{{ .Inner | markdownify }}
+</div>

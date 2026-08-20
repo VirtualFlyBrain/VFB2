@@ -1,7 +1,7 @@
 ---
 title: "External Resources"
 linkTitle: "Resources"
-weight: 45
+weight: 800
 description: >
     External resources that may be useful to users of Virtual Fly Brain. 
 
@@ -25,7 +25,7 @@ NeuronBridge is a tool search for neurons in Janelia FlyLight (LM) and FlyEM (EM
 Connectome explorer developed at Princeton University. Hosts the BANC, MANC, optic-lobe, FAFB and male-cns datasets. Provides advanced search functions, a range of visualisations, and bulk data downloads.
 
 ### [NeuPrint](https://neuprint.janelia.org)
-Connectome explorer provided by Janelia Research Campus. Hosts the hemibrain, MANC, optic-lobe and male-cns datasets. Advanced search features are availble, including direct cypher queries of the neo4j database. Data is also accessible progammatically via [neuprint-python](https://github.com/connectome-neuprint/neuprint-python) or [neuprintr](https://natverse.org/neuprintr/).
+Connectome explorer provided by Janelia Research Campus. Hosts the hemibrain, MANC, optic-lobe and male-cns datasets. Advanced search features are available, including direct cypher queries of the neo4j database. Data is also accessible progammatically via [neuprint-python](https://github.com/connectome-neuprint/neuprint-python) or [neuprintr](https://natverse.org/neuprintr/).
 
 ### [CATMAID](https://catmaid.org)
 The Collaborative Annotation Toolkit for Massive Amounts of Image Data (CATMAID) is a web companion to the TrakEM2 software (Cardona, 2006) for management, registration and analysis of large-scale ssTEM datasets.

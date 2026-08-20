@@ -757,12 +757,51 @@ def fetch_ids(label, query):
     print(f"  Retrieved {len(ids)} IDs for {label}")
     return ids
 
+_VERSION_SUFFIX = re.compile(r"_v(\d+)\.md$")
+
+
+def prune_old_versions(label):
+    """Delete superseded term pages in the current directory.
+
+    process_term() used to remove only version-1 after writing a page. A term
+    absent from a single run's ID list therefore kept its older file forever:
+    the corpus still held _v6 pages long after version reached 9. Those orphans
+    are live pages -- they can collide on URL with the current version, they
+    are walked and parsed on every build, and pages old enough to predate the
+    move off Docsy call shortcodes the theme no longer ships, which aborts the
+    whole build.
+
+    One directory scan rather than a stat per term per version. The per-term
+    form costs version-1 extra syscalls for every term, which at ~763k terms is
+    millions of round trips; on the NFS volume this corpus lives on, metadata
+    operations run at a few hundred per second, so that is hours. This also
+    removes one stat per term relative to the old code.
+    """
+    removed = 0
+    try:
+        with os.scandir(".") as entries:
+            for entry in entries:
+                match = _VERSION_SUFFIX.search(entry.name)
+                if match and int(match.group(1)) < version:
+                    try:
+                        os.remove(entry.name)
+                        removed += 1
+                    except OSError:
+                        pass
+    except OSError as e:
+        print(f"WARNING: could not prune {label}: {e}")
+        return
+    if removed:
+        print(f"  pruned {removed} superseded pages from {label}")
+
+
 def process_group(base_path, relative_dir, label, query):
     """Change directory, fetch IDs, and generate pages for one ontology group."""
     target_dir = os.path.normpath(join(base_path, relative_dir))
     print(f"\n[{label}] {target_dir}")
     chdir(target_dir)
     save_terms(fetch_ids(label, query))
+    prune_old_versions(label)
 
 def process_term(term_id):
     """Fetch, render and write one term page. Returns a status string.
@@ -786,13 +825,6 @@ def process_term(term_id):
         f.write(page_content)
     os.replace(tmp, filename)
 
-    # Clean up previous version
-    old_filename = term_id + "_v" + str(version - 1) + ".md"
-    if os.path.isfile(old_filename):
-        try:
-            os.remove(old_filename)
-        except OSError:
-            pass
     return "ok"
 
 def save_terms(ids):

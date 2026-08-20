@@ -5,7 +5,7 @@ title: "The Circuit Browser tab"
 linkTitle: "Circuit Browser"
 description: >
    The Circuit Browser allows you to find the strongest paths from one neuron (the source neuron) to another (the target neuron). 
-weight: 70
+weight: 214
 ---
 <link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
 

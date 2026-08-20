@@ -1,0 +1,140 @@
+/* ==========================================================================
+   Bootstrap-class shim.
+
+   vfbterms.py emits raw HTML for the generated /term/ pages using Bootstrap
+   4/5 utility classes (card, row, col-md-*, badge, btn, img-fluid,
+   text-muted, m*-n). Docsy supplied those via Bootstrap; this theme ships no
+   Bootstrap, so the classes the generator actually uses are re-implemented
+   here, scoped to .prose so they cannot leak into the theme's own markup.
+   Keeping the shim here means vfbterms.py needs no change.
+   ========================================================================== */
+
+.prose .card {
+  display: block;
+  padding: 0;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--elev-1);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+}
+.prose .card.border-primary {
+  border-color: rgba(76, 141, 255, .35);
+  box-shadow: var(--glow);
+}
+.prose .card-body { padding: var(--sp-5); }
+
+.prose .row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--sp-5);
+  align-items: start;
+}
+.prose .col-md-4 { grid-column: span 4; }
+.prose .col-md-8 { grid-column: span 8; }
+.prose .col-md-6 { grid-column: span 6; }
+.prose .col-md-12,
+.prose .col { grid-column: span 12; }
+@media (max-width: 820px) {
+  .prose .col-md-4,
+  .prose .col-md-8,
+  .prose .col-md-6 { grid-column: span 12; }
+}
+
+.prose .img-fluid { max-width: 100%; height: auto; }
+.prose .rounded { border-radius: var(--r-md); }
+.prose .text-center { text-align: center; }
+.prose .text-muted { color: var(--muted); }
+
+.prose .badge {
+  display: inline-block;
+  padding: .3rem .65rem;
+  margin: 0 .3rem .3rem 0;
+  border-radius: var(--r-pill);
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  letter-spacing: .04em;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--text-dim);
+}
+.prose .badge.bg-secondary {
+  background: var(--grad-soft);
+  border-color: rgba(76, 141, 255, .28);
+}
+
+.prose .btn.btn-primary {
+  background: var(--grad-brand);
+  color: #05070e;
+  border-color: transparent;
+  font-weight: 650;
+}
+.prose .btn.btn-lg { padding: .8rem 1.5rem; font-size: 1rem; }
+
+.prose .mb-2 { margin-bottom: var(--sp-2); }
+.prose .mb-4 { margin-bottom: var(--sp-4); }
+.prose .mt-2 { margin-top: var(--sp-2); }
+.prose .ml-2,
+.prose .ms-2 { margin-left: var(--sp-2); }
+.prose .mr-3,
+.prose .me-3 { margin-right: var(--sp-3); }
+
+/* thumbnails in the term hero are black-backed, so give them a proper frame */
+.prose .card-body img[style*="background"] {
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: #000;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.prose .card-body a:hover img {
+  transform: scale(1.03);
+  box-shadow: var(--glow);
+}
+
+/* --- term page chrome --------------------------------------------------- */
+.term-id {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: max(0.9rem, 0.34em);
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: .02em;
+  vertical-align: middle;
+  padding: .2em .55em;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  translate: 0 -.15em;
+}
+
+/* --------------------------------------------------------------------------
+   Bootstrap `alert`, for the legacy Docsy shortcodes reimplemented in
+   layouts/shortcodes/{alert,pageinfo}.html. Superseded term pages call them,
+   and without a template the whole build fails; without these rules they
+   would render as unstyled text. Uses the theme's own tokens rather than
+   Bootstrap's palette so they sit with the rest of the page.
+   -------------------------------------------------------------------------- */
+.prose .alert {
+  display: block;
+  padding: var(--sp-4) var(--sp-5);
+  margin: var(--sp-5) 0;
+  border: 1px solid var(--line);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--elev-1);
+}
+.prose .alert > :first-child { margin-top: 0; }
+.prose .alert > :last-child { margin-bottom: 0; }
+.prose .alert-heading {
+  margin: 0 0 var(--sp-2);
+  font-size: 1rem;
+  font-weight: 600;
+}
+.prose .alert-primary,
+.prose .alert-info    { border-left-color: rgba(76, 141, 255, .7); }
+.prose .alert-success { border-left-color: rgba(64, 192, 128, .7); }
+.prose .alert-warning { border-left-color: rgba(230, 168, 64, .7); }
+.prose .alert-danger  { border-left-color: rgba(230, 96, 96, .7); }
+.prose .alert-secondary,
+.prose .alert-light,
+.prose .alert-dark    { border-left-color: var(--line); }

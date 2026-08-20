@@ -1,7 +1,7 @@
 ---
 title: "Owlery API"
 linkTitle: "Owlery API"
-weight: 3
+weight: 606
 date: 2024-01-13
 description: >
   The Owlery API provides OWL reasoning services for VFB's ontologies, enabling complex queries over class hierarchies and relationships.

@@ -1,7 +1,7 @@
 ---
 title: "Contribution Guidelines"
 linkTitle: "Contribution Guidelines"
-weight: 20
+weight: 700
 categories: ["help"]
 description: >
   Contribute or update Virtual Fly Brain data/sites.
@@ -16,7 +16,7 @@ The provenance of information, textual or image, is always acknowledged.
 ### Tell us about your paper
 
 **Have you just had a paper published which describes new anatomical or expression information?**  
-The best way to make us aware of your paper, and to put it on our curation list is to act on an email you will receive from FlyBase after your paper has been published. The link on the email points to the [Fast-Track Your Paper Tool](http://flybase.org/submission/publication/).  
+The best way to make us aware of your paper, and to put it on our curation list is to act on an email you will receive from FlyBase after your paper has been published. The link on the email points to the [Fast-Track Your Paper Tool](https://flybase.org/submission/publication/).  
 Using this tool you can provide information on what types of data your paper contains. If it has new anatomical or expression information you'll need to fill the sections, _Anatomical data_ or _Expression_, respectively, in addition to any other suitable ones.  
 You can also use this tool for any other, previously published paper.
 
@@ -30,11 +30,11 @@ How to register your image data
 
 It is essential for successful registrations that the images are of good quality.
 
-Follow [this protocol](http://www.dx.doi.org/10.1101/pdb.prot071720) to acquire stacks that can be used for registration.
+Follow [this protocol](https://doi.org/10.1101/pdb.prot071720) to acquire stacks that can be used for registration.
 
-Once you have the images, follow [this protocol](http://www.dx.doi.org/10.1101/pdb.prot071738) to register your images.
+Once you have the images, follow [this protocol](https://doi.org/10.1101/pdb.prot071738) to register your images.
 
-Information on publicly available template brains and bridging data is available [here](http://jefferislab.org/si/bridging).
+Information on publicly available template brains is on the [Templates](/docs/data/templates/) page, and the registrations that map between them are described under [Bridging registrations](/docs/concepts/bridging/).
 
 
 How to contribute to these docs

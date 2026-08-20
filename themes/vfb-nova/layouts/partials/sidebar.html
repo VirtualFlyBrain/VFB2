@@ -1,0 +1,12 @@
+{{- $top := .FirstSection -}}
+{{/* <details> so the tree collapses on narrow screens (app.js closes it below
+     900px). Without JS it stays open, which is the safe default. */}}
+<details class="doc__side" open>
+  <summary>
+    <span class="tree__label">{{ $top.LinkTitle }}</span>
+    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+  </summary>
+  <ul class="tree">
+    {{ partial "tree.html" (dict "sect" $top "cur" .) }}
+  </ul>
+</details>

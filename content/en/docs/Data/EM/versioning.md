@@ -3,7 +3,7 @@ title: "Dataset Versions and Deprecation"
 linkTitle: "Versions & Deprecation"
 categories: ["overview","help"]
 tags: ["EM","Connectomics","DataSet","Deprecation","Versioning","Site","Connectivity"]
-weight: 5
+weight: 506
 date: 2026-06-30
 description: >
   How Virtual Fly Brain handles neurons, connectivity, data sources and cross-references when new versions of connectomic datasets are released.

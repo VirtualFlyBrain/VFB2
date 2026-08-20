@@ -10,7 +10,7 @@ Description: >
 ontology: "so"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

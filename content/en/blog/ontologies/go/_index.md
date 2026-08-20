@@ -10,7 +10,7 @@ Description: >
 ontology: "go"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

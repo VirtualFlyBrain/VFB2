@@ -1,6 +1,6 @@
 ---
 title: "Tool landscape"
-weight: 4
+weight: 1004
 series: ["API"]
 date: 2021-12-27
 categories: [connectome,python,workshop,tutorials]
@@ -24,23 +24,23 @@ For R there is a `vfb_connect` wrapper, [`vfbconnectr`](https://github.com/jeffe
 See also David's presentation for details.
 
 ## R
-In R, the [natverse](http://natverse.org) is your one-stop-shop for all things
+In R, the [natverse](https://natverse.org) is your one-stop-shop for all things
 neuron: it's a collection of various R packages that are built on top of
 the **n**euro**a**natomy **t**oolbox, `nat`. Of particular relevance for
 this workshop:
 
-1. [`nat`](http://natverse.org/nat/) is a general purpose library for working
+1. [`nat`](https://natverse.org/nat/) is a general purpose library for working
    with morphological neuron data. In this workshop, we make heavy use of
    `nat`'s plotting capabilities but its capabilities extend far beyond that.
     If you want to run any morphological analysis, I highly recommend
-   you have a look at the "Articles" in nat's [doc](http://natverse.org/nat/).
-2. [`neuprintr`](http://natverse.org/neuprintr/reference/) and
-   [`hemibrainr`](http://natverse.org/hemibrainr/) provide an interface with
+   you have a look at the "Articles" in nat's [doc](https://natverse.org/nat/).
+2. [`neuprintr`](https://natverse.org/neuprintr/reference/) and
+   [`hemibrainr`](https://natverse.org/hemibrainr/) provide an interface with
    neuprint and the Janelia hemibrain dataset
    ([link](https://neuprint.janelia.org)). The former lets you run queries
    against neuprint's neo4j database while the latter contains meta data
    and various convenience functions to work with the hemibrain dataset.
-3. [`rcatmaid`](http://natverse.org/rcatmaid/) provides an interface with
+3. [`rcatmaid`](https://natverse.org/rcatmaid/) provides an interface with
    CATMAID servers such as those the VFB uses to host published from the
    FAFB or larval fruit fly dataset. `rcatmaid` is built on top of `nat` and
    you can use `nat` functions with neurons pulled via `rcatmaid`.
@@ -72,7 +72,7 @@ of the workshop.
 
 ### NBLAST
 NBLAST is an algorithm that computes morphological similarity between neurons
-([Costa et al., 2016](https://www.cell.com/neuron/fulltext/S0896-6273(16)30265-3?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0896627316302653%3Fshowall%3Dtrue)). This has proven incredibly useful to find similar
+([Costa et al., 2016](https://doi.org/10.1016/j.neuron.2016.06.012)). This has proven incredibly useful to find similar
 neurons across datasets but also to cluster neurons into cell types.
 
 On the R side the algorithm is implemented in
