@@ -21,7 +21,7 @@ This resource provides access to both the original FANC dataset and template-ali
 
 The data is from the research published in:
 
-Fushiki A, et al. (2021) A circuit mechanism for the propagation of waves of muscle contraction in Drosophila. Cell, 184(3), 759-774.e20. https://doi.org/10.1016/j.cell.2020.12.013
+Phelps JS, Hildebrand DGC, Graham BJ, et al. (2021) Reconstruction of motor control circuits in adult Drosophila using automated transmission electron microscopy. Cell, 184(3), 759-774.e18. https://doi.org/10.1016/j.cell.2020.12.013
 
 see: https://www.lee.hms.harvard.edu/resources
 
@@ -57,7 +57,7 @@ Note: Both views (original and aligned) can be accessed through the same API usi
 When using this data, please cite:
 
 1. The FANC dataset:
-   Fushiki A, et al. (2021) A circuit mechanism for the propagation of waves of muscle contraction in Drosophila. Cell, 184(3), 759-774.e20. https://doi.org/10.1016/j.cell.2020.12.013
+   Phelps JS, Hildebrand DGC, Graham BJ, et al. (2021) Reconstruction of motor control circuits in adult Drosophila using automated transmission electron microscopy. Cell, 184(3), 759-774.e18. https://doi.org/10.1016/j.cell.2020.12.013
 
 2. The CATMAID platform:
    Saalfeld S, Cardona A, Hartenstein V, Tomančák P (2009) CATMAID: collaborative annotation toolkit for massive amounts of image data. Bioinformatics 25(15): 1984-1986. https://doi.org/10.1093/bioinformatics/btp266
