@@ -21,12 +21,12 @@ The table below summarises EM datasets that have been integrated into VFB, inclu
 
 | Dataset | VFB symbol | Version in VFB | Anatomy | Reconstruction | Resource(s) | Original Publication |
 |---|---|---|---|---|---|---|
-| BANC | `BANC` | v626 | Full CNS (adult female) | Dense | [Codex](https://codex.flywire.ai/) | [Bates et al. (2025)](https://doi.org/10.1101/2025.07.31.667571), published as [Bates et al. (2026)](https://doi.org/10.1038/s41586-026-10735-w) |
-| male-CNS | `mc` | v0.9 | Full CNS (adult male) | Dense | [NeuPrint](https://neuprint.janelia.org/); [Codex](https://codex.flywire.ai/) | [Berg et al. (2025)](https://doi.org/10.1101/2025.10.09.680999) |
-| Optic-lobe | `ol` | v1.0.1 | Optic lobe (adult male) | Dense | [NeuPrint](https://neuprint.janelia.org/); [Codex](https://codex.flywire.ai/) | [Nern et al. (2025)](https://doi.org/10.1038/s41586-025-08746-0) |
-| FAFB (FlyWire) | `fw` | v783 | Full brain (adult female) | Dense | [Codex](https://codex.flywire.ai/) | [Dorkenwald et al. (2024)](https://doi.org/10.1038/s41586-024-07558-y); [Schlegel et al. (2024)](https://doi.org/10.1038/s41586-024-07686-5) |
-| MANC | `mv` | v1.2.1 | Full VNC (adult male) | Dense | [NeuPrint](https://neuprint.janelia.org/); [Codex](https://codex.flywire.ai/) | [Takemura et al. (2024)](https://doi.org/10.7554/eLife.97769.1) |
-| Hemibrain | `hb` | v1.2.1 | Partial brain (adult female) | Dense | [NeuPrint](https://neuprint.janelia.org/) | [Scheffer et al. (2020)](https://doi.org/10.7554/eLife.57443) |
+| BANC | `BANC` | v626 | Full CNS (adult female) | Dense | [Codex](https://codex.flywire.ai/?dataset=banc&data_version=626) | [Bates et al. (2025)](https://doi.org/10.1101/2025.07.31.667571), published as [Bates et al. (2026)](https://doi.org/10.1038/s41586-026-10735-w) |
+| male-CNS | `mc` | v0.9 | Full CNS (adult male) | Dense | [NeuPrint](https://neuprint.janelia.org/?dataset=male-cns%3Av0.9&qt=findneurons); [Codex](https://codex.flywire.ai/) | [Berg et al. (2025)](https://doi.org/10.1101/2025.10.09.680999) |
+| Optic-lobe | `ol` | v1.0.1 | Optic lobe (adult male) | Dense | [NeuPrint](https://neuprint.janelia.org/?dataset=optic-lobe%3Av1.0.1&qt=findneurons); [Codex](https://codex.flywire.ai/) | [Nern et al. (2025)](https://doi.org/10.1038/s41586-025-08746-0) |
+| FAFB (FlyWire) | `fw` | v783 | Full brain (adult female) | Dense | [Codex](https://codex.flywire.ai/?data_version=783) | [Dorkenwald et al. (2024)](https://doi.org/10.1038/s41586-024-07558-y); [Schlegel et al. (2024)](https://doi.org/10.1038/s41586-024-07686-5) |
+| MANC | `mv` | v1.2.1 | Full VNC (adult male) | Dense | [NeuPrint](https://neuprint.janelia.org/?dataset=manc%3Av1.2.1&qt=findneurons); [Codex](https://codex.flywire.ai/) | [Takemura et al. (2024)](https://doi.org/10.7554/eLife.97769.1) |
+| Hemibrain | `hb` | v1.2.1 | Partial brain (adult female) | Dense | [NeuPrint](https://neuprint.janelia.org/?dataset=hemibrain%3Av1.2.1&qt=findneurons) | [Scheffer et al. (2020)](https://doi.org/10.7554/eLife.57443) |
 | FAFB (CATMAID) | `fafb` | — | Full brain (adult female) | Sparse | [CATMAID (VFB)](/hosted/fafb-catmaid/) | [Zheng et al. (2018)](https://doi.org/10.1016/j.cell.2018.06.019) |
 | L1 CNS (CATMAID) | `l1em` | — | Full CNS (female larva) | Sparse | [CATMAID (VFB)](/hosted/l1em-catmaid/) | [Ohyama et al. (2015)](https://doi.org/10.1038/nature14297) |
 | FANC | — | — | Full VNS (adult female) | Sparse | [CATMAID (VFB)](/hosted/fanc-catmaid/) | [Phelps et al. (2021)](https://doi.org/10.1016/j.cell.2020.12.013) |
