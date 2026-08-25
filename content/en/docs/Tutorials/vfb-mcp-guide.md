@@ -19,7 +19,7 @@ The Model Context Protocol is a standard that allows LLMs to interact with exter
 
 The VFB MCP tool is available at: **[vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/)**
 
-The hosted service is currently **v1.11.0**. That page always states the deployed version and the
+That page always states the currently deployed version and the
 full client setup instructions, including GitHub Copilot, VS Code and Gemini, so check it there
 rather than here if the two disagree.
 
@@ -135,8 +135,8 @@ If you prefer to run the MCP server locally, see the [VFB3-MCP repository README
 ## Core Features
 
 The server exposes a set of tools covering search, term lookup, hierarchy, connectivity, name
-resolution and the precomputed queries behind the VFB website. The ones below are the tools as
-deployed in v1.11.0; the server's own
+resolution and the precomputed queries behind the VFB website. The tools below are those documented here at the
+time of writing; the server's own
 page at [vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/) lists the full set as
 deployed, which is the authoritative source if this page has fallen behind.
 
@@ -388,6 +388,7 @@ VFB terms use standardized identifiers:
 ## Next Steps
 
 - **Explore the tool:** Visit [vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/)
+- **Endpoint reference:** See the [MCP Server API page](/docs/apis/mcp/) for the endpoint, transport and source repository at a glance
 - **Read more about NBLAST:** See our [NBLAST concepts page](/docs/concepts/nblast)
 - **Learn about VFB APIs:** Check our [API overview](/docs/tutorials/apis/vfb_api_overview)
 - **Browse VFB directly:** Visit the main [Virtual Fly Brain site](https://virtualflybrain.org/)
