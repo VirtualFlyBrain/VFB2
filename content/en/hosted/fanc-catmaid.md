@@ -50,6 +50,34 @@ This CATMAID instance enables:
 - Skeleton visualization options
 - API access for programmatic data retrieval (documentation: https://catmaid.readthedocs.io/en/stable/api.html): https://fanc.catmaid.virtualflybrain.org/apis/
 
+### Public API token
+
+Read-only access to this instance is open to everyone, but most of CATMAID's query
+endpoints are POST rather than GET, and POST requests are subject to a CSRF check.
+Command-line and server-side clients (pymaid, curl, scripts) can satisfy that check by
+requesting a page first and replaying the cookie they are given. Code running in a
+browser cannot: it can neither read a cookie belonging to another site nor set a
+`Referer` header. Browser-based tools should therefore authenticate as the anonymous
+user, using this token:
+
+```
+7ebf1358497a96845d6aa7b4d0fbd01538fb69c2
+```
+
+**This token is published deliberately and is not a secret.** It authenticates as
+`AnonymousUser`, whose only permission on this project is `can_browse`, so it grants
+exactly the read access this page already offers to everyone and nothing further.
+Write requests made with it are refused by the server.
+
+Send it in either the `X-Authorization` or the `Authorization` header:
+
+```bash
+curl -X POST https://fanc.catmaid.virtualflybrain.org/1/skeleton/neuronnames \
+  -H "X-Authorization: Token 7ebf1358497a96845d6aa7b4d0fbd01538fb69c2" \
+  --data "skids[0]=16"
+```
+
+
 Note: Both views (original and aligned) can be accessed through the same API using different project IDs (pid).
 
 ## Citation Guidelines
