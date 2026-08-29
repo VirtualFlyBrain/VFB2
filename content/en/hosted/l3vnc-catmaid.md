@@ -23,6 +23,14 @@ The viewer provides access to:
 - Synaptic connectivity information
 - Associated metadata and annotations
 
+### Image stack
+
+Scale levels 0 and 1 of the image stack are incomplete, missing roughly 72% and 30% of
+slices respectively. This is a property of the source export rather than a fault in the
+viewer. Because the original imaging is at very high resolution, browsing and
+reconstruction at scale level 2 (or an upscaling of it) is unaffected, and scale level 2
+is the recommended working resolution for this volume.
+
 ## Features
 
 This CATMAID instance enables:
