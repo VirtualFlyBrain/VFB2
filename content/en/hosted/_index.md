@@ -23,3 +23,10 @@ remaining public copy.
 served from. The larva1099 eFIB-SEM volume is the most recent of these.
 
 Each site has its own page below, with what it contains, how to open it and how to cite it.
+
+### Programmatic access
+
+A machine-readable list of the CATMAID instances below — URLs, project IDs and the
+public read-only API tokens — is published at
+[`/data/EM/catmaid.json`](https://virtualflybrain.org/data/EM/catmaid.json) for tools
+that connect to them.

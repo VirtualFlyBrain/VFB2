@@ -10,6 +10,14 @@ The ABD1.5 CATMAID instance is hosted and maintained by Virtual Fly Brain (VFB) 
 
 This resource provides wild-type reference data for the abdominal nerve cord of first instar Drosophila larvae, serving as a baseline for comparative connectomics studies. Virtual Fly Brain ensures its long-term availability to the research community.
 
+## Data status
+
+This volume is not being actively worked on. It contains **all** reconstructions
+regardless of publication status, completeness or correctness, so neurons found here
+should not be assumed to be finished or reviewed. The `papers` annotation marks the
+subset published in Valdes-Aleman et al. (2021), where this volume is referred to as
+Control-2; Control-1 is the [L1EM instance](/hosted/l1em-catmaid/), also hosted by VFB.
+
 ## Source Publications
 
 This dataset contains neuron reconstructions from multiple foundational connectomics studies:
@@ -19,6 +27,8 @@ This dataset contains neuron reconstructions from multiple foundational connecto
 2. Schneider-Mizell CM, Gerhard S, Longair M, Kazimiers T, Li F, Zwart MF, et al. (2016). Quantitative neuroanatomy for connectomics in Drosophila. eLife, 5, e12059. https://doi.org/10.7554/eLife.12059
 
 3. Valdes-Aleman J, Fetter RD, Sales EC, Heckman EL, Venkatasubramanian L, Doe CQ, et al. (2021). Comparative Connectomics Reveals How Partner Identity, Location, and Activity Specify Synaptic Connectivity in the Drosophila Motor System. Neuron, 109(1), 105-120.e7. https://doi.org/10.1016/j.neuron.2020.10.004
+
+4. Saalfeld S, Fetter R, Cardona A, Tomancak P (2012). Elastic volume reconstruction from series of ultra-thin microscopy sections. Nature Methods, 9(7), 717-720. https://doi.org/10.1038/nmeth.2072
 
 ## Dataset Contents
 
@@ -128,7 +138,10 @@ When using this data, please cite the relevant research:
 3. For quantitative neuroanatomy methodology:
    Schneider-Mizell CM, et al. (2016). Quantitative neuroanatomy for connectomics in Drosophila. eLife, 5, e12059. https://doi.org/10.7554/eLife.12059
 
-4. The CATMAID platform:
+4. For the volume reconstruction and alignment method:
+   Saalfeld S, Fetter R, Cardona A, Tomancak P (2012). Elastic volume reconstruction from series of ultra-thin microscopy sections. Nature Methods, 9(7), 717-720. https://doi.org/10.1038/nmeth.2072
+
+5. The CATMAID platform:
    Saalfeld S, Cardona A, Hartenstein V, Tomančák P (2009) CATMAID: collaborative annotation toolkit for massive amounts of image data. Bioinformatics 25(15): 1984-1986. https://doi.org/10.1093/bioinformatics/btp266
 
 ## Maintenance & Support
