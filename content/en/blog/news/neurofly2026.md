@@ -19,6 +19,7 @@ For more information about NeuroFly 2026, including registration, abstract submi
 **Update (30 August 2026):** With NeuroFly 2026 just over a week away, here's what to look out for.
 
 ![Alex McLachlan (left) and Clare Pilgrim (right)](https://www.virtualflybrain.org/images/neurofly2026/alex-and-clare.jpg)
+![Robert Court](https://www.virtualflybrain.org/images/neurofly2026/robert-court.jpg)
 
 **Work through our self-led workshop.** [VFB Self-Led Learning](https://workshop.virtualflybrain.org) is a set of seven sessions on finding, connecting and examining neurons across VFB's connectomes, imaging and transcriptomic data. Work through it in your own time, before, during or after the conference, choosing whichever route suits you — Python, R, VFB Chat, our [MCP tool](/docs/tutorials/vfb-mcp-guide/), or the 3D browser. Most routes need no installation at all. Start at Session 1 and work through in order, then apply what you've learned to your own neurons, regions and genes.
 
