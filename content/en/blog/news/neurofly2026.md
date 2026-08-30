@@ -22,7 +22,7 @@ For more information about NeuroFly 2026, including registration, abstract submi
 
 **Find us at our table.** We'll have a table at the conference throughout, so come and find us if you get stuck on the workshop, want a live demo, or just have questions about the data or tools — that's exactly what we're there for.
 
-**The VFB team at NeuroFly 2026:**
+**The VFB team at NeuroFly 2026** (see the [full VFB team](/about/members/)):
 
 - **Douglas Armstrong** (Current Project PI) — attending, not presenting directly
 - **Greg Jefferis** (Current Project PI) — giving Plenary Lecture 2 on Day 2 (Tuesday 8 September), 10:00
