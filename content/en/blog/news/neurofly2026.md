@@ -1,7 +1,7 @@
 ---
 title: "VFB will be giving a talk and live demos at NeuroFly 2026"
 linkTitle: "NeuroFly 2026"
-date: 2025-12-17
+date: 2026-08-30
 description: >
     VFB will be giving a talk and running live demos, alongside our posters, at NeuroFly 2026 in Cologne, Germany.
 ---
