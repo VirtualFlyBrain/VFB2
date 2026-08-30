@@ -1,13 +1,13 @@
 ---
 title: "CATMAID API (VFB Pass-through)"
 linkTitle: "CATMAID API"
-weight: 10
+weight: 7
 date: 2026-08-30
 description: >
   The fastest and simplest way to pull data out of VFB's hosted CATMAID instances — accepts VFB ids as well as native skeleton ids (skids), needs no token or CSRF handshake, and is cached for speed.
 ---
 
-VFB hosts several [CATMAID](https://catmaid.readthedocs.io/) instances (FAFB, FANC, L1EM, Larva1099, and others — see [Hosted Sites](/hosted/)). Each one has its own native CATMAID API, but for most uses **the recommended way to pull data out of any of them is VFB's CATMAID pass-through**, served at:
+VFB hosts several [CATMAID](https://catmaid.readthedocs.io/) instances (FAFB, FANC, L1EM, Larva1099, and others — see [Hosted Sites](/hosted/)). Each one has its own native CATMAID API, but for most uses **the recommended way to pull data out of any of them is VFB's CATMAID pass-through**, one part of the wider [VFBquery API](/docs/apis/vfbquery/), served at:
 
 ```
 https://v3-cached.virtualflybrain.org/catmaid/{instance}/{command}
