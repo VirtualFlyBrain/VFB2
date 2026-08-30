@@ -12,13 +12,13 @@ Virtual Fly Brain (VFB) is excited about the upcoming conference. Following on f
 
 Virtual Fly Brain (VFB) will be there. We will be giving a talk about the data and tools we make available, and running live demos during the poster sessions, where you will also find our posters. Come and find us if you would like a hands-on walkthrough. The demos will introduce the connectomics data available on VFB and show you how to perform your own analysis using the latest [tools](/docs/past-workshops/connectome/tools) and [APIs](/docs/tutorials/apis/) for integrating Drosophila neuroscience data. We can also show you how to use AI to query our data directly, through our [MCP tool](/docs/tutorials/vfb-mcp-guide/).
 
-For more information about NeuroFly 2026, including registration, abstract submission, and program details, visit the official website at [https://neurofly.org/home/](https://neurofly.org/home/) or the 2026 conference page at [https://neurofly.org/y2026/](https://neurofly.org/y2026/).
+For more information about NeuroFly 2026, including the full programme, visit the official website at [https://neurofly.org/home/](https://neurofly.org/home/) or the 2026 conference page at [https://neurofly.org/y2026/](https://neurofly.org/y2026/).
 
 ---
 
 **Update (30 August 2026):** With NeuroFly 2026 just over a week away, here's what to look out for.
 
-**Work through our self-led workshop.** [VFB Self-Led Learning](https://workshop.virtualflybrain.org) is a set of seven sessions on finding, connecting and examining neurons across VFB's connectomes, imaging and transcriptomic data. Work through it in your own time, before, during or after the conference, choosing whichever route suits you — Python, R, VFB Chat, our [MCP tool](/docs/tutorials/vfb-mcp-guide/), or the 3D browser. Most routes need no installation at all. Start at Session 1 and work through in order, then apply what you've learned to your own neurons, regions and genes.
+**Work through our self-led workshop.** [VFB Self-Led Learning](https://workshop.virtualflybrain.org) is a set of seven sessions on finding, connecting and examining neurons across VFB's connectomes, imaging and transcriptomic data. We built it as a self-led, online workshop rather than a single in-person session so that far more people can work through it than a conference room could ever hold — and so that anyone who can't make it to Cologne in person can still take part. Work through it in your own time, before, during or after the conference, choosing whichever route suits you — Python, R, VFB Chat, our [MCP tool](/docs/tutorials/vfb-mcp-guide/), or the 3D browser. Most routes need no installation at all. Start at Session 1 and work through in order, then apply what you've learned to your own neurons, regions and genes.
 
 **Find us at our table.** We'll have a table at the conference throughout, so come and find us if you get stuck on the workshop, want a live demo, or just have questions about the data or tools — that's exactly what we're there for.
 
