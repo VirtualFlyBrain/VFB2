@@ -32,7 +32,25 @@ For more information about NeuroFly 2026, including registration, abstract submi
 
 So you can easily spot us if you have any questions:
 
-![Douglas Armstrong](https://www.virtualflybrain.org/images/neurofly2026/douglas-armstrong.jpg)
-![Greg Jefferis](https://www.virtualflybrain.org/images/neurofly2026/greg-jefferis.jpg)
-![Alex McLachlan (left) and Clare Pilgrim (right)](https://www.virtualflybrain.org/images/neurofly2026/alex-and-clare.jpg)
-![Robert Court](https://www.virtualflybrain.org/images/neurofly2026/robert-court.jpg)
+<div style="display:flex; flex-wrap:wrap; gap:28px; margin:1.5em 0;">
+  <div style="text-align:center; width:110px;">
+    <img src="https://www.virtualflybrain.org/images/neurofly2026/douglas-armstrong-circle.png" alt="Douglas Armstrong" style="width:110px; height:110px; border-radius:50%; display:block;">
+    <div style="margin-top:8px; font-size:0.9em;">Douglas Armstrong</div>
+  </div>
+  <div style="text-align:center; width:110px;">
+    <img src="https://www.virtualflybrain.org/images/neurofly2026/greg-jefferis-circle.png" alt="Greg Jefferis" style="width:110px; height:110px; border-radius:50%; display:block;">
+    <div style="margin-top:8px; font-size:0.9em;">Greg Jefferis</div>
+  </div>
+  <div style="text-align:center; width:110px;">
+    <img src="https://www.virtualflybrain.org/images/neurofly2026/clare-pilgrim-circle.png" alt="Clare Pilgrim" style="width:110px; height:110px; border-radius:50%; display:block;">
+    <div style="margin-top:8px; font-size:0.9em;">Clare Pilgrim</div>
+  </div>
+  <div style="text-align:center; width:110px;">
+    <img src="https://www.virtualflybrain.org/images/neurofly2026/robert-court-circle.png" alt="Robert Court" style="width:110px; height:110px; border-radius:50%; display:block;">
+    <div style="margin-top:8px; font-size:0.9em;">Robert Court</div>
+  </div>
+  <div style="text-align:center; width:110px;">
+    <img src="https://www.virtualflybrain.org/images/neurofly2026/alex-mclachlan-circle.png" alt="Alex McLachlan" style="width:110px; height:110px; border-radius:50%; display:block;">
+    <div style="margin-top:8px; font-size:0.9em;">Alex McLachlan</div>
+  </div>
+</div>
