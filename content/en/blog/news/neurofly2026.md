@@ -18,13 +18,19 @@ For more information about NeuroFly 2026, including registration, abstract submi
 
 **Update (30 August 2026):** With NeuroFly 2026 just over a week away, here's what to look out for.
 
-![Alex McLachlan (left) and Clare Pilgrim (right)](https://www.virtualflybrain.org/images/neurofly2026/alex-and-clare.jpg)
-![Robert Court](https://www.virtualflybrain.org/images/neurofly2026/robert-court.jpg)
-
 **Work through our self-led workshop.** [VFB Self-Led Learning](https://workshop.virtualflybrain.org) is a set of seven sessions on finding, connecting and examining neurons across VFB's connectomes, imaging and transcriptomic data. Work through it in your own time, before, during or after the conference, choosing whichever route suits you — Python, R, VFB Chat, our [MCP tool](/docs/tutorials/vfb-mcp-guide/), or the 3D browser. Most routes need no installation at all. Start at Session 1 and work through in order, then apply what you've learned to your own neurons, regions and genes.
 
 **Find us at our table.** We'll have a table at the conference throughout, so come and find us if you get stuck on the workshop, want a live demo, or just have questions about the data or tools — that's exactly what we're there for.
 
 **Catch our talks.** Greg Jefferis is giving Plenary Lecture 2 on Day 2 (Tuesday 8 September), 10:00. Clare Pilgrim is speaking straight after, in the Motor Control oral session.
 
+![Greg Jefferis](https://www.virtualflybrain.org/images/neurofly2026/greg-jefferis.jpg)
+![Alex McLachlan (left) and Clare Pilgrim (right)](https://www.virtualflybrain.org/images/neurofly2026/alex-and-clare.jpg)
+
 **Find our posters.** Look out for us in Poster Session A: Robert Court, poster A66, "Querying Virtual Fly Brain in natural language: opening curated Drosophila connectomics to non-specialists", and Alex McLachlan, poster A67, "Linking neurons across connectomes, light-level images and expression data in Virtual Fly Brain (VFB) using NBLAST". Come and say hello.
+
+![Robert Court](https://www.virtualflybrain.org/images/neurofly2026/robert-court.jpg)
+
+**Also joining us this year:** Douglas Armstrong, VFB's Project PI.
+
+![Douglas Armstrong](https://www.virtualflybrain.org/images/neurofly2026/douglas-armstrong.jpg)
