@@ -22,15 +22,17 @@ For more information about NeuroFly 2026, including registration, abstract submi
 
 **Find us at our table.** We'll have a table at the conference throughout, so come and find us if you get stuck on the workshop, want a live demo, or just have questions about the data or tools — that's exactly what we're there for.
 
-**Catch our talks.** Greg Jefferis is giving Plenary Lecture 2 on Day 2 (Tuesday 8 September), 10:00. Clare Pilgrim is speaking straight after, in the Motor Control oral session.
+**The VFB team at NeuroFly 2026:**
 
-![Greg Jefferis](https://www.virtualflybrain.org/images/neurofly2026/greg-jefferis.jpg)
-![Alex McLachlan (left) and Clare Pilgrim (right)](https://www.virtualflybrain.org/images/neurofly2026/alex-and-clare.jpg)
+- **Douglas Armstrong** (Current Project PI) — attending, not presenting directly
+- **Greg Jefferis** (Current Project PI) — giving Plenary Lecture 2 on Day 2 (Tuesday 8 September), 10:00
+- **Clare Pilgrim** (Ontology Editor/Curator) — speaking straight after Greg, in the Motor Control oral session
+- **Robert Court** (Lead DevOps) — poster A66, "Querying Virtual Fly Brain in natural language: opening curated Drosophila connectomics to non-specialists", Poster Session A
+- **Alex McLachlan** (Curator/UX Tester) — poster A67, "Linking neurons across connectomes, light-level images and expression data in Virtual Fly Brain (VFB) using NBLAST", Poster Session A
 
-**Find our posters.** Look out for us in Poster Session A: Robert Court, poster A66, "Querying Virtual Fly Brain in natural language: opening curated Drosophila connectomics to non-specialists", and Alex McLachlan, poster A67, "Linking neurons across connectomes, light-level images and expression data in Virtual Fly Brain (VFB) using NBLAST". Come and say hello.
-
-![Robert Court](https://www.virtualflybrain.org/images/neurofly2026/robert-court.jpg)
-
-**Also joining us this year:** Douglas Armstrong, VFB's Project PI.
+So you can easily spot us if you have any questions:
 
 ![Douglas Armstrong](https://www.virtualflybrain.org/images/neurofly2026/douglas-armstrong.jpg)
+![Greg Jefferis](https://www.virtualflybrain.org/images/neurofly2026/greg-jefferis.jpg)
+![Alex McLachlan (left) and Clare Pilgrim (right)](https://www.virtualflybrain.org/images/neurofly2026/alex-and-clare.jpg)
+![Robert Court](https://www.virtualflybrain.org/images/neurofly2026/robert-court.jpg)
