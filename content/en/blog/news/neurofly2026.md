@@ -24,7 +24,7 @@ For more information about NeuroFly 2026, including the full programme, visit th
 
 **The VFB team at NeuroFly 2026** (see the [full VFB team](/about/members/)):
 
-- **Douglas Armstrong** (Current Project PI) — attending, not presenting directly
+- **Douglas Armstrong** (Current Project PI)
 - **Greg Jefferis** (Current Project PI) — giving Plenary Lecture 2 on Day 2, 10:00 Tuesday 8th September
 - **Clare Pilgrim** (Ontology Editor/Curator) — speaking after the coffee break following Greg's talk, at the start of the Motor Control oral session, 11:00 Tuesday 8th September
 - **Robert Court** (Lead DevOps) — poster A66, "Querying Virtual Fly Brain in natural language: opening curated Drosophila connectomics to non-specialists", Poster Session A
