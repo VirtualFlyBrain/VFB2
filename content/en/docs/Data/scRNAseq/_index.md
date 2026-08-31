@@ -45,32 +45,32 @@ The same queries are available through
 Gene counts are after the extent filter above, so they are lower than the gene count
 reported by the original study. Ordered by cluster count.
 
-| Dataset | Study | Clusters | Genes |
-|---|---|---|---|
-| [scRNAseq_2022_FCA_MIXED](https://flybase.org/reports/FBlc0004785) | Single-nucleus RNA-seq on cells from 5-days old female and male flies | 497 | 11,079 |
-| [scRNAseq_2022_FCA_MALE](https://flybase.org/reports/FBlc0004307) | Single-nucleus RNA-seq on cells from 5-days old male flies | 422 | 10,978 |
-| [scRNAseq_2022_FCA_FEMALE](https://flybase.org/reports/FBlc0003846) | Single-nucleus RNA-seq on cells from 5-days old female flies | 411 | 8,169 |
-| [scRNAseq_2022_Calderon](https://flybase.org/reports/FBlc0007797) | The continuum of Drosophila embryonic development at single-cell resolution | 274 | 2,166 |
-| [scRNAseq_2023_AFCA_D30_FEMALE](https://flybase.org/reports/FBlc0006424) | Single-nucleus RNA-seq on cells from 30-days old female flies | 179 | 4,987 |
-| [scRNAseq_2023_AFCA_D70_FEMALE](https://flybase.org/reports/FBlc0007348) | Single-nucleus RNA-seq on cells from 70-days old female flies | 176 | 5,458 |
-| [scRNAseq_2023_AFCA_D50_FEMALE](https://flybase.org/reports/FBlc0006888) | Single-nucleus RNA-seq on cells from 50-days old female flies | 175 | 4,595 |
-| [scRNAseq_2023_AFCA_D50_MALE](https://flybase.org/reports/FBlc0007071) | Single-nucleus RNA-seq on cells from 50-days old male flies | 172 | 4,878 |
-| [scRNAseq_2023_AFCA_D30_MALE](https://flybase.org/reports/FBlc0006611) | Single-nucleus RNA-seq on cells from 30-days old male flies | 168 | 4,857 |
-| [scRNAseq_2023_AFCA_D70_MALE](https://flybase.org/reports/FBlc0007532) | Single-nucleus RNA-seq on cells from 70-days old male flies | 161 | 4,835 |
-| [scRNAseq_2023_AFCA_D30](https://flybase.org/reports/FBlc0006423) | Single-nucleus RNA-seq on cells from 30-days old flies | 99 | 5,312 |
-| [scRNAseq_2023_AFCA_D70](https://flybase.org/reports/FBlc0007347) | Single-nucleus RNA-seq on cells from 70-days old flies | 95 | 5,592 |
-| [scRNAseq_2023_AFCA_D50](https://flybase.org/reports/FBlc0006887) | Single-nucleus RNA-seq on cells from 50-days old flies | 95 | 5,015 |
-| [scRNAseq_2021_Ozel](https://flybase.org/reports/FBlc0005659) | Single-cell RNA-seq study of pupal and adult optic lobes | 66 | 4,770 |
-| [scRNAseq_2020_Kurmangaliyev](https://flybase.org/reports/FBlc0006237) | Single-cell RNA-seq study of the pupal optic lobe | 62 | 5,975 |
-| [scRNAseq_2018_Davie](https://flybase.org/reports/FBlc0006090) | Single-cell RNA-seq study of the aging brain | 59 | 6,111 |
-| [scRNAseq_2020_Hormann](https://flybase.org/reports/FBlc0006305) | Single-cell RNA-seq study of visual motion-sensing neurons | 40 | 4,014 |
-| [scRNAseq_2021_Mokashi_CTRL](https://flybase.org/reports/FBlc0005420) | Single-cell RNA-seq study of adult brain without alcohol exposure | 39 | 3,097 |
-| [scRNAseq_2021_Baker_CTRL](https://flybase.org/reports/FBlc0005515) | Single-cell RNA-seq study of adult brain without cocaine exposure | 36 | 3,329 |
-| [scRNAseq_2020_Allen](https://flybase.org/reports/FBlc0005603) | Single-cell RNA-seq study of adult ventral nerve cords | 20 | 3,085 |
-| [scRNAseq_2022_Konstantinides](https://flybase.org/reports/FBlc0006404) | Single-cell RNA-seq study of larval optic lobes | 14 | 5,530 |
-| [scRNAseq_2023_Saavedra](https://flybase.org/reports/FBlc0006361) | Single-cell RNA-seq study of the adult thorax | 11 | 1,726 |
-| [scRNAseq_2019_Avalos](https://flybase.org/reports/FBlc0005362) | Single-cell RNA-seq study of first instar larval brains upon starvation | 10 | 6,463 |
-| [scRNAseq_2021_IngSimmons](https://flybase.org/reports/FBlc0006191) | Single-cell RNA-seq study of gastrulating embryos | 9 | 6,423 |
+| Dataset | Stage | Study | Clusters | Genes |
+|---|---|---|---|---|
+| [scRNAseq_2022_FCA_MIXED](https://flybase.org/reports/FBlc0004785) | Adult | Single-nucleus RNA-seq on cells from 5-days old female and male flies | 497 | 11,079 |
+| [scRNAseq_2022_FCA_MALE](https://flybase.org/reports/FBlc0004307) | Adult | Single-nucleus RNA-seq on cells from 5-days old male flies | 422 | 10,978 |
+| [scRNAseq_2022_FCA_FEMALE](https://flybase.org/reports/FBlc0003846) | Adult | Single-nucleus RNA-seq on cells from 5-days old female flies | 411 | 8,169 |
+| [scRNAseq_2022_Calderon](https://flybase.org/reports/FBlc0007797) | Embryo | The continuum of Drosophila embryonic development at single-cell resolution | 274 | 2,166 |
+| [scRNAseq_2023_AFCA_D30_FEMALE](https://flybase.org/reports/FBlc0006424) | Adult | Single-nucleus RNA-seq on cells from 30-days old female flies | 179 | 4,987 |
+| [scRNAseq_2023_AFCA_D70_FEMALE](https://flybase.org/reports/FBlc0007348) | Adult | Single-nucleus RNA-seq on cells from 70-days old female flies | 176 | 5,458 |
+| [scRNAseq_2023_AFCA_D50_FEMALE](https://flybase.org/reports/FBlc0006888) | Adult | Single-nucleus RNA-seq on cells from 50-days old female flies | 175 | 4,595 |
+| [scRNAseq_2023_AFCA_D50_MALE](https://flybase.org/reports/FBlc0007071) | Adult | Single-nucleus RNA-seq on cells from 50-days old male flies | 172 | 4,878 |
+| [scRNAseq_2023_AFCA_D30_MALE](https://flybase.org/reports/FBlc0006611) | Adult | Single-nucleus RNA-seq on cells from 30-days old male flies | 168 | 4,857 |
+| [scRNAseq_2023_AFCA_D70_MALE](https://flybase.org/reports/FBlc0007532) | Adult | Single-nucleus RNA-seq on cells from 70-days old male flies | 161 | 4,835 |
+| [scRNAseq_2023_AFCA_D30](https://flybase.org/reports/FBlc0006423) | Adult | Single-nucleus RNA-seq on cells from 30-days old flies | 99 | 5,312 |
+| [scRNAseq_2023_AFCA_D70](https://flybase.org/reports/FBlc0007347) | Adult | Single-nucleus RNA-seq on cells from 70-days old flies | 95 | 5,592 |
+| [scRNAseq_2023_AFCA_D50](https://flybase.org/reports/FBlc0006887) | Adult | Single-nucleus RNA-seq on cells from 50-days old flies | 95 | 5,015 |
+| [scRNAseq_2021_Ozel](https://flybase.org/reports/FBlc0005659) | Pupa | Single-cell RNA-seq study of pupal and adult optic lobes | 66 | 4,770 |
+| [scRNAseq_2020_Kurmangaliyev](https://flybase.org/reports/FBlc0006237) | Pupa | Single-cell RNA-seq study of the pupal optic lobe | 62 | 5,975 |
+| [scRNAseq_2018_Davie](https://flybase.org/reports/FBlc0006090) | Adult | Single-cell RNA-seq study of the aging brain | 59 | 6,111 |
+| [scRNAseq_2020_Hormann](https://flybase.org/reports/FBlc0006305) | Adult | Single-cell RNA-seq study of visual motion-sensing neurons | 40 | 4,014 |
+| [scRNAseq_2021_Mokashi_CTRL](https://flybase.org/reports/FBlc0005420) | Adult | Single-cell RNA-seq study of adult brain without alcohol exposure | 39 | 3,097 |
+| [scRNAseq_2021_Baker_CTRL](https://flybase.org/reports/FBlc0005515) | Adult | Single-cell RNA-seq study of adult brain without cocaine exposure | 36 | 3,329 |
+| [scRNAseq_2020_Allen](https://flybase.org/reports/FBlc0005603) | Adult | Single-cell RNA-seq study of adult ventral nerve cords | 20 | 3,085 |
+| [scRNAseq_2022_Konstantinides](https://flybase.org/reports/FBlc0006404) | Larva | Single-cell RNA-seq study of larval optic lobes | 14 | 5,530 |
+| [scRNAseq_2023_Saavedra](https://flybase.org/reports/FBlc0006361) | Adult | Single-cell RNA-seq study of the adult thorax | 11 | 1,726 |
+| [scRNAseq_2019_Avalos](https://flybase.org/reports/FBlc0005362) | L1 larva | Single-cell RNA-seq study of first instar larval brains upon starvation | 10 | 6,463 |
+| [scRNAseq_2021_IngSimmons](https://flybase.org/reports/FBlc0006191) | Embryo | Single-cell RNA-seq study of gastrulating embryos | 9 | 6,423 |
 
 Not every cluster carries an anatomical annotation: many are non-neural or were not
 resolved to a cell type in the source study. Counts here are of what VFB holds, and are

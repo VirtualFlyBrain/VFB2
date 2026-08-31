@@ -29,11 +29,11 @@ clone picked out of that pattern.
 
 | Kind | What one image is | Typical use |
 |---|---|---|
-| Driver expression pattern | The full pattern of a GAL4 or LexA line in a CNS | Find a reagent that covers your region of interest, and see what else it hits |
-| Split-GAL4 combination | The pattern of an AD/DBD hemidriver pair | Find a reagent specific enough to target one cell type |
-| Expression pattern fragment | A segmented part of a driver's pattern | Compare a driver against a neuron or region without the rest of the pattern in the way |
-| Single neuron | One neuron isolated by stochastic labelling (MCFO, FLP-out) or by single-cell clonal analysis | Get a morphology to compare against EM or by [NBLAST](/docs/website-features/) |
-| Clone or lineage | A neuroblast clone or a *fru*-positive clone | Work with developmental units rather than single cells |
+| [Driver expression pattern](/docs/concepts/binary-expression/) | The full pattern of a GAL4 or LexA line in a CNS | Find a reagent that covers your region of interest, and see what else it hits |
+| [Split-GAL4 combination](/docs/concepts/splits/) | The pattern of an AD/DBD hemidriver pair | Find a reagent specific enough to target one cell type |
+| [Expression pattern fragment](/docs/concepts/binary-expression/) | A segmented part of a driver's pattern | Compare a driver against a neuron or region without the rest of the pattern in the way |
+| [Single neuron](/docs/concepts/stochastic-labelling/) | One neuron isolated by stochastic labelling (MCFO, FLP-out) or by single-cell clonal analysis | Get a morphology to compare against EM or by [NBLAST](/docs/website-features/) |
+| [Clone or lineage](/docs/concepts/stochastic-labelling/) | A neuroblast clone or a *fru*-positive clone | Work with developmental units rather than single cells |
 | Painted domain | A neuropil region drawn onto a template | Anatomical reference; see [Templates](/docs/data/templates/) |
 
 Every one of these is registered to a template, so a single-neuron image from one study
