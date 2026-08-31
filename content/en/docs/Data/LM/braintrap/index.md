@@ -19,9 +19,9 @@ The original collection is browsable at
 
 ## Datasets
 
-| Dataset | Contents | Records in VFB |
-|---|---|---|
-| [Knowles_Barley2010](https://virtualflybrain.org/reports/Knowles_Barley2010) | BrainTrap lines (Knowles-Barley2010) | 501 |
+| Dataset | Stage | Contents | Records in VFB |
+|---|---|---|---|
+| [Knowles_Barley2010](https://virtualflybrain.org/reports/Knowles_Barley2010) | Adult | BrainTrap lines (Knowles-Barley2010) | 501 |
 
 Records are the individuals VFB holds from each dataset. Citations are on each dataset's
 own page on VFB; cite the original study rather than VFB when you use the images.

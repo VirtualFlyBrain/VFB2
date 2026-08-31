@@ -33,6 +33,7 @@ which is regenerated against the production knowledge base after every data rele
 | Light microscopy | Driver line expression patterns, split-GAL4 combinations, single-neuron and clonal images from confocal microscopy | [LM data](/docs/data/lm/) |
 | Single-cell transcriptomics | Cell clusters and their gene expression from scRNAseq and snRNAseq studies | [scRNAseq data](/docs/data/scrnaseq/) |
 | Templates and regions | The reference brains and VNCs everything is registered to, and the painted neuropil domains in each | [Templates](/docs/data/templates/) |
+| Datasets by stage | Every dataset grouped by developmental stage (embryo, larva, pupa, adult), with a description of what each stage covers | [Datasets by stage](/docs/data/stages/) |
 
 VFB also hosts the public [CATMAID instances](/hosted/) for several community EM
 datasets, in some cases as the only remaining public copy after the original host went
