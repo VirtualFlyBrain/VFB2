@@ -20,22 +20,6 @@ VFB knowledge base (`DataSet` individuals — the same list `search_terms` retur
 filtered to `dataset`), grouped by developmental stage, with a link to each dataset's own
 page where a stage-agnostic reader would want to jump straight to the data.
 
-**How this was built.** VFB does not currently record a structured "stage" field on
-dataset entities — this table was compiled by hand from each dataset's name, description
-and publication, cross-checked against a more reliable structured signal where one
-exists: which [template](/docs/data/templates/) a dataset's images are registered to.
-Registration is stage-specific — the L1 CNS template (`Seymour`, VFB\_00050000) only ever
-receives first-instar larval images, the L3 CNS template (`Wood2018`, VFB\_00049000) only
-third-instar images — so a dataset's `AlignedDatasets` membership on those templates is
-firmer evidence than its name. That check changed three classifications from the first,
-label-only pass: the `TrumanWood2018`/`TrumanWood2018public` Truman Larval Flip-Out
-Collection and `SplitMeissner2024` are all registered to the L3 template rather than an
-unspecified larval stage or, in Meissner's case, no stage at all. This is a documentation
-convenience, not a data-model change — nothing here is queryable from the API. A dataset
-missing from a future data release, or one whose stage was misjudged, should be corrected
-here directly; if VFB's data model gains a real structured stage field later, this page
-should be regenerated from it instead of maintained by hand.
-
 ## Embryo
 
 Approximately 0–22 hours after egg laying, from fertilisation to hatching. The two
@@ -107,20 +91,6 @@ datasets by publication year.
 | [Split-GAL4 lines from Meissner et al., 2024](https://virtualflybrain.org/reports/SplitMeissner2024) | `SplitMeissner2024` |
 | [Truman Larval Flip-Out Collection](https://virtualflybrain.org/reports/TrumanWood2018) | `TrumanWood2018` |
 | [Truman Larval Flip-Out Collection](https://virtualflybrain.org/reports/TrumanWood2018public) | `TrumanWood2018public` |
-
-### Larva (instar not stated)
-
-Larval by name, publication or genetic targeting, but without enough evidence in VFB to
-assign a specific instar — none of these are registered to either larval template, most
-likely because they are driver-line metadata without their own aligned images. Treat the
-instar as unknown rather than assuming L1 or L3.
-
-| Dataset | Short form |
-|---|---|
-| [MCFO images of GMR-GAL4 lines from Jovanic et al., 2019](https://virtualflybrain.org/reports/Gen1MCFOJovanic2019) | `Gen1MCFOJovanic2019` |
-| [Single-cell RNA-seq study of larval optic lobes](https://flybase.org/reports/FBlc0006404) | `FBlc0006404` |
-| [Split-GAL4 lines from Jovanic et al., 2019](https://virtualflybrain.org/reports/SplitJovanic2019) | `SplitJovanic2019` |
-| [Split-GAL4 lines from Takagi et al., 2017](https://virtualflybrain.org/reports/SplitTakagi2017) | `SplitTakagi2017` |
 
 ## Pupa
 
