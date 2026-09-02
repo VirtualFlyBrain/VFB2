@@ -4,10 +4,9 @@
 {{- $browser := index (split .Site.Params.app_url "?") 0 -}}
 {{/* The index URL carries the build time as a query string. The site is served
      with a year-long immutable Cache-Control on every path, index.json
-     included, so a visitor who had searched once kept the index of that day
-     for a year and never saw a page published after it — the datasets-by-stage
-     page was invisible to "larval" for anyone who had used search before it
-     existed. A new URL per build side-steps the cached one. */}}
+     included, so a visitor's browser may keep the index of the day it was
+     first fetched and not see pages published since. A new URL per build
+     side-steps the cached one. */}}
 <div class="palette" hidden role="dialog" aria-modal="true" aria-label="Search"
      data-index="{{ "/index.json" | relURL }}?v={{ now.Format "20060102150405" }}"
      data-solr="https://solr.virtualflybrain.org/solr/ontology/select"
