@@ -17,17 +17,15 @@ instars, pupates, and emerges as an adult -- the whole cycle takes about 10 days
 CC BY 3.0, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Drosophila_melanogaster_life_cycle.jpg).
 
 VFB's datasets are documented by [technique](/docs/data/em/) and by
-[source](/docs/data/lm/) elsewhere on this site, but nothing groups them by the stage of
-the animal they came from. That gap has come up in practice: it is why a question like
-*"how many larval datasets does VFB hold, and which is newest?"* has no direct answer on
-the site today, and can only be approximated by searching dataset names for the word
-"larval" — a search that misses anything not named that way, and catches nothing at all
-for embryo or pupal material.
+[source](/docs/data/lm/) elsewhere on this site; this page groups them by the
+developmental stage of the animal they came from, so a question like *"how many larval
+datasets does VFB hold, and which is newest?"* has one place to look. Stage labels are
+now being added to dataset entities in the knowledge base itself, so the grouping below
+will also become queryable through the API and the VFB chat as that release propagates.
 
-This page is that missing reference. It lists all 210 dataset entities currently in the
-VFB knowledge base (`DataSet` individuals — the same list `search_terms` returns when
-filtered to `dataset`), grouped by developmental stage, with a link to each dataset's own
-page where a stage-agnostic reader would want to jump straight to the data.
+The page lists all 210 dataset entities currently in the VFB knowledge base (`DataSet`
+individuals — the same list `search_terms` returns when filtered to `dataset`), grouped
+by developmental stage, with a link to each dataset's own page.
 
 **At a glance.** Of the 210 dataset entities, 2 are embryonic, 36 are larval
 (27 first-instar, 5 third-instar, and 4 larval with no instar stated), 2 are pupal and
@@ -46,21 +44,20 @@ connectomics, the L1 CNS reconstruction of Winding, Pedigo et al. (`WindingPedig
 | Pupa | 2 |
 | Adult | 170 |
 
-**How this was built.** VFB does not currently record a structured "stage" field on
-dataset entities — this table was compiled by hand from each dataset's name, description
-and publication, cross-checked against a more reliable structured signal where one
-exists: which [template](/docs/data/templates/) a dataset's images are registered to.
-Registration is stage-specific — the L1 CNS template (`Seymour`, VFB\_00050000) only ever
-receives first-instar larval images, the L3 CNS template (`Wood2018`, VFB\_00049000) only
+**How this was built.** This table was compiled from each dataset's name, description
+and publication, cross-checked against a structured signal where one exists: which
+[template](/docs/data/templates/) a dataset's images are registered to. Registration is
+stage-specific — the L1 CNS template (`Seymour`, VFB\_00050000) only ever receives
+first-instar larval images, the L3 CNS template (`Wood2018`, VFB\_00049000) only
 third-instar images — so a dataset's `AlignedDatasets` membership on those templates is
 firmer evidence than its name. That check changed three classifications from the first,
 label-only pass: the `TrumanWood2018`/`TrumanWood2018public` Truman Larval Flip-Out
 Collection and `SplitMeissner2024` are all registered to the L3 template rather than an
-unspecified larval stage or, in Meissner's case, no stage at all. This is a documentation
-convenience, not a data-model change — nothing here is queryable from the API. A dataset
-missing from a future data release, or one whose stage was misjudged, should be corrected
-here directly; if VFB's data model gains a real structured stage field later, this page
-should be regenerated from it instead of maintained by hand.
+unspecified larval stage or, in Meissner's case, no stage at all. Stage labels are being
+added to the dataset entities themselves in the current data release; once those are
+through, this page should be regenerated from them rather than maintained by hand. Until
+then, a dataset missing from a future release, or one whose stage was misjudged, should
+be corrected here directly.
 
 ## Embryo
 
