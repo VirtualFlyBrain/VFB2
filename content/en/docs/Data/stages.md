@@ -9,15 +9,8 @@ description: >
 
 VFB's datasets are documented by [technique](/docs/data/em/) and by
 [source](/docs/data/lm/) elsewhere on this site, but nothing groups them by the stage of
-the animal they came from. That gap has come up in practice: it is why a question like
-*"how many larval datasets does VFB hold, and which is newest?"* has no direct answer on
-the site today, and can only be approximated by searching dataset names for the word
-"larval" — a search that misses anything not named that way, and catches nothing at all
-for embryo or pupal material.
-
-This page is that missing reference. It lists all 210 dataset entities currently in the
-VFB knowledge base (`DataSet` individuals — the same list `search_terms` returns when
-filtered to `dataset`), grouped by developmental stage, with a link to each dataset's own
+the animal they came from. This page lists all 210 dataset entities currently in the
+VFB knowledge base, grouped by developmental stage, with a link to each dataset's own
 page where a stage-agnostic reader would want to jump straight to the data.
 
 ## Embryo
