@@ -44,21 +44,6 @@ connectomics, the L1 CNS reconstruction of Winding, Pedigo et al. (`WindingPedig
 | Pupa | 2 |
 | Adult | 170 |
 
-**How this was built.** This table was compiled from each dataset's name, description
-and publication, cross-checked against a structured signal where one exists: which
-[template](/docs/data/templates/) a dataset's images are registered to. Registration is
-stage-specific — the L1 CNS template (`Seymour`, VFB\_00050000) only ever receives
-first-instar larval images, the L3 CNS template (`Wood2018`, VFB\_00049000) only
-third-instar images — so a dataset's `AlignedDatasets` membership on those templates is
-firmer evidence than its name. That check changed three classifications from the first,
-label-only pass: the `TrumanWood2018`/`TrumanWood2018public` Truman Larval Flip-Out
-Collection and `SplitMeissner2024` are all registered to the L3 template rather than an
-unspecified larval stage or, in Meissner's case, no stage at all. Stage labels are being
-added to the dataset entities themselves in the current data release; once those are
-through, this page should be regenerated from them rather than maintained by hand. Until
-then, a dataset missing from a future release, or one whose stage was misjudged, should
-be corrected here directly.
-
 ## Embryo
 
 Approximately 0–22 hours after egg laying, from fertilisation to hatching. The two
