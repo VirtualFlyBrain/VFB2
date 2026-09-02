@@ -1,6 +1,6 @@
 ---
 title: "VFB Latest"
-linkTitle: "Latest (Release: v4 2026.06.22)"
+linkTitle: "Latest (Release: v26.09.02)"
 menu:
   main:
     weight: 30
