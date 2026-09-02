@@ -185,6 +185,9 @@
     if (wordHit(t, q)) return 2;
     if (t.includes(q)) return 3;                                  /* mid-word only */
     if ((d.section || '').toLowerCase().includes(q)) return 4;
+    /* Front-matter keywords: the words a reader searches by that the title
+       does not carry. Ranked with the section, above the description. */
+    if ((d.keywords || []).some((k) => String(k).toLowerCase().includes(q))) return 4;
     if ((d.desc || '').toLowerCase().includes(q)) return 5;
     if ((d.body || '').toLowerCase().includes(q)) return 7;
     return 99;

@@ -4,7 +4,9 @@ linkTitle: "Datasets by stage"
 weight: 511
 date: 2026-08-31
 description: >
-    Every VFB dataset grouped by the developmental stage of the animal it was collected from.
+    Every VFB dataset grouped by developmental stage — embryo, larva (L1 and L3 instars),
+    pupa and adult — with the number of datasets at each stage.
+keywords: ["larval", "larva", "embryo", "embryonic", "pupa", "pupal", "adult", "instar", "L1", "L3", "developmental stage", "datasets"]
 ---
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Drosophila_melanogaster_life_cycle.jpg" alt="Drosophila melanogaster life cycle: egg, larval instars, pupa, adult" style="max-width:50%">
@@ -16,9 +18,49 @@ CC BY 3.0, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Droso
 
 VFB's datasets are documented by [technique](/docs/data/em/) and by
 [source](/docs/data/lm/) elsewhere on this site, but nothing groups them by the stage of
-the animal they came from. This page lists all 210 dataset entities currently in the
-VFB knowledge base, grouped by developmental stage, with a link to each dataset's own
+the animal they came from. That gap has come up in practice: it is why a question like
+*"how many larval datasets does VFB hold, and which is newest?"* has no direct answer on
+the site today, and can only be approximated by searching dataset names for the word
+"larval" — a search that misses anything not named that way, and catches nothing at all
+for embryo or pupal material.
+
+This page is that missing reference. It lists all 210 dataset entities currently in the
+VFB knowledge base (`DataSet` individuals — the same list `search_terms` returns when
+filtered to `dataset`), grouped by developmental stage, with a link to each dataset's own
 page where a stage-agnostic reader would want to jump straight to the data.
+
+**At a glance.** Of the 210 dataset entities, 2 are embryonic, 36 are larval
+(27 first-instar, 5 third-instar, and 4 larval with no instar stated), 2 are pupal and
+170 are adult (134 brain, 9 ventral nerve cord, 6 leg, head and thorax, and 21 full CNS or
+whole body). None are stage-agnostic. The newest larval datasets by publication year are
+the split-GAL4 lines of Meissner et al. (`SplitMeissner2024`, L3, 2024) and, for
+connectomics, the L1 CNS reconstruction of Winding, Pedigo et al. (`WindingPedigo2023`,
+2023).
+
+| Stage | Datasets |
+|---|---|
+| Embryo | 2 |
+| Larva — L1 (first instar) | 27 |
+| Larva — L3 (third instar) | 5 |
+| Larva — instar not stated | 4 |
+| Pupa | 2 |
+| Adult | 170 |
+
+**How this was built.** VFB does not currently record a structured "stage" field on
+dataset entities — this table was compiled by hand from each dataset's name, description
+and publication, cross-checked against a more reliable structured signal where one
+exists: which [template](/docs/data/templates/) a dataset's images are registered to.
+Registration is stage-specific — the L1 CNS template (`Seymour`, VFB\_00050000) only ever
+receives first-instar larval images, the L3 CNS template (`Wood2018`, VFB\_00049000) only
+third-instar images — so a dataset's `AlignedDatasets` membership on those templates is
+firmer evidence than its name. That check changed three classifications from the first,
+label-only pass: the `TrumanWood2018`/`TrumanWood2018public` Truman Larval Flip-Out
+Collection and `SplitMeissner2024` are all registered to the L3 template rather than an
+unspecified larval stage or, in Meissner's case, no stage at all. This is a documentation
+convenience, not a data-model change — nothing here is queryable from the API. A dataset
+missing from a future data release, or one whose stage was misjudged, should be corrected
+here directly; if VFB's data model gains a real structured stage field later, this page
+should be regenerated from it instead of maintained by hand.
 
 ## Embryo
 
@@ -35,7 +77,8 @@ VFB holds no embryonic imaging data at this time.
 
 The larval period runs from hatching to pupariation and is divided into three instars —
 L1, L2 and L3 — separated by moults. VFB's larval holdings cluster almost entirely at the
-first and third instars; no dataset here is recorded as L2. Anatomy differs enough
+first and third instars; no dataset here is recorded as L2. VFB holds 36 larval datasets
+in all: 27 at L1, 5 at L3 and 4 with no instar stated. Anatomy differs enough
 between instars that a "larval" dataset with no instar stated should not be assumed
 comparable to one that states it, particularly for connectomic data.
 
@@ -81,8 +124,9 @@ template.
 
 The last and largest larval instar, imaged shortly before pupariation. VFB's L3 material
 is registered to the Wood2018 L3 CNS template and includes the Truman Larval Flip-Out
-Collection (`TrumanWood2018`, published 2018) — currently the newest of VFB's larval
-datasets by publication year.
+Collection (`TrumanWood2018`, published 2018) and the split-GAL4 lines of Meissner et al.
+(`SplitMeissner2024`, published 2024) — currently the newest of VFB's larval datasets by
+publication year.
 
 | Dataset | Short form |
 |---|---|
@@ -91,6 +135,20 @@ datasets by publication year.
 | [Split-GAL4 lines from Meissner et al., 2024](https://virtualflybrain.org/reports/SplitMeissner2024) | `SplitMeissner2024` |
 | [Truman Larval Flip-Out Collection](https://virtualflybrain.org/reports/TrumanWood2018) | `TrumanWood2018` |
 | [Truman Larval Flip-Out Collection](https://virtualflybrain.org/reports/TrumanWood2018public) | `TrumanWood2018public` |
+
+### Larva (instar not stated)
+
+Larval by name, publication or genetic targeting, but without enough evidence in VFB to
+assign a specific instar — none of these are registered to either larval template, most
+likely because they are driver-line metadata without their own aligned images. Treat the
+instar as unknown rather than assuming L1 or L3.
+
+| Dataset | Short form |
+|---|---|
+| [MCFO images of GMR-GAL4 lines from Jovanic et al., 2019](https://virtualflybrain.org/reports/Gen1MCFOJovanic2019) | `Gen1MCFOJovanic2019` |
+| [Single-cell RNA-seq study of larval optic lobes](https://flybase.org/reports/FBlc0006404) | `FBlc0006404` |
+| [Split-GAL4 lines from Jovanic et al., 2019](https://virtualflybrain.org/reports/SplitJovanic2019) | `SplitJovanic2019` |
+| [Split-GAL4 lines from Takagi et al., 2017](https://virtualflybrain.org/reports/SplitTakagi2017) | `SplitTakagi2017` |
 
 ## Pupa
 
