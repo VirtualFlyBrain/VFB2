@@ -7,6 +7,13 @@ description: >
     Every VFB dataset grouped by the developmental stage of the animal it was collected from.
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Drosophila_melanogaster_life_cycle.jpg" alt="Drosophila melanogaster life cycle: egg, larval instars, pupa, adult" style="max-width:50%">
+
+*Drosophila melanogaster* is holometabolous: it passes from egg through three larval
+instars, pupates, and emerges as an adult -- the whole cycle takes about 10 days at
+25°C. Image: [Allocca, Zola & Bellosta, 2018](https://doi.org/10.5772/intechopen.72832),
+CC BY 3.0, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Drosophila_melanogaster_life_cycle.jpg).
+
 VFB's datasets are documented by [technique](/docs/data/em/) and by
 [source](/docs/data/lm/) elsewhere on this site, but nothing groups them by the stage of
 the animal they came from. This page lists all 210 dataset entities currently in the
