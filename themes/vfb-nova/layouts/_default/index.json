@@ -7,7 +7,14 @@
      belong in the 3D browser's search, not in a JSON file the visitor
      downloads.
 
-     Add a section name here to make it searchable. */ -}}
+     Add a section name here to make it searchable.
+
+     "keywords" is the page's front-matter keywords list, for the words a
+     reader will search by that its title does not carry ("larval" for the
+     datasets-by-stage page). .Plain and .Description come out of Goldmark
+     with typographic entities (&rsquo;) still encoded and jsonify then
+     escapes the ampersand, so the palette showed "VFB&amp;rsquo;s";
+     htmlUnescape first. */ -}}
 {{- $roots := slice "/docs" "/about" "/hosted" "/blog/news" "/blog/releases" -}}
 {{- $pinned := slice "/docs/" "/docs/overview/" "/docs/tutorials/" "/docs/apis/" "/hosted/" "/blog/news/" "/about/whatisvfb/" "/about/citeus/" -}}
 {{- $out := slice -}}
@@ -16,20 +23,23 @@
   {{- with site.GetPage . -}}
     {{- $out = $out | append (dict
         "title" .LinkTitle "url" .RelPermalink "section" .Section
-        "desc" (.Description | plainify | truncate 120 | chomp)
+        "desc" (.Description | plainify | htmlUnescape | truncate 120 | chomp)
+        "keywords" (.Params.keywords | default slice)
         "body" "" "pinned" (in $pinned .RelPermalink)) -}}
     {{- range .Sections -}}
       {{- $out = $out | append (dict
           "title" .LinkTitle "url" .RelPermalink "section" .Section
-          "desc" (.Description | plainify | truncate 120 | chomp)
+          "desc" (.Description | plainify | htmlUnescape | truncate 120 | chomp)
+          "keywords" (.Params.keywords | default slice)
           "body" "" "pinned" (in $pinned .RelPermalink)) -}}
     {{- end -}}
     {{- range .RegularPagesRecursive -}}
       {{- if not .Params.content -}}
         {{- $out = $out | append (dict
             "title" .LinkTitle "url" .RelPermalink "section" .Section
-            "desc" (.Description | default (.Summary | plainify) | truncate 120 | chomp)
-            "body" (.Plain | truncate 900 | chomp)
+            "desc" (.Description | default (.Summary | plainify) | htmlUnescape | truncate 120 | chomp)
+            "keywords" (.Params.keywords | default slice)
+            "body" (.Plain | htmlUnescape | truncate 900 | chomp)
             "pinned" (in $pinned .RelPermalink)) -}}
       {{- end -}}
     {{- end -}}

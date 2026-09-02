@@ -183,6 +183,13 @@
     if (t === q) return 0;
     if (t.startsWith(q)) return 1;
     if (wordHit(t, q)) return 2;
+    /* Front-matter keywords: the words a reader searches by that the title
+       does not carry. A word hit on a curated keyword ranks with a word hit
+       on the title, because that is what it is for — and because results
+       are laid out as strong page hits, then anatomy terms, then weak page
+       hits: a page that matches "larval" only in its body sits under the
+       eight-term block, which is where the datasets-by-stage page was. */
+    if ((d.keywords || []).some((k) => wordHit(String(k).toLowerCase(), q))) return 2;
     if (t.includes(q)) return 3;                                  /* mid-word only */
     if ((d.section || '').toLowerCase().includes(q)) return 4;
     if ((d.desc || '').toLowerCase().includes(q)) return 5;

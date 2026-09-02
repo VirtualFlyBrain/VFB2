@@ -22,7 +22,7 @@
     </header>
 
     <div id="search-page"
-         data-index="{{ "/index.json" | relURL }}"
+         data-index="{{ "/index.json" | relURL }}?v={{ now.Format "20060102150405" }}"
          data-solr="https://solr.virtualflybrain.org/solr/ontology/select"
          data-browser="{{ $browser }}">
 
