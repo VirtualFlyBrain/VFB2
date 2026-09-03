@@ -26,14 +26,19 @@
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:image" content="{{ "/favicons/vfb-logo-512.png" | absURL }}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ "/favicons/vfb-logo-512.png" | absURL }}">
 
 {{/* Let the browser register VFB as a searchable site: type the domain, Tab,
      then query. Emitted on every page so any landing page is enough. */}}
 <link rel="search" type="application/opensearchdescription+xml"
       title="{{ .Site.Title }}" href="{{ "/opensearch.xml" | absURL }}">
 
-<link rel="icon" href="/favicons/favicon.ico">
+<link rel="icon" href="/favicons/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicons/vfb-logo.svg">
+<link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/favicons/site.webmanifest">
 
 {{/* Theme is applied before first paint so there is no light-to-dark flash. */}}
 <script>
