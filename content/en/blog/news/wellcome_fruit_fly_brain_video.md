@@ -8,7 +8,7 @@ description: >
 
 Wellcome, the biomedical research funder, has published a recording of a Wellcome Guest Lecture given by Greg Jefferis, neuroscientist and Joint Head of the Division of Neurobiology at the MRC Laboratory of Molecular Biology, and a Principal Investigator on Virtual Fly Brain. Jefferis led one of the teams behind the project that reconstructed a full connectome — a complete map of every neuron and its connections — of the fruit fly *Drosophila melanogaster*'s brain, using artificial intelligence to help do it at scale.
 
-{{< youtube id="-x0WAkQgOJk" autoplay="true" >}}
+{{< youtube id="-x0WAkQgOJk" autoplay="true" mute="true" class="video-embed" >}}
 
 Jefferis opens by making the case for the fly: the human brain has around 86–100 billion neurons and the mouse brain roughly a thousandfold fewer, but the fly brain has only around 100,000–139,000 — a "countable number" that nonetheless supports a rich repertoire of behaviour, illustrated with high-speed footage of a fly evading an oncoming swat. He then traces the history of connectomics back to Sydney Brenner's effort at the LMB in the 1970s to map the 302-neuron nervous system of the nematode worm *C. elegans* by hand from electron microscope sections, a project not repeated at any larger scale for the next 20 years.
 

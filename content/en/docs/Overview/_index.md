@@ -41,7 +41,7 @@ it, whatever that study happened to call it.
 
 ## A tour of the site
 
-{{< youtube id="z2Cre6avnpk" >}}
+{{< youtube id="z2Cre6avnpk" class="video-embed" >}}
 
 The walkthrough above covers the main interface. Note that it predates some later changes to the
 site, so a few details will differ from what you see now.
