@@ -56,4 +56,4 @@ So you can easily spot us if you have any questions:
 </div>
 
 
-{{< youtube id="LP0B2THlWoJJNk5w" autoplay="true" >}}
+{{< youtube id="XJGzoSSihaI" autoplay="true" mute="true" class="video-embed" >}}

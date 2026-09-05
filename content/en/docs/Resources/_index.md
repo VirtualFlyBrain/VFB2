@@ -30,7 +30,7 @@ Connectome explorer provided by Janelia Research Campus. Hosts the hemibrain, MA
 ### [CATMAID](https://catmaid.org)
 The Collaborative Annotation Toolkit for Massive Amounts of Image Data (CATMAID) is a web companion to the TrakEM2 software (Cardona, 2006) for management, registration and analysis of large-scale ssTEM datasets.
 
-{{< youtube id="CZpaTCuSQao" autoplay="true" title="A video introduction to catmaid software for connectomics from lead developer Tom Kazimiers hosted by the NEUBIAS Academy" >}}
+{{< youtube id="CZpaTCuSQao" autoplay="true" mute="true" class="video-embed" title="A video introduction to catmaid software for connectomics from lead developer Tom Kazimiers hosted by the NEUBIAS Academy" >}}
 
 [CATMAID documentation](https://catmaid.readthedocs.io/en/stable/)
 
