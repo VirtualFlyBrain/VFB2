@@ -6,7 +6,7 @@ description: >
     Our self-led online workshop, originally built for NeuroFly 2026, is a free set of sessions on finding, connecting and examining neurons across all the connectomes on VFB — open to anyone, any time.
 ---
 
-{{< youtube id="XJGzoSSihaI" autoplay="true" >}}
+{{< youtube id="XJGzoSSihaI" autoplay="true" mute="true" class="video-embed" >}}
 
 We built the [VFB Self-led Learning Sessions](https://workshop.virtualflybrain.org) for NeuroFly 2026, but they were never meant for conference attendees only — they're a free, self-paced online workshop open to anyone who wants to learn to work with Drosophila connectomics and related data on Virtual Fly Brain.
 

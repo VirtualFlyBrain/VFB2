@@ -8,7 +8,7 @@ description: >
 
 HHMI's Janelia Research Campus has released a short visualisation of the complete male fly central nervous system (CNS) connectome. The data was acquired and analysed by the FlyEM Project Team at Janelia, the Cambridge Connectomics Group, and Google Research; the video itself was produced by Philip Hubbard of Janelia. It has no narration or audio — the connectome speaks for itself.
 
-{{< youtube id="XqrmATUvHac" autoplay="true" >}}
+{{< youtube id="XqrmATUvHac" autoplay="true" mute="true" class="video-embed" >}}
 
 As Janelia's description puts it, having a complete male CNS connectome alongside the existing female one lets researchers directly compare male and female brains and wiring, and start to understand the circuit basis of complex social behaviours — such as mating and aggression — that differ between the sexes.
 

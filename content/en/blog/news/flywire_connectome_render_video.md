@@ -8,7 +8,7 @@ description: >
 
 FlyWire Princeton has released a silent visualisation, "The FlyWire Connectome," rendering the neuron-by-neuron, synapse-by-synapse wiring diagram of the adult fruit fly brain built by the FlyWire Consortium, to mark the publication of its flagship paper and a suite of related papers in a special issue of *Nature* in October 2024.
 
-{{< youtube id="J2xTkMsZchs" autoplay="true" >}}
+{{< youtube id="J2xTkMsZchs" autoplay="true" mute="true" class="video-embed" >}}
 
 FlyWire is a Princeton-led effort, comprising members from more than 146 labs across 122 institutions, with major contributions from teams at the University of Cambridge and the University of Vermont; Sebastian Seung and Mala Murthy of the Princeton Neuroscience Institute are co-senior authors on the flagship paper. Where earlier connectomes covered the 302-neuron *C. elegans* and the roughly 3,000-neuron larval fly brain, this dataset maps the adult fly brain's nearly 140,000 neurons and tens of millions of synapses — orders of magnitude more complex, and, at the time, the only full brain connectome for an adult animal of this scale. As Seung put it, "any brain that we truly understand tells us something about all brains."
 

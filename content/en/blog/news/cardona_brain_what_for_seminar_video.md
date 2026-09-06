@@ -8,7 +8,7 @@ description: >
 
 The MRC Laboratory of Molecular Biology has published a recording of "The Brain: What For?", a seminar for non-scientists given by Professor Albert Cardona as part of the Cambridge Biomedical Campus's virtual tour series. Cardona, a program leader at the LMB working on fly connectomics within the Medical Research Council's Molecular Connectomics initiative, asks a deceptively simple question: what does a brain actually contribute to an animal's life, given how much behaviour turns out not to depend on one at all?
 
-{{< youtube id="mcZwH5MYkFU" autoplay="true" >}}
+{{< youtube id="mcZwH5MYkFU" autoplay="true" mute="true" class="video-embed" >}}
 
 Cardona builds his case around the *Drosophila* larva, a roughly 3,000-neuron brain sitting atop a nerve cord that, on its own, already produces most of the animal's basic repertoire — crawling, turning, exploring, avoiding harmful temperatures. Using the GAL4/GAL80 genetic toolkit to silence neural activity in the brain lobes specifically while leaving the nerve cord untouched, his lab showed that a larva with its brain switched off still crawls, turns and explores in a way indistinguishable from a normal animal. It is only when the animal is given a task with a goal — finding the source of an attractive odour gradient — that the difference shows: brain-inactivated larvae wander normally but completely fail to track the gradient, while intact controls climb steadily towards it.
 

@@ -8,7 +8,7 @@ description: >
 
 HHMI has released a video on work from Janelia Research Campus in which scientists used high-speed transmission electron microscopy to image the entire brain of an adult female fruit fly at nanoscale resolution — the first time this had been done for a whole adult fly brain.
 
-{{< youtube id="-s8QUpx_Zo4" autoplay="true" >}}
+{{< youtube id="-s8QUpx_Zo4" autoplay="true" mute="true" class="video-embed" >}}
 
 The fly brain, about the size of a poppy seed and containing roughly 100,000 neurons, was imaged across more than 7,000 thin tissue slices, producing 212 million individual images that were captured and stitched together into a single volume. The resulting dataset lets researchers trace the path of any one neuron to any other throughout the whole brain. Davi Bock's team, who led the imaging effort, had already used the dataset to discover a new brain-spanning neuron in a memory centre of the brain, and at the time of release more than 20 lab groups were using the freely available dataset to trace neurons and map connections.
 
