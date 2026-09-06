@@ -311,12 +311,53 @@ def format_types_section(types_text):
 
 # ─── Formatting Helpers ──────────────────────────────────────────────────────
 
+# Cache of template_id -> the template's own display name (its top-level
+# "Name", e.g. "JRC2018U"). An Images/Examples entry's own "id"/"label"
+# describe the depicted individual or class instance, not the template it is
+# aligned to — so "aligned to <template>" text needs this separate lookup.
+# The handful of templates VFB uses are shared across every page, so a
+# process-wide cache keeps this to one extra request per template, not per page.
+_template_label_lock = threading.Lock()
+_template_label_cache = {}
+
+def get_template_label(template_id):
+    """Resolve a template's own display name for 'aligned to <template>' text.
+
+    Falls back to the raw template_id if the lookup fails.
+    """
+    with _template_label_lock:
+        cached = _template_label_cache.get(template_id)
+    if cached is not None:
+        return cached
+    label = template_id
+    template_data = fetch_term_info(template_id)
+    if template_data:
+        label = template_data.get("Name", template_id)
+    with _template_label_lock:
+        _template_label_cache[template_id] = label
+    return label
+
 def get_thumbnails(term_data):
     """Extract thumbnail URLs from Images (individuals) or Examples (classes).
 
-    Returns list of dicts: {url, label, template_id}
+    Returns list of dicts: {url, alt, template_id, image_id}.
+
+    `alt` is a fully descriptive caption: "<tags> <name> (<id>) aligned to
+    <template>". `image_id` is the specific depicted term — the page's own Id
+    for an individual, a distinct instance Id for a class's Examples — and
+    together with `template_id` builds the 3D-browser deep link in
+    build_hero_card (?id=<page id>&i=<template_id>,<image_id>), so the
+    thumbnail actually opens showing that image on that template.
     """
     thumbnails = []
+    term_id = term_data.get("Id", "")
+    term_name = term_data.get("Name", "")
+    tags_text = " ".join(t.replace("_", " ") for t in term_data.get("Tags", []))
+
+    def make_alt(label, image_id, template_id):
+        template_label = get_template_label(template_id)
+        caption = f'{label} ({image_id}) aligned to {template_label}'
+        return f'{tags_text} {caption}' if tags_text else caption
 
     # Individual terms have Images
     images = term_data.get("Images", {})
@@ -324,10 +365,13 @@ def get_thumbnails(term_data):
         for template_id, image_list in images.items():
             for img in image_list:
                 if img.get("thumbnail"):
+                    image_id = img.get("id", term_id)
+                    label = img.get("label", term_name)
                     thumbnails.append({
                         "url": img["thumbnail"],
-                        "label": img.get("label", term_data.get("Name", "")),
+                        "alt": make_alt(label, image_id, template_id),
                         "template_id": template_id,
+                        "image_id": image_id,
                     })
 
     # Class terms have Examples
@@ -336,10 +380,13 @@ def get_thumbnails(term_data):
         for template_id, example_list in examples.items():
             for ex in example_list:
                 if ex.get("thumbnail"):
+                    image_id = ex.get("id", term_id)
+                    label = ex.get("label", term_name)
                     thumbnails.append({
                         "url": ex["thumbnail"],
-                        "label": ex.get("label", term_data.get("Name", "")),
+                        "alt": make_alt(label, image_id, template_id),
                         "template_id": template_id,
+                        "image_id": image_id,
                     })
 
     return thumbnails[:4]  # Limit to 4
@@ -441,13 +488,13 @@ def format_downloads(images):
 
     lines = []
     for template_id, image_list in images.items():
+        template_label = get_template_label(template_id)
         for img in image_list:
-            template_label = template_id
             has_downloads = any(img.get(k) for k in ("nrrd", "obj", "swc", "wlz"))
             if not has_downloads:
                 continue
 
-            lines.append(f'Image files aligned to {img.get("label", template_label)}:')
+            lines.append(f'Image files aligned to {template_label}:')
             lines.append("")
             if img.get("obj"):
                 lines.append(f'- [Pointcloud (OBJ)]({img["obj"]})')
@@ -558,9 +605,10 @@ def build_hero_card(name, term_id, tags_badges, description_html, comment_html, 
     ]
 
     for thumb in thumbnails:
+        viewer_url = f'{VFB_BROWSER_BASE}?id={term_id}&i={thumb["template_id"]},{thumb["image_id"]}'
         lines.append(
-            f'    <a href="{VFB_BROWSER_BASE}?id={term_id}">'
-            f'<img src="{thumb["url"]}" alt="{name}" class="img-fluid rounded" '
+            f'    <a href="{viewer_url}">'
+            f'<img src="{thumb["url"]}" alt="{thumb["alt"]}" class="img-fluid rounded" '
             f'style="max-width:200px; background:#000; margin:4px;"/></a>'
         )
 
