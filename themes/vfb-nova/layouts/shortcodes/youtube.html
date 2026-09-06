@@ -1,0 +1,43 @@
+{{- /*
+  Override of Hugo's internal {{< youtube >}} shortcode.
+
+  Hugo's built-in version renders a bare, absolutely-positioned <iframe>
+  inside a padding-bottom-ratio wrapper div with no class. That falls
+  through to the generic `.prose iframe` CSS rule (prose.css), whose
+  margin/border shift the iframe inside its overflow:hidden wrapper and
+  clip the bottom of the video. The site's `.video-embed` CSS was built
+  to house this pattern correctly, so this override always renders into
+  a `.video-embed` wrapper and always mutes when autoplaying (browsers
+  block unmuted autoplay), instead of relying on every content author to
+  remember to pass `mute="true" class="video-embed"` by hand.
+
+  Usage: {{< youtube id="XXXXXXXXXXX" >}}
+  Optional: autoplay="true" | title="..." | start="123" | end="456" | list="playlistID"
+*/ -}}
+{{- $id := .Get "id" | default (.Get 0) -}}
+{{- $autoplay := .Get "autoplay" -}}
+{{- $title := .Get "title" | default "YouTube video" -}}
+{{- $start := .Get "start" -}}
+{{- $end := .Get "end" -}}
+{{- $list := .Get "list" -}}
+{{- $isAutoplay := in (slice "true" "1" true) $autoplay -}}
+{{- $q := slice -}}
+{{- if $isAutoplay -}}
+  {{- $q = $q | append "autoplay=1" -}}
+  {{- $q = $q | append "mute=1" -}}
+{{- end -}}
+{{- with $start -}}{{- $q = $q | append (printf "start=%s" .) -}}{{- end -}}
+{{- with $end -}}{{- $q = $q | append (printf "end=%s" .) -}}{{- end -}}
+{{- with $list -}}{{- $q = $q | append (printf "list=%s" .) -}}{{- end -}}
+{{- $query := delimit $q "&" -}}
+<div class="video-embed">
+  <div style="position:relative;padding-bottom:56.25%;height:0;">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/{{ $id }}{{ with $query }}?{{ . }}{{ end }}"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;"
+      title="{{ $title }}"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+  </div>
+</div>
