@@ -8,7 +8,7 @@ description: >
 
 Professor Albert Cardona has released a short, silent fly-through of an enhanced FIB-SEM (eFIB-SEM) volume of the fruit fly larval brain, acquired in his lab at the MRC Laboratory of Molecular Biology. The volume was imaged at 8x8x8 nanometre resolution.
 
-{{< youtube id="p4MH4-I-P5I" autoplay="true" >}}
+{{< youtube id="p4MH4-I-P5I" autoplay="true" mute="true" class="video-embed" >}}
 
 This isotropic, nanometre-scale resolution is the level of detail needed to trace synaptic connections between neurons throughout a volume, the basis for reconstructing connectomes such as the existing larval brain connectome already available on VFB.
 

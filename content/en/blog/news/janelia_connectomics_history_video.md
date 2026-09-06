@@ -8,7 +8,7 @@ description: >
 
 HHMI has released "The History of Fruit Fly Connectomics at Janelia," a video tracing the almost 20-year effort by Janelia Research Campus scientists to build a complete wiring diagram — a connectome — of the fruit fly *Drosophila*'s brain and ventral nerve cord.
 
-{{< youtube id="2uMQG5LHWwc" autoplay="true" >}}
+{{< youtube id="2uMQG5LHWwc" autoplay="true" mute="true" class="video-embed" >}}
 
 The project began in 2008, when the fly's more than 100,000 neurons made it hundreds of times larger than any organism previously mapped at this level of detail. Getting there required nearly a decade of work refining Focused Ion Beam Scanning Electron Microscopy (FIB-SEM) to sustain the continuous, long-term imaging a specimen this size demands, followed by machine-learning-based methods, developed in collaboration with Google, to automate tracing of individual neurons through the resulting data. Along the way, the team published the "Hemibrain" ("Henry") partial brain volume in 2020, before completing and annotating the full connectome of the entire fly brain and ventral nerve cord in 2025.
 

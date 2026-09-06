@@ -8,7 +8,7 @@ description: >
 
 HHMI has released a short, silent video showing confocal microscopy images of fruit fly neurons, captured and combined by researchers at Janelia Research Campus, being pieced together like a puzzle to build a rough map of the ventral nerve cord (VNC) — the insect equivalent of a spinal cord, which coordinates walking, flying and reflexes.
 
-{{< youtube id="8nZTq0fJUFc" autoplay="true" >}}
+{{< youtube id="8nZTq0fJUFc" autoplay="true" mute="true" class="video-embed" >}}
 
 Each individually imaged neuron is dazzling on its own; the video's point is how, layered together, these confocal images start to reveal the overall structure and organisation of the VNC as a coordinating hub for locomotion and reflex behaviour, complementing the electron-microscopy-based VNC connectomes.
 

@@ -8,7 +8,7 @@ description: >
 
 HHMI's Janelia Research Campus has released a short visualisation marking the completion of the male fly central nervous system (CNS) connectome — the first map of an entire insect CNS, comprising every neuron in the brain, both optic lobes, and the ventral nerve cord. The data was acquired and analysed by the FlyEM Project Team at Janelia, the Cambridge Connectomics Group, and Google Research; the video was produced by Philip Hubbard of Janelia. As with Janelia's related release on comparing male and female brains, this video carries no narration or audio.
 
-{{< youtube id="jeh9czULwH0" autoplay="true" >}}
+{{< youtube id="jeh9czULwH0" autoplay="true" mute="true" class="video-embed" >}}
 
 Where earlier connectomes covered the brain or the ventral nerve cord separately, this dataset connects the two together with the optic lobes into a single, complete wiring diagram of the male fly's entire nervous system — from sensory input in the eyes, through central brain processing, down to the motor circuits in the nerve cord that drive behaviour.
 
