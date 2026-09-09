@@ -52,7 +52,7 @@ The Jefferis lab and VFB transform collections are CMTK registrations, so using 
 [CMTK installed](/docs/tools/cmtk/) and on your `PATH`. The Janelia H5 transforms do not. If a
 transform route fails with CMTK missing, that is what it is telling you.
 
-The FANC and BANC transforms need [elastix](https://elastix.lumc.nl/index.php) instead.
+The FANC and BANC transforms need [elastix](/docs/tools/elastix/) instead.
 
 ## Where next
 
