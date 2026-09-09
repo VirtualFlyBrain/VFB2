@@ -44,7 +44,7 @@ flybrains.report()   # what is actually available, Python and R downloads alike
 
 If you already hold these registrations from the R side, `flybrains` will find and register
 them rather than duplicating the download. Using the Jefferis lab or VFB transforms needs
-[CMTK](/docs/tutorials/apis/cmtk/) installed; the FANC and BANC transforms need
+[CMTK](/docs/tools/cmtk/) installed; the FANC and BANC transforms need
 [elastix](https://elastix.lumc.nl/index.php).
 
 The package ships metadata and surface meshes for 31 light-level templates and connectome

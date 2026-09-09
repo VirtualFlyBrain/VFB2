@@ -1,7 +1,7 @@
 ---
 title: "Installing CMTK"
-weight: 432
-series: ["API"]
+weight: 654
+aliases: ["/docs/tutorials/apis/cmtk/"]
 date: 2026-09-09
 description: >
   The simplest way to get a local copy of CMTK, for using navis-flybrains / nat.flybrains
@@ -118,5 +118,6 @@ Any of the above should leave the individual tools (`registration`, `warp`, `mat
 registration --version
 ```
 
-navis-flybrains and the natverse look for those tools rather than the `cmtk` launcher, so it is
-the `lib/cmtk/bin` directory that has to be on `PATH` — which is what the script sets up.
+[flybrains](/docs/tools/navis-flybrains/) and the [natverse](/docs/tools/natverse/) look for
+those tools rather than the `cmtk` launcher, so it is the `lib/cmtk/bin` directory that has to
+be on `PATH` — which is what the script sets up.
