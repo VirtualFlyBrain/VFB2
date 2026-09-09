@@ -36,7 +36,7 @@ The transformation is found in stages of increasing freedom:
    structures into correspondence.
 
 The non-rigid step is what actually does the work, and it is why registration is expensive
-and imperfect. Two toolkits dominate fly registration. [**CMTK**](/docs/tutorials/apis/cmtk/) is the more common; the
+and imperfect. Two toolkits dominate fly registration. [**CMTK**](/docs/tools/cmtk/) is the more common; the
 paper usually cited for it describes a parallel implementation of non-rigid registration,
 demonstrated on clinical and other biomedical problems rather than on flies
 ([Rohlfing and Maurer, 2003](https://doi.org/10.1109/TITB.2003.808506)) — it was
