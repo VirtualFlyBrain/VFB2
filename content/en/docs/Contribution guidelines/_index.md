@@ -4,14 +4,16 @@ linkTitle: "Contribution Guidelines"
 weight: 700
 categories: ["help"]
 description: >
-  Contribute or update Virtual Fly Brain data/sites.
+  How to tell us about a paper, get your image data into VFB, and improve these docs.
 ---
+
+We integrate information from published papers and image data produced by other groups. The
+provenance of that information, textual or image, is always acknowledged.
+
+There are three ways to contribute, covered below and on the pages linked from here.
 
 Submitting new data to VFB
 --------------------------
-
-We integrate information from published papers and image data. See below for what to do if you have new data that could be incorporated into VFB.  
-The provenance of information, textual or image, is always acknowledged.
 
 ### Tell us about your paper
 
@@ -22,53 +24,54 @@ You can also use this tool for any other, previously published paper.
 
 ### Do you have image data that could be incorporated into VFB?
 
-[Email us](mailto:data@virtualflybrain.org?subject=Submitting%20Image%20data), and we will be able to give you advice on image requirements.  
-Ideally, you should contact us when you are still in the planning stages. But if you already generated a dataset, we'll still be able to provide advice.
+[Email us](mailto:data@virtualflybrain.org?subject=Submitting%20Image%20data) at
+`data@virtualflybrain.org` and we will advise on image requirements and arrange a way to get
+the files to us. Ideally, contact us when you are still in the planning stages, but if you
+have already generated a dataset we can still help.
 
-How to register your image data
--------------------------------
+Two pages cover the detail:
 
-It is essential for successful registrations that the images are of good quality.
+* [Submitting image data](/docs/contribution-guidelines/image-upload/): what we can take, what
+  to say in that first email, and what happens next.
+* [Registering your images](/docs/contribution-guidelines/image-registration/): how to align
+  your stacks to a standard template, starting with the easiest route.
 
-Follow [this protocol](https://doi.org/10.1101/pdb.prot071720) to acquire stacks that can be used for registration.
-
-Once you have the images, follow [this protocol](https://doi.org/10.1101/pdb.prot071738) to register your images.
-
-Information on publicly available template brains is on the [Templates](/docs/data/templates/) page, and the registrations that map between them are described under [Bridging registrations](/docs/concepts/bridging/).
-
+Please use `data@virtualflybrain.org` rather than our support address. `support@` goes to a
+[publicly archived forum](https://groups.google.com/g/vfb-suport), which is not a good place
+for unpublished or embargoed data.
 
 How to contribute to these docs
 -------------------------------
 
-We use [Hugo](https://gohugo.io/) to format and generate these support pages, the
-[Docsy](https://github.com/google/docsy) theme for styling and site structure. 
-Hugo is an open-source static site generator that provides us with templates, 
-content organisation in a standard directory structure, and a website generation 
-engine. You write the pages in Markdown (or HTML if you want), and Hugo wraps them up into a website.
+We use [Hugo](https://gohugo.io/) to format and generate these support pages. Hugo is an
+open-source static site generator that provides us with templates, content organisation in a
+standard directory structure, and a website generation engine. You write the pages in Markdown
+(or HTML if you want), and Hugo wraps them up into a website.
 
-All submissions, including submissions by project members, require review. We
-use GitHub pull requests for this purpose. Consult
-[GitHub Help](https://help.github.com/articles/about-pull-requests/) for more
-information on using pull requests.
+All submissions, including submissions by project members, require review. We use GitHub pull
+requests for this purpose. Consult
+[GitHub Help](https://help.github.com/articles/about-pull-requests/) for more information on
+using pull requests.
 
-## Updating a single page
+### Updating a single page
 
-If you've just spotted something you'd like to change while using the docs, Docsy has a shortcut for you:
+If you've just spotted something you'd like to change while using the docs, there's a shortcut:
 
-1. Click **Edit this page** in the top right hand corner of the page.
-1. If you don't already have an up to date fork of the project repo, you are prompted to get one - click **Fork this repository and propose changes** or **Update your Fork** to get an up to date version of the project to edit. The appropriate page in your fork is displayed in edit mode.
+1. Click **Edit this page** in the sidebar on the right of the page.
+1. If you don't already have an up to date fork of the project repo, you are prompted to get one. Click **Fork this repository and propose changes** or **Update your Fork** to get an up to date version of the project to edit. The appropriate page in your fork is displayed in edit mode.
+1. Make your change and open a pull request.
 
-## Creating an issue
+### Reporting a problem
 
-If you've found a problem in the docs, but you're not sure how to fix it yourself, please create an issue in the [VirtualFlyBrain/VFB2 repo](https://github.com/VirtualFlyBrain/VFB2/issues). You can also create an issue about a specific page by clicking the **Create Issue** button in the top right hand corner of the page.
+If you've found a problem in the docs, but you're not sure how to fix it yourself, click
+**Report an issue** in the same sidebar to raise one about that specific page. You can also
+create an issue directly in the
+[VirtualFlyBrain/VFB2 repo](https://github.com/VirtualFlyBrain/VFB2/issues).
 
-## Useful resources
+### Useful resources
 
-* [Docsy user guide](https://www.docsy.dev/docs/): All about Docsy, including how it manages navigation, look and feel, and multi-language support.
 * [Hugo documentation](https://gohugo.io/documentation/): Comprehensive reference for Hugo.
 * [Github Hello World!](https://guides.github.com/activities/hello-world/): A basic introduction to GitHub concepts and workflow.
-* [nbcovert](https://github.com/jupyter/nbconvert): A tool to convert jupyter notebooks into markdown (md) format.
+* [nbconvert](https://github.com/jupyter/nbconvert): A tool to convert jupyter notebooks into markdown (md) format.
 * [HTML to Markdown Converter](https://codebeautify.org/html-to-markdown): It helps to convert your HTML to MD. This tool is super fast and processes conversion in the browser.
-* [How to add new query properties to VFBConnect library](https://virtualflybrain.org/docs/contribution-guidelines/expanding_vfbconnect_queries/)
-
-
+* [How to add new query properties to VFBConnect library](/docs/contribution-guidelines/expanding_vfbconnect_queries/)
