@@ -22,6 +22,15 @@ The best way to make us aware of your paper, and to put it on our curation list 
 Using this tool you can provide information on what types of data your paper contains. If it has new anatomical or expression information you'll need to fill the sections, _Anatomical data_ or _Expression_, respectively, in addition to any other suitable ones.  
 You can also use this tool for any other, previously published paper.
 
+### Spotted a paper with cell type information?
+
+**Have you seen a publication that characterises cell types or reconciles their names?** New
+characterisation of cell types, and synonym mapping between differently named types, are
+particularly valuable for the ontology behind VFB. You don't have to be an author to flag it.
+
+* [Flagging publications with cell type information](/docs/contribution-guidelines/cell-type-publications/):
+  how to raise a ticket on the ontology repo or email us, and what to include.
+
 ### Do you have image data that could be incorporated into VFB?
 
 [Email us](mailto:data@virtualflybrain.org?subject=Submitting%20Image%20data) at
