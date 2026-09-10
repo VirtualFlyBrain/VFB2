@@ -103,11 +103,15 @@ the `apt` command from the Linux section above.
 ## A note on MADI3D
 
 MADI3D manages its own copy of CMTK rather than using one already on your `PATH`, so installing
-it there does not give you CMTK for navis-flybrains or the natverse, and vice versa. Its
-automatic setup currently covers Windows and native Ubuntu/Debian; macOS support is
-[proposed in PR #38](https://github.com/sandorbx/MADI3D/pull/38). Until that is released, the
-script above is the route on macOS. MADI3D also offers "use an existing CMTK installation",
-which will happily point at the install the script creates.
+it there does not give you CMTK for navis-flybrains or the natverse, and vice versa. That is
+why this page is still the route if you want CMTK for your own analysis, whether or not you
+also run MADI3D.
+
+Its automatic setup covers Windows, native Ubuntu/Debian and — since
+[v0.31.2-beta](https://github.com/sandorbx/MADI3D/releases/tag/v0.31.2-beta) — Apple Silicon
+macOS, where it downloads and verifies the same upstream build this page uses and unpacks it
+inside its own storage, needing no administrator rights. MADI3D also offers "use an existing
+CMTK installation", which will happily point at the install the script creates.
 
 ## Verifying
 
