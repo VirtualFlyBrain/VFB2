@@ -9,4 +9,5 @@ description: >
 ---
 Worked examples for reaching VFB from code — `VFB_connect` for VFB's own data, and the wider Python
 and R toolchain (navis, pymaid, neuprint, natverse) for analysis and for data held elsewhere. For
-endpoint reference rather than worked examples, see [APIs](/docs/apis/).
+endpoint reference rather than worked examples, see [APIs](/docs/apis/); for installing
+these tools in the first place, and quick starts for each, see [Tools](/docs/tools/).

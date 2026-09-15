@@ -34,11 +34,7 @@ The transformation is found in stages of increasing freedom:
 3. **Non-rigid (deformable)**: a smooth, spatially varying warp that brings individual
    structures into correspondence.
 
-The non-rigid step does most of the work, and is also why registration is computationally
-expensive and never exact. Two toolkits are in common use for fly work. **CMTK** is the more
-widely used; the paper usually cited for it describes a parallel implementation of non-rigid
-registration, demonstrated on clinical and other biomedical problems rather than on flies
-([Rohlfing and Maurer, 2003](https://doi.org/10.1109/TITB.2003.808506)). It was
+The non-rigid step does most of the work, and is also why registration is computationally expensive and never exact. Two toolkits dominate fly registration. [**CMTK**](/docs/tools/cmtk/) is the more common; the paper usually cited for it describes a parallel implementation of non-rigid registration, demonstrated on clinical and other biomedical problems rather than on flies ([Rohlfing and Maurer, 2003](https://doi.org/10.1109/TITB.2003.808506)) — it was [Jefferis et al. (2007)](https://doi.org/10.1016/j.cell.2007.01.040) who established the approach for *Drosophila*, registering brains to a common template to build comparable maps of olfactory projections.
 [Jefferis et al. (2007)](https://doi.org/10.1016/j.cell.2007.01.040) who established the
 approach for *Drosophila*, registering brains to a common template to build comparable maps
 of olfactory projections. The other is **ANTs**, whose symmetric diffeomorphic model (SyN)

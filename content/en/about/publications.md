@@ -31,6 +31,8 @@ resolved and checked.
   The current VFB resource paper: how curated ontology terms, registered images, connectomics and transcriptomics are integrated behind one query interface.
 - **The Virtual Fly Brain browser and query interface** — Milyaev et al., *Bioinformatics* (2011). [doi:10.1093/bioinformatics/btr677](https://doi.org/10.1093/bioinformatics/btr677)  
   The original VFB: a browser and query interface over the adult brain, with anatomy queries answered by an OWL reasoner rather than by lookup.
+- **Virtual Fly Brain: An ontology-linked schema of the Drosophila Brain** — Osumi-Sutherland, Longair & Armstrong, *Nature Precedings* (2009). [doi:10.1038/npre.2009.3980.1](https://doi.org/10.1038/npre.2009.3980.1)  
+  Proposes the ontology-linked schema behind VFB: labeled volumes in a standard reference brain plus new relations (fasciculates_with, synapsed_to, dendrite/axon_innervates, releases_neurotransmitter) that let a reasoner classify neuronal types from where they fasciculate and innervate and what neurotransmitter they release.
 
 ## Anatomy, nomenclature and the Drosophila ontologies
 
