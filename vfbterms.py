@@ -201,6 +201,99 @@ def get_report_url(identifier):
     """Create the VFB report URL path for a term identifier."""
     return f'/reports/{identifier}'
 
+# ─── Sitemap Generation ─────────────────────────────────────────────────────
+#
+# Two URLs exist per term -- the static description page this script writes
+# (/term/<slug>/, Hugo's own canonical for that page) and the interactive
+# viewer (/reports/<id>, which 302s to the Geppetto viewer and is what the
+# viewer itself declares as canonical -- see geppetto-vfb's pageMetadata.js).
+# Both are real, separately useful pages, so both belong in the sitemap.
+#
+# Term pages carry `sitemap_exclude: true` (see generate_page below) because
+# Hugo's own sitemap.xml has no pagination: it would emit one file with the
+# whole multi-hundred-thousand-term corpus in it. This writes the sharded
+# sitemap1.xml.. Google expects instead, plus the sitemap-terms.xml index
+# that robots.txt already advertises.
+SITEMAP_SITE_BASE = "https://www.virtualflybrain.org"
+SITEMAP_REPORT_BASE = "https://virtualflybrain.org"
+# Google caps a sitemap file at 50,000 URLs; each term contributes two.
+SITEMAP_MAX_TERMS_PER_SHARD = 25000
+
+_sitemap_entries = {}
+_sitemap_lock = threading.Lock()
+
+_CANONICAL_SLUG_RE = re.compile(r'canonicalUrl:\s*"https://www\.virtualflybrain\.org/term/([^/]+)/"')
+
+
+def record_sitemap_entry(term_id, url_slug):
+    """Remember one term's slug for the end-of-run sitemap write. Thread-safe."""
+    if not term_id or not url_slug:
+        return
+    with _sitemap_lock:
+        _sitemap_entries[term_id] = url_slug
+
+
+def slug_from_existing_page(filename):
+    """Recover a term's URL slug from a page already on disk (the "skip" path
+    in process_term, which never re-fetches term_data, so never recomputes the
+    slug the normal way)."""
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            for _ in range(20):
+                line = f.readline()
+                if not line:
+                    break
+                match = _CANONICAL_SLUG_RE.search(line)
+                if match:
+                    return match.group(1)
+    except OSError:
+        pass
+    return None
+
+
+def write_sitemaps(output_dir):
+    """Write sitemap1.xml.. (both the /term/ page and the /reports/ viewer
+    URL per term) and the sitemap-terms.xml index over them.
+
+    Call once, after every group has been processed, so the corpus is
+    complete -- process_group() covers the full current ID list from Neo4j
+    on every run, "skip" included, so by then _sitemap_entries holds every
+    term regardless of whether this run touched its page.
+    """
+    if not output_dir:
+        return
+    with _sitemap_lock:
+        entries = sorted(_sitemap_entries.items())
+    if not entries:
+        print("WARNING: no sitemap entries collected -- not writing sitemaps")
+        return
+
+    os.makedirs(output_dir, exist_ok=True)
+    shard_names = []
+    for shard_start in range(0, len(entries), SITEMAP_MAX_TERMS_PER_SHARD):
+        shard = entries[shard_start:shard_start + SITEMAP_MAX_TERMS_PER_SHARD]
+        shard_index = len(shard_names) + 1
+        shard_name = f"sitemap{shard_index}.xml"
+        lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+        for term_id, url_slug in shard:
+            lines.append(f'  <url><loc>{SITEMAP_SITE_BASE}/term/{url_slug}/</loc></url>')
+            lines.append(f'  <url><loc>{SITEMAP_REPORT_BASE}/reports/{term_id}</loc></url>')
+        lines.append('</urlset>')
+        with open(join(output_dir, shard_name), "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+        shard_names.append(shard_name)
+
+    index_lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+                   '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for shard_name in shard_names:
+        index_lines.append(f'  <sitemap><loc>{SITEMAP_SITE_BASE}/{shard_name}</loc></sitemap>')
+    index_lines.append('</sitemapindex>')
+    with open(join(output_dir, "sitemap-terms.xml"), "w", encoding="utf-8") as f:
+        f.write("\n".join(index_lines) + "\n")
+
+    print(f"Wrote {len(shard_names)} sitemap shard(s) covering {len(entries)} terms to {output_dir}")
+
 def get_query_results_url(term_id, query_name):
     """Create a VFB viewer URL for a term query result set."""
     if not query_name:
@@ -860,6 +953,9 @@ def process_term(term_id):
     """
     filename = term_id + "_v" + str(version) + ".md"
     if os.path.isfile(filename):
+        # Unchanged term: no re-fetch, so recover the slug already on disk
+        # rather than skip the sitemap entry entirely.
+        record_sitemap_entry(term_id, slug_from_existing_page(filename))
         return "skip"
 
     term_data = fetch_term_info(term_id)
@@ -867,6 +963,7 @@ def process_term(term_id):
         return "fail"
 
     page_content = generate_page(term_data)
+    record_sitemap_entry(term_id, get_term_url(term_data.get("Name", ""), term_id))
 
     tmp = f"{filename}.{os.getpid()}.{threading.get_ident()}.tmp"
     with open(tmp, "w", encoding="utf-8") as f:
@@ -1145,6 +1242,13 @@ def test_medulla_page():
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         mypath = sys.argv[1]
+        # Optional: where to write sitemap1.xml.. and sitemap-terms.xml once
+        # the full corpus below has been processed. Point this at wherever
+        # is served as static files at the site root (e.g. the Hugo `public`
+        # directory the deploy already publishes from) -- robots.txt already
+        # advertises /sitemap-terms.xml, so dropping the files there is all
+        # that is needed for them to take effect.
+        sitemap_dir = sys.argv[2] if len(sys.argv) > 2 else None
         print("Updating all files in " + mypath)
         groups = [
             ('fbbt/', 'FBbt classes', "MATCH (n:Class) WHERE n.short_form starts with 'FBbt' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
@@ -1173,6 +1277,11 @@ if __name__ == "__main__":
 
         for relative_dir, label, query in groups:
             process_group(mypath, relative_dir, label, query)
+
+        if sitemap_dir:
+            write_sitemaps(sitemap_dir)
+        else:
+            print("No sitemap output dir given (3rd argument) -- skipping sitemap write.")
 
     else:
         print("Testing term page generation...")
