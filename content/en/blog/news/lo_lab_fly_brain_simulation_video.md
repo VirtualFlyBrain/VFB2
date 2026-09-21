@@ -8,7 +8,7 @@ description: >
 
 The Chung-Chuan Lo laboratory at National Tsing Hua University, Taiwan, has released a video of a fruit fly brain simulation run with FlySim, a simulator developed in the Lo lab. The model's circuits and parameters were derived from data in the [FlyCircuit database](http://www.flycircuit.tw/) — the same single-neuron reconstruction resource behind the lab's earlier "Building a fly brain" visualisation.
 
-{{< youtube id="m8cmKREXpcw" autoplay="true" >}}
+{{< youtube id="m8cmKREXpcw" autoplay="true" main="true" >}}
 
 Where reconstructing a brain from FlyCircuit data shows its physical structure, this simulation goes a step further, using that structural data to parameterise a running model of brain-wide neural activity — work described in detail in the lab's associated paper in *Frontiers in Neuroinformatics* (2018), [available here](https://www.frontiersin.org/articles/10.3389/fninf.2018.00099/full).
 

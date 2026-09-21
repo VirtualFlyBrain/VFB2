@@ -13,6 +13,34 @@
 
   Usage: {{< youtube id="XXXXXXXXXXX" >}}
   Optional: autoplay="true" | title="..." | start="123" | end="456" | list="playlistID"
+            main="true"
+
+  ---------------------------------------------------------------------
+  main="true"
+
+  Declares that this video IS the page -- a post whose reason for existing
+  is to show the video, not one that happens to embed one. It adds
+  schema.org mainEntityOfPage and drops loading="lazy" so the player is
+  present at its real dimensions in the first render.
+
+  Set it only where it is true. On a docs page or an about page the video
+  is supporting material, Google is correct to say the page is not a watch
+  page, and claiming otherwise in markup is a lie to a crawler.
+
+  ---------------------------------------------------------------------
+  VideoObject markup
+
+  Emitted for any ID present in data/videos.json, which
+  scripts/fetch_video_metadata.py regenerates from YouTube. Without name,
+  description, thumbnailUrl and uploadDate, Google infers what an embed is
+  from page layout alone -- and it does so inconsistently: in the September
+  2026 Search Console report two news posts identical in structure, word
+  count and iframe depth split one indexed, one "video isn't on a watch
+  page". The markup replaces that guess with a statement.
+
+  An ID missing from the data file degrades to a plain embed rather than
+  emitting a half-populated VideoObject, which Search Console reports as an
+  error rather than ignoring.
 */ -}}
 {{- $id := .Get "id" | default (.Get 0) -}}
 {{- $autoplay := .Get "autoplay" -}}
@@ -21,6 +49,7 @@
 {{- $end := .Get "end" -}}
 {{- $list := .Get "list" -}}
 {{- $isAutoplay := in (slice "true" "1" true) $autoplay -}}
+{{- $isMain := in (slice "true" "1" true) (.Get "main") -}}
 {{- $q := slice -}}
 {{- if $isAutoplay -}}
   {{- $q = $q | append "autoplay=1" -}}
@@ -30,14 +59,43 @@
 {{- with $end -}}{{- $q = $q | append (printf "end=%s" .) -}}{{- end -}}
 {{- with $list -}}{{- $q = $q | append (printf "list=%s" .) -}}{{- end -}}
 {{- $query := delimit $q "&" -}}
+
+{{- /* Build the src as one string and mark it safeURL.
+
+       Interpolating the query into the src="" attribute lets Go's template
+       escaper treat it as an untrusted URL fragment and percent-encode it,
+       so `?autoplay=1&mute=1` reached the browser as
+       `?autoplay%3d1%26mute%3d1` -- a single parameter with that literal
+       name, which YouTube discards. Every autoplay="true" embed on the site
+       was inert, and Search Console reports the mangled URL back verbatim. */ -}}
+{{- $src := printf "https://www.youtube-nocookie.com/embed/%s" $id -}}
+{{- with $query }}{{ $src = printf "%s?%s" $src . }}{{ end -}}
+
+{{- $v := index (site.Data.videos | default dict) $id -}}
 <div class="video-embed">
   <div style="position:relative;padding-bottom:56.25%;height:0;">
     <iframe
-      src="https://www.youtube-nocookie.com/embed/{{ $id }}{{ with $query }}?{{ . }}{{ end }}"
+      src="{{ $src | safeURL }}"
       style="position:absolute;top:0;left:0;width:100%;height:100%;"
-      title="{{ $title }}"
-      loading="lazy"
+      title="{{ with $v }}{{ .name }}{{ else }}{{ $title }}{{ end }}"
+      {{ if not $isMain }}loading="lazy"{{ end }}
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen></iframe>
   </div>
 </div>
+{{- with $v }}
+{{- $ld := dict
+      "@context" "https://schema.org"
+      "@type" "VideoObject"
+      "name" .name
+      "description" .description
+      "thumbnailUrl" .thumbnailUrl
+      "uploadDate" .uploadDate
+      "embedUrl" (printf "https://www.youtube-nocookie.com/embed/%s" $id)
+      "contentUrl" (printf "https://www.youtube.com/watch?v=%s" $id)
+-}}
+{{- with .duration }}{{ $ld = merge $ld (dict "duration" .) }}{{ end -}}
+{{- with .channel }}{{ $ld = merge $ld (dict "creator" (dict "@type" "Organization" "name" .)) }}{{ end -}}
+{{- if $isMain }}{{ $ld = merge $ld (dict "mainEntityOfPage" (dict "@type" "WebPage" "@id" $.Page.Permalink)) }}{{ end -}}
+<script type="application/ld+json">{{ $ld | jsonify (dict "indent" "  ") | safeJS }}</script>
+{{- end }}
