@@ -8,6 +8,7 @@ description: >
   The VFB connect API provides programmatic access to the databases underlying VFB
 ---
 
+{{< workshop url="/sessions/session-1-discovery/" title="Session 1 · Discovery" >}}
 
 ### VFB connect API overview
 

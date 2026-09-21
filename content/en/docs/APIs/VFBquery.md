@@ -7,6 +7,8 @@ description: >
   VFB's general-purpose query API — term information, search, connectivity, cross-references, FlyBase stocks and combinations, and the CATMAID pass-through — all as simple read-only JSON calls.
 ---
 
+{{< workshop url="/sessions/session-1-discovery/" title="Session 1 · Discovery" >}}
+
 VFBquery is the query service behind most of what the VFB website itself does — the term information panel, the search box, the hierarchy browser, connectivity queries, stock lookups — exposed as a plain JSON HTTP API anyone can call directly. It's the same recommended entry point as the [CATMAID pass-through](/docs/apis/catmaid/), which is one part of this service:
 
 ```

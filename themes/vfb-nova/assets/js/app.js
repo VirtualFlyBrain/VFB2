@@ -137,6 +137,23 @@
   const indexURL = cfgEl.dataset.index;
   const solrURL = cfgEl.dataset.solr;
   const browserURL = cfgEl.dataset.browser;
+
+  /* --- the workshop site's own index ---------------------------------------
+     workshop.virtualflybrain.org is a separate Hugo site built from the same
+     theme, and its search already reaches back into this one. This is the
+     other direction: its /index.json is fetched cross-origin (it sends
+     Access-Control-Allow-Origin: *) and only once per palette session.
+
+     Both sites are served with a year-long immutable Cache-Control, so the URL
+     carries the hour to stop a stale copy outliving the day. Failure is
+     silent: this site's own pages and the anatomy terms must never depend on
+     another host being up. */
+  const remoteIndexURL = cfgEl.dataset.remoteIndex;
+  const remoteBase = cfgEl.dataset.remoteBase || '';
+  const remoteLabel = cfgEl.dataset.remoteLabel || 'workshop.virtualflybrain.org';
+  const remoteBadge = cfgEl.dataset.remoteBadge || remoteLabel;
+  let remoteDocs = null;
+  let remoteLoading = null;
   let docs = null;
   let seq = 0;            /* guards against out-of-order SOLR responses */
   let termCtl = null;     /* aborts the in-flight SOLR request when typing */
@@ -144,6 +161,9 @@
   const ICONS = {
     docs: 'fa-book', blog: 'fa-newspaper', about: 'fa-circle-info',
     hosted: 'fa-server', term: 'fa-diagram-project', '': 'fa-file-lines',
+    /* sections that only exist on the workshop site */
+    sessions: 'fa-graduation-cap', setup: 'fa-gear',
+    'no-code': 'fa-comments', questions: 'fa-circle-question',
   };
 
   async function load() {
@@ -153,6 +173,18 @@
       docs = await r.json();
     } catch (e) { docs = []; }
     return docs;
+  }
+
+  function loadRemote() {
+    if (remoteDocs) return Promise.resolve(remoteDocs);
+    if (remoteLoading) return remoteLoading;
+    if (!remoteIndexURL) { remoteDocs = []; return Promise.resolve(remoteDocs); }
+    const stamp = new Date().toISOString().slice(0, 13);
+    remoteLoading = fetch(remoteIndexURL + (remoteIndexURL.includes('?') ? '&' : '?') + 'v=' + stamp)
+      .then((r) => (r.ok ? r.json() : []))
+      .then((j) => { remoteDocs = (Array.isArray(j) ? j : []).map((d) => Object.assign({}, d, { url: remoteBase + d.url, remote: true })); return remoteDocs; })
+      .catch(() => { remoteDocs = []; return remoteDocs; });
+    return remoteLoading;
   }
 
   const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -298,27 +330,47 @@
       const d = x.d;
       const icon = ICONS[d.section] || ICONS[''];
       return '<li class="res">' +
-        '<a href="' + d.url + '">' +
+        '<a href="' + d.url + '"' + (d.remote ? ' target="_blank" rel="noopener"' : '') + '>' +
           '<i class="r-icon fas ' + icon + '"></i>' +
           '<span class="r-title">' + mark(d.title, q) +
             (d.desc ? '<span class="r-desc">' + esc(d.desc) + '</span>' : '') +
           '</span>' +
-          '<span class="r-sec">' + esc(d.section || 'page') + '</span>' +
+          '<span class="r-sec">' + esc(d.remote ? remoteBadge : (d.section || 'page')) + '</span>' +
         '</a></li>';
     };
+
+    /* Capped well below the local 24: the workshop is a supplement to this
+       site's documentation, not a competitor for the top of the list. */
+    const REMOTE_ROWS = 6;
+    const remoteItems = (remoteDocs || [])
+      .map((d) => ({ d, s: score(d, q) }))
+      .filter((x) => x.s < 99)
+      .sort((a, b) => a.s - b.s || a.d.title.length - b.d.title.length)
+      .slice(0, REMOTE_ROWS);
+    const groupHTML = (label) => '<li class="palette__group" aria-hidden="true">' + label + '</li>';
+    const remoteStrong = remoteItems.filter((x) => x.s <= 2).map(pageHTML).join('');
+    const remoteWeak = remoteItems.filter((x) => x.s > 2).map(pageHTML).join('');
 
     /* A page whose *title* matches outranks any anatomy term: someone typing
        "solr api" wants the doc. A page that merely mentions the word in its
        body does not — "medulla" must not bury the medulla under two API
        tutorials that happen to use it as their example query. So title-tier
        hits sit above the terms group and the rest below it. */
+    /* This site's pages first, then the workshop's title matches, then anatomy
+       terms, then the body-only matches from both. */
     const strongHTML = items.filter((x) => x.s <= 2).map(pageHTML).join('');
     const weakHTML = items.filter((x) => x.s > 2).map(pageHTML).join('');
-    const pagesHTML = strongHTML + weakHTML;
+    const remoteStrongHTML = remoteStrong ? groupHTML(esc(remoteLabel) + ' &middot; sessions and worked examples') + remoteStrong : '';
+    const remoteWeakHTML = remoteWeak ? groupHTML(esc(remoteLabel) + ' &middot; mentions') + remoteWeak : '';
+    const pagesHTML = strongHTML + remoteStrongHTML + weakHTML + remoteWeakHTML;
 
     const mine = ++seq;
     list.innerHTML = pagesHTML || '<li class="palette__empty">Searching anatomy terms…</li>';
     if (selectFirst) markFirst(list);
+
+    /* The workshop index arrives once; the first query re-renders when it
+       lands so its rows appear without another keystroke. */
+    if (!remoteDocs) loadRemote().then(() => { if (mine === seq) render(q, list, selectFirst); });
 
     fetchTerms(q, mine).then((terms) => {
       if (mine !== seq) return;
@@ -327,7 +379,7 @@
         list.innerHTML = '<li class="palette__empty">No match for “' + esc(q) + '”.</li>';
         return;
       }
-      list.innerHTML = th ? strongHTML + th + weakHTML : pagesHTML;
+      list.innerHTML = th ? strongHTML + remoteStrongHTML + th + weakHTML + remoteWeakHTML : pagesHTML;
       if (selectFirst) markFirst(list);
       list.dispatchEvent(new CustomEvent('vfb:results'));
     });

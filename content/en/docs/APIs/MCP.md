@@ -7,6 +7,8 @@ description: >
   The VFB MCP server lets AI assistants and LLM agents explore Virtual Fly Brain data through natural language.
 ---
 
+{{< workshop url="/setup/#mcp" title="Setup · Route C — your LLM + the VFB MCP" >}}
+
 The **VFB Model Context Protocol (MCP) server** exposes Virtual Fly Brain data to AI assistants and agents (Claude, GitHub Copilot, and any other [MCP](https://modelcontextprotocol.io/)-compatible client). Once connected, you can explore VFB neuroanatomy, imaging data, and connectomics using natural language, and the assistant retrieves answers directly from VFB's live data services.
 
 This page is the endpoint reference. For a worked guide to connecting a client and querying the data — with example prompts, the full tool set, and per-client setup — see the **[VFB MCP Tool Guide](/docs/tutorials/vfb-mcp-guide/)**.

@@ -1,3 +1,7 @@
+{{/* The workshop site (workshop.virtualflybrain.org) is a separate Hugo build
+     from the same theme; its own search already reaches back into this site, and
+     data-remote-* is the other direction. Both serve index.json with
+     Access-Control-Allow-Origin: *, so this needs no server change. */}}
 {{/* Anatomy terms are not in the Hugo index - there are ~763k of them and they are
      generated, not authored. They come from the same SOLR ontology core the 3D
      browser uses, queried live, and open in the browser rather than on this site. */}}
@@ -9,6 +13,10 @@
      side-steps the cached one. */}}
 <div class="palette" hidden role="dialog" aria-modal="true" aria-label="Search"
      data-index="{{ "/index.json" | relURL }}?v={{ now.Format "20060102150405" }}"
+     data-remote-index="https://workshop.virtualflybrain.org/index.json"
+     data-remote-base="https://workshop.virtualflybrain.org"
+     data-remote-label="workshop.virtualflybrain.org"
+     data-remote-badge="workshop"
      data-solr="https://solr.virtualflybrain.org/solr/ontology/select"
      data-browser="{{ $browser }}">
   <div class="palette__box">

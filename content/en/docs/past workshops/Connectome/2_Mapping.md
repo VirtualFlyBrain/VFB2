@@ -9,7 +9,7 @@ description: >
   If you have a single neuron, how can you find other neurons of the same or similar type within or between data sources?
 ---
 
-
+{{< workshop url="/sessions/session-2-bridging-identity/" title="Session 2 · Bridging & Identity" tone="superseded" >}}
 
 ```python
 !pip install vfb-connect --upgrade

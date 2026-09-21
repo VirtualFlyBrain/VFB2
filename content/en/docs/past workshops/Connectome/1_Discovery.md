@@ -8,6 +8,7 @@ description: >
   VFB integrates images and connectomics profiles of neurons from many sources.  It classifies and records their properties using a standard, queryable classification. This standardises the names of neuron types across sources, so you don't need to worry about differences in nomenclature uses and supports queries for neurons by their classification. 
 ---
 
+{{< workshop url="/sessions/session-1-discovery/" title="Session 1 · Discovery" tone="superseded" >}}
 
 Required packages: vfb-connect and python-catmaid (pymaid & navis)
 

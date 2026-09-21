@@ -10,6 +10,8 @@ description: >
   There are multiple tools to query the various data sources. Fortunately they play together nicely. Here is a quick overview
 ---
 
+{{< workshop url="/setup/" title="Setup — the five routes" tone="superseded" >}}
+
 <p align="center">
 <img src="https://github.com/VirtualFlyBrain/training/raw/main/presentations/_static/vfb_workshop.png" width="600">
 </p>

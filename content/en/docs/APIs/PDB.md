@@ -7,6 +7,8 @@ description: >
   The VFB Production Database (PDB) is a Neo4j graph database containing integrated neuroanatomical data from multiple sources.
 ---
 
+{{< workshop >}}
+
 The VFB Production Database (PDB) is the main Neo4j graph database containing integrated neuroanatomical data from multiple sources, including ontology data, expression patterns, image annotations, and connectivity information. It serves as the primary data store for comprehensive queries across VFB's knowledge graph.
 
 ## Browser Access

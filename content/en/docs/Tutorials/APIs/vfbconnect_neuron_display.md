@@ -7,6 +7,8 @@ description: >
     This guide will help you use the VFBConnect library to interact with Virtual Fly Brain (VFB) data, specifically focusing on working with neuron images and their representations. The examples provided cover retrieving neuron data, accessing different types of data representations (skeleton, mesh, volume), and visualizing this data.
 ---
 
+{{< workshop url="/sessions/session-3-visualisation/" title="Session 3 · Visualisation" >}}
+
 ## Prerequisites
 
 Before starting, ensure you have the VFBConnect library installed. The recommended Python version is 3.10.14, as this version is tested against the library.

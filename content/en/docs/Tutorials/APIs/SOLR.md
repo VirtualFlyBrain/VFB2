@@ -6,6 +6,8 @@ description: >-
      How to programatically search for a term.
 ---
 
+{{< workshop >}}
+
 ## SOLR python example
 
 an example using pysolr:

@@ -7,6 +7,8 @@ description: >
   Learn how to use the VFB MCP tool to explore Virtual Fly Brain data through Large Language Models
 ---
 
+{{< workshop url="/setup/#mcp" title="Setup · Route C — your LLM + the VFB MCP" >}}
+
 ## Overview
 
 The Virtual Fly Brain **Model Context Protocol (MCP) Tool** enables you to query VFB data through Large Language Models like Claude using natural language. This guide shows you how to get started and provides examples of common queries.
