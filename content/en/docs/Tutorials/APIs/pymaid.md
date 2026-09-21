@@ -9,6 +9,7 @@ description: >
   pymaid (python-catmaid) lets you interface with a CATMAID server such as those provided by VFB.
 ---
 
+{{< workshop url="/sessions/session-4-connectomics/" title="Session 4 · Connectomics" >}}
 
 ## Overview
 

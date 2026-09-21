@@ -8,6 +8,7 @@ description: >
   How to explore the properties of `TreeNeurons` using navis.
 ---
 
+{{< workshop url="/sessions/session-3-visualisation/" title="Session 3 · Visualisation" >}}
 
 ## Overview
 `navis` is a Python package for analysing, manipulating and visualizing neurons. Official documentation [here](https://navis.readthedocs.io/en/latest/).

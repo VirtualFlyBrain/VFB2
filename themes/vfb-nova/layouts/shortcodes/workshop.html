@@ -1,0 +1,58 @@
+{{- /*
+  A pointer from this site's documentation to the VFB Self-led Learning
+  Sessions at workshop.virtualflybrain.org.
+
+  The workshop is a separate Hugo site built from this theme. It carries the
+  current, runnable versions of material that exists here in two states: the
+  2021 "Hacking the connectome" pages, which it supersedes outright, and the
+  API reference and tutorials, which remain correct but have no worked example
+  against live data. Those two need different wording, hence `tone`.
+
+  Written as one shortcode rather than ~20 hand-written alert blocks so the
+  wording is in one place. It has to be edited once when the workshop moves,
+  is renamed, or gains a session -- not hunted through content/.
+
+    {{< workshop >}}
+        Generic: the workshop exists, go and look.
+
+    {{< workshop url="/sessions/session-4-connectomics/" title="Session 4 · Connectomics" >}}
+        Points at the session that covers this page's ground.
+
+    {{< workshop url="/sessions/session-1-discovery/" title="Session 1 · Discovery" tone="superseded" >}}
+        Same, but says plainly that this page is the old material.
+
+  `url` is a path on the workshop site, not a full URL -- the host lives here
+  so a move is one edit.
+*/ -}}
+{{- $base := "https://workshop.virtualflybrain.org" -}}
+{{- $name := "VFB Self-led Learning Sessions" -}}
+{{- $url := .Get "url" -}}
+{{- $title := .Get "title" -}}
+{{- $superseded := eq (.Get "tone") "superseded" -}}
+{{- $href := printf "%s%s" $base (or $url "/") -}}
+<div class="workshop-note{{ if $superseded }} workshop-note--old{{ end }}" role="note">
+  <p class="workshop-note__head">
+    <i class="fas {{ if $superseded }}fa-clock-rotate-left{{ else }}fa-graduation-cap{{ end }}" aria-hidden="true"></i>
+    {{ if $superseded }}Superseded by the workshop{{ else }}Worked examples{{ end }}
+  </p>
+  <p>
+    {{- if $superseded -}}
+      This page is kept for reference from the 2021 <em>Hacking the connectome</em> workshop.
+      {{ if and $url $title -}}
+        The current material is <a href="{{ $href }}">{{ $title }}</a> on the
+        <a href="{{ $base }}/">{{ $name }}</a>
+      {{- else -}}
+        The current material is the <a href="{{ $base }}/sessions/">{{ $name }}</a>
+      {{- end }} — the same ground against live VFB data, worked through in
+      Python, R, an MCP-capable assistant, VFB Chat and the 3D browser.
+    {{- else -}}
+      {{ if and $url $title -}}
+        <a href="{{ $href }}">{{ $title }}</a> on the
+        <a href="{{ $base }}/">{{ $name }}</a> works through this
+      {{- else -}}
+        The <a href="{{ $base }}/sessions/">{{ $name }}</a> work through this
+      {{- end }} against live VFB data, in Python, R, an MCP-capable assistant,
+      VFB Chat and the 3D browser. Free, self-paced and open to anyone.
+    {{- end }}
+  </p>
+</div>

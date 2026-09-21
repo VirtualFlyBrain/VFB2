@@ -7,6 +7,8 @@ description: >
   The SOLR Search API provides fast text search and autocomplete functionality for VFB entities, datasets, and publications.
 ---
 
+{{< workshop >}}
+
 The SOLR Search API powers VFB's search and autocomplete functionality, providing fast text-based queries across all VFB entities including anatomical terms, neurons, datasets, publications, and more.
 
 **Note**: Search and autocomplete functionality is also built into [VFBconnect](https://vfb-connect.readthedocs.io/en/stable/) by default. The `vfb.term()` method will automatically attempt to match partial terms and provide autocomplete suggestions. See the [VFBconnect documentation](https://vfb-connect.readthedocs.io/en/stable/tutorials/vfb_terms.html#Creating-and-Exploring-VFBTerm-Objects) for programmatic access.

@@ -171,3 +171,32 @@ a.btn { text-decoration: none; }
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 }
 .vfb-figures .stat__num { font-size: var(--step-1); }
+
+/* --- workshop pointer ----------------------------------------------------
+   layouts/shortcodes/workshop.html. Deliberately not the Docsy `.alert`
+   above: that shim exists to keep superseded generated pages rendering, and
+   this is first-class content that should not inherit its fate. Brand-edged
+   rather than warning-coloured -- pointing a reader at newer material is an
+   invitation, not a problem with the page they are on.
+   ------------------------------------------------------------------------- */
+.prose .workshop-note {
+  padding: var(--sp-4) var(--sp-5);
+  margin: var(--sp-5) 0;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brand);
+  border-radius: var(--r-md);
+  background: var(--elev-1);
+}
+.prose .workshop-note > :first-child { margin-top: 0; }
+.prose .workshop-note > :last-child { margin-bottom: 0; }
+.prose .workshop-note__head {
+  margin: 0 0 var(--sp-2);
+  font-weight: 600;
+  font-size: .95rem;
+  letter-spacing: .01em;
+}
+.prose .workshop-note__head i { margin-right: .5em; opacity: .8; }
+/* The 2021 pages are not wrong, only old, so this reads as a note rather than
+   a warning -- muted, not red. */
+.prose .workshop-note--old { border-left-color: var(--muted); }
+.prose .workshop-note--old .workshop-note__head { color: var(--text-dim); }
