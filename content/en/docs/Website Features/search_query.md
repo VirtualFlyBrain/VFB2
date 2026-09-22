@@ -32,6 +32,8 @@ The query system can identify neurons innervating any specified neuropil or fasc
 
 Some Term Info panes have pre-defined queries relevant to that term. For example, the Term Info pane for a brain region may have queries for neurons innervating that region and drivers expressing in that region.
 
+For a complete list of these queries — which entity types show each one, and what every results column means — see the [Term Info Queries Reference](/docs/website-features/queries/).
+
 <img src="/images/search_query/terminfo_queries.png" max-width="50%" alt="Queries in the Term Info pane.">
 
 ## Query Results

@@ -26,7 +26,7 @@ The PDB contains over 1.1 million nodes and 43 million relationships, representi
 The PDB uses hierarchical node labels to classify different types of entities:
 
 **Core Ontology Nodes:**
-- `Class`, `Individual` - OWL ontology elements
+- `Class`, `Individual` - OWL ontology elements (see [Classes and individuals](/docs/concepts/classes-and-individuals/) for what the distinction means in VFB)
 - `Property` - Relationships and attributes
 
 **Anatomical Classifications:**

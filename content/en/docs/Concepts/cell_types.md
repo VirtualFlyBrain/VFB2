@@ -10,6 +10,8 @@ description: >
 
 Neurons on VFB are annotated with cell types from the Drosophila Anatomy Ontology (FBbt).
 
+A cell type is a [class](/docs/concepts/classes-and-individuals/) — an ontology term for a *type* of neuron — as opposed to an individual reconstructed or imaged neuron, which is an instance of one.
+
 <img src="/images/cell_types/FW_MBON01-terminfo.png" max-width="50%" alt="A FlyWire MBON01 neuron">
 
 ## Why do we use ontology terms?

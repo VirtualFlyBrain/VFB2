@@ -15,6 +15,24 @@ IMAGE_PATTERN = re.compile(r'https?://[^\s"\')]+\.(?:png|jpg|jpeg|gif|svg)', re.
 DEFAULT_EXTENSIONS = ['.md', '.html', '.yml', '.yaml', '.toml', '.json', '.js', '.ts', '.scss', '.css']
 
 
+def is_templated(url: str) -> bool:
+    """True for URLs that are template strings, not real links.
+
+    Hugo/Go templates build image URLs with a placeholder filled in at render
+    time, e.g. `printf "https://i.ytimg.com/vi/%s/hqdefault.jpg" $id` or a
+    `{{ ... }}` expression. Fetching the literal template string 404s, so skip
+    it. A printf verb is a `%` followed by a letter that cannot begin a valid
+    `%HH` percent-encoding (i.e. not a-f), which distinguishes `%s`/`%v` from
+    genuinely encoded characters like `%2F` or `%FF`.
+    """
+    if '{{' in url or '}}' in url:
+        return True
+    return any(
+        m.group(1).isalpha() and m.group(1).lower() not in 'abcdef'
+        for m in re.finditer(r'%(.)', url)
+    )
+
+
 def collect_image_urls(base_dir: pathlib.Path, ext_filter=None):
     ext_filter = ext_filter or DEFAULT_EXTENSIONS
     matches = []
@@ -23,7 +41,10 @@ def collect_image_urls(base_dir: pathlib.Path, ext_filter=None):
             continue
         text = path.read_text(encoding='utf-8', errors='ignore')
         for m in IMAGE_PATTERN.finditer(text):
-            matches.append((str(path), m.group(0)))
+            url = m.group(0)
+            if is_templated(url):
+                continue
+            matches.append((str(path), url))
     return matches
 
 
