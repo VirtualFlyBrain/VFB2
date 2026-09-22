@@ -26,9 +26,22 @@
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
-<meta property="og:image" content="{{ "/favicons/vfb-logo-512.png" | absURL }}">
+{{/* Term pages embed their thumbnails as raw <img> in the body (written by
+     vfbterms.py), so the first one doubles as the link-preview image: a term
+     pasted into Slack, Bluesky or Teams then shows the neuron rather than the
+     site logo. Read from .RawContent rather than a front-matter field -- a new
+     field would mean regenerating the whole term corpus (a version bump, so
+     every one of ~768k pages refetched from VFBquery) for a value already
+     sitting in the page. Anything without a thumbnail keeps the logo. */}}
+{{- $ogImage := "/favicons/vfb-logo-512.png" | absURL -}}
+{{- if in (.Params.content | default slice) "term" -}}
+  {{- with findRESubmatch `<img src="([^"]+)"` .RawContent 1 -}}
+    {{- $ogImage = index (index . 0) 1 -}}
+  {{- end -}}
+{{- end }}
+<meta property="og:image" content="{{ $ogImage }}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="{{ "/favicons/vfb-logo-512.png" | absURL }}">
+<meta name="twitter:image" content="{{ $ogImage }}">
 
 {{/* Let the browser register VFB as a searchable site: type the domain, Tab,
      then query. Emitted on every page so any landing page is enough. */}}
