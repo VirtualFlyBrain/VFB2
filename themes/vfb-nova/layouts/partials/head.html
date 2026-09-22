@@ -26,19 +26,9 @@
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
-{{/* Term pages embed their thumbnails as raw <img> in the body (written by
-     vfbterms.py), so the first one doubles as the link-preview image: a term
-     pasted into Slack, Bluesky or Teams then shows the neuron rather than the
-     site logo. Read from .RawContent rather than a front-matter field -- a new
-     field would mean regenerating the whole term corpus (a version bump, so
-     every one of ~768k pages refetched from VFBquery) for a value already
-     sitting in the page. Anything without a thumbnail keeps the logo. */}}
-{{- $ogImage := "/favicons/vfb-logo-512.png" | absURL -}}
-{{- if in (.Params.content | default slice) "term" -}}
-  {{- with findRESubmatch `<img src="([^"]+)"` .RawContent 1 -}}
-    {{- $ogImage = index (index . 0) 1 -}}
-  {{- end -}}
-{{- end }}
+{{/* Preview image: an explicit `images:` override, else the page's video
+     thumbnail, else its first image, else the logo -- see preview-image.html. */}}
+{{- $ogImage := partial "preview-image.html" . }}
 <meta property="og:image" content="{{ $ogImage }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{{ $ogImage }}">
