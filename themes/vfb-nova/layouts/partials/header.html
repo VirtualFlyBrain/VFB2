@@ -16,7 +16,7 @@
         {{ if not .Params.cta }}
         <li>
           <a class="nav__link{{ if and (ne .URL "/") (hasPrefix $cur .URL) }} is-active{{ end }}"
-             href="{{ .URL }}"{{ if hasPrefix .URL "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
+             href="{{ .URL }}"{{ if hasPrefix .URL "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}{{ if hasPrefix .URL "http" }}<i class="fas fa-arrow-up-right-from-square nav__link-ext" aria-hidden="true"></i><span class="visually-hidden"> (opens on another site)</span>{{ end }}</a>
         </li>
         {{ end }}
       {{ end }}

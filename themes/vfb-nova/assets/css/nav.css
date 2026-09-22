@@ -76,6 +76,7 @@
 }
 .nav__link {
   padding: .5rem .85rem;
+  white-space: nowrap;
   border-radius: var(--r-pill);
   color: var(--text-dim);
   font-size: .93rem;
@@ -83,6 +84,15 @@
   text-decoration: none;
   transition: color .2s var(--ease), background .2s var(--ease);
 }
+/* A nav item that leaves the site says so: the burden is on the link, not on
+   the visitor noticing a new tab after the fact. Matches the CTA's icon. */
+.nav__link-ext {
+  font-size: .72em;
+  margin-left: .35em;
+  opacity: .6;
+  vertical-align: baseline;
+}
+.nav__link:hover .nav__link-ext, .nav__link.is-active .nav__link-ext { opacity: .8; }
 .nav__link:hover, .nav__link.is-active {
   color: var(--text);
   background: var(--surface);
@@ -131,7 +141,7 @@
 
 .nav__burger { display: none; }
 
-@media (max-width: 1080px) {
+@media (max-width: 1240px) {
   .search-trigger { min-width: 0; }
   .search-trigger span { display: none; }
   .search-trigger kbd { display: none; }
@@ -142,7 +152,10 @@
   .brand__sub { display: none; }
   .brand { font-size: 1rem; }
 }
-@media (max-width: 900px) {
+/* Raised from 900px: with six links the row can no longer sit beside the
+   search box and the Launch CTA, and the CTA was the thing pushed out of
+   view. Collapse to the burger while everything still fits. */
+@media (max-width: 1120px) {
   .nav__links {
     position: fixed;
     inset: var(--nav-h) 0 auto 0;

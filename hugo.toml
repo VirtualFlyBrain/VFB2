@@ -151,6 +151,10 @@ paginate = 100
   url = "/docs/"
   weight = 10
 [[menu.nova]]
+  name = "How to…"
+  url = "https://workshop.virtualflybrain.org/"
+  weight = 15
+[[menu.nova]]
   name = "Data"
   url = "/docs/data/"
   weight = 20
