@@ -6,6 +6,8 @@ description: >
   This guide will show you how to use VFBconnect to download images from the Virtual Fly Brain (VFB) based on a dataset.
 ---
 
+{{< workshop url="/sessions/session-3-visualisation/" title="Session 3 · Visualisation" >}}
+
 ## Introduction
 
 VFBconnect is a Python package that provides an interface to the Virtual Fly Brain (VFB) API. It allows users to query the VFB database and download data, including images.

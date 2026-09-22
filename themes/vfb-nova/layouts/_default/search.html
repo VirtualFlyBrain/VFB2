@@ -23,6 +23,10 @@
 
     <div id="search-page"
          data-index="{{ "/index.json" | relURL }}?v={{ now.Format "20060102150405" }}"
+         data-remote-index="https://workshop.virtualflybrain.org/index.json"
+         data-remote-base="https://workshop.virtualflybrain.org"
+         data-remote-label="workshop.virtualflybrain.org"
+         data-remote-badge="workshop"
          data-solr="https://solr.virtualflybrain.org/solr/ontology/select"
          data-browser="{{ $browser }}">
 

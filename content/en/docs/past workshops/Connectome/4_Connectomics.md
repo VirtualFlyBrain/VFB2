@@ -9,8 +9,7 @@ description: >
   How to explore published connectomic data.
 ---
 
-
-
+{{< workshop url="/sessions/session-4-connectomics/" title="Session 4 · Connectomics" tone="superseded" >}}
 
 ```python
 !pip install --upgrade vfb_connect

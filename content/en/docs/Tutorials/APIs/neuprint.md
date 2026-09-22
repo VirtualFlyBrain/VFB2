@@ -9,6 +9,7 @@ description: >
   Several Janelia datasets are accessible via neuprint and can be interfaced with programmatically using neuprint-python.
 ---
 
+{{< workshop url="/sessions/session-4-connectomics/" title="Session 4 · Connectomics" >}}
 
 ## The neuprint data and database
 The Janelia hemibrain ([Scheffer _et al._, 2020](https://dx.doi.org/10.7554/eLife.57443)), MANC ([Takemura _et al._, 2024](https://doi.org/10.7554/eLife.97769.1)) and male-cns ([Berg _et al._, 2025](https://www.biorxiv.org/content/10.1101/2025.10.09.680999v2)) datasets are accessible via neuprint at https://neuprint.janelia.org. The web interface lets you run a few pre-built queries and you can also run custom queries directly against the underlying neo4j graph data base using cypher queries.

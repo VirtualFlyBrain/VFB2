@@ -9,6 +9,8 @@ description: >
   Tutorials from the Virtual Fly Brain "Hacking the connectome" workshop that was run in collaboration with the Drosophila Connectomics Group based at the Dept of Zoology, University of Cambridge.
 ---
 
+{{< workshop url="/sessions/" title="the seven learning sessions" tone="superseded" >}}
+
 Materials from past workshops run by VFB.
 
 

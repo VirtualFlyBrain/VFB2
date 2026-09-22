@@ -7,6 +7,8 @@ description: >
   The VFB Knowledge Base (KB) provides specialized storage and query capabilities for VFB-specific data and annotations.
 ---
 
+{{< workshop >}}
+
 The VFB Knowledge Base (KB) is a specialized Neo4j database that complements the Production Database (PDB). While the PDB handles integrated ontology data, expression patterns, and image annotations, the KB serves specific VFB requirements and workflows.
 
 ## Browser Access

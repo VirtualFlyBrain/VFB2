@@ -7,6 +7,8 @@ description: >
   The Owlery API provides OWL reasoning services for VFB's ontologies, enabling complex queries over class hierarchies and relationships.
 ---
 
+{{< workshop >}}
+
 The Owlery API is VFB's OWL (Web Ontology Language) reasoning service, providing advanced query capabilities over the ontologies used in VFB. It enables Description Logic (DL) queries, SPARQL queries with OWL reasoning, and access to multiple knowledgebases.
 
 ## API Endpoint

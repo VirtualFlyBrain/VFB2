@@ -130,6 +130,24 @@ Templates are written so that nothing scans the page set per page:
 | `content: [term]` front matter | `_default/single.html` (term branch) | Compact page; no sibling nav, no pager, no TOC |
 | any | `_default/index.json` | ⌘K search index, built by walking the authored sections only |
 
+## Link-preview image
+
+Every page carries an `og:image` / `twitter:image`, which is what Slack,
+Bluesky, Teams and the like show when a link is pasted. `partials/preview-image.html`
+picks it, first hit wins:
+
+1. `images:` in front matter -- the explicit override. Set it on any page
+   where the automatic pick is wrong: `images: ["/images/hero.png"]`.
+2. The page's video: `videos:` in front matter, else the first `{{< youtube >}}`
+   in the body (one marked `main="true"` preferred). Its thumbnail is read from
+   `data/videos.json`, the same record the VideoObject markup uses.
+3. The first image in the body -- a raw `<img>` (how generated term pages
+   carry their thumbnail) or a markdown `![alt](src)`.
+4. The site logo.
+
+A video outranks an inline image on purpose: a page with a video is usually
+about the video. Reach for `images:` when it isn't.
+
 ## Shortcodes
 
 The content still calls Docsy's `blocks/cover`, `blocks/lead`, `blocks/section`,

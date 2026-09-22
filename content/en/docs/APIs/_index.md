@@ -8,6 +8,8 @@ description: >
   All available VFB APIs and underlying schemas.
 ---
 
+{{< workshop url="/sessions/" title="the seven learning sessions" >}}
+
 VFB provides access to its data through several APIs and databases. The core data infrastructure consists of Neo4j graph databases that store integrated neuroanatomical data, complemented by OWL reasoning services for advanced ontological queries and SOLR search for fast text-based queries.
 
 ## User Access Options
