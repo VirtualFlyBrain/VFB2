@@ -47,7 +47,7 @@ What follows is a guided tour of the main groups of endpoints, to help you find 
 ## FlyBase stocks and combinations
 
 - **`/resolve_entity?query=dpp`** — free-text resolver for a gene, allele or transgene name, returning candidate FlyBase feature ids.
-- **`/find_stocks?id=FBgn0000490`** — stock-centre holdings for a resolved feature id.
+- **`/find_stocks?id=FBgn0000490`** — stock-centre holdings for a resolved feature id. For a split combination (`FBco`) each stock carries a `match` field, and only the best tier is returned: stocks with both hemidrivers (`Exact combination`); failing that, per hemidriver, stocks of it alone (`Hemidriver alone`), or else paired with another hemidriver (`Hemidriver in other combination`).
 - **`/resolve_combination?query=GMR37H08-ZpGAL4DBD in attP2`** — resolver for split-GAL4 hemidriver combinations, returning FBco ids.
 - **`/find_combo_publications?id=FBco0000052`** — publications using a resolved combination.
 

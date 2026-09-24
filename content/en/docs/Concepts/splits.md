@@ -22,6 +22,8 @@ Similar to [non-split drivers](/docs/concepts/transgene), VFB contains images an
 
 <img src="/images/split_vfb.png" alt="split expression shown in Virtual Fly Brain (VFB)" max-width="50%" >
 
+To obtain flies, use *Find fly stocks* on the expression pattern's [Term Info](/docs/website-features/terminfo) page. It looks up the FlyBase combination (`FBco`) for the two hemidrivers and lists stocks that carry the whole combination. Where none exist, it lists stocks of each hemidriver instead, so the split can be built by crossing. See the [queries reference](/docs/website-features/queries/#FindStocks) for details.
+
 VFB curation uses programmatic methods to generate expression statements for [FlyLight](https://www.janelia.org/project-team/flylight) hemidriver combinations. Combinations are validated against a local copy of the FlyLight dataset and loaded into FlyBase. VFB then links each expression pattern image and the curated expression information to an intersection of the two appropriate hemidrivers.
 
 <img src="/images/splits_figure.png" alt="This techniques work by driving the expression of target transgenes at the intersection between the expression patterns of two hemidriver transgenes." max-width="50%" >
