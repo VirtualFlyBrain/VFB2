@@ -44,7 +44,10 @@ columns mean.
 
 - The query menu shows a short label with the entity's name filled in, e.g.
   *"Neurons with some part in medulla"*. In the sections below the entity name is
-  written as *[term]*.
+  written as *[term]*. The gold **?** at the right of each query row opens that
+  query's section on this page; the same icon on the *Graphs for* and *Circuit
+  Browser* rows opens the [Term Context](/docs/website-features/termcontext/) and
+  [Circuit Browser](/docs/website-features/circuitbrowser/) pages.
 - **Some individuals inherit their [class's](/docs/concepts/classes-and-individuals/) queries** — but not all. An individual
   image is offered its parent class's queries only when it is one of these
   anatomical types: **painted domain, synaptic neuropil (or its domains and

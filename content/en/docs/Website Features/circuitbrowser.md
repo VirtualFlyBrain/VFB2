@@ -23,3 +23,7 @@ The 'strongest' paths are the shortest/highest weighted paths. Paths are arrange
 <p align="center">
   <img src="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/build/circuit1.png" alt="Virtual Fly Brain (VFB) 3D Viewer" style="max-width=50%" />
 </p>
+
+## Add a neuron from Term Info {#add-a-neuron-from-term-info}
+
+Individual neurons with connectivity data show an **Add *[term]* to Circuit Browser Query** link in their [Term Info](/docs/website-features/terminfo/) pane. Clicking it opens the Circuit Browser with that neuron filled into the first empty neuron field (if both fields are already set, it replaces the last one), so you can build a path search from the neuron you are looking at without searching for it again.
