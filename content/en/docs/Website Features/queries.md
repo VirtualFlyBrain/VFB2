@@ -353,7 +353,24 @@ combinations and stocks).
 Available fly stocks for the feature, sourced from FlyBase.
 **Shown on:** FlyBase features (`FBgn`, `FBal`, `FBti`, `FBtp`, `FBco`, `FBst`) and
 expression patterns driven by them.
-**Columns:** Stock ID, Stock Number, Genotype, Collection.
+**Columns:** Stock ID, Stock Number, Genotype, Collection (plus Match for split
+combinations).
+
+For a [split driver](/docs/concepts/splits/) expression pattern the query runs on the
+FlyBase split combination (`FBco`) built from its two hemidrivers, and the combination
+is named in brackets — e.g. *Find fly stocks for MB109B (FBco0000061)*. Only the most
+useful stocks are listed:
+
+1. **Exact combination** — stocks carrying both hemidrivers. When any exist, only
+   these are shown.
+2. **Hemidriver alone** — otherwise, stocks of each hemidriver on its own.
+3. **Hemidriver in other combination** — for a hemidriver with no stock of its own,
+   stocks that carry it paired with a different hemidriver.
+
+Steps 2 and 3 apply to each hemidriver separately, so one half may be listed on its
+own while the other is only available in another combination. If FlyBase has no
+combination for the pair, the pattern instead offers one query per hemidriver
+construct (`FBtp`).
 
 ### Find publications for *[term]* {#FindComboPublications}
 Publications for a split-GAL4 combination, from FlyBase.
@@ -453,6 +470,7 @@ in a single-cell RNA-seq (scRNAseq) dataset, taken to represent one cell type.
 | **Stock Number** | The stock-centre catalogue number used to order the stock. |
 | **Genotype** | The full genotype of the stock. |
 | **Collection** | The stock collection/centre that holds the stock (e.g. Bloomington). |
+| **Match** | For split combinations only: whether the stock carries the *Exact combination*, one *Hemidriver alone*, or one *Hemidriver in other combination* (see [Find fly stocks](#FindStocks)). |
 | **FBrf** | FlyBase reference identifier (`FBrf…`) of a publication. |
 | **Title** / **Year** / **Type** | Title, year and type (paper, review…) of a publication. |
 | **DOI** / **PMID** / **PMCID** | External publication identifiers. |
