@@ -1,0 +1,211 @@
+/* ==========================================================================
+   documentation shell: sidebar tree + article + on-this-page
+   ========================================================================== */
+
+.doc {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2.5rem, calc(var(--wrap) + 160px));
+  margin-inline: auto;
+  padding-top: calc(var(--nav-h) + var(--sp-6));
+  display: grid;
+  grid-template-columns: 268px minmax(0, 1fr) 232px;
+  gap: var(--sp-6);
+  align-items: start;
+}
+@media (max-width: 1180px) { .doc { grid-template-columns: 250px minmax(0, 1fr); } .doc__toc { display: none; } }
+@media (max-width: 900px)  { .doc { grid-template-columns: minmax(0, 1fr); } }
+
+/* --- sidebar ------------------------------------------------------------ */
+.doc__side {
+  position: sticky;
+  top: calc(var(--nav-h) + var(--sp-4));
+  max-height: calc(100vh - var(--nav-h) - var(--sp-6));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: .5rem;
+  scrollbar-width: thin;
+}
+.doc__side > summary { display: none; }
+.doc__side > summary::-webkit-details-marker { display: none; }
+@media (max-width: 900px) {
+  .doc__side {
+    position: static;
+    max-height: none;
+    margin-bottom: var(--sp-5);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 0 var(--sp-4) var(--sp-2);
+    background: var(--elev-1);
+  }
+  .doc__side > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    padding: var(--sp-4) 0;
+    cursor: pointer;
+    list-style: none;
+    color: var(--text);
+  }
+  .doc__side > summary .tree__label { padding: 0; }
+  .doc__side > summary i { transition: transform .25s var(--ease); color: var(--muted); }
+  .doc__side[open] > summary i { transform: rotate(180deg); }
+  .doc__side:not([open]) { padding-bottom: 0; }
+}
+.doc__side::-webkit-scrollbar { width: 6px; }
+.doc__side::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+.tree, .tree ul { list-style: none; margin: 0; padding: 0; }
+.tree > li { margin-bottom: .15rem; }
+.tree ul {
+  margin-left: .55rem;
+  padding-left: .7rem;
+  border-left: 1px solid var(--line-soft);
+}
+.tree a {
+  display: block;
+  padding: .34rem .6rem;
+  border-radius: 7px;
+  color: var(--text-dim);
+  font-size: .885rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color .18s, background .18s;
+}
+.tree a:hover { color: var(--text); background: var(--surface); text-decoration: none; }
+.tree a.is-active {
+  color: var(--text);
+  background: var(--surface-2);
+  font-weight: 600;
+  box-shadow: inset 2px 0 0 var(--brand);
+}
+.tree__group > a { font-weight: 600; color: var(--text); }
+.tree__label {
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: var(--sp-4) .6rem .5rem;
+  display: block;
+}
+
+/* --- article ------------------------------------------------------------ */
+.doc__main { min-width: 0; padding-bottom: var(--sp-8); }
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem;
+  list-style: none;
+  margin: 0 0 var(--sp-4);
+  padding: 0;
+  font-size: .8rem;
+  font-family: var(--font-mono);
+  color: var(--muted);
+}
+.breadcrumb a { color: var(--muted); }
+.breadcrumb a:hover { color: var(--brand); text-decoration: none; }
+.breadcrumb li + li::before { content: "/"; margin-right: .45rem; opacity: .5; }
+
+.doc__header { margin-bottom: var(--sp-6); }
+.doc__header h1 { font-size: var(--step-3); margin-bottom: var(--sp-3); }
+.doc__header .lede { font-size: var(--step-1); }
+
+/* --- standalone page shell ---------------------------------------------- */
+/* Everything outside the docs shell renders through .page: blog posts, news,
+   releases, the generated term pages, and the taxonomy and tag lists. The
+   class was used by five layouts but had no rule, so those pages carried no
+   offset for the fixed nav and their breadcrumb rendered underneath it. Only
+   .hero and .doc reserved the space. */
+.page {
+  position: relative;
+  z-index: 1;
+  padding-top: calc(var(--nav-h) + var(--sp-6));
+  padding-bottom: var(--sp-8);
+}
+
+.page__header { margin-bottom: var(--sp-6); }
+.page__header h1 { font-size: var(--step-3); margin-bottom: var(--sp-3); }
+.page__header .lede { font-size: var(--step-1); }
+
+.doc__meta {
+  margin-top: var(--sp-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+}
+
+/* --- on this page ------------------------------------------------------- */
+.doc__toc {
+  position: sticky;
+  top: calc(var(--nav-h) + var(--sp-4));
+  max-height: calc(100vh - var(--nav-h) - var(--sp-6));
+  overflow-y: auto;
+  font-size: .84rem;
+}
+.doc__toc h4 {
+  font-family: var(--font-mono);
+  font-size: .66rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--sp-3);
+}
+.doc__toc nav ul { list-style: none; margin: 0; padding: 0; }
+.doc__toc nav ul ul { padding-left: .8rem; }
+.doc__toc a {
+  display: block;
+  padding: .28rem 0 .28rem .75rem;
+  border-left: 2px solid var(--line-soft);
+  color: var(--muted);
+  line-height: 1.4;
+  transition: color .2s, border-color .2s;
+}
+.doc__toc a:hover { color: var(--text-dim); text-decoration: none; }
+.doc__toc a.is-active { color: var(--brand); border-left-color: var(--brand); }
+
+.doc__aside-actions {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line-soft);
+  display: grid;
+  gap: .5rem;
+  font-size: .82rem;
+}
+.doc__aside-actions a { color: var(--muted); display: flex; gap: .5rem; align-items: center; }
+.doc__aside-actions a:hover { color: var(--brand); text-decoration: none; }
+
+/* --- prev / next -------------------------------------------------------- */
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  margin-top: var(--sp-7);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 620px) { .pager { grid-template-columns: 1fr; } }
+.pager a {
+  padding: var(--sp-4);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color .25s, transform .25s var(--ease);
+}
+.pager a:hover { border-color: var(--brand); transform: translateY(-2px); text-decoration: none; }
+.pager small {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .35rem;
+}
+.pager .next { text-align: right; grid-column: 2; }
+@media (max-width: 620px) { .pager .next { text-align: left; grid-column: 1; } }

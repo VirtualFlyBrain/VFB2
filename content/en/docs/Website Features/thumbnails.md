@@ -2,7 +2,7 @@
 title: "VFB Image Thumbnails"
 linkTitle: "Thumbnails"
 tags: ["thumbnails","CD-MIP","MIP"]
-weight: 55
+weight: 210
 description: >-
      VFB (Virtual Fly Brain) thumbnails are color depth maximum projection images that allow users to visualize the distribution of intensity values across different depths in a 3D image stack. 
 ---
@@ -15,10 +15,10 @@ Thumbnails are found in [query results](/docs/website-features/search_query/#que
 - Brighter or more intense colors indicate higher intensity values at that depth.
 
 
-![Example VFB template thumbnail](https://www.virtualflybrain.org/data/VFB/i/0010/1567/VFB_00101567/thumbnail.png)
+![Example VFB template thumbnail](https://virtualflybrain.org/data/VFB/i/0010/1567/VFB_00101567/thumbnail.png)
 * This image uses nearly the whole of the available (Z) stack space, shown by the wide range of colour.
 
 
-![Example VFB flat neuron thumbnail](http://virtualflybrain.org/data/VFB/i/0000/0123/VFB_00101567/thumbnail.png)
+![Example VFB flat neuron thumbnail](https://virtualflybrain.org/data/VFB/i/0000/0123/VFB_00101567/thumbnail.png)
 * This image uses much less of the available (Z) stack space, shown by the more restricted range of colour.
 

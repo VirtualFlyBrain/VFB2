@@ -1,0 +1,83 @@
+{{- /*
+  The page's link-preview image (og:image / twitter:image), as an absolute
+  URL. Returned, not printed: {{ partial "preview-image.html" . }}
+
+  Resolved in order, first hit wins:
+
+    1. `images:` in front matter -- the explicit override. Hugo's own
+       convention, so a list or a single string; the first entry is used and
+       a site-relative path is made absolute. Set this on any page where the
+       automatic pick below is wrong.
+    2. The page's video: `videos:` in front matter, else the first
+       {{< youtube >}} in the body (one marked main="true" preferred). Its
+       thumbnail comes from data/videos.json, the record the VideoObject
+       markup already uses, falling back to YouTube's always-present
+       hqdefault.jpg for an ID the data file has not caught up with.
+    3. The first image in the body: a raw <img src="..."> (how vfbterms.py
+       writes term thumbnails) or a markdown ![alt](src).
+    4. The site logo.
+
+  Body matches read .RawContent rather than .Content, so no render is
+  forced for the head. Term pages in particular can't cheaply gain a
+  front-matter field -- a version bump regenerates ~768k pages -- which is
+  why the thumbnail is read from the body rather than declared.
+*/ -}}
+{{- $img := "" -}}
+{{- $videoId := "" -}}
+
+{{- /* 1. explicit override */ -}}
+{{- with .Params.images -}}
+  {{- if reflect.IsSlice . -}}
+    {{- with index . 0 }}{{ $img = . }}{{ end -}}
+  {{- else -}}
+    {{- $img = . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* 2. video thumbnail */ -}}
+{{- if not $img -}}
+  {{- $ytId := `([A-Za-z0-9_-]{11})` -}}
+  {{- with .Params.videos -}}
+    {{- $first := cond (reflect.IsSlice .) (index . 0) . -}}
+    {{- with findRESubmatch (printf `(?:v=|youtu\.be/|/embed/|^)%s(?:[&?/]|$)` $ytId) $first 1 -}}
+      {{- $videoId = index (index . 0) 1 -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $videoId -}}
+    {{- $blocks := findRE `\{\{<\s*youtube\s[^>]*>\}\}` .RawContent -}}
+    {{- $main := "" -}}{{- $any := "" -}}
+    {{- range $blocks -}}
+      {{- $id := "" -}}
+      {{- with findRESubmatch (printf `id="%s"` $ytId) . 1 }}{{ $id = index (index . 0) 1 }}{{ end -}}
+      {{- if not $id }}{{ with findRESubmatch (printf `youtube\s+"?%s"?[\s>]` $ytId) . 1 }}{{ $id = index (index . 0) 1 }}{{ end }}{{ end -}}
+      {{- if $id -}}
+        {{- if and (not $main) (in . `main="true"`) }}{{ $main = $id }}{{ end -}}
+        {{- if not $any }}{{ $any = $id }}{{ end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $videoId = $main | default $any -}}
+  {{- end -}}
+  {{- with $videoId -}}
+    {{- with index site.Data.videos . -}}
+      {{- $img = .thumbnailUrl -}}
+    {{- else -}}
+      {{- $img = printf "https://i.ytimg.com/vi/%s/hqdefault.jpg" . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* 3. first image in the body */ -}}
+{{- if not $img -}}
+  {{- with findRESubmatch `<img[^>]*\ssrc="([^"]+)"` .RawContent 1 -}}
+    {{- $img = index (index . 0) 1 -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $img -}}
+  {{- with findRESubmatch `!\[[^\]]*\]\(([^)\s]+)` .RawContent 1 -}}
+    {{- $img = index (index . 0) 1 -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* 4. logo */ -}}
+{{- if not $img }}{{ $img = "/favicons/vfb-logo-512.png" }}{{ end -}}
+{{- return ($img | absURL) -}}

@@ -5,7 +5,7 @@ title: "The Slice Viewer tab"
 linkTitle: "Slice Viewer"
 description: >
    The Slice Viewer displays single slices of the template, showing all selected painted anatomy, neurons and expression patterns.
-weight: 40
+weight: 206
 ---
 <link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
 

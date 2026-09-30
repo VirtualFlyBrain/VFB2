@@ -1,7 +1,7 @@
 ---
 title: "Similarity Score Queries Guide"
 linkTitle: "Similarity Scores"
-weight: 10
+weight: 410
 description: >
   This guide provides step-by-step instructions on how to use the similarity score queries on VirtualFlyBrain.org. These queries allow users to find neurons or expression patterns that are morphologically similar to a selected neuron or expression pattern.
 ---

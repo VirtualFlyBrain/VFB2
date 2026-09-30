@@ -10,6 +10,14 @@ The ABD1.5 CATMAID instance is hosted and maintained by Virtual Fly Brain (VFB) 
 
 This resource provides wild-type reference data for the abdominal nerve cord of first instar Drosophila larvae, serving as a baseline for comparative connectomics studies. Virtual Fly Brain ensures its long-term availability to the research community.
 
+## Data status
+
+This volume is not being actively worked on. It contains **all** reconstructions
+regardless of publication status, completeness or correctness, so neurons found here
+should not be assumed to be finished or reviewed. The `papers` annotation marks the
+subset published in Valdes-Aleman et al. (2021), where this volume is referred to as
+Control-2; Control-1 is the [L1EM instance](/hosted/l1em-catmaid/), also hosted by VFB.
+
 ## Source Publications
 
 This dataset contains neuron reconstructions from multiple foundational connectomics studies:
@@ -19,6 +27,8 @@ This dataset contains neuron reconstructions from multiple foundational connecto
 2. Schneider-Mizell CM, Gerhard S, Longair M, Kazimiers T, Li F, Zwart MF, et al. (2016). Quantitative neuroanatomy for connectomics in Drosophila. eLife, 5, e12059. https://doi.org/10.7554/eLife.12059
 
 3. Valdes-Aleman J, Fetter RD, Sales EC, Heckman EL, Venkatasubramanian L, Doe CQ, et al. (2021). Comparative Connectomics Reveals How Partner Identity, Location, and Activity Specify Synaptic Connectivity in the Drosophila Motor System. Neuron, 109(1), 105-120.e7. https://doi.org/10.1016/j.neuron.2020.10.004
+
+4. Saalfeld S, Fetter R, Cardona A, Tomancak P (2012). Elastic volume reconstruction from series of ultra-thin microscopy sections. Nature Methods, 9(7), 717-720. https://doi.org/10.1038/nmeth.2072
 
 ## Dataset Contents
 
@@ -87,6 +97,49 @@ This CATMAID instance enables:
 - Skeleton visualization options
 - API access for programmatic data retrieval (documentation: https://catmaid.readthedocs.io/en/stable/api.html): https://abd1.5.catmaid.virtualflybrain.org/apis/
 
+### Recommended: VFB pass-through API
+
+For most uses, the fastest and simplest way to pull data out of this instance is VFB's
+CATMAID pass-through, `v3-cached.virtualflybrain.org` — it takes VFB ids as well as native
+skeleton ids (skids), needs no token or CSRF cookie, and is documented interactively at
+[v3-cached.virtualflybrain.org](https://v3-cached.virtualflybrain.org/):
+
+```bash
+curl "https://v3-cached.virtualflybrain.org/catmaid/abd1.5/annotations_for_skeletons?ids=16"
+```
+
+See the [CATMAID API](/docs/apis/catmaid/) page for the full command list, VFB-id/skid
+resolution, and response format. The direct, native CATMAID API below remains available for
+anything the pass-through's command list doesn't cover.
+
+### Public API token
+
+Read-only access to this instance is open to everyone, but most of CATMAID's query
+endpoints are POST rather than GET, and POST requests are subject to a CSRF check.
+Command-line and server-side clients (pymaid, curl, scripts) can satisfy that check by
+requesting a page first and replaying the cookie they are given. Code running in a
+browser cannot: it can neither read a cookie belonging to another site nor set a
+`Referer` header. Browser-based tools should therefore authenticate as the anonymous
+user, using this token:
+
+```
+ce6984c9d4d00a40d3173a9aad3924afe6612c43
+```
+
+**This token is published deliberately and is not a secret.** It authenticates as
+`AnonymousUser`, whose only permission on this project is `can_browse`, so it grants
+exactly the read access this page already offers to everyone and nothing further.
+Write requests made with it are refused by the server.
+
+Send it in either the `X-Authorization` or the `Authorization` header:
+
+```bash
+curl -X POST https://abd1.5.catmaid.virtualflybrain.org/1/skeleton/neuronnames \
+  -H "X-Authorization: Token ce6984c9d4d00a40d3173a9aad3924afe6612c43" \
+  --data "skids[0]=16"
+```
+
+
 ## Citation Guidelines
 
 When using this data, please cite the relevant research:
@@ -100,7 +153,10 @@ When using this data, please cite the relevant research:
 3. For quantitative neuroanatomy methodology:
    Schneider-Mizell CM, et al. (2016). Quantitative neuroanatomy for connectomics in Drosophila. eLife, 5, e12059. https://doi.org/10.7554/eLife.12059
 
-4. The CATMAID platform:
+4. For the volume reconstruction and alignment method:
+   Saalfeld S, Fetter R, Cardona A, Tomancak P (2012). Elastic volume reconstruction from series of ultra-thin microscopy sections. Nature Methods, 9(7), 717-720. https://doi.org/10.1038/nmeth.2072
+
+5. The CATMAID platform:
    Saalfeld S, Cardona A, Hartenstein V, Tomančák P (2009) CATMAID: collaborative annotation toolkit for massive amounts of image data. Bioinformatics 25(15): 1984-1986. https://doi.org/10.1093/bioinformatics/btp266
 
 ## Maintenance & Support

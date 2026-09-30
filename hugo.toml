@@ -1,0 +1,174 @@
+# =============================================================================
+# hugo.toml — the site config.
+#
+#   hugo server        # local preview
+#   hugo               # build to public/
+#
+# Replaces the former config.toml + Docsy setup. Docsy, its submodule, the
+# project-level layout and asset overrides that existed only to patch it, and
+# the npm/postcss step are all gone; vfb-nova needs none of them.
+# =============================================================================
+
+baseURL = "https://www.virtualflybrain.org/"
+title = "Virtual Fly Brain"
+languageCode = "en-gb"    # `locale` replaces this at Hugo v0.158.0; the build
+                          # is pinned to 0.122.0, which does not know that key.
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+theme = "vfb-nova"
+# Taxonomy pages are the single largest build cost on this site: the generated
+# term pages carry tags such as Adult and Nervous_system, so a term page like
+# /tags/adult/ paginates into thousands of files that nobody browses. Comment
+# this line out to enable them — _default/taxonomy.html and _default/term.html
+# are shipped and paginated, so it is safe either way.
+disableKinds = ["taxonomy", "term"]
+
+enableGitInfo = false
+timeZone = "Europe/London"
+
+# Hugo >= 0.163 blocks text/html content files by default
+# (security.allowContent = ['! ^text/html$']). The home page is
+# content/en/_index.html, so the policy has to allow HTML back in.
+[security]
+  allowContent = ['^text/html$', '^text/markdown$', '^text/x-org$', '^text/asciidoc$']
+
+# The only mount still needed: content lives under content/en rather than
+# content/. Everything else resolves through the theme.
+[module]
+  [[module.mounts]]
+    source = "content/en"
+    target = "content"
+
+# Unchanged from the previous config — no URLs move.
+[permalinks]
+  blog = "/:section/:year/:month/:day/:slug/"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON", "OpenSearch"]
+  section = ["HTML", "RSS"]
+
+# OpenSearch description, served at /opensearch.xml. Chrome, Edge and Firefox
+# discover it from the <link rel="search"> in the page head and register the
+# site as a search engine, so a user can type the domain, press Tab, and query
+# VFB from the address bar. This is the mechanism that still works: Google
+# retired the sitelinks search box on 21 November 2024, so the WebSite/
+# SearchAction JSON-LD no longer renders a search box in Google results.
+[mediaTypes."application/opensearchdescription+xml"]
+  suffixes = ["xml"]
+
+[outputFormats.OpenSearch]
+  mediaType   = "application/opensearchdescription+xml"
+  baseName    = "opensearch"
+  isPlainText = false
+  rel         = "search"
+
+# The section RSS feeds would otherwise include every page in the section —
+# for an ontology section that is the whole generated term corpus in one XML
+# file. 20 is what a feed reader can use.
+[services.rss]
+  limit = 20
+
+# `paginate`, not `[pagination] pagerSize`: the pagination block arrived in Hugo
+# v0.128.0 and the build is pinned to v0.122.0 (see Dockerfile — per-page
+# filesystem cost rose at v0.123.0 and the term corpus is on NFS). With the
+# block, 0.122 silently ignored it and every list page fell back to the default
+# of 10; the build summary read "Paginator pages | 0".
+paginate = 100
+
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.goldmark.parser]
+    [markup.goldmark.parser.attribute]
+      block = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+  [markup.highlight]
+    style = "github-dark"
+    noClasses = true
+    lineNos = false
+    tabWidth = 2
+
+[imaging]
+  resampleFilter = "CatmullRom"
+  quality = 82
+  anchor = "smart"
+
+[services.googleAnalytics]
+  id = "G-K7DDZVVXM7"
+
+[privacy.googleAnalytics]
+  respectDoNotTrack = true
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[params]
+  description = "VFB is an interactive tool for neurobiologists to explore the detailed neuroanatomy, neuron connectivity and gene expression of Drosophila melanogaster."
+  tagline = "Drosophila neuroanatomy, imaging data and connectomics"
+  copyright = "VirtualFlyBrain.org"
+  app_url = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00101567&i=VFB_00101567"
+  github_repo = "https://github.com/VirtualFlyBrain/VFB2"
+  github_branch = "master"
+
+[params.links]
+  [[params.links.user]]
+    name = "Support"
+    url = "mailto:support@virtualflybrain.org"
+    icon = "fa fa-envelope"
+    desc = "Email the user support forum"
+  [[params.links.user]]
+    name = "FAQ"
+    url = "https://groups.google.com/g/vfb-suport"
+    icon = "fas fa-question-circle"
+    desc = "See if your question has already been answered in the support forum"
+  [[params.links.user]]
+    name = "Bluesky"
+    url = "https://virtualflybrain.bsky.social"
+    icon = "fab fa-bluesky"
+    desc = "Follow us on Bluesky for the latest news"
+  [[params.links.user]]
+    name = "Facebook"
+    url = "https://www.facebook.com/profile.php?id=100063716312824"
+    icon = "fab fa-facebook"
+    desc = "Like us on Facebook for the latest news"
+  [[params.links.user]]
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/company/102861264/"
+    icon = "fab fa-linkedin"
+    desc = "Follow us on LinkedIn for the latest news"
+  [[params.links.developer]]
+    name = "GitHub"
+    url = "https://github.com/VirtualFlyBrain"
+    icon = "fab fa-github"
+    desc = "Development takes place here"
+
+[[menu.nova]]
+  name = "Documentation"
+  url = "/docs/"
+  weight = 10
+[[menu.nova]]
+  name = "Data"
+  url = "/docs/data/"
+  weight = 20
+[[menu.nova]]
+  name = "Hosted services"
+  url = "/hosted/"
+  weight = 30
+[[menu.nova]]
+  name = "News"
+  url = "/blog/news/"
+  weight = 40
+[[menu.nova]]
+  name = "About"
+  url = "/about/"
+  weight = 50
+[[menu.nova]]
+  name = "Launch VFB"
+  url = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00101567&i=VFB_00101567"
+  weight = 90
+  [menu.nova.params]
+    cta = true

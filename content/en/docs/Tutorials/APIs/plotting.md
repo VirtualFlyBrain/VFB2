@@ -1,6 +1,6 @@
 ---
 title: "Plotting Neurons with Navis"
-weight: 120
+weight: 424
 series: ["API"]
 alias: ["/docs/tutorials/2_plotting/"]
 images: ["/images/2_plotting_files/2_plotting_2_0.png","/images/2_plotting_files/2_plotting_4_0.png","/images/2_plotting_files/2_plotting_8_0.png","/images/2_plotting_files/2_plotting_9_0.png","/images/2_plotting_files/2_plotting_23_1.png"]
@@ -9,6 +9,7 @@ description: >
   How to plot neurons in 2D and 3D using navis.
 ---
 
+{{< workshop url="/sessions/session-3-visualisation/" title="Session 3 · Visualisation" >}}
 
 # Plotting
 `navis` lets you plot neurons in 2D using `matplotlib` (nice for figures), and in 3D using either `plotly` when in a notebook environment like Deepnote or using a `vispy`-based 3D viewer when using a Python terminal.

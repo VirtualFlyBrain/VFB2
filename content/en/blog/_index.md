@@ -1,12 +1,12 @@
 ---
 title: "VFB Latest"
-linkTitle: "Latest (Release: v4 2026.06.22)"
+linkTitle: "Latest (Release: v26.09.27)"
 menu:
   main:
     weight: 30
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

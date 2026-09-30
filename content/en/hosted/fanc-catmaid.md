@@ -21,7 +21,7 @@ This resource provides access to both the original FANC dataset and template-ali
 
 The data is from the research published in:
 
-Fushiki A, et al. (2021) A circuit mechanism for the propagation of waves of muscle contraction in Drosophila. Cell, 184(3), 759-774.e20. https://doi.org/10.1016/j.cell.2020.12.013
+Phelps JS, Hildebrand DGC, Graham BJ, et al. (2021) Reconstruction of motor control circuits in adult Drosophila using automated transmission electron microscopy. Cell, 184(3), 759-774.e18. https://doi.org/10.1016/j.cell.2020.12.013
 
 see: https://www.lee.hms.harvard.edu/resources
 
@@ -50,6 +50,49 @@ This CATMAID instance enables:
 - Skeleton visualization options
 - API access for programmatic data retrieval (documentation: https://catmaid.readthedocs.io/en/stable/api.html): https://fanc.catmaid.virtualflybrain.org/apis/
 
+### Recommended: VFB pass-through API
+
+For most uses, the fastest and simplest way to pull data out of this instance is VFB's
+CATMAID pass-through, `v3-cached.virtualflybrain.org` — it takes VFB ids as well as native
+skeleton ids (skids), needs no token or CSRF cookie, and is documented interactively at
+[v3-cached.virtualflybrain.org](https://v3-cached.virtualflybrain.org/):
+
+```bash
+curl "https://v3-cached.virtualflybrain.org/catmaid/fanc/annotations_for_skeletons?ids=16"
+```
+
+See the [CATMAID API](/docs/apis/catmaid/) page for the full command list, VFB-id/skid
+resolution, and response format. The direct, native CATMAID API below remains available for
+anything the pass-through's command list doesn't cover.
+
+### Public API token
+
+Read-only access to this instance is open to everyone, but most of CATMAID's query
+endpoints are POST rather than GET, and POST requests are subject to a CSRF check.
+Command-line and server-side clients (pymaid, curl, scripts) can satisfy that check by
+requesting a page first and replaying the cookie they are given. Code running in a
+browser cannot: it can neither read a cookie belonging to another site nor set a
+`Referer` header. Browser-based tools should therefore authenticate as the anonymous
+user, using this token:
+
+```
+7ebf1358497a96845d6aa7b4d0fbd01538fb69c2
+```
+
+**This token is published deliberately and is not a secret.** It authenticates as
+`AnonymousUser`, whose only permission on this project is `can_browse`, so it grants
+exactly the read access this page already offers to everyone and nothing further.
+Write requests made with it are refused by the server.
+
+Send it in either the `X-Authorization` or the `Authorization` header:
+
+```bash
+curl -X POST https://fanc.catmaid.virtualflybrain.org/1/skeleton/neuronnames \
+  -H "X-Authorization: Token 7ebf1358497a96845d6aa7b4d0fbd01538fb69c2" \
+  --data "skids[0]=16"
+```
+
+
 Note: Both views (original and aligned) can be accessed through the same API using different project IDs (pid).
 
 ## Citation Guidelines
@@ -57,7 +100,7 @@ Note: Both views (original and aligned) can be accessed through the same API usi
 When using this data, please cite:
 
 1. The FANC dataset:
-   Fushiki A, et al. (2021) A circuit mechanism for the propagation of waves of muscle contraction in Drosophila. Cell, 184(3), 759-774.e20. https://doi.org/10.1016/j.cell.2020.12.013
+   Phelps JS, Hildebrand DGC, Graham BJ, et al. (2021) Reconstruction of motor control circuits in adult Drosophila using automated transmission electron microscopy. Cell, 184(3), 759-774.e18. https://doi.org/10.1016/j.cell.2020.12.013
 
 2. The CATMAID platform:
    Saalfeld S, Cardona A, Hartenstein V, Tomančák P (2009) CATMAID: collaborative annotation toolkit for massive amounts of image data. Bioinformatics 25(15): 1984-1986. https://doi.org/10.1093/bioinformatics/btp266

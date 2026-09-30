@@ -201,6 +201,99 @@ def get_report_url(identifier):
     """Create the VFB report URL path for a term identifier."""
     return f'/reports/{identifier}'
 
+# ─── Sitemap Generation ─────────────────────────────────────────────────────
+#
+# Two URLs exist per term -- the static description page this script writes
+# (/term/<slug>/, Hugo's own canonical for that page) and the interactive
+# viewer (/reports/<id>, which 302s to the Geppetto viewer and is what the
+# viewer itself declares as canonical -- see geppetto-vfb's pageMetadata.js).
+# Both are real, separately useful pages, so both belong in the sitemap.
+#
+# Term pages carry `sitemap_exclude: true` (see generate_page below) because
+# Hugo's own sitemap.xml has no pagination: it would emit one file with the
+# whole multi-hundred-thousand-term corpus in it. This writes the sharded
+# sitemap1.xml.. Google expects instead, plus the sitemap-terms.xml index
+# that robots.txt already advertises.
+SITEMAP_SITE_BASE = "https://www.virtualflybrain.org"
+SITEMAP_REPORT_BASE = "https://virtualflybrain.org"
+# Google caps a sitemap file at 50,000 URLs; each term contributes two.
+SITEMAP_MAX_TERMS_PER_SHARD = 25000
+
+_sitemap_entries = {}
+_sitemap_lock = threading.Lock()
+
+_CANONICAL_SLUG_RE = re.compile(r'canonicalUrl:\s*"https://www\.virtualflybrain\.org/term/([^/]+)/"')
+
+
+def record_sitemap_entry(term_id, url_slug):
+    """Remember one term's slug for the end-of-run sitemap write. Thread-safe."""
+    if not term_id or not url_slug:
+        return
+    with _sitemap_lock:
+        _sitemap_entries[term_id] = url_slug
+
+
+def slug_from_existing_page(filename):
+    """Recover a term's URL slug from a page already on disk (the "skip" path
+    in process_term, which never re-fetches term_data, so never recomputes the
+    slug the normal way)."""
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            for _ in range(20):
+                line = f.readline()
+                if not line:
+                    break
+                match = _CANONICAL_SLUG_RE.search(line)
+                if match:
+                    return match.group(1)
+    except OSError:
+        pass
+    return None
+
+
+def write_sitemaps(output_dir):
+    """Write sitemap1.xml.. (both the /term/ page and the /reports/ viewer
+    URL per term) and the sitemap-terms.xml index over them.
+
+    Call once, after every group has been processed, so the corpus is
+    complete -- process_group() covers the full current ID list from Neo4j
+    on every run, "skip" included, so by then _sitemap_entries holds every
+    term regardless of whether this run touched its page.
+    """
+    if not output_dir:
+        return
+    with _sitemap_lock:
+        entries = sorted(_sitemap_entries.items())
+    if not entries:
+        print("WARNING: no sitemap entries collected -- not writing sitemaps")
+        return
+
+    os.makedirs(output_dir, exist_ok=True)
+    shard_names = []
+    for shard_start in range(0, len(entries), SITEMAP_MAX_TERMS_PER_SHARD):
+        shard = entries[shard_start:shard_start + SITEMAP_MAX_TERMS_PER_SHARD]
+        shard_index = len(shard_names) + 1
+        shard_name = f"sitemap{shard_index}.xml"
+        lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+        for term_id, url_slug in shard:
+            lines.append(f'  <url><loc>{SITEMAP_SITE_BASE}/term/{url_slug}/</loc></url>')
+            lines.append(f'  <url><loc>{SITEMAP_REPORT_BASE}/reports/{term_id}</loc></url>')
+        lines.append('</urlset>')
+        with open(join(output_dir, shard_name), "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+        shard_names.append(shard_name)
+
+    index_lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+                   '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for shard_name in shard_names:
+        index_lines.append(f'  <sitemap><loc>{SITEMAP_SITE_BASE}/{shard_name}</loc></sitemap>')
+    index_lines.append('</sitemapindex>')
+    with open(join(output_dir, "sitemap-terms.xml"), "w", encoding="utf-8") as f:
+        f.write("\n".join(index_lines) + "\n")
+
+    print(f"Wrote {len(shard_names)} sitemap shard(s) covering {len(entries)} terms to {output_dir}")
+
 def get_query_results_url(term_id, query_name):
     """Create a VFB viewer URL for a term query result set."""
     if not query_name:
@@ -311,12 +404,53 @@ def format_types_section(types_text):
 
 # ─── Formatting Helpers ──────────────────────────────────────────────────────
 
+# Cache of template_id -> the template's own display name (its top-level
+# "Name", e.g. "JRC2018U"). An Images/Examples entry's own "id"/"label"
+# describe the depicted individual or class instance, not the template it is
+# aligned to — so "aligned to <template>" text needs this separate lookup.
+# The handful of templates VFB uses are shared across every page, so a
+# process-wide cache keeps this to one extra request per template, not per page.
+_template_label_lock = threading.Lock()
+_template_label_cache = {}
+
+def get_template_label(template_id):
+    """Resolve a template's own display name for 'aligned to <template>' text.
+
+    Falls back to the raw template_id if the lookup fails.
+    """
+    with _template_label_lock:
+        cached = _template_label_cache.get(template_id)
+    if cached is not None:
+        return cached
+    label = template_id
+    template_data = fetch_term_info(template_id)
+    if template_data:
+        label = template_data.get("Name", template_id)
+    with _template_label_lock:
+        _template_label_cache[template_id] = label
+    return label
+
 def get_thumbnails(term_data):
     """Extract thumbnail URLs from Images (individuals) or Examples (classes).
 
-    Returns list of dicts: {url, label, template_id}
+    Returns list of dicts: {url, alt, template_id, image_id}.
+
+    `alt` is a fully descriptive caption: "<tags> <name> (<id>) aligned to
+    <template>". `image_id` is the specific depicted term — the page's own Id
+    for an individual, a distinct instance Id for a class's Examples — and
+    together with `template_id` builds the 3D-browser deep link in
+    build_hero_card (?id=<page id>&i=<template_id>,<image_id>), so the
+    thumbnail actually opens showing that image on that template.
     """
     thumbnails = []
+    term_id = term_data.get("Id", "")
+    term_name = term_data.get("Name", "")
+    tags_text = " ".join(t.replace("_", " ") for t in term_data.get("Tags", []))
+
+    def make_alt(label, image_id, template_id):
+        template_label = get_template_label(template_id)
+        caption = f'{label} ({image_id}) aligned to {template_label}'
+        return f'{tags_text} {caption}' if tags_text else caption
 
     # Individual terms have Images
     images = term_data.get("Images", {})
@@ -324,10 +458,13 @@ def get_thumbnails(term_data):
         for template_id, image_list in images.items():
             for img in image_list:
                 if img.get("thumbnail"):
+                    image_id = img.get("id", term_id)
+                    label = img.get("label", term_name)
                     thumbnails.append({
                         "url": img["thumbnail"],
-                        "label": img.get("label", term_data.get("Name", "")),
+                        "alt": make_alt(label, image_id, template_id),
                         "template_id": template_id,
+                        "image_id": image_id,
                     })
 
     # Class terms have Examples
@@ -336,10 +473,13 @@ def get_thumbnails(term_data):
         for template_id, example_list in examples.items():
             for ex in example_list:
                 if ex.get("thumbnail"):
+                    image_id = ex.get("id", term_id)
+                    label = ex.get("label", term_name)
                     thumbnails.append({
                         "url": ex["thumbnail"],
-                        "label": ex.get("label", term_data.get("Name", "")),
+                        "alt": make_alt(label, image_id, template_id),
                         "template_id": template_id,
+                        "image_id": image_id,
                     })
 
     return thumbnails[:4]  # Limit to 4
@@ -441,13 +581,13 @@ def format_downloads(images):
 
     lines = []
     for template_id, image_list in images.items():
+        template_label = get_template_label(template_id)
         for img in image_list:
-            template_label = template_id
             has_downloads = any(img.get(k) for k in ("nrrd", "obj", "swc", "wlz"))
             if not has_downloads:
                 continue
 
-            lines.append(f'Image files aligned to {img.get("label", template_label)}:')
+            lines.append(f'Image files aligned to {template_label}:')
             lines.append("")
             if img.get("obj"):
                 lines.append(f'- [Pointcloud (OBJ)]({img["obj"]})')
@@ -558,9 +698,10 @@ def build_hero_card(name, term_id, tags_badges, description_html, comment_html, 
     ]
 
     for thumb in thumbnails:
+        viewer_url = f'{VFB_BROWSER_BASE}?id={term_id}&i={thumb["template_id"]},{thumb["image_id"]}'
         lines.append(
-            f'    <a href="{VFB_BROWSER_BASE}?id={term_id}">'
-            f'<img src="{thumb["url"]}" alt="{name}" class="img-fluid rounded" '
+            f'    <a href="{viewer_url}">'
+            f'<img src="{thumb["url"]}" alt="{thumb["alt"]}" class="img-fluid rounded" '
             f'style="max-width:200px; background:#000; margin:4px;"/></a>'
         )
 
@@ -757,12 +898,51 @@ def fetch_ids(label, query):
     print(f"  Retrieved {len(ids)} IDs for {label}")
     return ids
 
+_VERSION_SUFFIX = re.compile(r"_v(\d+)\.md$")
+
+
+def prune_old_versions(label):
+    """Delete superseded term pages in the current directory.
+
+    process_term() used to remove only version-1 after writing a page. A term
+    absent from a single run's ID list therefore kept its older file forever:
+    the corpus still held _v6 pages long after version reached 9. Those orphans
+    are live pages -- they can collide on URL with the current version, they
+    are walked and parsed on every build, and pages old enough to predate the
+    move off Docsy call shortcodes the theme no longer ships, which aborts the
+    whole build.
+
+    One directory scan rather than a stat per term per version. The per-term
+    form costs version-1 extra syscalls for every term, which at ~763k terms is
+    millions of round trips; on the NFS volume this corpus lives on, metadata
+    operations run at a few hundred per second, so that is hours. This also
+    removes one stat per term relative to the old code.
+    """
+    removed = 0
+    try:
+        with os.scandir(".") as entries:
+            for entry in entries:
+                match = _VERSION_SUFFIX.search(entry.name)
+                if match and int(match.group(1)) < version:
+                    try:
+                        os.remove(entry.name)
+                        removed += 1
+                    except OSError:
+                        pass
+    except OSError as e:
+        print(f"WARNING: could not prune {label}: {e}")
+        return
+    if removed:
+        print(f"  pruned {removed} superseded pages from {label}")
+
+
 def process_group(base_path, relative_dir, label, query):
     """Change directory, fetch IDs, and generate pages for one ontology group."""
     target_dir = os.path.normpath(join(base_path, relative_dir))
     print(f"\n[{label}] {target_dir}")
     chdir(target_dir)
     save_terms(fetch_ids(label, query))
+    prune_old_versions(label)
 
 def process_term(term_id):
     """Fetch, render and write one term page. Returns a status string.
@@ -773,6 +953,9 @@ def process_term(term_id):
     """
     filename = term_id + "_v" + str(version) + ".md"
     if os.path.isfile(filename):
+        # Unchanged term: no re-fetch, so recover the slug already on disk
+        # rather than skip the sitemap entry entirely.
+        record_sitemap_entry(term_id, slug_from_existing_page(filename))
         return "skip"
 
     term_data = fetch_term_info(term_id)
@@ -780,19 +963,13 @@ def process_term(term_id):
         return "fail"
 
     page_content = generate_page(term_data)
+    record_sitemap_entry(term_id, get_term_url(term_data.get("Name", ""), term_id))
 
     tmp = f"{filename}.{os.getpid()}.{threading.get_ident()}.tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         f.write(page_content)
     os.replace(tmp, filename)
 
-    # Clean up previous version
-    old_filename = term_id + "_v" + str(version - 1) + ".md"
-    if os.path.isfile(old_filename):
-        try:
-            os.remove(old_filename)
-        except OSError:
-            pass
     return "ok"
 
 def save_terms(ids):
@@ -1065,6 +1242,13 @@ def test_medulla_page():
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         mypath = sys.argv[1]
+        # Optional: where to write sitemap1.xml.. and sitemap-terms.xml once
+        # the full corpus below has been processed. Point this at wherever
+        # is served as static files at the site root (e.g. the Hugo `public`
+        # directory the deploy already publishes from) -- robots.txt already
+        # advertises /sitemap-terms.xml, so dropping the files there is all
+        # that is needed for them to take effect.
+        sitemap_dir = sys.argv[2] if len(sys.argv) > 2 else None
         print("Updating all files in " + mypath)
         groups = [
             ('fbbt/', 'FBbt classes', "MATCH (n:Class) WHERE n.short_form starts with 'FBbt' WITH n.short_form as id ORDER BY id ASC RETURN collect(distinct id) as ids"),
@@ -1093,6 +1277,11 @@ if __name__ == "__main__":
 
         for relative_dir, label, query in groups:
             process_group(mypath, relative_dir, label, query)
+
+        if sitemap_dir:
+            write_sitemaps(sitemap_dir)
+        else:
+            print("No sitemap output dir given (3rd argument) -- skipping sitemap write.")
 
     else:
         print("Testing term page generation...")

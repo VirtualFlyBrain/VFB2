@@ -1,6 +1,6 @@
 ---
 title: "Mapping"
-weight: 120
+weight: 1010
 series: ["API"]
 alias: ["/docs/tutorials/connectome/3_Mapping/"]
 images: ["/images/2_Mapping_files/2_Mapping_15_1.png"]
@@ -9,7 +9,7 @@ description: >
   If you have a single neuron, how can you find other neurons of the same or similar type within or between data sources?
 ---
 
-
+{{< workshop url="/sessions/session-2-bridging-identity/" title="Session 2 · Bridging & Identity" tone="superseded" >}}
 
 ```python
 !pip install vfb-connect --upgrade

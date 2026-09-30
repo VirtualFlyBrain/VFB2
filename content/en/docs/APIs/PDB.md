@@ -1,11 +1,13 @@
 ---
 title: "Production Database (PDB) API"
 linkTitle: "PDB API"
-weight: 1
+weight: 602
 date: 2024-01-13
 description: >
   The VFB Production Database (PDB) is a Neo4j graph database containing integrated neuroanatomical data from multiple sources.
 ---
+
+{{< workshop >}}
 
 The VFB Production Database (PDB) is the main Neo4j graph database containing integrated neuroanatomical data from multiple sources, including ontology data, expression patterns, image annotations, and connectivity information. It serves as the primary data store for comprehensive queries across VFB's knowledge graph.
 
@@ -24,7 +26,7 @@ The PDB contains over 1.1 million nodes and 43 million relationships, representi
 The PDB uses hierarchical node labels to classify different types of entities:
 
 **Core Ontology Nodes:**
-- `Class`, `Individual` - OWL ontology elements
+- `Class`, `Individual` - OWL ontology elements (see [Classes and individuals](/docs/concepts/classes-and-individuals/) for what the distinction means in VFB)
 - `Property` - Relationships and attributes
 
 **Anatomical Classifications:**
@@ -231,7 +233,7 @@ Where:
 (anatomical_image)<-[:depicts]-(image_channel:Individual {short_form: 'VFBc_00020468', label: 'GMR_10A06_AE_01_08-fA01b_c'})
 
 // Registration to template channel
-(image_channel)-[:in_register_with {thumbnail: 'http://www.virtualflybrain.org/data/VFB/i/0002/0468/VFB_00017894/thumbnail.png', nrrd: 'http://www.virtualflybrain.org/data/VFB/i/0002/0468/VFB_00017894/volume.nrrd'}]->(template_channel:Template:Individual {short_form: 'VFBc_00017894', label: 'JFRC2_template_c'})
+(image_channel)-[:in_register_with {thumbnail: 'https://www.virtualflybrain.org/data/VFB/i/0002/0468/VFB_00017894/thumbnail.png', nrrd: 'https://www.virtualflybrain.org/data/VFB/i/0002/0468/VFB_00017894/volume.nrrd'}]->(template_channel:Template:Individual {short_form: 'VFBc_00017894', label: 'JFRC2_template_c'})
 
 // Template depicted by template channel
 (template_channel)-[:depicts]->(template:Individual {short_form: 'VFB_00017894', label: 'adult brain template JFRC2'})

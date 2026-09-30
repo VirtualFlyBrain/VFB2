@@ -1,5 +1,6 @@
 ---
 title: "Anatomy of the central complex"
+weight: 902
 tag: [central complex, EB, FB, PB, NO, AB, navigation]
 categories: [circuit diagram]
 description: >

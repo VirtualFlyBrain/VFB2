@@ -10,7 +10,7 @@ Description: >
 ontology: "ncbitaxon"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

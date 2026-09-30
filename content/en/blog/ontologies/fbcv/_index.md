@@ -10,7 +10,7 @@ Description: >
   A miscellaneous ontology of terms used for curation in FlyBase, including the DPO.
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

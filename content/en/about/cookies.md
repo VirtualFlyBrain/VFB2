@@ -6,7 +6,7 @@ weight: 21
 
 ## Cookies used by Virtual Fly Brain
 
-**Last updated: May 2026**
+**Last updated: September 2026**
 
 This page lists the cookies set by [www.virtualflybrain.org](https://www.virtualflybrain.org) and the related Virtual Fly Brain (VFB) services. It complements the [Privacy Notice](/about/privacy/).
 
@@ -21,6 +21,15 @@ These cookies are required for the website and applications to work and cannot b
 | Name | Set by | Purpose | Expires |
 |------|--------|---------|---------|
 | `JSESSIONID` | Geppetto (`v2.virtualflybrain.org` and variants) | Maintains your application session in the 3D web client — currently selected neurons, layer visibility and camera state. | End of browser session |
+
+### Functional cookies {#functional-cookies}
+
+These cookies are set by the 3D web client (`v2.virtualflybrain.org` and variants) only to remember a choice you make. They are not sent to any third party.
+
+| Name | Purpose | Expires |
+|------|---------|---------|
+| `VFBu_<id>` | Stores the link to an [NBLAST query on your own data](/docs/website-features/upload/), so you can find the result later. Set only if you tick the cookie box in the upload dialog; `<id>` is a random identifier for that upload. | 100 days |
+| `show_quick_help` | Remembers whether to show the Quick Help panel when the viewer opens. | 30 days |
 
 ### Performance cookies
 

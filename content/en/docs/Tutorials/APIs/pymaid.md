@@ -1,6 +1,6 @@
 ---
 title: "pymaid"
-weight: 130
+weight: 426
 series: ["API"]
 alias: ["/docs/tutorials/3_pymaid/"]
 images: ["/images/3_pymaid_files/3_pymaid_26_1.png"]
@@ -9,6 +9,7 @@ description: >
   pymaid (python-catmaid) lets you interface with a CATMAID server such as those provided by VFB.
 ---
 
+{{< workshop url="/sessions/session-4-connectomics/" title="Session 4 · Connectomics" >}}
 
 ## Overview
 

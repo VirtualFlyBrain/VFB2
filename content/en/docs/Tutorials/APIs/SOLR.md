@@ -1,10 +1,12 @@
 ---
 title: "Programmatic search using SOLR"
 linkTitle: "SOLR API"
-weight: 100
+weight: 420
 description: >-
      How to programatically search for a term.
 ---
+
+{{< workshop >}}
 
 ## SOLR python example
 

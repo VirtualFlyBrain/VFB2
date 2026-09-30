@@ -1,0 +1,190 @@
+/* ==========================================================================
+   ⌘K command palette — client-side search over the Hugo-built index
+   ========================================================================== */
+
+.palette[hidden] { display: none; }
+.palette {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  align-items: start;
+  justify-items: center;
+  padding: clamp(3rem, 12vh, 9rem) 1rem 2rem;
+  background: color-mix(in srgb, #01030a 62%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: fade .2s var(--ease);
+}
+@keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+
+.palette__box {
+  width: min(100%, 680px);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--elev-1);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  animation: pop .28s var(--ease-out);
+}
+@keyframes pop { from { opacity: 0; transform: translateY(-10px) scale(.985) } to { opacity: 1; transform: none } }
+
+.palette__field {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid var(--line);
+}
+.palette__field i { color: var(--muted); }
+.palette__field input {
+  flex: 1;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  outline: none;
+}
+.palette__field input::placeholder { color: var(--muted); }
+.palette__field input::-webkit-search-cancel-button,
+.palette__field input::-webkit-search-decoration { -webkit-appearance: none; display: none; }
+.palette__field kbd {
+  font-size: .7rem;
+  padding: .2rem .45rem;
+  border-radius: 5px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.palette__results {
+  list-style: none;
+  margin: 0;
+  padding: .5rem;
+  max-height: min(52vh, 460px);
+  overflow-y: auto;
+}
+.palette__results li a {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  gap: .75rem;
+  align-items: center;
+  padding: .6rem .75rem;
+  border-radius: var(--r-sm);
+  color: var(--text);
+  text-decoration: none;
+}
+.palette__results li a:hover,
+.palette__results li.is-sel a {
+  background: var(--surface-2);
+  text-decoration: none;
+}
+.palette__results .r-icon { color: var(--brand); font-size: .9rem; text-align: center; }
+.palette__results .r-title { font-weight: 550; font-size: .95rem; min-width: 0; overflow: hidden; }
+.palette__results .r-desc {
+  display: block;
+  font-weight: 400;
+  font-size: .8rem;
+  color: var(--muted);
+  margin-top: .12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.palette__results .r-sec {
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  padding: .15rem .5rem;
+}
+.palette__results mark {
+  background: rgba(255,228,6,.22);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 .1em;
+}
+.palette__empty { padding: 1.6rem 1.2rem; color: var(--muted); font-size: .92rem; text-align: center; }
+.palette__foot {
+  display: flex;
+  gap: 1rem;
+  padding: .6rem 1.15rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+.palette__foot span { display: flex; align-items: center; gap: .35rem; }
+.palette__foot kbd {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: .1rem .35rem;
+  font-size: .68rem;
+}
+
+/* Group heading separating anatomy terms from site pages in the palette.
+   aria-hidden and not selectable: move() skips it by matching li.res only. */
+.palette__group {
+  padding: var(--sp-3) var(--sp-5) var(--sp-2);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 1px solid var(--line-soft);
+  margin-top: var(--sp-2);
+}
+.palette__results li:first-child.palette__group { border-top: 0; margin-top: 0; }
+
+/* ==========================================================================
+   /search/ — the standalone search page.
+   Reuses the palette's result rows, but as page content rather than a dialog:
+   no scroll cap, no card chrome.
+   ========================================================================== */
+
+.searchpage__form {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: .75rem;
+  align-items: center;
+  padding: .5rem .9rem;
+  margin: 1.25rem 0 .5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--elev-1);
+}
+.searchpage__form:focus-within { border-color: var(--brand); }
+.searchpage__form i { color: var(--muted); }
+.searchpage__form input {
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 1.05rem;
+  padding: .55rem 0;
+  min-width: 0;
+}
+.searchpage__form input:focus { outline: none; }
+.searchpage__form input::-webkit-search-cancel-button { filter: grayscale(1); }
+
+.searchpage__status {
+  margin: .25rem 0 0;
+  color: var(--muted);
+  font-size: .9rem;
+  min-height: 1.2em;
+}
+
+.searchpage__results {
+  padding: .25rem 0;
+  max-height: none;        /* it is the page, not a dropdown */
+  overflow: visible;
+}
+.searchpage__results li a { padding: .7rem .6rem; }
+
+.searchpage__note {
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font-size: .92rem;
+}

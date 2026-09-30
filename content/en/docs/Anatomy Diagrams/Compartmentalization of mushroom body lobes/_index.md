@@ -1,5 +1,6 @@
 ---
 title: "Compartmentalization of the mushroom body lobes"
+weight: 908
 tag: [MBON, DAN, mushroom body, PAM cluster, PPL1 cluster, compartment]
 categories: [circuit diagram]
 description: >

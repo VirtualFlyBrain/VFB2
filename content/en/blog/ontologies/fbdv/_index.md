@@ -10,7 +10,7 @@ Description: >
 ontology: "fbdv"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

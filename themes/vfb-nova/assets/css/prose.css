@@ -1,0 +1,210 @@
+/* ==========================================================================
+   prose — everything Goldmark emits from the markdown in content/
+   ========================================================================== */
+
+.prose {
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: var(--text-dim);
+}
+.prose > :first-child { margin-top: 0; }
+
+.prose h2 {
+  font-size: var(--step-2);
+  margin: var(--sp-7) 0 var(--sp-4);
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--text);
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+}
+.prose h3 {
+  font-size: var(--step-1);
+  margin: var(--sp-6) 0 var(--sp-3);
+  color: var(--text);
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+}
+.prose h4, .prose h5 {
+  margin: var(--sp-5) 0 var(--sp-3);
+  color: var(--text);
+  font-size: 1.02rem;
+  letter-spacing: 0;
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+}
+
+/* heading anchors */
+.prose h2, .prose h3, .prose h4 { position: relative; }
+.prose :is(h2, h3, h4) > .anchor {
+  position: absolute;
+  left: -1.25em;
+  opacity: 0;
+  color: var(--muted);
+  font-size: .7em;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.prose :is(h2, h3, h4):hover > .anchor { opacity: 1; }
+@media (max-width: 760px) { .prose :is(h2, h3, h4) > .anchor { display: none; } }
+
+.prose ul, .prose ol { padding-left: 1.35rem; margin: 0 0 var(--sp-4); }
+.prose li { margin-bottom: .45rem; }
+.prose li::marker { color: var(--brand); }
+
+.prose blockquote {
+  margin: var(--sp-5) 0;
+  padding: var(--sp-4) var(--sp-5);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brand);
+  background: var(--surface);
+  color: var(--text-dim);
+}
+.prose blockquote > :last-child { margin-bottom: 0; }
+
+.prose :not(pre) > code {
+  padding: .14em .42em;
+  border-radius: 6px;
+  border: 1px solid var(--line-soft);
+  background: var(--surface-2);
+  color: var(--cyan);
+  font-size: .875em;
+  word-break: break-word;
+}
+[data-theme="light"] .prose :not(pre) > code { color: var(--brand-ink); }
+
+.prose pre, .highlight pre {
+  margin: var(--sp-5) 0;
+  padding: var(--sp-5);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: #0a0f1c;
+  overflow-x: auto;
+  font-size: .86rem;
+  line-height: 1.6;
+  tab-size: 2;
+}
+.highlight { position: relative; }
+.highlight > pre { margin: var(--sp-5) 0; }
+.copy-btn {
+  position: absolute;
+  top: calc(var(--sp-5) + .5rem);
+  right: .75rem;
+  padding: .3rem .6rem;
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: #b9c6de;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .2s, color .2s, border-color .2s;
+}
+.highlight:hover .copy-btn, .copy-btn:focus-visible { opacity: 1; }
+.copy-btn:hover { color: #fff; border-color: var(--brand); }
+
+.prose img {
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--elev-1);
+  display: block;
+  margin: var(--sp-5) auto;
+}
+
+/* Partner, funder and collaborator logos.
+
+   Most are supplied as transparent PNG/SVG drawn in dark ink for a white page.
+   The default plate above is var(--elev-1), which is #0d1322 in the dark theme
+   — the theme's default — so those logos vanish into it. .logo-plate gives them
+   a white plate in both themes: a logo's colours are set by its owner's brand
+   guidelines and do not follow the site theme, so the plate must not either.
+
+   .logo-plate--dark is the exception for artwork drawn in white ink, which a
+   white plate would erase. Both plate colours are literals rather than theme
+   tokens on purpose: var(--elev-1) is #fff in the light theme, which would
+   erase a white-ink logo there exactly as the dark theme erases a dark-ink one.
+   A logo that ships its own opaque background needs neither class. */
+.prose img.logo-plate {
+  background: #fff;
+  padding: var(--sp-3);
+}
+.prose img.logo-plate--dark {
+  background: #0d1322;
+}
+.prose figure { margin: var(--sp-6) 0; }
+.prose figcaption {
+  font-size: .84rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: .6rem;
+}
+
+/* image maps must keep their intrinsic pixel size or the AREA coords drift */
+.prose img[usemap] {
+  position: relative;
+  z-index: 5;
+  max-width: none;
+  border: 0;
+  background: none;
+}
+.prose div:has(> img[usemap]) { overflow-x: auto; position: relative; z-index: 5; }
+
+/* tables — both markdown tables and the raw <table> the term generator emits */
+.prose table, .table-responsive table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: var(--sp-5) 0;
+  font-size: .92rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.prose thead th, .table-responsive thead th {
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: .8rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: .7rem .9rem;
+  border-bottom: 1px solid var(--line);
+}
+.prose td, .prose th, .table-responsive td, .table-responsive th {
+  padding: .65rem .9rem;
+  border-bottom: 1px solid var(--line-soft);
+  vertical-align: top;
+}
+.prose tbody tr:last-child td { border-bottom: 0; }
+.prose tbody tr:hover td { background: var(--surface); }
+.table-responsive { overflow-x: auto; }
+
+.prose iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  margin: var(--sp-5) 0;
+}
+.video-embed { margin: var(--sp-5) 0; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line); }
+.video-embed iframe { border: 0; border-radius: 0; margin: 0; display: block; }
+
+/* callouts */
+.callout {
+  display: flex;
+  gap: var(--sp-4);
+  margin: var(--sp-5) 0;
+  padding: var(--sp-4) var(--sp-5);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brand);
+  background: var(--surface);
+}
+.callout--warning { border-left-color: var(--signal); }
+.callout--danger  { border-left-color: var(--rose); }
+.callout > i { margin-top: .25rem; color: var(--brand); }
+.callout--warning > i { color: var(--signal); }
+.callout--danger > i  { color: var(--rose); }
+.callout > div > :last-child { margin-bottom: 0; }

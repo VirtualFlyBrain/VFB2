@@ -10,7 +10,7 @@ Description: >
 ontology: "caro"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

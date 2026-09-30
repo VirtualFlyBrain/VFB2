@@ -1,0 +1,60 @@
+{{- /* ---------------------------------------------------------------------------
+     The 22 ontology index pages carry an inline
+        $("#result").load("https://www.ebi.ac.uk/ols/ontologies/<id> #ontology_info_box", cb)
+     in their markdown. Docsy loaded jQuery site-wide, so the call resolved;
+     this theme does not, so without a shim those pages throw a ReferenceError
+     on every load.
+
+     The call itself has been dead for some time regardless of the theme:
+     www.ebi.ac.uk/ols/* 301s to /ols4/*, OLS4 is a client-rendered app with no
+     #ontology_info_box, and EBI sends no Access-Control-Allow-Origin, so the
+     request is blocked cross-origin before any of that matters. The shim
+     therefore implements just enough of the jQuery surface those pages touch,
+     declines cross-origin fetches, and leaves #result empty — which
+     css/content-hooks.css already hides. Net effect: the page behaves exactly
+     as it does today, minus the console error.
+
+     Emitted only where front matter has `ontology:`, so it costs nothing on the
+     rest of the site. Delete this partial once the widget is removed from
+     content/en/blog/ontologies/<id>/_index.md.
+     --------------------------------------------------------------------------- */ -}}
+<script>
+(function () {
+  if (window.$ || window.jQuery) return;
+  function Wrap(nodes) { this.nodes = nodes; }
+  Wrap.prototype.each = function (fn) {
+    this.nodes.forEach(function (n, i) { fn.call(n, i, n); });
+    return this;
+  };
+  Wrap.prototype.attr = function (name, value) {
+    if (value === undefined) return this.nodes[0] ? this.nodes[0].getAttribute(name) : undefined;
+    this.nodes.forEach(function (n) { n.setAttribute(name, value); });
+    return this;
+  };
+  Wrap.prototype.load = function (spec, done) {
+    var parts = String(spec).trim().split(/\s+/);
+    var url = parts[0];
+    var frag = parts.slice(1).join(' ');
+    var target = this.nodes[0];
+    if (!target) return this;
+    var sameOrigin = false;
+    try { sameOrigin = new URL(url, location.href).origin === location.origin; } catch (e) {}
+    if (!sameOrigin) return this; /* blocked by CORS anyway; fail quietly */
+    fetch(url, { credentials: 'same-origin' })
+      .then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); })
+      .then(function (html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var node = frag ? doc.querySelector(frag) : doc.body;
+        target.innerHTML = node ? node.innerHTML : '';
+        if (typeof done === 'function') done.call(target);
+      })
+      .catch(function () { /* leave #result empty */ });
+    return this;
+  };
+  window.$ = window.jQuery = function (sel) {
+    if (sel instanceof Element || sel === document || sel === window) return new Wrap([sel]);
+    if (typeof sel !== 'string') return new Wrap([]);
+    return new Wrap(Array.prototype.slice.call(document.querySelectorAll(sel)));
+  };
+})();
+</script>

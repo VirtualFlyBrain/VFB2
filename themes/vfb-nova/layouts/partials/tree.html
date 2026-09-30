@@ -1,0 +1,22 @@
+{{- /* Recursive sidebar tree. Context: dict "sect" <section page> "cur" <page>.
+
+     A section holding more than 400 direct children is linked but never
+     expanded — that is the generated term space, and len() is checked before
+     the children are unioned so the large slice is never built. */ -}}
+{{- $sect := .sect -}}
+{{- $cur := .cur -}}
+{{- $direct := len $sect.RegularPages -}}
+{{- if gt $direct 400 -}}
+  <li><a href="{{ $sect.RelPermalink }}">{{ $sect.LinkTitle }} <span class="tree__count">{{ lang.FormatNumberCustom 0 $direct }}</span></a></li>
+{{- else -}}
+  {{- range (sort (union $sect.Sections $sect.RegularPages) "Weight") -}}
+    {{- if .IsSection -}}
+      <li class="tree__group">
+        <a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $cur.RelPermalink }} class="is-active"{{ end }}>{{ .LinkTitle }}</a>
+        <ul>{{ partial "tree.html" (dict "sect" . "cur" $cur) }}</ul>
+      </li>
+    {{- else -}}
+      <li><a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $cur.RelPermalink }} class="is-active"{{ end }}>{{ .LinkTitle }}</a></li>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

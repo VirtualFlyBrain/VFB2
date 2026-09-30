@@ -10,7 +10,7 @@ Description: >
 ontology: "wbphenotype"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

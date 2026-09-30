@@ -7,7 +7,7 @@ description: >
     Here is a list of all available datasets available on Virtual Fly Brain (VFB).
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

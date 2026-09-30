@@ -10,7 +10,7 @@ Description: >
 ontology: "uberon"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

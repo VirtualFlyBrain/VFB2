@@ -1,0 +1,58 @@
+{{ define "main" }}
+  {{/* The home page is content/en/_index.html verbatim — cover, lead and the
+       feature blocks — rendered through this theme's own block shortcodes. */}}
+  <div class="home-content">{{ .Content }}</div>
+
+  {{/* Everything below is derived from the same content tree: section index
+       pages supply their own titles and descriptions, nothing is hard-coded. */}}
+  {{ with .Site.GetPage "/docs" }}
+  <section class="section" id="docs-map">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <div>
+          <p class="eyebrow">Documentation</p>
+          <h2>{{ .LinkTitle }}</h2>
+          {{ with .Description }}<p>{{ . }}</p>{{ end }}
+        </div>
+        <a class="btn btn--ghost" href="{{ .RelPermalink }}">Browse all docs <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="grid">
+        {{ range .Sections.ByWeight }}
+          <a class="card reveal" href="{{ .RelPermalink }}">
+            <span class="card__icon"><i class="fas {{ partial "section-icon.html" . }}"></i></span>
+            <h3 class="card__title">{{ .LinkTitle }}</h3>
+            <p class="card__body">{{ .Description | default (.Summary | plainify) | truncate 128 }}</p>
+            {{ $n := len .RegularPagesRecursive }}{{ if $n }}<span class="card__meta">{{ $n }} page{{ if ne $n 1 }}s{{ end }}</span>{{ end }}
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with .Site.GetPage "/hosted" }}
+  {{ $pages := .RegularPages }}
+  {{ if $pages }}
+  <section class="section band">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <div>
+          <p class="eyebrow">Hosted for the community</p>
+          <h2>{{ .LinkTitle }}</h2>
+          {{ with .Description }}<p>{{ . }}</p>{{ end }}
+        </div>
+        <a class="btn btn--ghost" href="{{ .RelPermalink }}">All hosted services <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="grid grid--4">
+        {{ range $pages }}
+          <a class="card reveal" href="{{ .RelPermalink }}">
+            <h3 class="card__title" style="font-size:1.02rem">{{ .LinkTitle }}</h3>
+            <p class="card__body" style="font-size:.86rem">{{ .Description | default (.Summary | plainify) | truncate 92 }}</p>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  {{ end }}
+{{ end }}

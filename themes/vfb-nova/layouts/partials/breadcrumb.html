@@ -1,0 +1,10 @@
+<nav aria-label="Breadcrumb">
+  <ol class="breadcrumb">
+    <li><a href="{{ "/" | relURL }}">Home</a></li>
+    {{ template "crumb" . }}
+  </ol>
+</nav>
+{{ define "crumb" }}
+  {{ if and .Parent (not .IsHome) }}{{ template "crumb" .Parent }}{{ end }}
+  {{ if not .IsHome }}<li>{{ if .Permalink }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ else }}{{ .LinkTitle }}{{ end }}</li>{{ end }}
+{{ end }}

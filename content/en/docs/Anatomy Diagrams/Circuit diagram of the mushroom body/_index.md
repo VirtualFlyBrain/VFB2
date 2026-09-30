@@ -1,5 +1,6 @@
 ---
 title: "Circuit diagram of the mushroom body"
+weight: 906
 tag: [MBON,mushroom body]
 categories: [circuit diagram]
 description: >

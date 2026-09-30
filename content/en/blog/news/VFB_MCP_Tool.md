@@ -38,7 +38,9 @@ The tool provides seamless access to VFB's databases through a simple interface.
 
 ## Getting Started
 
-Visit the **[VFB MCP Tool](https://vfb3-mcp.virtualflybrain.org/)** to begin exploring. You can:
+Visit the **[VFB MCP Tool](https://vfb3-mcp.virtualflybrain.org/)** to begin exploring. The hosted
+service is currently **v1.11.0**; that page always states the deployed version and the current setup
+instructions for each client. You can:
 
 1. Access through Claude or other MCP-compatible LLMs
 2. Browse the integration documentation and examples

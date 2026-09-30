@@ -1,0 +1,112 @@
+{{- /* ---------------------------------------------------------------------------
+     blocks/cover — drop-in replacement for the Docsy shortcode of the same
+     name. Takes the same parameters (title, image_anchor, height, color) and
+     renders the inner content unchanged; only the staging is new. All copy on
+     screen still comes from content/en/_index.html.
+
+     Every figure below is reached through GetPage, never through a `where`
+     over .Site.RegularPages: with the generated term corpus in the tree a
+     single site-wide filter is a scan of the whole page set.
+     --------------------------------------------------------------------------- */ -}}
+{{ $title := .Get "title" | default .Site.Title }}
+{{ $title = replace $title "Virtual Fly Brain" "<em>Virtual Fly Brain</em>" }}
+
+{{ $latest := slice }}
+{{ with .Site.GetPage "/blog/news" }}{{ $latest = first 3 (sort .RegularPages "Date" "desc") }}{{ end }}
+{{ $docs := 0 }}{{ with .Site.GetPage "/docs" }}{{ $docs = len .RegularPagesRecursive }}{{ end }}
+{{ $hosted := 0 }}{{ with .Site.GetPage "/hosted" }}{{ $hosted = len .RegularPages }}{{ end }}
+{{ $onto := 0 }}
+{{ with .Site.GetPage "/blog/ontologies" }}{{ $onto = len .Sections }}{{ end }}
+
+{{/* Headline figures come from the content report, which is regenerated
+     against the production knowledge base after every data release. See
+     partials/content-stats.html. */}}
+{{ $c := partial "content-stats.html" . }}
+
+<section class="hero">
+  {{/* Baked by build_hero.py: flybody body silhouette + VFB JRC2018Unisex
+       brain and JRC2018UnisexVNC meshes, voxel-downsampled to int16 points.
+
+       Published under /hero/, not /hero-geometry under /data/: the production
+       load balancer routes /data/ to the IRI-routing service at a higher
+       priority than the static site, so anything served from /data/ is 302ed
+       into the Geppetto app and the fetch in connectome.js gets HTML. That
+       failure is silent — the canvas falls back to its procedural cloud — so it
+       only shows up as the wrong hero, never as an error. */}}
+  {{ $geo := resources.Get "hero/hero-geometry.json" | fingerprint }}
+  <canvas id="connectome" aria-hidden="true" data-geometry="{{ $geo.RelPermalink }}"></canvas>
+  <div class="wrap">
+    <div class="hero__grid">
+      <div class="hero__main">
+        <h1 class="hero__title">{{ $title | safeHTML }}</h1>
+
+        <div class="hero__inner">
+          {{ .Inner }}
+        </div>
+
+        <div class="stats">
+          {{/* Every figure here is a count of data in the knowledge base, taken from
+               the content report. The previous version counted pages in this site:
+               the largest tile read "indexed anatomy terms" but was the size of the
+               generated term corpus across all 22 integrated ontologies, most of
+               which is NCBITaxon and none of which is a count of anatomy.
+
+               A checkout without the report built into the tree gets the site-shape
+               tiles instead — fewer figures, but none of them wrong. */}}
+          {{ if $c }}
+            {{ with $c.images }}
+              <div class="stat">
+                <div class="stat__num">{{ lang.FormatNumberCustom 0 . }}</div>
+                <div class="stat__label">registered 3D images{{ with $c.datasets }} from {{ . }} datasets{{ end }}</div>
+              </div>
+            {{ end }}
+            {{ with $c.connected_neurons }}
+              <div class="stat">
+                <div class="stat__num">{{ lang.FormatNumberCustom 0 . }}</div>
+                <div class="stat__label">neurons with connectomics</div>
+              </div>
+            {{ end }}
+            {{ with $c.connections }}
+              <div class="stat">
+                <div class="stat__num">{{ if ge . 1000000 }}{{ lang.FormatNumberCustom 1 (div (float .) 1000000) }} M{{ else }}{{ lang.FormatNumberCustom 0 . }}{{ end }}</div>
+                <div class="stat__label">synaptic connections</div>
+              </div>
+            {{ end }}
+            {{ with $c.anatomy_terms }}
+              <div class="stat">
+                <div class="stat__num">{{ lang.FormatNumberCustom 0 . }}</div>
+                <div class="stat__label">anatomy ontology terms</div>
+              </div>
+            {{ end }}
+            {{ with $c.sc_clusters }}
+              <div class="stat">
+                <div class="stat__num">{{ lang.FormatNumberCustom 0 . }}</div>
+                <div class="stat__label">single-cell clusters{{ with $c.sc_datasets }} from {{ . }} datasets{{ end }}</div>
+              </div>
+            {{ end }}
+          {{ else }}
+            {{ with $onto }}<div class="stat"><div class="stat__num">{{ . }}</div><div class="stat__label">ontologies integrated</div></div>{{ end }}
+            {{ with $hosted }}<div class="stat"><div class="stat__num">{{ . }}</div><div class="stat__label">community services hosted</div></div>{{ end }}
+            {{ with $docs }}<div class="stat"><div class="stat__num">{{ . }}</div><div class="stat__label">documentation &amp; tutorial pages</div></div>{{ end }}
+          {{ end }}
+        </div>
+      </div>
+
+      {{ with $latest }}
+      <aside class="hero__aside reveal">
+        <h3>Latest from VFB</h3>
+        {{ range . }}
+          <a class="hero__news" href="{{ .RelPermalink }}">
+            <span class="hero__news-date">{{ with .Date }}{{ .Format "02 Jan 2006" }}{{ end }}</span>
+            <span class="hero__news-title">{{ .LinkTitle }}</span>
+            <span class="hero__news-desc">{{ .Description | default (.Summary | plainify) | truncate 96 }}</span>
+          </a>
+        {{ end }}
+        <a class="btn btn--ghost btn--sm" href="{{ "/blog/news/" | relURL }}">All news <i class="fas fa-arrow-right"></i></a>
+      </aside>
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true"><span></span></div>
+</section>

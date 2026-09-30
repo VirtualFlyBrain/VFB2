@@ -9,7 +9,7 @@ Description: >
   The external ontologies and controlled vocabulary terms used to create VFB. 
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

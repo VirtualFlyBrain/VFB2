@@ -2,11 +2,13 @@
 ---
 title: "VFB APIs"
 linkTitle: "VFB APIs"
-weight: 15
+weight: 600
 date: 2017-01-05
 description: >
   All available VFB APIs and underlying schemas.
 ---
+
+{{< workshop url="/sessions/" title="the seven learning sessions" >}}
 
 VFB provides access to its data through several APIs and databases. The core data infrastructure consists of Neo4j graph databases that store integrated neuroanatomical data, complemented by OWL reasoning services for advanced ontological queries and SOLR search for fast text-based queries.
 
@@ -15,8 +17,21 @@ VFB provides access to its data through several APIs and databases. The core dat
 **For Regular Users (GUI Access):**
 - **VFB Web Interface**: [https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto) - User-friendly web interface for browsing and querying VFB data
 
+**For AI Assistants and LLM Agents:**
+- **VFB MCP Server**: [https://vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org) - Model Context Protocol server that lets Claude, GitHub Copilot, and other MCP-compatible assistants explore VFB data through natural language. See the [MCP Server documentation](/docs/apis/mcp/) to connect a client.
+
 **For Programmatic Access:**
-- **VFBconnect Library**: [https://vfb-connect.readthedocs.io/](https://vfb-connect.readthedocs.io/) - Python library that provides high-level access to VFB data and queries. See also: [VFB API Tutorial](/docs/tutorials/apis/VFB_API_overview.md)
+- **VFBquery API** (recommended): [https://v3-cached.virtualflybrain.org/](https://v3-cached.virtualflybrain.org/) - the fastest and simplest way to pull data out of VFB directly over HTTP: term information, search, connectivity, cross-references, FlyBase stocks and combinations, and a [CATMAID pass-through](/docs/apis/catmaid/) that takes VFB ids as well as native skeleton ids (skids). No token, API key or account needed, and documented interactively at the link above. See the [VFBquery API reference](/docs/apis/vfbquery/).
+- **VFBconnect Library**: [https://vfb-connect.readthedocs.io/](https://vfb-connect.readthedocs.io/) - Python library that provides high-level access to VFB data and queries. See also: [VFB API Tutorial](/docs/tutorials/apis/vfb_api_overview/)
+
+**For LLMs and AI assistants:**
+- **VFB MCP server**: `https://vfb3-mcp.virtualflybrain.org` - a Model Context Protocol server that gives Claude, GitHub Copilot and other MCP clients direct, tool-based access to VFB terms, images, connectivity and expression data. No installation, API key or account is needed:
+
+  ```bash
+  claude mcp add --transport http virtual-fly-brain https://vfb3-mcp.virtualflybrain.org
+  ```
+
+  Source code and client configuration for other assistants: [VirtualFlyBrain/VFB3-MCP](https://github.com/VirtualFlyBrain/VFB3-MCP). Worked examples: [VFB MCP tool guide](/docs/tutorials/vfb-mcp-guide/).
 
 **For Advanced Data Access:**
 - **Direct APIs** (documented below): Low-level access to underlying databases and reasoning services

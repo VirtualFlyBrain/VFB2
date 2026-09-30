@@ -1,6 +1,6 @@
 ---
 title: "Connectomics"
-weight: 140
+weight: 1014
 series: ["API"]
 alias: ["/docs/tutorials/connectome/4_Connectomics/"]
 images: ["/images/4_Connectomics_files/4_Connectomics_19_1.png","/images/4_Connectomics_files/4_Connectomics_46_1.png","/images/4_Connectomics_files/4_Connectomics_58_0.png"]
@@ -9,8 +9,7 @@ description: >
   How to explore published connectomic data.
 ---
 
-
-
+{{< workshop url="/sessions/session-4-connectomics/" title="Session 4 · Connectomics" tone="superseded" >}}
 
 ```python
 !pip install --upgrade vfb_connect

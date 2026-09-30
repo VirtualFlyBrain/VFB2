@@ -1,6 +1,6 @@
 ---
 title: "NBLAST"
-weight: 150
+weight: 1016
 series: ["API"]
 alias: ["/docs/tutorials/connectome/5_nblast/"]
 images: ["/images/5_Nblast_files/5_Nblast_22_0.png"]
@@ -9,6 +9,7 @@ description: >
   NBLAST is a method to quantify morphological similarity. Here we show you how to use it to programatically classify neurons by morphology.
 ---
 
+{{< workshop url="/sessions/session-5-similarity-nblast/" title="Session 5 · Similarity / NBLAST" tone="superseded" >}}
 
 # NBLAST
 NBLAST (Costa et al., 2016) is a method to quantify morphological similarity. It works on "dotprops" which represent neurons as tangent vectors. For each tangent vector in the query neuron, NBLAST finds the closest tangent vector in the target neuron and calculates a score from the distance between and the dotproduct of the two vectors. The final NBLAST score is the sum over all query-target vector pairs. Typically, this score is normalized to a self-self comparison (i.e. a perfect match would be 1).

@@ -10,7 +10,7 @@ Description: >
   A structured controlled vocabulary of sample preparation, visualization and imaging methods used in biomedical research.
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

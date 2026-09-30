@@ -1,0 +1,12 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" | safeHTML }}
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  {{- /* ShortName is capped at 16 characters by the OpenSearch spec. */}}
+  <ShortName>VirtualFlyBrain</ShortName>
+  <LongName>{{ .Site.Title }}</LongName>
+  <Description>Search Drosophila neurons, brain regions, expression patterns and documentation on Virtual Fly Brain.</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="16" height="16" type="image/x-icon">{{ "favicons/favicon.ico" | absURL }}</Image>
+  <Url type="text/html" method="get" template="{{ .Site.BaseURL }}search/?q={searchTerms}"/>
+  <moz:SearchForm>{{ .Site.BaseURL }}search/</moz:SearchForm>
+</OpenSearchDescription>

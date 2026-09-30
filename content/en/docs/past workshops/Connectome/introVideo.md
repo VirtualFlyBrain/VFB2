@@ -1,7 +1,7 @@
 ---
 title: "Introduction to connectomic data and tools"
 date: 2021-05-04
-weight: 4
+weight: 1002
 series: ["API"]
 alias: ["/docs/tutorials/connectome/"]
 categories: [connectome,python,workshop,tutorials]
@@ -11,4 +11,6 @@ description: >
   Introduction session from the Virtual Fly Brain "Hacking the connectome" workshop that was run in collaboration with the Drosophila Connectomics Group based at the Dept of Zoology, University of Cambridge.
 ---
 
-{{< youtube id="FfhAgQLxx0Q" autoplay="true" >}}
+{{< workshop url="/sessions/" title="the seven learning sessions" tone="superseded" >}}
+
+{{< youtube id="FfhAgQLxx0Q" autoplay="true" mute="true" class="video-embed" >}}

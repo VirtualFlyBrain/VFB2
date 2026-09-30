@@ -1,6 +1,6 @@
 ---
 title: "NBLAST"
-weight: 140
+weight: 428
 series: ["API"]
 alias: ["/docs/tutorials/4_nblast/"]
 images: ["/images/4_nblast_files/4_nblast_23_0.png"]
@@ -8,6 +8,8 @@ date: 2021-12-27
 description: >
   NBLAST is a method to quantify morphological similarity.
 ---
+
+{{< workshop url="/sessions/session-5-similarity-nblast/" title="Session 5 · Similarity / NBLAST" >}}
 
 ## Overview
 

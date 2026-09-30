@@ -1,0 +1,44 @@
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="{{ "/" | relURL }}">
+      <span class="brand__mark" aria-hidden="true">
+        {{ partial "logo-mark.html" . }}
+      </span>
+      <span>
+        Virtual Fly Brain
+        <span class="brand__sub">Drosophila&nbsp;CNS&nbsp;atlas</span>
+      </span>
+    </a>
+
+    <ul class="nav__links" id="nav-links">
+      {{ $cur := .RelPermalink }}
+      {{ range .Site.Menus.nova }}
+        {{ if not .Params.cta }}
+        <li>
+          <a class="nav__link{{ if and (ne .URL "/") (hasPrefix $cur .URL) }} is-active{{ end }}"
+             href="{{ .URL }}"{{ if hasPrefix .URL "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
+        </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+
+    <div class="nav__tools">
+      <button class="search-trigger js-search" type="button" aria-label="Search the site">
+        <i class="fas fa-magnifying-glass"></i>
+        <span>Search VFB…</span>
+        <kbd>⌘K</kbd>
+      </button>
+      <button class="icon-btn js-theme" type="button" aria-label="Switch colour theme"><i class="fas fa-moon"></i></button>
+      {{ range .Site.Menus.nova }}
+        {{ if .Params.cta }}
+          <a class="btn btn--primary btn--sm" href="{{ .URL }}" target="_blank" rel="noopener">
+            {{ .Name }} <i class="fas fa-arrow-up-right-from-square"></i>
+          </a>
+        {{ end }}
+      {{ end }}
+      <button class="icon-btn nav__burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</header>

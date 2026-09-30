@@ -5,7 +5,7 @@ title: "The Term Info tab"
 linkTitle: "Term Info"
 description: >
    Term Info displays information on the currently selected entity.
-weight: 50
+weight: 208
 ---
 <link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
 
@@ -19,7 +19,7 @@ Each entity in VFB has a unique `Name`. The `Name` field also shows semantic tag
 
 ## Ontology terms and Graphs
 
-`Classification` and `Relationships` fields show parent and related ontology classes for the selected entity. Click to navigate to the Term Info pages for these terms. The `location` and `classification` [Term Context](/docs/website-features/termcontext) graphs show partonomy relationships and parentage of the selected entity, respectively.
+`Classification` and `Relationships` fields show parent and related ontology classes for the selected entity (see [Classes and individuals](/docs/concepts/classes-and-individuals/) for what a class is, and how it differs from an individual instance). Click to navigate to the Term Info pages for these terms. The `location` and `classification` [Term Context](/docs/website-features/termcontext) graphs show partonomy relationships and parentage of the selected entity, respectively.
 
 <p align="center">
   <img src="/images/terminfo/terminfo-ontologies.png" alt="Classification, Relationships and Graphs in Term Info." style="max-width=50%" />

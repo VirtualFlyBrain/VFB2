@@ -1,0 +1,26 @@
+{{ define "main" }}
+{{/* Pages carrying one taxonomy term. Paginated unconditionally: a tag such as
+     "Adult" is applied to a large share of the generated term corpus, and an
+     unpaginated list would emit a single multi-hundred-megabyte page. */}}
+{{ $paginator := .Paginate .Pages }}
+<div class="page">
+  <div class="wrap">
+    {{ partial "breadcrumb.html" . }}
+    <header class="page__header">
+      <p class="eyebrow">{{ .Data.Singular }}</p>
+      <h1>{{ .Title }}</h1>
+      <p class="lede">{{ lang.FormatNumberCustom 0 (len .Pages) }} page{{ if ne (len .Pages) 1 }}s{{ end }}.</p>
+    </header>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    <div class="grid" style="margin-top:var(--sp-6)">
+      {{ range $paginator.Pages }}
+        <a class="card" href="{{ .RelPermalink }}">
+          <h3 class="card__title" style="font-size:1rem">{{ .LinkTitle }}</h3>
+          {{ with .Description }}<p class="card__body" style="font-size:.85rem">{{ . | plainify | truncate 110 }}</p>{{ end }}
+        </a>
+      {{ end }}
+    </div>
+    {{ partial "paginator.html" . }}
+  </div>
+</div>
+{{ end }}

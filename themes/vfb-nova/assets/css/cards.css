@@ -1,0 +1,164 @@
+/* ==========================================================================
+   cards, feature grids, listings
+   ========================================================================== */
+
+.grid {
+  display: grid;
+  gap: var(--sp-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+.grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+.grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--elev-1);
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+}
+/* pointer-tracked sheen; --mx/--my are set in JS */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .35s var(--ease);
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 0%), rgba(76,141,255,.16), transparent 60%);
+}
+a.card:hover, .card--lift:hover {
+  transform: translateY(-4px);
+  border-color: rgba(76,141,255,.42);
+  box-shadow: var(--shadow-2);
+  text-decoration: none;
+}
+a.card:hover::after, .card--lift:hover::after { opacity: 1; }
+
+.card__icon {
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  border-radius: 13px;
+  background: var(--grad-soft);
+  border: 1px solid var(--line);
+  color: var(--brand);
+  font-size: 1.15rem;
+  flex: 0 0 auto;
+}
+.card__title {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: -.015em;
+  margin: 0;
+  color: var(--text);
+}
+/* Whole-card click target without nesting anchors. */
+.card__stretch { color: inherit; }
+.card__stretch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.card__stretch:hover { color: var(--brand); text-decoration: none; }
+.card--lift:hover .card__title a { color: var(--brand); }
+
+.card__body { color: var(--text-dim); font-size: .94rem; margin: 0; }
+/* Inner links must stay above the stretched overlay. */
+.card__body a { position: relative; z-index: 2; }
+.card__body > p:last-child { margin-bottom: 0; }
+.card__meta {
+  margin-top: auto;
+  padding-top: var(--sp-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  color: var(--muted);
+}
+.card__arrow {
+  margin-top: auto;
+  color: var(--brand);
+  font-size: .85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+a.card:hover .card__arrow i { transform: translateX(4px); }
+.card__arrow i { transition: transform .3s var(--ease); }
+
+/* feature card that stretches across the section head */
+.card--feature {
+  padding: var(--sp-6);
+  background: linear-gradient(150deg, var(--elev-1), var(--elev-2));
+}
+
+/* section headers */
+.section__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--sp-6);
+}
+.section__head h2 { margin: 0; }
+.section__head p { margin: .6rem 0 0; color: var(--text-dim); max-width: 60ch; }
+
+/* --- list pages --------------------------------------------------------- */
+.post-list { display: grid; gap: var(--sp-4); }
+.post {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: var(--sp-5);
+  padding: var(--sp-5) 0;
+  border-bottom: 1px solid var(--line-soft);
+  align-items: start;
+}
+@media (max-width: 620px) { .post { grid-template-columns: 1fr; gap: var(--sp-2); } }
+.post__date {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--muted);
+  padding-top: .3rem;
+}
+.post__title { font-size: var(--step-1); margin: 0 0 .5rem; }
+.post__title a { color: var(--text); }
+.post__title a:hover { color: var(--brand); text-decoration: none; }
+.post__excerpt { color: var(--text-dim); font-size: .95rem; margin: 0; }
+
+/* --- the "quickstart" ordered walk-through ------------------------------ */
+.steps { counter-reset: step; display: grid; gap: var(--sp-4); }
+.step {
+  position: relative;
+  padding: var(--sp-4) var(--sp-5) var(--sp-4) calc(var(--sp-6) + 1.6rem);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-dim);
+}
+.step::before {
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: var(--sp-5);
+  top: var(--sp-4);
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  color: var(--brand);
+  letter-spacing: .05em;
+}
+
+/* --- ontology / term chips grid ----------------------------------------- */
+.chip-grid { display: flex; flex-wrap: wrap; gap: .5rem; }

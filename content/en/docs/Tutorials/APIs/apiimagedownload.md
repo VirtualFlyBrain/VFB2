@@ -1,10 +1,12 @@
 ---
 title: "Downloading Images from VFB Using VFBconnect"
 linkTitle: "Downloading Images via API"
-weight: 20
+weight: 414
 description: >
   This guide will show you how to use VFBconnect to download images from the Virtual Fly Brain (VFB) based on a dataset.
 ---
+
+{{< workshop url="/sessions/session-3-visualisation/" title="Session 3 · Visualisation" >}}
 
 ## Introduction
 

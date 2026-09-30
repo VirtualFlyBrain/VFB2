@@ -1,0 +1,2 @@
+{{- $c := resources.Get "js/connectome.js" | js.Build (dict "minify" hugo.IsProduction "target" "es2018") | fingerprint -}}
+<script src="{{ $c.RelPermalink }}" integrity="{{ $c.Data.Integrity }}" defer></script>

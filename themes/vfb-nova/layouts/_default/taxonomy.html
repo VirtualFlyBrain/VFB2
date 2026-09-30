@@ -1,0 +1,19 @@
+{{ define "main" }}
+{{/* All terms in a taxonomy, e.g. /tags/. Ordered by count so the useful ones
+     surface first; the generated term pages contribute a long tail. */}}
+<div class="page">
+  <div class="wrap">
+    {{ partial "breadcrumb.html" . }}
+    <header class="page__header">
+      <h1>{{ .Title }}</h1>
+      <p class="lede">{{ len .Pages }} {{ .Data.Singular }}s across the site.</p>
+    </header>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    <div class="chip-grid" style="margin-top:var(--sp-6)">
+      {{ range .Pages.ByTitle }}
+        <a class="pill" href="{{ .RelPermalink }}">{{ .LinkTitle }} <span style="opacity:.6">{{ lang.FormatNumberCustom 0 (len .Pages) }}</span></a>
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}

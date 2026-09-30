@@ -1,0 +1,19 @@
+{{- /* Map a section name to a Font Awesome glyph. Falls back to a generic
+     document icon so new sections never render blank. */ -}}
+{{- $n := lower .LinkTitle -}}
+{{- $icon := "fa-file-lines" -}}
+{{- if in $n "api"        }}{{ $icon = "fa-code" }}
+{{- else if in $n "tutorial"  }}{{ $icon = "fa-graduation-cap" }}
+{{- else if in $n "concept"   }}{{ $icon = "fa-lightbulb" }}
+{{- else if in $n "data"      }}{{ $icon = "fa-database" }}
+{{- else if in $n "anatomy"   }}{{ $icon = "fa-diagram-project" }}
+{{- else if in $n "overview"  }}{{ $icon = "fa-compass" }}
+{{- else if in $n "website"   }}{{ $icon = "fa-window-maximize" }}
+{{- else if in $n "resource"  }}{{ $icon = "fa-box-archive" }}
+{{- else if in $n "workshop"  }}{{ $icon = "fa-chalkboard-user" }}
+{{- else if in $n "contribut" }}{{ $icon = "fa-code-pull-request" }}
+{{- else if in $n "ontolog"   }}{{ $icon = "fa-sitemap" }}
+{{- else if in $n "release"   }}{{ $icon = "fa-tag" }}
+{{- else if in $n "news"      }}{{ $icon = "fa-newspaper" }}
+{{- end -}}
+{{- $icon -}}

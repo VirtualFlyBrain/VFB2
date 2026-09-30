@@ -10,7 +10,7 @@ Description: >
 ontology: "fbbt"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

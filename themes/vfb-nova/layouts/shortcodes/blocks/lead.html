@@ -1,0 +1,4 @@
+{{- /* blocks/lead — Docsy-compatible. Inner markdown is rendered here rather
+     than left to the page renderer, because this shortcode is called with the
+     {{%%}} form and Goldmark will not process markdown inside an HTML block. */ -}}
+<section class="band band--quiet section"><div class="wrap wrap--narrow"><div class="lead-block prose reveal">{{ .Inner | markdownify }}</div></div></section>

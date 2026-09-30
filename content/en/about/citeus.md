@@ -41,12 +41,51 @@ Court, Robert, Costa, Marta, Pilgrim, Clare, Millburn, Gillian, Holmes, Alex, Mc
 ```
 ## Additional Citations
 
+### VFB Model Context Protocol (MCP) Tool
+
+If you used the VFB MCP tool — querying VFB through Claude or another AI assistant — please also
+cite the paper describing it and its evaluation:
+
+#### APA
+McLachlan, A. D., Court, R., Pilgrim, C., Longden, K., Brown, N. H., Osumi-Sutherland, D., Jefferis, G. S. X. E., & Armstrong, J. D. (2026). *VFB-MCP: Natural-language access to Drosophila neuroscience grounded by an expert-curated ontology-led knowledgebase* [Preprint]. bioRxiv. https://doi.org/10.64898/2026.06.16.732577
+
+#### MLA
+McLachlan, Alex D., et al. "VFB-MCP: Natural-Language Access to Drosophila Neuroscience Grounded by an Expert-Curated Ontology-Led Knowledgebase." *bioRxiv*, 2026, https://doi.org/10.64898/2026.06.16.732577. Preprint.
+
+#### Chicago
+McLachlan, Alex D., Robert Court, Clare Pilgrim, Kit Longden, Nicolas H. Brown, David Osumi-Sutherland, Gregory S. X. E. Jefferis, and J. Douglas Armstrong. "VFB-MCP: Natural-Language Access to Drosophila Neuroscience Grounded by an Expert-Curated Ontology-Led Knowledgebase." *bioRxiv* (2026). https://doi.org/10.64898/2026.06.16.732577.
+
+#### BibTeX
+```BibTeX
+@article{McLachlan_2026,
+  author = {Alex D. McLachlan and Robert Court and Clare Pilgrim and Kit Longden and Nicolas H. Brown and David Osumi-Sutherland and Gregory S. X. E. Jefferis and J. Douglas Armstrong},
+  title = "{VFB-MCP: Natural-Language Access to Drosophila Neuroscience Grounded by an Expert-Curated Ontology-Led Knowledgebase}",
+  journal = {bioRxiv},
+  year = {2026},
+  month = {jun},
+  note = {Preprint},
+  doi = {10.64898/2026.06.16.732577},
+  url = {https://doi.org/10.64898/2026.06.16.732577},
+}
+```
+
+This is a preprint. If a peer-reviewed version has appeared by the time you submit, cite that
+instead — the DOI above will point to it.
+
+Please cite this **in addition to** the primary citation, not instead of it: the MCP tool answers
+from the same curated knowledgebase the primary paper describes.
+
 ### Drosophila Anatomy Ontology
 
 If you specifically use or reference the Drosophila anatomy ontology developed as part of Virtual Fly Brain, please also cite:
 
-* Osumi-Sutherland, D., Reeve, S., Mungall, C. J., Neuhaus, F., Ruttenberg, A., Jefferis, G. S. and Armstrong, J. D. (2012). [A strategy for building neuroanatomy ontologies](http://dx.doi.org/doi:10.1093/bioinformatics/bts113)
+* Osumi-Sutherland, D., Reeve, S., Mungall, C. J., Neuhaus, F., Ruttenberg, A., Jefferis, G. S. and Armstrong, J. D. (2012). [A strategy for building neuroanatomy ontologies](https://dx.doi.org/doi:10.1093/bioinformatics/bts113)
 
+
+## Papers citing VFB
+
+For examples of how other groups have used Virtual Fly Brain in published work, see
+[papers citing VFB](/about/papers-citing-vfb/).
 
 ## Acknowledgements
 When appropriate, please also acknowledge the specific data sources integrated into Virtual Fly Brain that you have used, such as JFRC, FlyBase, FlyCircuit, and datasets from individual research groups.

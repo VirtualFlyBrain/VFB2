@@ -10,7 +10,7 @@ Description: >
 ontology: "pco"
 cascade:
 - type: "docs"
-  _target:
+  target:
     path: "/**"
 ---
 

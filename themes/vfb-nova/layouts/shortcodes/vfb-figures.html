@@ -1,0 +1,63 @@
+{{- /* ---------------------------------------------------------------------------
+     vfb-figures — a small figure strip for a documentation page, taking its
+     numbers from the content report rather than from prose someone has to
+     remember to update. See partials/content-stats.html for the source.
+
+         {{< vfb-figures set="lm" >}}
+
+     Sets: overview, em, lm, connectivity, scrnaseq, ontology.
+
+     Renders nothing at all when the report is not in the tree, which is the
+     case in any checkout without a pipeline run. A page that uses this must
+     therefore still read correctly with the strip absent — put the figures
+     here and the meaning in the prose, never the other way round.
+     --------------------------------------------------------------------------- */ -}}
+{{- $c := partial "content-stats.html" . -}}
+{{- $set := .Get "set" | default "overview" -}}
+
+{{- $rows := slice -}}
+
+{{- if eq $set "overview" -}}
+  {{- with $c.images }}{{ $rows = $rows | append (dict "n" . "l" "registered 3D images") }}{{ end -}}
+  {{- with $c.datasets }}{{ $rows = $rows | append (dict "n" . "l" "imaging datasets") }}{{ end -}}
+  {{- with $c.connections }}{{ $rows = $rows | append (dict "n" . "l" "synaptic connections") }}{{ end -}}
+  {{- with $c.sc_clusters }}{{ $rows = $rows | append (dict "n" . "l" "single-cell clusters") }}{{ end -}}
+  {{- with $c.anatomy_terms }}{{ $rows = $rows | append (dict "n" . "l" "anatomy ontology terms") }}{{ end -}}
+
+{{- else if eq $set "em" -}}
+  {{- with $c.connected_neurons }}{{ $rows = $rows | append (dict "n" . "l" "neurons with connectivity") }}{{ end -}}
+  {{- with $c.connections }}{{ $rows = $rows | append (dict "n" . "l" "synaptic connections") }}{{ end -}}
+  {{- with $c.cell_types }}{{ $rows = $rows | append (dict "n" . "l" "cell types with neuron images") }}{{ end -}}
+
+{{- else if eq $set "lm" -}}
+  {{- with $c.ep_images }}{{ $rows = $rows | append (dict "n" . "l" "expression pattern images") }}{{ end -}}
+  {{- with $c.drivers }}{{ $rows = $rows | append (dict "n" . "l" "driver lines imaged") }}{{ end -}}
+  {{- with $c.split_images }}{{ $rows = $rows | append (dict "n" . "l" "split combination images") }}{{ end -}}
+  {{- with $c.fragment_images }}{{ $rows = $rows | append (dict "n" . "l" "expression fragment images") }}{{ end -}}
+  {{- with $c.expression_annotations }}{{ $rows = $rows | append (dict "n" . "l" "expression annotations") }}{{ end -}}
+
+{{- else if eq $set "connectivity" -}}
+  {{- with $c.connected_neurons }}{{ $rows = $rows | append (dict "n" . "l" "neurons with connectivity") }}{{ end -}}
+  {{- with $c.connections }}{{ $rows = $rows | append (dict "n" . "l" "neuron-to-neuron connections") }}{{ end -}}
+
+{{- else if eq $set "scrnaseq" -}}
+  {{- with $c.sc_clusters }}{{ $rows = $rows | append (dict "n" . "l" "clusters") }}{{ end -}}
+  {{- with $c.sc_datasets }}{{ $rows = $rows | append (dict "n" . "l" "datasets") }}{{ end -}}
+  {{- with $c.sc_genes }}{{ $rows = $rows | append (dict "n" . "l" "distinct genes expressed") }}{{ end -}}
+
+{{- else if eq $set "ontology" -}}
+  {{- with $c.anatomy_terms }}{{ $rows = $rows | append (dict "n" . "l" "anatomy classes") }}{{ end -}}
+  {{- with $c.ns_parts }}{{ $rows = $rows | append (dict "n" . "l" "nervous system parts") }}{{ end -}}
+  {{- with $c.neuron_classes }}{{ $rows = $rows | append (dict "n" . "l" "neuron classes") }}{{ end -}}
+{{- end -}}
+
+{{- with $rows }}
+<div class="stats vfb-figures">
+  {{- range . }}
+  <div class="stat">
+    <div class="stat__num">{{ if ge .n 1000000 }}{{ lang.FormatNumberCustom 1 (div (float .n) 1000000) }} M{{ else }}{{ lang.FormatNumberCustom 0 .n }}{{ end }}</div>
+    <div class="stat__label">{{ .l }}</div>
+  </div>
+  {{- end }}
+</div>
+{{- end -}}

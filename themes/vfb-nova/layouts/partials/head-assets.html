@@ -1,0 +1,29 @@
+{{- /* ---------------------------------------------------------------------------
+     Stylesheet and scripts.
+
+     Plain CSS concatenated by Hugo — no Sass. libsass was deprecated in Hugo
+     v0.153.0 and Dart Sass is an external binary, so avoiding both means this
+     theme builds on the *standard* Hugo edition, not just extended, and has
+     nothing to migrate when libsass is removed.
+
+     Called through partialCached: on a site with hundreds of thousands of term
+     pages this block must be evaluated once, not once per page.
+     --------------------------------------------------------------------------- */ -}}
+{{- $order := slice
+  "css/tokens.css"
+  "css/base.css"
+  "css/nav.css"
+  "css/hero.css"
+  "css/cards.css"
+  "css/docs.css"
+  "css/prose.css"
+  "css/compat.css"
+  "css/palette.css"
+  "css/content-hooks.css" -}}
+{{- $sheets := slice -}}
+{{- range $order -}}
+  {{- with resources.Get . }}{{ $sheets = $sheets | append . }}{{ end -}}
+{{- end -}}
+{{- with $sheets | resources.Concat "css/nova.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+{{- end }}

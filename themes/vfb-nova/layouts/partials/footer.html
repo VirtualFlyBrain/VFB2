@@ -1,0 +1,67 @@
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="{{ "/" | relURL }}">
+          <span class="brand__mark" aria-hidden="true">{{ partial "logo-mark.html" . }}</span>
+          <span>Virtual Fly Brain</span>
+        </a>
+        <p style="margin-top:1rem;color:var(--muted);font-size:.9rem;max-width:38ch">
+          A FAIR, queryable view of the <em>Drosophila melanogaster</em> nervous system —
+          neuroanatomy, imaging, connectomics and expression, on one set of template brains.
+        </p>
+        <div class="footer__social">
+          {{ range .Site.Params.links.user }}
+            <a href="{{ .url }}" title="{{ .desc }}" aria-label="{{ .name }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener"{{ end }}><i class="{{ .icon }}"></i></a>
+          {{ end }}
+          {{ range .Site.Params.links.developer }}
+            <a href="{{ .url }}" title="{{ .desc }}" aria-label="{{ .name }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener"{{ end }}><i class="{{ .icon }}"></i></a>
+          {{ end }}
+        </div>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="/docs/">Documentation</a></li>
+          <li><a href="/hosted/">Hosted services</a></li>
+          <li><a href="/blog/news/">News</a></li>
+          <li><a href="/blog/releases/">Releases</a></li>
+          <li><a href="{{ .Site.Params.app_url }}" target="_blank" rel="noopener">3D&nbsp;Browser</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Build on VFB</h4>
+        <ul>
+          <li><a href="/docs/apis/">APIs</a></li>
+          <li><a href="https://pypi.org/project/vfb-connect/" target="_blank" rel="noopener">VFB&nbsp;connect (Python)</a></li>
+          <li><a href="/docs/tutorials/">Tutorials</a></li>
+          <li><a href="https://github.com/VirtualFlyBrain" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Project</h4>
+        <ul>
+          <li><a href="/about/whatisvfb/">What is VFB?</a></li>
+          <li><a href="/about/citeus/">Cite us</a></li>
+          <li><a href="/about/funding/">Funding</a></li>
+          <li><a href="/about/contactus/">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__legal">
+      <span>© {{ now.Year }} {{ .Site.Params.copyright | default .Site.Title }}</span>
+      <span class="footer__credit">Hero body model from
+        <a href="https://doi.org/10.1101/2024.03.11.584515" rel="noopener">flybody</a>
+        (Vaxenburg et al. 2024), Apache-2.0. CNS from VFB JRC2018Unisex templates.</span>
+      <span style="display:flex;gap:1.2rem;flex-wrap:wrap">
+        <a href="/about/privacy/">Privacy</a>
+        <a href="/about/cookies/">Cookies</a>
+        <a href="/about/accessibility/">Accessibility</a>
+      </span>
+    </div>
+  </div>
+</footer>

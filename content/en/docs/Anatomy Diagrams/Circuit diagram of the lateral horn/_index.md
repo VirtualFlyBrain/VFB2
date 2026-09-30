@@ -1,5 +1,6 @@
 ---
 title: "Circuit diagram of the lateral horn"
+weight: 904
 tag: [LHN, LHON, LHLN, lateral horn, projection neuron]
 categories: [circuit diagram]
 description: >

@@ -1,0 +1,16 @@
+{{- /* blocks/feature — Docsy-compatible: icon, title, url, url_text.
+
+     The card is a <div>, never an <a>: the inner markdown routinely contains
+     links, and an <a> inside an <a> makes the HTML parser close the outer
+     anchor early, splitting the card in two. The whole card is made clickable
+     with a stretched pseudo-element on the title link instead.
+
+     Called with {{%%}}, so the inner markdown is rendered here and the markup
+     is emitted without blank lines (Goldmark would otherwise end the HTML
+     block and print the rest literally). */ -}}
+{{- $icon := .Get "icon" -}}
+{{- $title := .Get "title" | markdownify -}}
+{{- $url := .Get "url" -}}
+{{- $urlText := .Get "url_text" | default "Read more" -}}
+{{- $ext := and $url (hasPrefix $url "http") -}}
+<div class="card card--lift reveal">{{ with $icon }}<span class="card__icon"><i class="{{ if not (in . " ") }}fas {{ end }}{{ . }}"></i></span>{{ end }}<h3 class="card__title">{{ if $url }}<a class="card__stretch" href="{{ $url }}"{{ if $ext }} target="_blank" rel="noopener"{{ end }}>{{ $title }}</a>{{ else }}{{ $title }}{{ end }}</h3><div class="card__body">{{ .Inner | markdownify }}</div>{{ if $url }}<span class="card__arrow">{{ $urlText }} <i class="fas fa-arrow-right"></i></span>{{ end }}</div>

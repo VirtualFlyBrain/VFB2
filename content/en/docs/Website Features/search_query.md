@@ -5,7 +5,7 @@ title: "Search and Query Tools on VFB"
 linkTitle: "Search and Query"
 description: >
   Text search and query tools and how to explore the 3D images.
-weight: 20
+weight: 202
 ---
 
 VFB integrates data curated from the literature with image data from many sources. Searches and queries can be used to explore this data.
@@ -31,6 +31,8 @@ The query system can identify neurons innervating any specified neuropil or fasc
 ## Queries from Term Info
 
 Some Term Info panes have pre-defined queries relevant to that term. For example, the Term Info pane for a brain region may have queries for neurons innervating that region and drivers expressing in that region.
+
+For a complete list of these queries — which entity types show each one, and what every results column means — see the [Term Info Queries Reference](/docs/website-features/queries/).
 
 <img src="/images/search_query/terminfo_queries.png" max-width="50%" alt="Queries in the Term Info pane.">
 
