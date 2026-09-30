@@ -72,6 +72,18 @@ An adult VNC atlas ([Court et al., 2020](https://flybase.org/reports/FBrf0246815
 
 ## Larval CNS templates
 
+### L1 larval CNS ssTEM (Cardona/Janelia)
+<img src="https://virtualflybrain.org/data/VFB/i/0005/0000/VFB_00050000/thumbnail.png" alt="L1 larval CNS ssTEM (Cardona/Janelia) template thumbnail" style="max-width:35%">
+
+The “Seymour” first-instar (L1) larval CNS: a whole-CNS serial-section TEM (ssTEM) volume (Cardona/Janelia; [Ohyama et al., 2015](https://flybase.org/reports/FBrf0228257)). The reference space for L1 larval EM connectome data. [View on VFB](https://virtualflybrain.org/reports/VFB_00050000).
+
+<details>
+<summary>Painted domains (27)</summary>
+
+[Whole L1 CNS envelope](https://virtualflybrain.org/reports/VFB_001091yb), [Larval brain (left)](https://virtualflybrain.org/reports/VFB_001091yc), [Larval brain (right)](https://virtualflybrain.org/reports/VFB_001091yd), [Larval subesophageal zone (left)](https://virtualflybrain.org/reports/VFB_001091ye), [Larval subesophageal zone (right)](https://virtualflybrain.org/reports/VFB_001091yf), [Prothoracic neuromere T1 (left)](https://virtualflybrain.org/reports/VFB_001091yg), [Prothoracic neuromere T1 (right)](https://virtualflybrain.org/reports/VFB_001091yh), [Mesothoracic neuromere T2 (left)](https://virtualflybrain.org/reports/VFB_001091yi), [Mesothoracic neuromere T2 (right)](https://virtualflybrain.org/reports/VFB_001091yj), [Metathoracic neuromere T3 (left)](https://virtualflybrain.org/reports/VFB_001091yk), [Metathoracic neuromere T3 (right)](https://virtualflybrain.org/reports/VFB_001091yl), [Abdominal neuromere A1 (left)](https://virtualflybrain.org/reports/VFB_001091ym), [Abdominal neuromere A1 (right)](https://virtualflybrain.org/reports/VFB_001091yn), [Abdominal neuromere A2 (left)](https://virtualflybrain.org/reports/VFB_001091yo), [Abdominal neuromere A2 (right)](https://virtualflybrain.org/reports/VFB_001091yp), [Abdominal neuromere A3 (left)](https://virtualflybrain.org/reports/VFB_001091yq), [Abdominal neuromere A3 (right)](https://virtualflybrain.org/reports/VFB_001091yr), [Abdominal neuromere A4 (left)](https://virtualflybrain.org/reports/VFB_001091ys), [Abdominal neuromere A4 (right)](https://virtualflybrain.org/reports/VFB_001091yt), [Abdominal neuromere A5 (left)](https://virtualflybrain.org/reports/VFB_001091yu), [Abdominal neuromere A5 (right)](https://virtualflybrain.org/reports/VFB_001091yv), [Abdominal neuromere A6 (left)](https://virtualflybrain.org/reports/VFB_001091yw), [Abdominal neuromere A6 (right)](https://virtualflybrain.org/reports/VFB_001091yx), [Abdominal neuromere A7 (left)](https://virtualflybrain.org/reports/VFB_001091yy), [Abdominal neuromere A7 (right)](https://virtualflybrain.org/reports/VFB_001091yz), [Abdominal neuromere A8 (left)](https://virtualflybrain.org/reports/VFB_001091z0), [Abdominal neuromere A8 (right)](https://virtualflybrain.org/reports/VFB_001091z1)
+
+</details>
+
 ### L3 CNS template (Wood2018)
 <img src="https://virtualflybrain.org/data/VFB/i/0004/9000/VFB_00049000/thumbnail.png" alt="L3 CNS template (Wood2018) template thumbnail" style="max-width:35%">
 
