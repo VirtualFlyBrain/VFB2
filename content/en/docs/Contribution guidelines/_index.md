@@ -4,7 +4,8 @@ linkTitle: "Contribution Guidelines"
 weight: 700
 categories: ["help"]
 description: >
-  How to tell us about a paper, get your image data into VFB, and improve these docs.
+  How to tell us about a paper, suggest changes to cell type terms, get your image data into VFB,
+  and improve these docs.
 ---
 
 We integrate information from published papers and image data produced by other groups. The
@@ -30,6 +31,16 @@ particularly valuable for the ontology behind VFB. You don't have to be an autho
 
 * [Flagging publications with cell type information](/docs/contribution-guidelines/cell-type-publications/):
   how to raise a ticket on the ontology repo or email us, and what to include.
+
+### Think a cell type term needs changing?
+
+**Have you found an FBbt term with a wrong definition, a missing synonym or a misplaced
+classification, or a cell type that isn't in the ontology yet?** Raise a ticket on the
+[ontology issue tracker](https://github.com/FlyBase/drosophila-anatomy-developmental-ontology/issues/new)
+or email [support@virtualflybrain.org](mailto:support@virtualflybrain.org?subject=Suggested%20change%20to%20FBbt%20term).
+
+* [Suggesting changes to a cell type](/docs/concepts/cell_types/#suggesting-changes-to-a-cell-type):
+  what to include so we can act on it quickly.
 
 ### Do you have image data that could be incorporated into VFB?
 
