@@ -40,3 +40,27 @@ The DAO admits a named class only where there is good scientific evidence for th
 At the time of the VFB 2023 paper the ontology covered around 13,000 neuroanatomical structures and cell types, including over 9,800 terms for neuron types, curated from more than 1,000 papers; over 3,800 of those neuron types are predicted from connectomics data, and over 2,750 have curated lineage ([Court et al., 2023](https://doi.org/10.3389/fphys.2023.1076533)).
 
 For where the underlying data and the naming standards came from, see [which fly is this?](/about/whichfly/)
+
+## Suggesting changes to a cell type
+
+If you think a term is wrong or incomplete — a definition that needs correcting, a missing synonym, a misplaced classification, or a cell type that isn't in the ontology yet — please tell us. There are two ways, and either is fine.
+
+### Open an issue on the ontology repo (preferred)
+
+Raise a ticket on the DAO issue tracker:
+
+* [FlyBase/drosophila-anatomy-developmental-ontology issues](https://github.com/FlyBase/drosophila-anatomy-developmental-ontology/issues/new)
+
+An issue is the best route because it stays with the ontology, is publicly visible, and lets us track the change and discuss it with you if we have questions.
+
+### Email us
+
+If you would rather not use GitHub, email [support@virtualflybrain.org](mailto:support@virtualflybrain.org?subject=Suggested%20change%20to%20FBbt%20term). This address goes to a [publicly archived support forum](https://groups.google.com/g/vfb-suport).
+
+### What to include
+
+* **Which term** — its FBbt ID (e.g. `FBbt_00100234`) or a link to its VFB page.
+* **What should change** — the edit you are suggesting, such as corrected definition text, a new synonym, or a different parent term.
+* **Why** — a reference supporting the change (DOI, PubMed ID or FlyBase FBrf), and where in it the evidence is, if you have one.
+
+If your suggestion comes from a paper that characterises new cell types or reconciles their names, see also [flagging publications with cell type information](/docs/contribution-guidelines/cell-type-publications/).
