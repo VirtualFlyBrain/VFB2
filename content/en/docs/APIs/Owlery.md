@@ -19,7 +19,7 @@ Base URL: `https://owl.virtualflybrain.org/`
 
 ## Knowledgebase Operations
 
-**Note**: VFB provides access to a single knowledgebase (`vfb`) containing all VFB ontologies and reasoning data. The general `/kbs` endpoint is not accessible - all operations must use `/kbs/vfb/`.
+**Note**: VFB provides access to a single knowledgebase (`vfb`) containing all VFB ontologies and reasoning data. `GET /kbs` lists the available knowledgebases (just `vfb`); all operations use `/kbs/vfb/`.
 
 ### Get Knowledgebase Information
 ```http
@@ -229,7 +229,7 @@ While these complex queries are handled by VFB's query orchestration system, the
 
 ## Usage Examples
 
-**Note**: VFB supports both full IRIs (e.g., `http://purl.obolibrary.org/obo/FBbt_00003624`) and short forms (e.g., `FBbt_00003624`) for class identifiers.
+**Note**: write class identifiers as full IRIs in angle brackets (e.g., `<http://purl.obolibrary.org/obo/FBbt_00003624>`), or as a CURIE (`FBbt:00003624`) together with a `prefixes` map such as `{"FBbt":"http://purl.obolibrary.org/obo/FBbt_"}`. A bare short form such as `FBbt_00003624` is rejected with a 400 error. In the raw URLs below, `FBbt_00003624` stands for the bracketed full IRI.
 
 ### Basic Ontology Queries
 
