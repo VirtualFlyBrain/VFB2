@@ -30,7 +30,7 @@ VFB holds four kinds of connection:
 | From | To | What it is |
 |---|---|---|
 | Neuron (individual) | Neuron (individual) | The connectome proper — one reconstructed neuron synapsing onto another |
-| Neuron (individual) | Region (individual) | Synapses a neuron makes within a named neuropil, used for region-level input and output profiles |
+| Neuron (individual) | Region (individual) | Synapses a neuron makes within a named neuropil, used for region-level input and output profiles ([Region Connectivity](/docs/data/em/region-connectivity/)) |
 | Neuron (class) | Muscle (class) | Curated motor innervation, from the literature rather than from EM |
 | Neuron (class) | Sense organ (class) | Curated sensory innervation, likewise |
 
@@ -44,7 +44,7 @@ from curation, so they carry no synapse counts and cover far fewer entities. The
 |---|---|---|
 | BANC v626 | `BANC` | Full CNS, adult female |
 | FlyWire v783 (FAFB) | `fw` | Full brain, adult female |
-| male-CNS v0.9 | `mc` | Full CNS, adult male |
+| male-CNS v1.0 | `mc` | Full CNS, adult male |
 | MANC v1.2.1 | `mv` | Full VNC, adult male |
 | Optic-lobe v1.0.1 | `ol` | Optic lobe, adult male |
 | hemibrain v1.2.1 | `hb` | Partial brain, adult female |
@@ -87,6 +87,13 @@ region have their presynaptic terminals there and are providing input to it; neu
 presynaptic set.
 
 ## What the numbers do and do not say
+
+A raw synapse count is hard to compare between neurons: twenty synapses are most of the
+input to a small neuron and a sliver of the input to a large one. Each connectome neuron
+therefore also carries its [whole-neuron synapse totals](/docs/data/em/region-connectivity/#whole-neuron-synapse-totals);
+dividing an edge's weight by the target's `total_upstream` gives the fraction of its
+input that partner provides. Use those totals rather than summing a neuron's edges,
+which leave out fragments, unloaded neurons and the weakest connections.
 
 The neuron counts above are the neurons VFB holds connectivity for, which is not the
 number of neurons in a fly. Absence is likewise not evidence: a cell type with no

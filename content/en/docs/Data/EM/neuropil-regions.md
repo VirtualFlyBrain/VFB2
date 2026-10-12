@@ -4,7 +4,7 @@ linkTitle: "Neuropil Regions"
 categories: ["overview","help"]
 tags: ["EM","Connectomics","DataSet","Neuropil","Synaptic_neuropil","ROI","Painted domain"]
 weight: 3
-date: 2026-07-27
+date: 2026-10-12
 description: >
   Neuropil, tract and nerve regions of interest (ROIs) that accompany each EM connectome dataset on Virtual Fly Brain, and the sources they are derived from.
 ---
@@ -60,7 +60,9 @@ matched to their `antennal lobe glomerulus …` terms.
   reference-atlas neuropils (Ito midbrain/optic-lobe, Court and MANC VNC, Schlegel
   antennal-lobe glomeruli) warped into BANC space. Because more than one atlas is included,
   a few VNC tracts appear in both the Court and MANC parcellations and are kept as distinct
-  regions.
+  regions. BANC's own synapse-to-neuropil assignment uses only the Ito and Court
+  meshes, so [region connectivity](/docs/data/em/region-connectivity/) counts are available
+  for those regions but not for the glomeruli, tracts, nerves or MANC-atlas regions.
 
 ## Relationship to template painted domains
 
