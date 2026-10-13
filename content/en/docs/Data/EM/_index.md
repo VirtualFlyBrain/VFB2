@@ -21,7 +21,7 @@ The table below summarises EM datasets that have been integrated into VFB, inclu
 
 | Dataset | VFB symbol | Version in VFB | Stage | Anatomy | Reconstruction | Resource(s) | Original Publication |
 |---|---|---|---|---|---|---|---|
-| BANC | `BANC` | v626 | Adult | Full CNS (adult female) | Dense | [Codex](https://codex.flywire.ai/?dataset=banc&data_version=626) | [Bates et al. (2025)](https://doi.org/10.1101/2025.07.31.667571), published as [Bates et al. (2026)](https://doi.org/10.1038/s41586-026-10735-w) |
+| BANC | `BANC` | v888 | Adult | Full CNS (adult female) | Dense | [Codex](https://codex.flywire.ai/?dataset=banc&data_version=888) | [Bates et al. (2025)](https://doi.org/10.1101/2025.07.31.667571), published as [Bates et al. (2026)](https://doi.org/10.1038/s41586-026-10735-w) |
 | male-CNS | `mc` | v1.0 | Adult | Full CNS (adult male) | Dense | [NeuPrint](https://neuprint.janelia.org/?dataset=male-cns%3Av1.0&qt=findneurons); [Codex](https://codex.flywire.ai/) | [Berg et al. (2025)](https://doi.org/10.1101/2025.10.09.680999), published as [Berg et al. (2026)](https://doi.org/10.1016/j.cell.2026.08.015) |
 | Optic-lobe | `ol` | v1.0.1 | Adult | Optic lobe (adult male) | Dense | [NeuPrint](https://neuprint.janelia.org/?dataset=optic-lobe%3Av1.0.1&qt=findneurons); [Codex](https://codex.flywire.ai/) | [Nern et al. (2025)](https://doi.org/10.1038/s41586-025-08746-0) |
 | FAFB (FlyWire) | `fw` | v783 | Adult | Full brain (adult female) | Dense | [Codex](https://codex.flywire.ai/?data_version=783) | [Dorkenwald et al. (2024)](https://doi.org/10.1038/s41586-024-07558-y); [Schlegel et al. (2024)](https://doi.org/10.1038/s41586-024-07686-5) |
