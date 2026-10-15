@@ -42,7 +42,7 @@ These are the datasets Virtual Fly Brain holds. Each row is one animal.
 | Dataset | Neurons | Scope | Specimen | Primary source |
 |---|---|---|---|---|
 | **FlyWire** (FAFB) | **139,255** | Whole brain, both optic lobes included. VNC excluded | Adult **female**, ssTEM | Dorkenwald et al. 2024, *Nature* 634:124–138 · PMID 39358518 · doi:10.1038/s41586-024-07558-y |
-| **Male CNS** v0.9 | **166,691** | **Whole CNS** — central brain + optic lobes + VNC, intact neck connective | Adult **male**, eFIB-SEM | Berg et al. 2025, bioRxiv · doi:10.1101/2025.10.09.680999 · **preprint** |
+| **Male CNS** v1.0 | **~166,700** | **Whole CNS** — central brain + optic lobes + VNC, intact neck connective | Adult **male**, eFIB-SEM | Berg et al. 2026, *Cell* 189(18):5504–5526.e15 · PMID 42691995 · doi:10.1016/j.cell.2026.08.015 |
 | **BANC** v626 | **155,916** | Brain + VNC in one animal. **Lamina and ocellar ganglion absent** (~9,390 lamina neurons missing) | Adult **female**, ssTEM (GridTape) | Bates et al. 2026, *Nature* · PMID 42259917 · doi:10.1038/s41586-026-10735-w |
 | **Optic lobe** v1.0.1 | **~53,000** (732 cell types) | **Right optic lobe only.** Lamina incomplete; central brain not proofread | Adult **male**, FIB-SEM | Nern et al. 2025, *Nature* 641:1225–1237 · PMID 40140576 |
 | **MANC** v1.2.1 | **~23,000** ("roughly 23 thousand") | **Ventral nerve cord only**, plus the neck connective | 5-day **male**, FIB-SEM | Takemura et al. 2024, *eLife* 13:RP97769 · **reviewed preprint, no version of record, no PMID** |
@@ -54,7 +54,7 @@ These are the datasets Virtual Fly Brain holds. Each row is one animal.
 
 The optic lobe connectome was traced from part of the male CNS volume, and the male CNS paper
 describes itself as extending the right optic lobe connectome. **Nern et al.'s ~53,000 optic lobe
-neurons are a subset of Berg et al.'s 166,691, not an addition to them.** That also explains why the
+neurons are a subset of Berg et al.'s ~166,700, not an addition to them.** That also explains why the
 optic lobe specimen is male. Adding the two would double-count one animal's visual system.
 
 ### Aligned images are not neurons — the counts prove it
@@ -68,7 +68,7 @@ factor that could be corrected for:
 | FlyWire | 208,210 | 139,255 | 1.50 |
 | Hemibrain v1.2.1 | 69,578 | ~25,000 | 2.78 |
 | Optic lobe v1.0.1 | 60,002 | ~53,000 | 1.13 |
-| Male CNS v0.9 | 315,430 | 166,691 | 1.89 |
+| Male CNS v1.0 | 340,230 | ~166,700 | 2.04 |
 | **BANC v626** | **143,806** | **155,916** | **0.92** |
 
 The ratio ranges from 0.92 to 2.78 — and BANC has *fewer* images than the paper reports neurons, so
@@ -83,14 +83,15 @@ which is the unavailable sentinel and not zero. The real totals only come back f
 
 **Adding a brain count to a VNC count is not a CNS count.** FlyWire (139,255) is a female brain; MANC
 (~23,000) is a male VNC. Summing them produces a number for an animal that does not exist. If you want
-a whole-CNS figure from one animal, the male CNS dataset (166,691) and BANC (155,916) are the datasets
+a whole-CNS figure from one animal, the male CNS dataset (~166,700) and BANC (155,916) are the datasets
 that provide it — and they disagree by about 11,000, in different sexes, with BANC missing its lamina.
 
 **The larval figure is a different order of magnitude and a different structure.** 3,016 is the larval
 *brain*; the ventral nerve cord of that animal was imaged but not reconstructed as part of that count.
 
-**Two of the six adult figures are preprints.** The male CNS paper and MANC have no peer-reviewed
-version of record. That does not make them wrong; it does mean a submitted manuscript should say so.
+**One of the six adult figures is a preprint.** MANC has no peer-reviewed version of record. (The male
+CNS paper was a preprint until its 2026 publication in *Cell*.) That does not make the MANC figure
+wrong; it does mean a submitted manuscript should say so.
 
 ---
 
@@ -173,6 +174,9 @@ This is the single most useful thing to know when quoting any connectome figure.
   (v1.1). VFB holds v1.0.1, which neither citation documents.
 - **MANC's companion papers disagree with each other** by a handful of neurons per class, and Marin et
   al. warn that annotations changed substantially between v1.0 and v1.2.1.
+- **The male CNS preprint reported 166,691 neurons (v0.9); the *Cell* version of record gives "166,700"**
+  with 11,710 neuron types. The abstract gives only that round figure, and the exact count for v1.0 —
+  the release VFB holds — could not be checked against the full text.
 
 A neuron count from a connectome is a property of a *release*, not of a fly.
 
@@ -279,7 +283,7 @@ And it keeps two kinds of number strictly apart:
 - Nern A et al. (2025) Connectome-driven neural inventory of a complete visual system. *Nature* 641(8065):1225–1237. PMID 40140576. doi:10.1038/s41586-025-08746-0
 - Takemura S et al. (2024) A connectome of the male *Drosophila* ventral nerve cord. *eLife* 13:RP97769. doi:10.7554/eLife.97769.1 — reviewed preprint
 - Marin EC et al. (2024) Systematic annotation of a complete adult male *Drosophila* nerve cord connectome. *eLife* 13:RP97766. doi:10.7554/eLife.97766.1 — reviewed preprint
-- Berg S et al. (2025) Sexual dimorphism in the complete connectome of the *Drosophila* male central nervous system. bioRxiv. doi:10.1101/2025.10.09.680999 — preprint
+- Berg S et al. (2026) Sexual dimorphism in the complete *Drosophila* male central nervous system connectome. *Cell* 189(18):5504–5526.e15. PMID 42691995. doi:10.1016/j.cell.2026.08.015 (preprint: bioRxiv doi:10.1101/2025.10.09.680999)
 - Bates AS et al. (2026) Distributed control circuits across a brain-and-cord connectome. *Nature*. PMID 42259917. doi:10.1038/s41586-026-10735-w
 - Winding M et al. (2023) The connectome of an insect brain. *Science* 379(6636):eadd9330
 - Zheng Z et al. (2018) A complete electron microscopy volume of the brain of adult *Drosophila melanogaster*. *Cell* 174(3):730–743
