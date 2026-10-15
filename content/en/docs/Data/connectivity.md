@@ -44,7 +44,7 @@ from curation, so they carry no synapse counts and cover far fewer entities. The
 |---|---|---|
 | BANC v626 | `BANC` | Full CNS, adult female |
 | FlyWire v783 (FAFB) | `fw` | Full brain, adult female |
-| male-CNS v0.9 | `mc` | Full CNS, adult male |
+| male-CNS v1.0 | `mc` | Full CNS, adult male |
 | MANC v1.2.1 | `mv` | Full VNC, adult male |
 | Optic-lobe v1.0.1 | `ol` | Optic lobe, adult male |
 | hemibrain v1.2.1 | `hb` | Partial brain, adult female |
