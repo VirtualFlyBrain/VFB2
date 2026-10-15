@@ -337,7 +337,7 @@ whole animal rather than the nervous system alone.
 
 | Dataset | Short form |
 |---|---|
-| [Full CNS EM connectome, dense reconstruction (adult female)](https://virtualflybrain.org/reports/Bates2025) | `Bates2025` |
+| [Full CNS EM connectome, dense reconstruction (adult female)](https://virtualflybrain.org/reports/Bates2026) | `Bates2026` |
 | [Full CNS EM connectome, dense reconstruction (adult male)](https://virtualflybrain.org/reports/Berg2025a) | `Berg2025a` |
 | [Neurons involved in courtship and song (Lillvis2018)](https://virtualflybrain.org/reports/Lillvis2018) | `Lillvis2018` |
 | [Single-nucleus RNA-seq on cells from 30-days old female flies](https://flybase.org/reports/FBlc0006424) | `FBlc0006424` |
