@@ -1,8 +1,8 @@
 name: Check Links
 
 # Checks external links in content/ with lychee (settings in lychee.toml).
-# - Pull requests: only the Markdown files the PR changes, so existing
-#   breakage elsewhere doesn't block unrelated PRs.
+# - Pull requests: only links on lines the PR adds or modifies, so
+#   existing breakage doesn't block unrelated PRs.
 # - Weekly / manual: all of content/, opening or updating a single
 #   "Broken links report" issue when anything fails.
 
@@ -44,27 +44,29 @@ jobs:
           sudo install lychee-x86_64-unknown-linux-gnu/lychee /usr/local/bin/lychee
           lychee --version
 
-      - name: Check links in changed files
+      - name: Check links on added or modified lines
         if: github.event_name == 'pull_request'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           set -euo pipefail
-          # A config or workflow change checks everything, so its effect is visible.
-          if git diff --quiet "$BASE_SHA"...HEAD -- lychee.toml .github/workflows/check_links.yml; then
-            mapfile -d '' files < <(git diff -z --name-only --diff-filter=d "$BASE_SHA"...HEAD -- 'content/**/*.md')
-          else
-            files=('content/**/*.md')
-          fi
-          if [ ${#files[@]} -eq 0 ]; then
-            echo "No changed Markdown files to check."
+          # Copy just the added/modified lines of each changed file into
+          # added-lines/<same path>, so the report names the original file.
+          while IFS= read -r -d '' f; do
+            mkdir -p "added-lines/$(dirname "$f")"
+            git diff -U0 "$BASE_SHA"...HEAD -- "$f" \
+              | { grep -E '^\+' || true; } | { grep -vE '^\+\+\+ ' || true; } | sed 's/^+//' \
+              > "added-lines/$f"
+          done < <(git diff -z --name-only --diff-filter=d "$BASE_SHA"...HEAD -- 'content/**/*.md')
+          if [ ! -d added-lines ] || [ -z "$(find added-lines -type f -size +0)" ]; then
+            echo "No added or modified lines in content/ Markdown files."
             exit 0
           fi
-          printf 'Checking: %s\n' "${files[@]}"
-          lychee --config lychee.toml --format markdown -o lychee-report.md "${files[@]}" \
-            || { cat lychee-report.md >> "$GITHUB_STEP_SUMMARY"; exit 1; }
-          cat lychee-report.md >> "$GITHUB_STEP_SUMMARY"
+          cd added-lines
+          lychee --config ../lychee.toml --root-dir "$PWD/content/en" --format markdown -o ../lychee-report.md . \
+            || { cat ../lychee-report.md >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          cat ../lychee-report.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Check all links
         if: github.event_name != 'pull_request'
