@@ -1,0 +1,104 @@
+name: Check Links
+
+# Checks external links in content/ with lychee (settings in lychee.toml).
+# - Pull requests: only the Markdown files the PR changes, so existing
+#   breakage elsewhere doesn't block unrelated PRs.
+# - Weekly / manual: all of content/, opening or updating a single
+#   "Broken links report" issue when anything fails.
+
+on:
+  pull_request:
+    paths:
+      - 'content/**/*.md'
+      - 'lychee.toml'
+      - '.github/workflows/check_links.yml'
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  LYCHEE_VERSION: '0.24.2'
+  LYCHEE_SHA256: '1f4e0ef7f6554a6ed33dd7ac144fb2e1bbed98598e7af973042fc5cd43951c9a'
+
+jobs:
+  check_links:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install lychee
+        run: |
+          set -euo pipefail
+          tarball="lychee-x86_64-unknown-linux-gnu.tar.gz"
+          curl -sSfLO "https://github.com/lycheeverse/lychee/releases/download/lychee-v${LYCHEE_VERSION}/${tarball}"
+          echo "${LYCHEE_SHA256}  ${tarball}" | sha256sum -c -
+          tar xzf "${tarball}"
+          sudo install lychee-x86_64-unknown-linux-gnu/lychee /usr/local/bin/lychee
+          lychee --version
+
+      - name: Check links in changed files
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          # A config or workflow change checks everything, so its effect is visible.
+          if git diff --quiet "$BASE_SHA"...HEAD -- lychee.toml .github/workflows/check_links.yml; then
+            mapfile -d '' files < <(git diff -z --name-only --diff-filter=d "$BASE_SHA"...HEAD -- 'content/**/*.md')
+          else
+            files=('content/**/*.md')
+          fi
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No changed Markdown files to check."
+            exit 0
+          fi
+          printf 'Checking: %s\n' "${files[@]}"
+          lychee --config lychee.toml --format markdown -o lychee-report.md "${files[@]}" \
+            || { cat lychee-report.md >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          cat lychee-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Check all links
+        if: github.event_name != 'pull_request'
+        id: full
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -uo pipefail
+          lychee --config lychee.toml --format markdown -o lychee-report.md 'content/**/*.md'
+          status=$?
+          cat lychee-report.md >> "$GITHUB_STEP_SUMMARY"
+          # 2 = broken links found; anything else non-zero is a lychee failure.
+          if [ $status -eq 2 ]; then
+            echo "broken=true" >> "$GITHUB_OUTPUT"
+          elif [ $status -ne 0 ]; then
+            exit $status
+          fi
+
+      - name: Open or update broken links issue
+        if: steps.full.outputs.broken == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          title="Broken links report"
+          {
+            echo "Found by the weekly [link check](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}). Settings and exclusions are in \`lychee.toml\`."
+            echo
+            cat lychee-report.md
+          } > issue-body.md
+          number=$(gh issue list --state open --search "in:title \"$title\"" --json number,title \
+            --jq "map(select(.title == \"$title\"))[0].number // empty")
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --body-file issue-body.md
+          else
+            gh issue create --title "$title" --body-file issue-body.md
+          fi

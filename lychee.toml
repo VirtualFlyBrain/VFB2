@@ -1,0 +1,26 @@
+# Configuration for lychee link checker (https://lychee.cli.rs)
+# Used by .github/workflows/check_links.yml. Run locally with:
+#   lychee --config lychee.toml 'content/**/*.md'
+
+no_progress = true
+max_concurrency = 32
+timeout = 30
+max_retries = 2
+
+# Only check external web links. Hugo-style root-relative links such as
+# /docs/apis/catmaid/ don't map onto files under content/, so they resolve to
+# file:// URIs (via root_dir) and are skipped by this scheme filter.
+scheme = ["http", "https"]
+root_dir = "content/en"
+
+# 403: many publishers and news sites (and doi.org redirects to them) block
+#      automated requests; a missing page or invalid DOI still returns 404.
+# 429: rate limited, not broken.
+accept = ["100..=103", "200..=299", "403", "429"]
+
+exclude = [
+  # LinkedIn returns 999 to all bots
+  '^https?://([a-z]+\.)?linkedin\.com',
+  # MCP endpoint only accepts POST, so GET/HEAD return 405
+  '^https://vfb3-mcp\.virtualflybrain\.org',
+]
