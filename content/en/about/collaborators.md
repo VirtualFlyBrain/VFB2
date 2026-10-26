@@ -5,7 +5,7 @@ weight: 500
 
 ## Collaborators
 
-  <a href="http://www.hgu.mrc.ac.uk/"><img src="https://v2.virtualflybrain.org/images/vfb/project/logos/mrchguLogo.png" alt="mrchguLogo.png" class="logo-plate" width="300" /></a>
+  <a href="http://www.hgu.mrc.ac.uk/"><img src="/images/logos/mrchguLogo.png" alt="mrchguLogo.png" class="logo-plate" width="300" /></a>
 
   **The IIP3D server, Woolz software and client-side tools* are developed by**
   MRC Human Genetics Unit (MRC HGU): Richard Baldock, Nick Burton, Bill Hill, Zsolt Husz
@@ -14,7 +14,7 @@ weight: 500
 
   Visit the [EMAGE gene expression database](https://www.emouseatlas.org/emage/) to see other tools the MRC HGU have developed.
 
-  [![flybase.gif](https://v2.virtualflybrain.org/images/vfb/project/logos/flybase.gif)](https://www.flybase.org/)
+  [![flybase.gif](/images/logos/flybase.gif)](https://www.flybase.org/)
 
   **Expression data** is collaboratively curated by VFB and [FlyBase](https://www.flybase.org/) and stored and maintained at FlyBase. 
 

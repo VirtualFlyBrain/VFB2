@@ -55,3 +55,10 @@ Site for finding larval CNS driver lines via multiple query modes, including ana
 
 ### [EBI Single Cell Expression Atlas](https://www.ebi.ac.uk/gxa/sc/home)
 The Single Cell Expression Atlas at the European Bioinformatics Institute (EBI) provides access to single cell RNA-seq data from multiple species, including Drosophila.
+
+---
+
+## Other Useful Links
+
+### [From Sight to Action](https://sight-to-action.netlify.app/)
+Interactive explorer tracing a route through the Drosophila connectome from the R1–R6 photoreceptors to DNg13, a steering descending neuron. Shows EM-traced neuron shapes, statistical context (tested against chance) and a male/female comparison.

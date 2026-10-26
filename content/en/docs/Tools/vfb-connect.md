@@ -46,5 +46,5 @@ The [VFB connect API overview](/docs/tutorials/apis/vfb_api_overview/) tutorial 
 query surface in depth — term info, mapping between VFB and external IDs, connectivity and
 similarity queries. For the endpoints underneath it, see [VFB APIs](/docs/apis/).
 
-Full documentation: [vfb_connect.readthedocs.io](https://vfb_connect.readthedocs.io/en/stable/).
+Full documentation: [vfb-connect.readthedocs.io](https://vfb-connect.readthedocs.io/en/stable/).
 Source: [VirtualFlyBrain/VFB_connect](https://github.com/VirtualFlyBrain/VFB_connect).

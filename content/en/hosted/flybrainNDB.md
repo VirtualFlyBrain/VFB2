@@ -76,8 +76,6 @@ Important Notes:
 
 This resource is currently archived and maintained by Virtual Fly Brain (VFB).
 
-Source code repository: https://github.com/VirtualFlyBrain/flybrain-ndb 
-
 ## Original Development
 
 © 2010 FLYBRAIN Neuron Database  
