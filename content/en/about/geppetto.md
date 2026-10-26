@@ -24,7 +24,7 @@ For full details on the project see [Geppetto.org](https://geppetto.org)
 Build robust neuroscience applications.
 
 
-| [Live demo](http://live.geppetto.org) | [Paper](https://paper.geppetto.org) | [Docs](https://docs.geppetto.org/en/latest/) |
+| [Paper](https://doi.org/10.1098/rstb.2017.0380) | [Docs](https://docs.geppetto.org/en/latest/) |
 --------------------------------
 
 
@@ -117,7 +117,7 @@ Show me the code!
 
 Right! Geppetto is hosted on GitHub, every module has its own repository to provide flexible ways of branching individual components. For every module we have at least two branches, development and master. The development branch gets merged into master each monthly release. If you want to contribute you can either go straight to the code or reach out to us dropping an [email](mailto:info@geppetto.org), we will show you around and help you contribute in your favorite way!
 
-| [Source code](https://git.geppetto.org) | [Docs](https://docs.geppetto.org) | [Development board](https://board.geppetto.org/)
+| [Source code](https://github.com/openworm/org.geppetto) | [Docs](https://docs.geppetto.org) | [Issues](https://github.com/openworm/org.geppetto/issues) |
 --------------------------------
 
 F.A.Q.
@@ -147,7 +147,7 @@ For the full list of contributors see [here](https://github.com/orgs/openworm/te
 
 Besides the functional requirements, Geppetto's goal is to move away from the monolithic approach to software that is usually found in academic programming projects.
 
-Computational neuroscience has produced software systems, including NEURON and Genesis, that are extremely useful for simulating systems of neurons that include biophysical details ([Brette et al, 2007](https://arxiv.org/abs/q-bio.NC/0611089)). A range of other algorithms have been devised in other areas of computational biology ([Barnes & Chu, 2010](https://doi.org/10.1007/978-1-84996-326-8)) for which simulators have been produced ([Takahashi, 2004](https://web.sfc.keio.ac.jp/%7Eshafi/takahashi-thesis.pdf)). Several investigations have pointed to the challenges in building a single system that integrates multiple simulation algorithms together into a single biological model ([Takahashi et al., 2002](https://doi.org/10.1109/MIS.2002.1039834), [Dada and Mendes, 2007](https://dx.doi.org/10.1007/978-3-642-02879-3), [Cornelis et al., 2012](https://doi.org/10.1371/journal.pone.0029018)).
+Computational neuroscience has produced software systems, including NEURON and Genesis, that are extremely useful for simulating systems of neurons that include biophysical details ([Brette et al, 2007](https://arxiv.org/abs/q-bio.NC/0611089)). A range of other algorithms have been devised in other areas of computational biology ([Barnes & Chu, 2010](https://doi.org/10.1007/978-1-84996-326-8)) for which simulators have been produced ([Takahashi, 2004](https://web.archive.org/web/20220121101228/https://web.sfc.keio.ac.jp/~shafi/takahashi-thesis.pdf)). Several investigations have pointed to the challenges in building a single system that integrates multiple simulation algorithms together into a single biological model ([Takahashi et al., 2002](https://doi.org/10.1109/MIS.2002.1039834), [Dada and Mendes, 2007](https://dx.doi.org/10.1007/978-3-642-02879-3), [Cornelis et al., 2012](https://doi.org/10.1371/journal.pone.0029018)).
 
 Geppetto aims to address these scientific and engineering challenges. Geppetto's design leverages cutting edge software technologies. Its architecture and development follows industry standards.
 
