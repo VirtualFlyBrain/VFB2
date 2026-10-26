@@ -42,7 +42,7 @@ from curation, so they carry no synapse counts and cover far fewer entities. The
 
 | Dataset | VFB symbol | Coverage |
 |---|---|---|
-| BANC v626 | `BANC` | Full CNS, adult female |
+| BANC v888 | `BANC` | Full CNS, adult female |
 | FlyWire v783 (FAFB) | `fw` | Full brain, adult female |
 | male-CNS v1.0 | `mc` | Full CNS, adult male |
 | MANC v1.2.1 | `mv` | Full VNC, adult male |

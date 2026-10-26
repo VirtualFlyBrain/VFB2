@@ -43,7 +43,7 @@ These are the datasets Virtual Fly Brain holds. Each row is one animal.
 |---|---|---|---|---|
 | **FlyWire** (FAFB) | **139,255** | Whole brain, both optic lobes included. VNC excluded | Adult **female**, ssTEM | Dorkenwald et al. 2024, *Nature* 634:124–138 · PMID 39358518 · doi:10.1038/s41586-024-07558-y |
 | **Male CNS** v1.0 | **~166,700** | **Whole CNS** — central brain + optic lobes + VNC, intact neck connective | Adult **male**, eFIB-SEM | Berg et al. 2026, *Cell* 189(18):5504–5526.e15 · PMID 42691995 · doi:10.1016/j.cell.2026.08.015 |
-| **BANC** v626 | **155,916** | Brain + VNC in one animal. **Lamina and ocellar ganglion absent** (~9,390 lamina neurons missing) | Adult **female**, ssTEM (GridTape) | Bates et al. 2026, *Nature* · PMID 42259917 · doi:10.1038/s41586-026-10735-w |
+| **BANC** v888 | **155,916** | Brain + VNC in one animal. **Lamina and ocellar ganglion absent** (~9,390 lamina neurons missing) | Adult **female**, ssTEM (GridTape) | Bates et al. 2026, *Nature* · PMID 42259917 · doi:10.1038/s41586-026-10735-w |
 | **Optic lobe** v1.0.1 | **~53,000** (732 cell types) | **Right optic lobe only.** Lamina incomplete; central brain not proofread | Adult **male**, FIB-SEM | Nern et al. 2025, *Nature* 641:1225–1237 · PMID 40140576 |
 | **MANC** v1.2.1 | **~23,000** ("roughly 23 thousand") | **Ventral nerve cord only**, plus the neck connective | 5-day **male**, FIB-SEM | Takemura et al. 2024, *eLife* 13:RP97769 · **reviewed preprint, no version of record, no PMID** |
 | **Hemibrain** v1.2.1 | **~25,000** | **A portion of the central brain** — see §2 | 5-day **female** Canton S, FIB-SEM | Scheffer et al. 2020, *eLife* 9:e57443 · PMID 32880371 |
@@ -69,12 +69,13 @@ factor that could be corrected for:
 | Hemibrain v1.2.1 | 69,578 | ~25,000 | 2.78 |
 | Optic lobe v1.0.1 | 60,002 | ~53,000 | 1.13 |
 | Male CNS v1.0 | 340,230 | ~166,700 | 2.04 |
-| **BANC v626** | **143,806** | **155,916** | **0.92** |
+| **BANC v888** | **186,392** | **155,916** | **1.20** |
 
-The ratio ranges from 0.92 to 2.78 — and BANC has *fewer* images than the paper reports neurons, so
-the error does not even run in a consistent direction. Neurons are aligned to multiple template brains
-(one neuron can appear as several images), while other neurons in a release may have no aligned image
-at all. **An image count is a count of images.**
+The ratio ranges from 1.13 to 2.78 — a factor of almost 2.5 between datasets, so there is no constant
+to correct by. It does not even run in a consistent direction: for BANC v626, the release VFB held
+before v888, there were *fewer* images (143,806) than the paper reports neurons. Neurons are aligned to
+multiple template brains (one neuron can appear as several images), while other neurons in a release
+may have no aligned image at all. **An image count is a count of images.**
 
 One practical note for anyone querying this: `get_term_info` reports `count: -1` for `DatasetImages`,
 which is the unavailable sentinel and not zero. The real totals only come back from `run_query`.
@@ -168,8 +169,12 @@ This is the single most useful thing to know when quoting any connectome figure.
 - **Shiu et al.'s model, built on FlyWire materialisation v630, used 127,400 neurons** — the same brain,
   a different materialisation, ~12,000 fewer neurons.
 - **BANC's preprint reports 142,719 proofread neurons at v821; the *Nature* version reports 155,916**
-  proofread plus roughly-proofread. The paper's analyses are performed on v626 — the version VFB holds
-  — but no neuron total is ever published for v626 specifically.
+  — 150,841 backbone proofread plus 5,075 roughly proofread — at v888, the release VFB holds (a
+  snapshot of 17 April 2026). Between the preprint and v888, 62,773 proofread and roughly proofread
+  neurons were updated, 42,270 of them new. The paper also notes that BANC's published metadata marks
+  some neurons proofread after the snapshot, so a count taken from the live tables drifts: in October
+  2026, `banc_888_meta` gave 155,858 proofread and roughly proofread neurons, excluding glia, trachea
+  and non-neurons.
 - **The optic lobe cell-type count went from 727 to 732** between preprint (v1.0) and version of record
   (v1.1). VFB holds v1.0.1, which neither citation documents.
 - **MANC's companion papers disagree with each other** by a handful of neurons per class, and Marin et
