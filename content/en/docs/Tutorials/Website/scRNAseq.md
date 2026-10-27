@@ -44,9 +44,9 @@ Data can also be retrieved using [VFB_connect](https://pypi.org/project/vfb-conn
 
 
 ## Data sources and processing
-1. Raw scRNAseq data is ingested by the EBI Single Cell Expression Atlas (SCEA). Where possible, cells are linked to cell types from the [Drosophila Anatomy Ontology](https://www.ebi.ac.uk/ols4/ontologies/fbbt) based on author annotations. Data is reprocessed, filtered and reclustered.
-2. FlyBase takes data from EBI, keeping only cells that are linked to ontology terms and generating summary expression data for each cell type (cluster).
-3. VFB takes control/wild type expression data from FlyBase for datasets where at least one nervous system cell type is present and filter out any genes expressed in less than 20% of cells per cluster.
+1. VFB curates each dataset in [vfb-scRNAseq](https://github.com/VirtualFlyBrain/vfb-scRNAseq). The clusters are the authors' own, with their cell-type annotations, taken from GEO, ArrayExpress, the paper or the authors' published analysis. Samples record the stage, sex, tissue and genotype or stock. Where a study compares treatments or mutants, VFB uses the control samples.
+2. Each cluster is mapped to the [Drosophila Anatomy Ontology](https://www.ebi.ac.uk/ols4/ontologies/fbbt) term for the cell type it is composed primarily of. A cluster with no adequate term is held back rather than given a vague one, and is not shown in VFB.
+3. Summary expression is calculated per cluster from the authors' count data (counts per million), and genes expressed in less than 20% of a cluster's cells are left out. Gene ids are kept current with FlyBase.
 
 
 ## Database schema

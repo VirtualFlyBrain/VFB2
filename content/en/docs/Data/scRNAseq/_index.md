@@ -16,9 +16,15 @@ sequencing itself is not VFB's; the anatomical annotation and the cross-linking 
 
 {{< vfb-figures set="scrnaseq" >}}
 
-Data comes from [FlyBase](https://flybase.org/), which takes it from the
-[Single Cell Expression Atlas](https://www.ebi.ac.uk/gxa/sc/home). The studies include
-the [Fly Cell Atlas](https://flycellatlas.org/) and the
+VFB curates these datasets itself, in
+[vfb-scRNAseq](https://github.com/VirtualFlyBrain/vfb-scRNAseq). For each study, the
+clusters are the authors' own, taken with their cell-type annotations from GEO,
+ArrayExpress, the paper or the authors' published analysis, and each cluster is mapped
+to the Drosophila Anatomy Ontology term for the cell type it is composed primarily of. Clusters
+that no anatomy term describes well enough are held back rather than given a vague
+term, so every cluster VFB shows has a cell type. Expression is summarised per cluster
+from the authors' count data. The studies include the
+[Fly Cell Atlas](https://flycellatlas.org/) and the
 [Aging Fly Cell Atlas](https://hongjielilab.org/afca/).
 
 ## Finding clusters and genes
@@ -43,37 +49,31 @@ The same queries are available through
 ## Datasets
 
 Gene counts are after the extent filter above, so they are lower than the gene count
-reported by the original study. Ordered by cluster count.
+reported by the original study. Ordered by cluster count. Datasets that span several
+stages are listed once on [Datasets by stage](/docs/data/stages/), at their earliest.
 
 | Dataset | Stage | Study | Clusters | Genes |
 |---|---|---|---|---|
-| [scRNAseq_2022_FCA_MIXED](https://flybase.org/reports/FBlc0004785) | Adult | Single-nucleus RNA-seq on cells from 5-days old female and male flies | 497 | 11,079 |
-| [scRNAseq_2022_FCA_MALE](https://flybase.org/reports/FBlc0004307) | Adult | Single-nucleus RNA-seq on cells from 5-days old male flies | 422 | 10,978 |
-| [scRNAseq_2022_FCA_FEMALE](https://flybase.org/reports/FBlc0003846) | Adult | Single-nucleus RNA-seq on cells from 5-days old female flies | 411 | 8,169 |
-| [scRNAseq_2022_Calderon](https://flybase.org/reports/FBlc0007797) | Embryo | The continuum of Drosophila embryonic development at single-cell resolution | 274 | 2,166 |
-| [scRNAseq_2023_AFCA_D30_FEMALE](https://flybase.org/reports/FBlc0006424) | Adult | Single-nucleus RNA-seq on cells from 30-days old female flies | 179 | 4,987 |
-| [scRNAseq_2023_AFCA_D70_FEMALE](https://flybase.org/reports/FBlc0007348) | Adult | Single-nucleus RNA-seq on cells from 70-days old female flies | 176 | 5,458 |
-| [scRNAseq_2023_AFCA_D50_FEMALE](https://flybase.org/reports/FBlc0006888) | Adult | Single-nucleus RNA-seq on cells from 50-days old female flies | 175 | 4,595 |
-| [scRNAseq_2023_AFCA_D50_MALE](https://flybase.org/reports/FBlc0007071) | Adult | Single-nucleus RNA-seq on cells from 50-days old male flies | 172 | 4,878 |
-| [scRNAseq_2023_AFCA_D30_MALE](https://flybase.org/reports/FBlc0006611) | Adult | Single-nucleus RNA-seq on cells from 30-days old male flies | 168 | 4,857 |
-| [scRNAseq_2023_AFCA_D70_MALE](https://flybase.org/reports/FBlc0007532) | Adult | Single-nucleus RNA-seq on cells from 70-days old male flies | 161 | 4,835 |
-| [scRNAseq_2023_AFCA_D30](https://flybase.org/reports/FBlc0006423) | Adult | Single-nucleus RNA-seq on cells from 30-days old flies | 99 | 5,312 |
-| [scRNAseq_2023_AFCA_D70](https://flybase.org/reports/FBlc0007347) | Adult | Single-nucleus RNA-seq on cells from 70-days old flies | 95 | 5,592 |
-| [scRNAseq_2023_AFCA_D50](https://flybase.org/reports/FBlc0006887) | Adult | Single-nucleus RNA-seq on cells from 50-days old flies | 95 | 5,015 |
-| [scRNAseq_2021_Ozel](https://flybase.org/reports/FBlc0005659) | Pupa | Single-cell RNA-seq study of pupal and adult optic lobes | 66 | 4,770 |
-| [scRNAseq_2020_Kurmangaliyev](https://flybase.org/reports/FBlc0006237) | Pupa | Single-cell RNA-seq study of the pupal optic lobe | 62 | 5,975 |
-| [scRNAseq_2018_Davie](https://flybase.org/reports/FBlc0006090) | Adult | Single-cell RNA-seq study of the aging brain | 59 | 6,111 |
-| [scRNAseq_2020_Hormann](https://flybase.org/reports/FBlc0006305) | Adult | Single-cell RNA-seq study of visual motion-sensing neurons | 40 | 4,014 |
-| [scRNAseq_2021_Mokashi_CTRL](https://flybase.org/reports/FBlc0005420) | Adult | Single-cell RNA-seq study of adult brain without alcohol exposure | 39 | 3,097 |
-| [scRNAseq_2021_Baker_CTRL](https://flybase.org/reports/FBlc0005515) | Adult | Single-cell RNA-seq study of adult brain without cocaine exposure | 36 | 3,329 |
-| [scRNAseq_2020_Allen](https://flybase.org/reports/FBlc0005603) | Adult | Single-cell RNA-seq study of adult ventral nerve cords | 20 | 3,085 |
-| [scRNAseq_2022_Konstantinides](https://flybase.org/reports/FBlc0006404) | Larva | Single-cell RNA-seq study of larval optic lobes | 14 | 5,530 |
-| [scRNAseq_2023_Saavedra](https://flybase.org/reports/FBlc0006361) | Adult | Single-cell RNA-seq study of the adult thorax | 11 | 1,726 |
-| [scRNAseq_2019_Avalos](https://flybase.org/reports/FBlc0005362) | L1 larva | Single-cell RNA-seq study of first instar larval brains upon starvation | 10 | 6,463 |
-| [scRNAseq_2021_IngSimmons](https://flybase.org/reports/FBlc0006191) | Embryo | Single-cell RNA-seq study of gastrulating embryos | 9 | 6,423 |
+| [scRNAseq data from Özel (2021)](https://virtualflybrain.org/reports/VFBseq_00001758) | Pupa, adult | Neuronal diversity and convergence in a visual system developmental atlas | 522 | 8,138 |
+| [scRNAseq data from Li (2022), 10x](https://virtualflybrain.org/reports/VFBseq_00000538) | Adult | Fly Cell Atlas: A single-nucleus transcriptomic atlas of the adult fruit fly | 335 | 12,747 |
+| [scRNAseq data from Kurmangaliyev (2020)](https://virtualflybrain.org/reports/VFBseq_00000001) | Pupa | Transcriptional Programs of Circuit Assembly in the Drosophila Visual System | 232 | 7,473 |
+| [scRNAseq data from Calderon (2022)](https://virtualflybrain.org/reports/VFBseq_00002863) | Embryo | The continuum of Drosophila embryonic development at single-cell resolution | 223 | 4,539 |
+| [scRNAseq data from Li (2022), Smart-seq2](https://virtualflybrain.org/reports/VFBseq_00000777) | Adult | Fly Cell Atlas: A single-nucleus transcriptomic atlas of the adult fruit fly | 211 | 15,011 |
+| [scRNAseq data from Lu (2023)](https://virtualflybrain.org/reports/VFBseq_00001468) | Adult | Aging Fly Cell Atlas identifies exhaustive aging features at cellular resolution | 143 | 5,399 |
+| [scRNAseq data from Allen (2020)](https://virtualflybrain.org/reports/VFBseq_00002728) | Adult | A single-cell transcriptomic atlas of the adult Drosophila ventral nerve cord | 106 | 6,264 |
+| [scRNAseq data from Xie (2021)](https://virtualflybrain.org/reports/VFBseq_00002581) | Prepupa, pupa, adult | Temporal evolution of single-cell transcriptomes of Drosophila olfactory projection neurons | 92 | 8,317 |
+| [scRNAseq data from Davie (2018)](https://virtualflybrain.org/reports/VFBseq_00000243) | Adult | A Single-Cell Transcriptome Atlas of the Aging Drosophila Brain | 82 | 6,704 |
+| [scRNAseq data from Konstantinides (2022)](https://virtualflybrain.org/reports/VFBseq_00002364) | L3 larva | A complete temporal transcription factor series in the fly visual system | 75 | 7,154 |
+| [scRNAseq data from Hörmann (2020)](https://virtualflybrain.org/reports/VFBseq_00002461) | Pupa | A combinatorial code of transcription factors specifies subtypes of visual motion-sensing neurons in Drosophila | 40 | 3,874 |
+| [scRNAseq data from Brunet Avalos (2019)](https://virtualflybrain.org/reports/VFBseq_00003150) | L1 larva | Single cell transcriptome atlas of the Drosophila larval brain | 28 | 6,772 |
+| [scRNAseq data from Mokashi (2021)](https://virtualflybrain.org/reports/VFBseq_00003188) | Adult | Developmental Alcohol Exposure in Drosophila: Effects on Adult Phenotypes and Gene Expression in the Brain | 26 | 3,664 |
+| [scRNAseq data from Baker (2021)](https://virtualflybrain.org/reports/VFBseq_00003265) | Adult | The Drosophila brain on cocaine at single-cell resolution | 22 | 3,634 |
+| [scRNAseq data from Li (2017)](https://virtualflybrain.org/reports/VFBseq_00002527) | Pupa, adult | Classifying Drosophila Olfactory Projection Neuron Subtypes by Single-Cell RNA Sequencing | 22 | 7,562 |
+| [scRNAseq data from Saavedra (2023)](https://virtualflybrain.org/reports/VFBseq_00003198) | Adult | REPTOR and CREBRF encode key regulators of muscle energy metabolism | 14 | 1,402 |
+| [scRNAseq data from Ing-Simmons (2021)](https://virtualflybrain.org/reports/VFBseq_00002844) | Embryo | Independence of chromatin conformation and gene regulation during Drosophila dorsoventral patterning | 13 | 6,763 |
 
-Not every cluster carries an anatomical annotation: many are non-neural or were not
-resolved to a cell type in the source study. Counts here are of what VFB holds, and are
-regenerated with the [content report](/blog/2022/01/01/vfb-content-report/) after each
-data release; the machine-readable version is
+Clusters a study left untyped, or typed only as a generic cell or neuron, are not
+loaded, so these counts can be lower than the study's own. Counts here are of what VFB
+holds, and are regenerated with the [content report](/blog/2022/01/01/vfb-content-report/)
+after each data release; the machine-readable version is
 [scRNAseq_DataSets.tsv](https://github.com/VirtualFlyBrain/VFB_reporting_results/blob/master/scRNAseq_DataSets.tsv).
