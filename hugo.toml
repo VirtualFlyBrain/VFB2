@@ -24,6 +24,12 @@ theme = "vfb-nova"
 disableKinds = ["taxonomy", "term"]
 
 enableGitInfo = false
+# Per-template wall-clock limit (default 30s). Section list pages render while ~950k
+# generated term pages are being built in parallel, and under that load the
+# list-body.html partial (it counts and summarises each subsection) can wait more
+# than 30s: every build from 28 Oct 2026 was rejected with "partial
+# list-body.html timed out after 30s" and 0 pages. Not recursion; just slow.
+timeout = "300s"
 timeZone = "Europe/London"
 
 # Hugo >= 0.163 blocks text/html content files by default
