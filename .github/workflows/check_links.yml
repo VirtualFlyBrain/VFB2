@@ -75,8 +75,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -uo pipefail
-          lychee --config lychee.toml --format markdown -o lychee-report.md 'content/**/*.md'
-          status=$?
+          # Actions runs this with bash -e; capture lychee's exit code rather
+          # than letting errexit abort the step before the report is written.
+          status=0
+          lychee --config lychee.toml --format markdown -o lychee-report.md 'content/**/*.md' || status=$?
           cat lychee-report.md >> "$GITHUB_STEP_SUMMARY"
           # 2 = broken links found; anything else non-zero is a lychee failure.
           if [ $status -eq 2 ]; then
