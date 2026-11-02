@@ -29,7 +29,7 @@ from the authors' count data. The studies include the
 
 ## Finding clusters and genes
 
-Clusters for a cell type are reached through the `Single cell transcriptomics data for…`
+Clusters for a cell type are reached through the `scRNAseq data for…`
 query on that cell type's Term Info pane. Datasets themselves are found by searching for
 `scRNAseq` and filtering to `Dataset`.
 
@@ -45,6 +45,24 @@ _Only genes with extent > 0.2 in a cluster are included._
 
 The same queries are available through
 [VFB_connect](https://vfb-connect.readthedocs.io/en/stable/API_reference.html#transcriptomics-queries).
+
+## Samples, assays and clusterings
+
+Each dataset also has pages for what was sequenced and how it was analysed:
+
+- **Samples**: the dissected tissue, with its stage, tissue, sex and the fly stock,
+  FlyBase strain or genotype it came from.
+- **Assays**: the sequencing libraries made from each Sample, linked to their GEO, SRA
+  and BioSample records.
+- **Clusterings**: the authors' analyses, each with its clusters and the Samples its
+  cells came from. A dataset can have several, for example one per stage.
+
+A dataset's Term Info offers `Clusterings in…`, `Samples in…` and `Assays in…`, and a
+Clustering offers its clusters, Samples and Assays. Cluster tables show the stages and
+tissues of the Samples behind each cluster, apart from any stage the cluster itself was
+given from its expression. From a stock, strain, allele or split combination,
+`scRNAseq samples from…` and `scRNAseq clusters from samples of…` find the data from
+those flies. See the [Queries Reference](/docs/website-features/queries/#how-a-scrnaseq-dataset-is-organised).
 
 ## Datasets
 
