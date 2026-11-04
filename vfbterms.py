@@ -404,48 +404,6 @@ def submit_indexnow(ids, key):
     print(f"Submitted {sent}/{len(urls)} changed term URLs to IndexNow.")
 
 
-# ─── URL repair for pages already on disk ────────────────────────────────────
-#
-# Pages written before `url:` was added to the front matter are only re-fetched
-# on a version bump, which means re-fetching the whole corpus. This pass fixes
-# them in place instead: the ID is the filename, so it inserts `url: /term/<ID>/`
-# and drops the old label-slug canonicalUrl. One read + one write per file, no
-# API calls, resumable (a file that already has a url line is left alone).
-_URL_LINE_RE = re.compile(r'^url: ', re.M)
-_OLD_URL_LINES_RE = re.compile(r'^(canonicalUrl|slug): .*\n', re.M)
-_PAGE_FILE_RE = re.compile(r'^(.+?)_v\d+\.md$')
-
-
-def repair_urls(root):
-    fixed = skipped = 0
-    for dirpath, _dirs, files in os.walk(root):
-        for fn in files:
-            m = _PAGE_FILE_RE.match(fn)
-            if not m:
-                continue
-            term_id = m.group(1)
-            p = join(dirpath, fn)
-            try:
-                with open(p, "r", encoding="utf-8") as f:
-                    text = f.read()
-            except OSError:
-                continue
-            head, sep, body = text.partition("\n---\n")
-            if not sep or _URL_LINE_RE.search(head) or "\nsitemap_exclude: true" not in head:
-                skipped += 1
-                continue
-            head = _OLD_URL_LINES_RE.sub("", head + "\n").rstrip("\n")
-            head = head.replace("\nsitemap_exclude: true",
-                                f"\nurl: {get_term_url(term_id)}\nsitemap_exclude: true", 1)
-            tmp = f"{p}.{os.getpid()}.tmp"
-            with open(tmp, "w", encoding="utf-8") as f:
-                f.write(head + sep + body)
-            os.replace(tmp, p)
-            fixed += 1
-            if fixed % 10000 == 0:
-                print(f"  repaired {fixed} (skipped {skipped}) ... last {fn}")
-    print(f"URL repair done: {fixed} pages updated, {skipped} already fine or unparseable.")
-
 def get_query_results_url(term_id, query_name):
     """Create a VFB viewer URL for a term query result set."""
     if not query_name:
@@ -1399,14 +1357,7 @@ def test_medulla_page():
 # ─── Main ────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "--repair-urls":
-        # One-off: `vfbterms.py --repair-urls <content root>` adds `url:` to
-        # every existing term page without re-fetching anything. Run once,
-        # then rebuild the site.
-        if len(sys.argv) < 3 or not os.path.isdir(sys.argv[2]):
-            sys.exit("usage: vfbterms.py --repair-urls <content root directory>")
-        repair_urls(sys.argv[2])
-    elif len(sys.argv) > 1:
+    if len(sys.argv) > 1:
         mypath = sys.argv[1]
         # Optional: where to write sitemap1.xml.. and sitemap-terms.xml once
         # the full corpus below has been processed. Point this at wherever
