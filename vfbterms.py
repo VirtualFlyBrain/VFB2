@@ -192,22 +192,96 @@ def fetch_term_info(term_id):
 
 # ─── URL / Link Helpers ─────────────────────────────────────────────────────
 
-def get_term_url(label, short_form):
-    """Create canonical URL slug for a term."""
-    url = label.replace('\\', '').replace(' ', '-').lower() + "-" + short_form.lower()
-    return re.sub("[^0-9a-zA-Z-_]+", "", url)
+def get_term_url(term_id):
+    """Site-relative path of a term's static page: /term/<ID>/.
+
+    The ID alone, exact case. Labels used to be in the slug, which made URLs
+    unpredictable (a label rename moved the page) and, worse, the script's
+    slug and the one Hugo derived from the title disagreed for any label with
+    a backslash, `/`, `.`, Greek letter or other stripped punctuation -- about
+    an eighth of the corpus 404'd from its own sitemap and canonical. The ID
+    is already URL-safe and is what /reports/<ID> and every xref use.
+    """
+    return f"/term/{term_id}/"
 
 def get_report_url(identifier):
     """Create the VFB report URL path for a term identifier."""
     return f'/reports/{identifier}'
 
+
+_MD_LINK_RE = re.compile(r'\[([^\]]+)\]\([^)]+\)')
+# Tags that say nothing a reader would search for.
+_DESC_SKIP_TAGS = {"Entity", "Individual", "Class", "VFB", "has_image",
+                   "has_neuron_connectivity", "hasScRNAseq", "Anatomy"}
+
+
+def _plain(text):
+    """Markdown links -> their labels; collapse whitespace."""
+    return re.sub(r'\s+', ' ', _MD_LINK_RE.sub(r'\1', text or '')).strip()
+
+
+def compose_description(name, term_id, meta, tags, technique, supertypes):
+    """Build a <meta name="description"> for a term that has no curated one.
+
+    The old fallback was the bare `Types` text, which gave the same two or
+    three words to tens of thousands of pages ("gene", "sequence_feature",
+    "intersectional expression pattern", or just the parent class label for
+    every connectome neuron) and nothing at all when Types was empty -- Bing
+    flags both as duplicate/short descriptions across the corpus. This puts
+    the name and accession in every description, says what kind of thing it
+    is, which dataset/technique it comes from, and what the page offers, so
+    each one is distinct and 120-200 characters long.
+    """
+    # First listed type only: "allele; sequence_feature" reads better as "allele".
+    types = _plain(meta.get("Types", "")).rstrip('.').split(';')[0].strip()
+    tags = [t for t in (tags or []) if t and t not in _DESC_SKIP_TAGS
+            and t.replace('_', ' ').lower() not in types.lower()]
+    sts = set(supertypes or [])
+    is_individual = "Individual" in sts
+
+    bits = []
+    if is_individual:
+        what = types or (f"{technique[0]} image" if technique else "image")
+        bits.append(f"{name} ({term_id}): {what}")
+        ds = [t for t in sts if t in ("FAFB", "FANC", "BANC", "MANC", "hemibrain",
+                                      "L1EM", "Neuprint", "FlyLight", "FlyCircuit",
+                                      "optic_lobe", "male-cns", "larval_CNS")]
+        if ds:
+            bits.append("from " + ", ".join(sorted(ds)).replace('_', ' '))
+        if technique and not what.endswith("image"):
+            bits.append("imaged by " + technique[0])
+    else:
+        what = types or "term"
+        bits.append(f"{name} ({term_id}): {what}")
+    if tags:
+        bits.append("[" + ", ".join(t.replace('_', ' ') for t in tags[:4]) + "]")
+    lead = " ".join(bits).rstrip('.') + "."
+
+    if is_individual:
+        tail = ("View in 3D on the template brain, download the mesh and image "
+                "stack, and explore its connectivity on Virtual Fly Brain.")
+    elif "Gene" in sts or (types and "gene" in types.lower()):
+        tail = ("Expression patterns, driver lines and anatomy annotations "
+                "for this Drosophila gene on Virtual Fly Brain.")
+    elif "Neuron" in sts:
+        tail = ("Aligned images, connectivity, synonyms and references for "
+                "this Drosophila neuron type on Virtual Fly Brain.")
+    elif "Expression_pattern" in sts or "expression pattern" in (types or "").lower():
+        tail = ("Aligned images, the neurons and regions it labels, and stock "
+                "links for this expression pattern on Virtual Fly Brain.")
+    else:
+        tail = ("Classification, synonyms, related images and references "
+                "for this Drosophila term on Virtual Fly Brain.")
+    return f"{lead} {tail}"
+
 # ─── Sitemap Generation ─────────────────────────────────────────────────────
 #
-# Two URLs exist per term -- the static description page this script writes
-# (/term/<slug>/, Hugo's own canonical for that page) and the interactive
-# viewer (/reports/<id>, which 302s to the Geppetto viewer and is what the
-# viewer itself declares as canonical -- see geppetto-vfb's pageMetadata.js).
-# Both are real, separately useful pages, so both belong in the sitemap.
+# One URL per term: the static page at /term/<ID>/. The interactive viewer
+# (/reports/<ID>, a 302 to Geppetto) is deliberately not listed: its title,
+# description and canonical are filled in client-side after a fetch, so a
+# crawler that does not run that JS sees a bare shell with the site-wide title
+# -- Bing reported the whole corpus as duplicate titles. The term page links
+# to the viewer, and the viewer's own canonical points back at the term page.
 #
 # Term pages carry `sitemap_exclude: true` (see generate_page below) because
 # Hugo's own sitemap.xml has no pagination: it would emit one file with the
@@ -215,40 +289,21 @@ def get_report_url(identifier):
 # sitemap1.xml.. Google expects instead, plus the sitemap-terms.xml index
 # that robots.txt already advertises.
 SITEMAP_SITE_BASE = "https://www.virtualflybrain.org"
-SITEMAP_REPORT_BASE = "https://virtualflybrain.org"
-# Google caps a sitemap file at 50,000 URLs; each term contributes two.
-SITEMAP_MAX_TERMS_PER_SHARD = 25000
+# Google caps a sitemap file at 50,000 URLs.
+SITEMAP_MAX_TERMS_PER_SHARD = 50000
 
-_sitemap_entries = {}
+_sitemap_entries = set()
 _sitemap_lock = threading.Lock()
+# IDs of pages written (not skipped) this run, for the IndexNow ping.
+_changed_ids = []
 
-_CANONICAL_SLUG_RE = re.compile(r'canonicalUrl:\s*"https://www\.virtualflybrain\.org/term/([^/]+)/"')
 
-
-def record_sitemap_entry(term_id, url_slug):
-    """Remember one term's slug for the end-of-run sitemap write. Thread-safe."""
-    if not term_id or not url_slug:
+def record_sitemap_entry(term_id):
+    """Remember one term for the end-of-run sitemap write. Thread-safe."""
+    if not term_id:
         return
     with _sitemap_lock:
-        _sitemap_entries[term_id] = url_slug
-
-
-def slug_from_existing_page(filename):
-    """Recover a term's URL slug from a page already on disk (the "skip" path
-    in process_term, which never re-fetches term_data, so never recomputes the
-    slug the normal way)."""
-    try:
-        with open(filename, "r", encoding="utf-8") as f:
-            for _ in range(20):
-                line = f.readline()
-                if not line:
-                    break
-                match = _CANONICAL_SLUG_RE.search(line)
-                if match:
-                    return match.group(1)
-    except OSError:
-        pass
-    return None
+        _sitemap_entries.add(term_id)
 
 
 def write_sitemaps(output_dir):
@@ -263,7 +318,7 @@ def write_sitemaps(output_dir):
     if not output_dir:
         return
     with _sitemap_lock:
-        entries = sorted(_sitemap_entries.items())
+        entries = sorted(_sitemap_entries)
     if not entries:
         print("WARNING: no sitemap entries collected -- not writing sitemaps")
         return
@@ -276,9 +331,8 @@ def write_sitemaps(output_dir):
         shard_name = f"sitemap{shard_index}.xml"
         lines = ['<?xml version="1.0" encoding="UTF-8"?>',
                  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-        for term_id, url_slug in shard:
-            lines.append(f'  <url><loc>{SITEMAP_SITE_BASE}/term/{url_slug}/</loc></url>')
-            lines.append(f'  <url><loc>{SITEMAP_REPORT_BASE}/reports/{term_id}</loc></url>')
+        for term_id in shard:
+            lines.append(f'  <url><loc>{SITEMAP_SITE_BASE}{get_term_url(term_id)}</loc></url>')
         lines.append('</urlset>')
         with open(join(output_dir, shard_name), "w", encoding="utf-8") as f:
             f.write("\n".join(lines) + "\n")
@@ -293,6 +347,30 @@ def write_sitemaps(output_dir):
         f.write("\n".join(index_lines) + "\n")
 
     print(f"Wrote {len(shard_names)} sitemap shard(s) covering {len(entries)} terms to {output_dir}")
+
+
+# ─── IndexNow ────────────────────────────────────────────────────────────────
+#
+# Bing, Yandex, Naver, Seznam and Yep share the IndexNow protocol: POST the
+# URLs that changed and they recrawl them within minutes instead of waiting
+# for the next sitemap pass -- for a 450k-URL corpus the difference between a
+# release showing up in days and in months. This script only *records* the
+# term pages it wrote, because it runs hours before those pages are built and
+# live (and, for a full regeneration, before the corpus is even swapped in).
+# The site builder (vfb-k8s apps/site) reads the file after a build has gone
+# live, submits the URLs with its VFB_INDEXNOW_KEY, and truncates it.
+INDEXNOW_PENDING = "indexnow-pending.txt"
+
+
+def write_indexnow_pending(output_dir, ids):
+    """Append this run's written term URLs to <output_dir>/indexnow-pending.txt."""
+    if not (output_dir and ids):
+        return
+    with open(join(output_dir, INDEXNOW_PENDING), "a", encoding="utf-8") as f:
+        for i in sorted(set(ids)):
+            f.write(SITEMAP_SITE_BASE + get_term_url(i) + "\n")
+    print(f"Recorded {len(set(ids))} changed term URLs for IndexNow in {INDEXNOW_PENDING}.")
+
 
 def get_query_results_url(term_id, query_name):
     """Create a VFB viewer URL for a term query result set."""
@@ -746,23 +824,29 @@ def generate_page(term_data):
     xrefs = term_data.get("Xrefs", [])
     related_tools = term_data.get("RelatedTools", [])
 
-    # Description for front matter
-    description = meta.get("Description", "")
-    if not description:
-        # Fallback to Types text
-        description = meta.get("Types", "")
-    # Strip markdown link syntax to plain labels: the front-matter description
-    # becomes the <meta name="description"> tag and page summary, where raw
-    # `[label](id)` syntax would show literally.
-    description = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', description)
+    # Description for front matter: the curated definition when there is one
+    # (strip markdown link syntax to plain labels, as it becomes the
+    # <meta name="description"> tag and page summary), otherwise a composed
+    # one -- see compose_description. A lone "." counts as empty: some FlyBase
+    # imports carry that as a placeholder.
+    description = _plain(meta.get("Description", ""))
+    if description.strip('. ') == "":
+        description = compose_description(name, term_id, meta, tags,
+                                          technique, term_data.get("SuperTypes"))
     # Clean for YAML
     description = description.replace('"', '\\"').replace("\n", " ").replace("\r", " ").strip()
 
     # Comment
     comment = meta.get("Comment", "")
 
-    # URL slug
-    url_slug = get_term_url(name, term_id)
+    # Title/linkTitle are JSON-quoted: a JSON string is a valid YAML
+    # double-quoted scalar, so backslashes (`Scer\\GAL4[...]`) and quotes in
+    # labels survive. The old `&bsol;` substitution reached the page as a
+    # literal "&amp;bsol;" in the <title>.
+    # Page URL: /term/<ID>/, set explicitly with `url:` so Hugo writes the
+    # page there verbatim (case kept) instead of deriving a slug from the
+    # title -- see get_term_url. .Permalink is then the canonical.
+    url_path = get_term_url(term_id)
 
     # Tags for front matter
     # Build a clean list and drop empties, otherwise a term with no Tags
@@ -782,16 +866,16 @@ def generate_page(term_data):
 
     # ── Front matter ──
     sections.append(f'''---
-title: "{name.replace(chr(92), "&bsol;")} [{term_id}]"
-linkTitle: "{name.replace(chr(92), "&bsol;")}"
+title: {json.dumps(f"{name} [{term_id}]", ensure_ascii=False)}
+linkTitle: {json.dumps(name, ensure_ascii=False)}
 tags: [{tags_csv}]
 content: [term]
 date: 2022-01-01
 description: >
     {description}
 weight: 10000
+url: {url_path}
 sitemap_exclude: true
-canonicalUrl: "https://www.virtualflybrain.org/term/{url_slug}/"
 ---
 ''')
 
@@ -953,9 +1037,8 @@ def process_term(term_id):
     """
     filename = term_id + "_v" + str(version) + ".md"
     if os.path.isfile(filename):
-        # Unchanged term: no re-fetch, so recover the slug already on disk
-        # rather than skip the sitemap entry entirely.
-        record_sitemap_entry(term_id, slug_from_existing_page(filename))
+        # Unchanged term: still part of the corpus, so still in the sitemap.
+        record_sitemap_entry(term_id)
         return "skip"
 
     term_data = fetch_term_info(term_id)
@@ -963,7 +1046,9 @@ def process_term(term_id):
         return "fail"
 
     page_content = generate_page(term_data)
-    record_sitemap_entry(term_id, get_term_url(term_data.get("Name", ""), term_id))
+    record_sitemap_entry(term_id)
+    with _sitemap_lock:
+        _changed_ids.append(term_id)
 
     tmp = f"{filename}.{os.getpid()}.{threading.get_ident()}.tmp"
     with open(tmp, "w", encoding="utf-8") as f:
@@ -1047,7 +1132,7 @@ def test_term_page(term_id, term_type="class"):
 
     # Verify key sections
     checks = {
-        "Front matter": "canonicalUrl:" in page_content,
+        "Front matter": f"url: /term/{term_id}/" in page_content,
         "Hero card": 'class="card mb-4' in page_content,
         "VFB browser link": VFB_BROWSER_BASE in page_content,
         "Tags badges": 'badge bg-secondary' in page_content,
@@ -1280,6 +1365,7 @@ if __name__ == "__main__":
 
         if sitemap_dir:
             write_sitemaps(sitemap_dir)
+            write_indexnow_pending(sitemap_dir, _changed_ids)
         else:
             print("No sitemap output dir given (3rd argument) -- skipping sitemap write.")
 

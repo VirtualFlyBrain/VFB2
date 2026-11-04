@@ -24,7 +24,9 @@
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:title" content="{{ .Title | default .Site.Title }}">
 <meta property="og:description" content="{{ $desc }}">
-<meta property="og:url" content="{{ .Permalink }}">
+{{/* Same URL as rel=canonical: generated term pages set canonicalUrl to their
+     /term/ address, and a differing og:url is read as a duplicate signal. */}}
+<meta property="og:url" content="{{ .Params.canonicalUrl | default .Permalink }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
 {{/* Preview image: an explicit `images:` override, else the page's video
      thumbnail, else its first image, else the logo -- see preview-image.html. */}}
