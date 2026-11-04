@@ -353,55 +353,23 @@ def write_sitemaps(output_dir):
 #
 # Bing, Yandex, Naver, Seznam and Yep share the IndexNow protocol: POST the
 # URLs that changed and they recrawl them within minutes instead of waiting
-# for the next sitemap pass -- which, for a 450k-URL corpus, is the difference
-# between a release showing up in days and in months. The key is public by
-# design (search engines verify it by fetching /<key>.txt from the host), so
-# it is safe to keep in Jenkins as a plain parameter.
-#
-#   VFB_INDEXNOW_KEY   the key (8-128 chars of [a-zA-Z0-9-]); unset = no ping
-#
-# The key file is written next to the sitemaps so it is served at the site
-# root.
-INDEXNOW_ENDPOINT = "https://api.indexnow.org/IndexNow"
-INDEXNOW_BATCH = 10000  # protocol maximum per POST
+# for the next sitemap pass -- for a 450k-URL corpus the difference between a
+# release showing up in days and in months. This script only *records* the
+# term pages it wrote, because it runs hours before those pages are built and
+# live (and, for a full regeneration, before the corpus is even swapped in).
+# The site builder (vfb-k8s apps/site) reads the file after a build has gone
+# live, submits the URLs with its VFB_INDEXNOW_KEY, and truncates it.
+INDEXNOW_PENDING = "indexnow-pending.txt"
 
 
-def write_indexnow_key(output_dir, key):
-    if not (output_dir and key):
+def write_indexnow_pending(output_dir, ids):
+    """Append this run's written term URLs to <output_dir>/indexnow-pending.txt."""
+    if not (output_dir and ids):
         return
-    with open(join(output_dir, f"{key}.txt"), "w", encoding="utf-8") as f:
-        f.write(key)
-
-
-def submit_indexnow(ids, key):
-    """POST the changed term URLs to IndexNow in batches. Best effort: a
-    failure is logged and never fails the build."""
-    if not key:
-        print("VFB_INDEXNOW_KEY not set -- skipping IndexNow submission.")
-        return
-    if not re.fullmatch(r"[A-Za-z0-9-]{8,128}", key):
-        print("WARNING: VFB_INDEXNOW_KEY is not a valid IndexNow key -- skipping.")
-        return
-    urls = sorted({SITEMAP_SITE_BASE + get_term_url(i) for i in ids if i})
-    if not urls:
-        print("No changed term pages this run -- nothing to submit to IndexNow.")
-        return
-    host = SITEMAP_SITE_BASE.split("://", 1)[1]
-    sent = 0
-    for start in range(0, len(urls), INDEXNOW_BATCH):
-        batch = urls[start:start + INDEXNOW_BATCH]
-        body = {"host": host, "key": key,
-                "keyLocation": f"{SITEMAP_SITE_BASE}/{key}.txt", "urlList": batch}
-        try:
-            r = requests.post(INDEXNOW_ENDPOINT, json=body, timeout=60)
-            if r.status_code in (200, 202):
-                sent += len(batch)
-            else:
-                print(f"WARNING: IndexNow returned {r.status_code} for a batch of "
-                      f"{len(batch)}: {r.text[:200]}")
-        except requests.RequestException as e:
-            print(f"WARNING: IndexNow submission failed: {e}")
-    print(f"Submitted {sent}/{len(urls)} changed term URLs to IndexNow.")
+    with open(join(output_dir, INDEXNOW_PENDING), "a", encoding="utf-8") as f:
+        for i in sorted(set(ids)):
+            f.write(SITEMAP_SITE_BASE + get_term_url(i) + "\n")
+    print(f"Recorded {len(set(ids))} changed term URLs for IndexNow in {INDEXNOW_PENDING}.")
 
 
 def get_query_results_url(term_id, query_name):
@@ -1397,9 +1365,7 @@ if __name__ == "__main__":
 
         if sitemap_dir:
             write_sitemaps(sitemap_dir)
-            indexnow_key = os.environ.get("VFB_INDEXNOW_KEY", "").strip()
-            write_indexnow_key(sitemap_dir, indexnow_key)
-            submit_indexnow(_changed_ids, indexnow_key)
+            write_indexnow_pending(sitemap_dir, _changed_ids)
         else:
             print("No sitemap output dir given (3rd argument) -- skipping sitemap write.")
 
