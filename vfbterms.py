@@ -201,6 +201,72 @@ def get_report_url(identifier):
     """Create the VFB report URL path for a term identifier."""
     return f'/reports/{identifier}'
 
+
+_MD_LINK_RE = re.compile(r'\[([^\]]+)\]\([^)]+\)')
+# Tags that say nothing a reader would search for.
+_DESC_SKIP_TAGS = {"Entity", "Individual", "Class", "VFB", "has_image",
+                   "has_neuron_connectivity", "hasScRNAseq", "Anatomy"}
+
+
+def _plain(text):
+    """Markdown links -> their labels; collapse whitespace."""
+    return re.sub(r'\s+', ' ', _MD_LINK_RE.sub(r'\1', text or '')).strip()
+
+
+def compose_description(name, term_id, meta, tags, technique, supertypes):
+    """Build a <meta name="description"> for a term that has no curated one.
+
+    The old fallback was the bare `Types` text, which gave the same two or
+    three words to tens of thousands of pages ("gene", "sequence_feature",
+    "intersectional expression pattern", or just the parent class label for
+    every connectome neuron) and nothing at all when Types was empty -- Bing
+    flags both as duplicate/short descriptions across the corpus. This puts
+    the name and accession in every description, says what kind of thing it
+    is, which dataset/technique it comes from, and what the page offers, so
+    each one is distinct and 120-200 characters long.
+    """
+    # First listed type only: "allele; sequence_feature" reads better as "allele".
+    types = _plain(meta.get("Types", "")).rstrip('.').split(';')[0].strip()
+    tags = [t for t in (tags or []) if t and t not in _DESC_SKIP_TAGS
+            and t.replace('_', ' ').lower() not in types.lower()]
+    sts = set(supertypes or [])
+    is_individual = "Individual" in sts
+
+    bits = []
+    if is_individual:
+        what = types or (f"{technique[0]} image" if technique else "image")
+        bits.append(f"{name} ({term_id}): {what}")
+        ds = [t for t in sts if t in ("FAFB", "FANC", "BANC", "MANC", "hemibrain",
+                                      "L1EM", "Neuprint", "FlyLight", "FlyCircuit",
+                                      "optic_lobe", "male-cns", "larval_CNS")]
+        if ds:
+            bits.append("from " + ", ".join(sorted(ds)).replace('_', ' '))
+        if technique and not what.endswith("image"):
+            bits.append("imaged by " + technique[0])
+    else:
+        what = types or "term"
+        bits.append(f"{name} ({term_id}): {what}")
+    if tags:
+        bits.append("[" + ", ".join(t.replace('_', ' ') for t in tags[:4]) + "]")
+    lead = " ".join(bits).rstrip('.') + "."
+
+    if is_individual:
+        tail = ("View in 3D on the template brain, download the mesh and image "
+                "stack, and explore its connectivity on Virtual Fly Brain.")
+    elif "Gene" in sts or (types and "gene" in types.lower()):
+        tail = ("Expression patterns, driver lines and anatomy annotations "
+                "for this Drosophila gene on Virtual Fly Brain.")
+    elif "Neuron" in sts:
+        tail = ("Aligned images, connectivity, synonyms and references for "
+                "this Drosophila neuron type on Virtual Fly Brain.")
+    elif "Expression_pattern" in sts or "expression pattern" in (types or "").lower():
+        tail = ("Aligned images, the neurons and regions it labels, and stock "
+                "links for this expression pattern on Virtual Fly Brain.")
+    else:
+        tail = ("Classification, synonyms, related images and references "
+                "for this Drosophila term on Virtual Fly Brain.")
+    return f"{lead} {tail}"
+
 # ─── Sitemap Generation ─────────────────────────────────────────────────────
 #
 # Two URLs exist per term -- the static description page this script writes
@@ -221,6 +287,8 @@ SITEMAP_MAX_TERMS_PER_SHARD = 25000
 
 _sitemap_entries = {}
 _sitemap_lock = threading.Lock()
+# Slugs of pages written (not skipped) this run, for the IndexNow ping.
+_changed_slugs = []
 
 _CANONICAL_SLUG_RE = re.compile(r'canonicalUrl:\s*"https://www\.virtualflybrain\.org/term/([^/]+)/"')
 
@@ -293,6 +361,104 @@ def write_sitemaps(output_dir):
         f.write("\n".join(index_lines) + "\n")
 
     print(f"Wrote {len(shard_names)} sitemap shard(s) covering {len(entries)} terms to {output_dir}")
+
+
+# ─── IndexNow ────────────────────────────────────────────────────────────────
+#
+# Bing, Yandex, Naver, Seznam and Yep share the IndexNow protocol: POST the
+# URLs that changed and they recrawl them within minutes instead of waiting
+# for the next sitemap pass -- which, for a 450k-URL corpus, is the difference
+# between a release showing up in days and in months. The key is public by
+# design (search engines verify it by fetching /<key>.txt from the host), so
+# it is safe to keep in Jenkins as a plain parameter.
+#
+#   VFB_INDEXNOW_KEY   the key (8-128 chars of [a-zA-Z0-9-]); unset = no ping
+#
+# The key file is written next to the sitemaps so it is served at the site
+# root. A changed page is submitted at its /term/ URL only: /reports/<id> is a
+# redirect and the crawler follows it from the term page anyway.
+INDEXNOW_ENDPOINT = "https://api.indexnow.org/IndexNow"
+INDEXNOW_BATCH = 10000  # protocol maximum per POST
+
+
+def write_indexnow_key(output_dir, key):
+    if not (output_dir and key):
+        return
+    with open(join(output_dir, f"{key}.txt"), "w", encoding="utf-8") as f:
+        f.write(key)
+
+
+def submit_indexnow(slugs, key):
+    """POST the changed term URLs to IndexNow in batches. Best effort: a
+    failure is logged and never fails the build."""
+    if not key:
+        print("VFB_INDEXNOW_KEY not set -- skipping IndexNow submission.")
+        return
+    if not re.fullmatch(r"[A-Za-z0-9-]{8,128}", key):
+        print("WARNING: VFB_INDEXNOW_KEY is not a valid IndexNow key -- skipping.")
+        return
+    urls = sorted({f"{SITEMAP_SITE_BASE}/term/{s}/" for s in slugs if s})
+    if not urls:
+        print("No changed term pages this run -- nothing to submit to IndexNow.")
+        return
+    host = SITEMAP_SITE_BASE.split("://", 1)[1]
+    sent = 0
+    for start in range(0, len(urls), INDEXNOW_BATCH):
+        batch = urls[start:start + INDEXNOW_BATCH]
+        body = {"host": host, "key": key,
+                "keyLocation": f"{SITEMAP_SITE_BASE}/{key}.txt", "urlList": batch}
+        try:
+            r = requests.post(INDEXNOW_ENDPOINT, json=body, timeout=60)
+            if r.status_code in (200, 202):
+                sent += len(batch)
+            else:
+                print(f"WARNING: IndexNow returned {r.status_code} for a batch of "
+                      f"{len(batch)}: {r.text[:200]}")
+        except requests.RequestException as e:
+            print(f"WARNING: IndexNow submission failed: {e}")
+    print(f"Submitted {sent}/{len(urls)} changed term URLs to IndexNow.")
+
+
+# ─── Slug repair for pages already on disk ───────────────────────────────────
+#
+# Pages written before `slug:` was added to the front matter are only re-fetched
+# on a version bump, which means re-fetching the whole corpus. This pass fixes
+# them in place instead: it reads the canonicalUrl already in each file and
+# inserts the matching `slug:` line. One read + one write per file, no API
+# calls, resumable (a file that already has a slug line is left alone).
+_SLUG_LINE_RE = re.compile(r'^slug: ', re.M)
+
+
+def repair_slugs(root):
+    fixed = skipped = 0
+    for dirpath, _dirs, files in os.walk(root):
+        for fn in files:
+            if not fn.endswith(".md"):
+                continue
+            p = join(dirpath, fn)
+            try:
+                with open(p, "r", encoding="utf-8") as f:
+                    text = f.read()
+            except OSError:
+                continue
+            head, sep, body = text.partition("\n---\n")
+            if not sep or _SLUG_LINE_RE.search(head):
+                skipped += 1
+                continue
+            m = _CANONICAL_SLUG_RE.search(head)
+            if not m:
+                skipped += 1
+                continue
+            head = head.replace("\nsitemap_exclude: true",
+                                f'\nslug: "{m.group(1)}"\nsitemap_exclude: true', 1)
+            tmp = f"{p}.{os.getpid()}.tmp"
+            with open(tmp, "w", encoding="utf-8") as f:
+                f.write(head + sep + body)
+            os.replace(tmp, p)
+            fixed += 1
+            if fixed % 10000 == 0:
+                print(f"  repaired {fixed} (skipped {skipped}) ... last {fn}")
+    print(f"Slug repair done: {fixed} pages updated, {skipped} already fine or unparseable.")
 
 def get_query_results_url(term_id, query_name):
     """Create a VFB viewer URL for a term query result set."""
@@ -746,22 +912,29 @@ def generate_page(term_data):
     xrefs = term_data.get("Xrefs", [])
     related_tools = term_data.get("RelatedTools", [])
 
-    # Description for front matter
-    description = meta.get("Description", "")
-    if not description:
-        # Fallback to Types text
-        description = meta.get("Types", "")
-    # Strip markdown link syntax to plain labels: the front-matter description
-    # becomes the <meta name="description"> tag and page summary, where raw
-    # `[label](id)` syntax would show literally.
-    description = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', description)
+    # Description for front matter: the curated definition when there is one
+    # (strip markdown link syntax to plain labels, as it becomes the
+    # <meta name="description"> tag and page summary), otherwise a composed
+    # one -- see compose_description. A lone "." counts as empty: some FlyBase
+    # imports carry that as a placeholder.
+    description = _plain(meta.get("Description", ""))
+    if description.strip('. ') == "":
+        description = compose_description(name, term_id, meta, tags,
+                                          technique, term_data.get("SuperTypes"))
     # Clean for YAML
     description = description.replace('"', '\\"').replace("\n", " ").replace("\r", " ").strip()
 
     # Comment
     comment = meta.get("Comment", "")
 
-    # URL slug
+    # URL slug. Written to the front matter as `slug:` so that Hugo's URL for
+    # the page is exactly this string. Without it Hugo derives the slug from
+    # the title, and the two disagree whenever the label holds a backslash
+    # (every FBal, e.g. `Scer\\GAL4[VT006635]`), a `/` or `.` (many FBtp,
+    # "embryonic/larval ..." FBbt terms), a Greek letter, or other punctuation
+    # get_term_url strips -- about an eighth of the corpus. For those terms
+    # the sitemap entry and the page's own canonicalUrl pointed at a URL that
+    # 404s while the real page lived at a slug nothing linked to.
     url_slug = get_term_url(name, term_id)
 
     # Tags for front matter
@@ -790,6 +963,7 @@ date: 2022-01-01
 description: >
     {description}
 weight: 10000
+slug: "{url_slug}"
 sitemap_exclude: true
 canonicalUrl: "https://www.virtualflybrain.org/term/{url_slug}/"
 ---
@@ -963,7 +1137,10 @@ def process_term(term_id):
         return "fail"
 
     page_content = generate_page(term_data)
-    record_sitemap_entry(term_id, get_term_url(term_data.get("Name", ""), term_id))
+    url_slug = get_term_url(term_data.get("Name", ""), term_id)
+    record_sitemap_entry(term_id, url_slug)
+    with _sitemap_lock:
+        _changed_slugs.append(url_slug)
 
     tmp = f"{filename}.{os.getpid()}.{threading.get_ident()}.tmp"
     with open(tmp, "w", encoding="utf-8") as f:
@@ -1240,7 +1417,14 @@ def test_medulla_page():
 # ─── Main ────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 1 and sys.argv[1] == "--repair-slugs":
+        # One-off: `vfbterms.py --repair-slugs <content root>` adds `slug:` to
+        # every existing term page without re-fetching anything. Run once,
+        # then rebuild the site.
+        if len(sys.argv) < 3 or not os.path.isdir(sys.argv[2]):
+            sys.exit("usage: vfbterms.py --repair-slugs <content root directory>")
+        repair_slugs(sys.argv[2])
+    elif len(sys.argv) > 1:
         mypath = sys.argv[1]
         # Optional: where to write sitemap1.xml.. and sitemap-terms.xml once
         # the full corpus below has been processed. Point this at wherever
@@ -1280,6 +1464,9 @@ if __name__ == "__main__":
 
         if sitemap_dir:
             write_sitemaps(sitemap_dir)
+            indexnow_key = os.environ.get("VFB_INDEXNOW_KEY", "").strip()
+            write_indexnow_key(sitemap_dir, indexnow_key)
+            submit_indexnow(_changed_slugs, indexnow_key)
         else:
             print("No sitemap output dir given (3rd argument) -- skipping sitemap write.")
 
