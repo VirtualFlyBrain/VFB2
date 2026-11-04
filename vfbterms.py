@@ -192,10 +192,17 @@ def fetch_term_info(term_id):
 
 # ─── URL / Link Helpers ─────────────────────────────────────────────────────
 
-def get_term_url(label, short_form):
-    """Create canonical URL slug for a term."""
-    url = label.replace('\\', '').replace(' ', '-').lower() + "-" + short_form.lower()
-    return re.sub("[^0-9a-zA-Z-_]+", "", url)
+def get_term_url(term_id):
+    """Site-relative path of a term's static page: /term/<ID>/.
+
+    The ID alone, exact case. Labels used to be in the slug, which made URLs
+    unpredictable (a label rename moved the page) and, worse, the script's
+    slug and the one Hugo derived from the title disagreed for any label with
+    a backslash, `/`, `.`, Greek letter or other stripped punctuation -- about
+    an eighth of the corpus 404'd from its own sitemap and canonical. The ID
+    is already URL-safe and is what /reports/<ID> and every xref use.
+    """
+    return f"/term/{term_id}/"
 
 def get_report_url(identifier):
     """Create the VFB report URL path for a term identifier."""
@@ -269,11 +276,12 @@ def compose_description(name, term_id, meta, tags, technique, supertypes):
 
 # ─── Sitemap Generation ─────────────────────────────────────────────────────
 #
-# Two URLs exist per term -- the static description page this script writes
-# (/term/<slug>/, Hugo's own canonical for that page) and the interactive
-# viewer (/reports/<id>, which 302s to the Geppetto viewer and is what the
-# viewer itself declares as canonical -- see geppetto-vfb's pageMetadata.js).
-# Both are real, separately useful pages, so both belong in the sitemap.
+# One URL per term: the static page at /term/<ID>/. The interactive viewer
+# (/reports/<ID>, a 302 to Geppetto) is deliberately not listed: its title,
+# description and canonical are filled in client-side after a fetch, so a
+# crawler that does not run that JS sees a bare shell with the site-wide title
+# -- Bing reported the whole corpus as duplicate titles. The term page links
+# to the viewer, and the viewer's own canonical points back at the term page.
 #
 # Term pages carry `sitemap_exclude: true` (see generate_page below) because
 # Hugo's own sitemap.xml has no pagination: it would emit one file with the
@@ -281,42 +289,21 @@ def compose_description(name, term_id, meta, tags, technique, supertypes):
 # sitemap1.xml.. Google expects instead, plus the sitemap-terms.xml index
 # that robots.txt already advertises.
 SITEMAP_SITE_BASE = "https://www.virtualflybrain.org"
-SITEMAP_REPORT_BASE = "https://virtualflybrain.org"
-# Google caps a sitemap file at 50,000 URLs; each term contributes two.
-SITEMAP_MAX_TERMS_PER_SHARD = 25000
+# Google caps a sitemap file at 50,000 URLs.
+SITEMAP_MAX_TERMS_PER_SHARD = 50000
 
-_sitemap_entries = {}
+_sitemap_entries = set()
 _sitemap_lock = threading.Lock()
-# Slugs of pages written (not skipped) this run, for the IndexNow ping.
-_changed_slugs = []
-
-_CANONICAL_SLUG_RE = re.compile(r'canonicalUrl:\s*"https://www\.virtualflybrain\.org/term/([^/]+)/"')
+# IDs of pages written (not skipped) this run, for the IndexNow ping.
+_changed_ids = []
 
 
-def record_sitemap_entry(term_id, url_slug):
-    """Remember one term's slug for the end-of-run sitemap write. Thread-safe."""
-    if not term_id or not url_slug:
+def record_sitemap_entry(term_id):
+    """Remember one term for the end-of-run sitemap write. Thread-safe."""
+    if not term_id:
         return
     with _sitemap_lock:
-        _sitemap_entries[term_id] = url_slug
-
-
-def slug_from_existing_page(filename):
-    """Recover a term's URL slug from a page already on disk (the "skip" path
-    in process_term, which never re-fetches term_data, so never recomputes the
-    slug the normal way)."""
-    try:
-        with open(filename, "r", encoding="utf-8") as f:
-            for _ in range(20):
-                line = f.readline()
-                if not line:
-                    break
-                match = _CANONICAL_SLUG_RE.search(line)
-                if match:
-                    return match.group(1)
-    except OSError:
-        pass
-    return None
+        _sitemap_entries.add(term_id)
 
 
 def write_sitemaps(output_dir):
@@ -331,7 +318,7 @@ def write_sitemaps(output_dir):
     if not output_dir:
         return
     with _sitemap_lock:
-        entries = sorted(_sitemap_entries.items())
+        entries = sorted(_sitemap_entries)
     if not entries:
         print("WARNING: no sitemap entries collected -- not writing sitemaps")
         return
@@ -344,9 +331,8 @@ def write_sitemaps(output_dir):
         shard_name = f"sitemap{shard_index}.xml"
         lines = ['<?xml version="1.0" encoding="UTF-8"?>',
                  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-        for term_id, url_slug in shard:
-            lines.append(f'  <url><loc>{SITEMAP_SITE_BASE}/term/{url_slug}/</loc></url>')
-            lines.append(f'  <url><loc>{SITEMAP_REPORT_BASE}/reports/{term_id}</loc></url>')
+        for term_id in shard:
+            lines.append(f'  <url><loc>{SITEMAP_SITE_BASE}{get_term_url(term_id)}</loc></url>')
         lines.append('</urlset>')
         with open(join(output_dir, shard_name), "w", encoding="utf-8") as f:
             f.write("\n".join(lines) + "\n")
@@ -375,8 +361,7 @@ def write_sitemaps(output_dir):
 #   VFB_INDEXNOW_KEY   the key (8-128 chars of [a-zA-Z0-9-]); unset = no ping
 #
 # The key file is written next to the sitemaps so it is served at the site
-# root. A changed page is submitted at its /term/ URL only: /reports/<id> is a
-# redirect and the crawler follows it from the term page anyway.
+# root.
 INDEXNOW_ENDPOINT = "https://api.indexnow.org/IndexNow"
 INDEXNOW_BATCH = 10000  # protocol maximum per POST
 
@@ -388,7 +373,7 @@ def write_indexnow_key(output_dir, key):
         f.write(key)
 
 
-def submit_indexnow(slugs, key):
+def submit_indexnow(ids, key):
     """POST the changed term URLs to IndexNow in batches. Best effort: a
     failure is logged and never fails the build."""
     if not key:
@@ -397,7 +382,7 @@ def submit_indexnow(slugs, key):
     if not re.fullmatch(r"[A-Za-z0-9-]{8,128}", key):
         print("WARNING: VFB_INDEXNOW_KEY is not a valid IndexNow key -- skipping.")
         return
-    urls = sorted({f"{SITEMAP_SITE_BASE}/term/{s}/" for s in slugs if s})
+    urls = sorted({SITEMAP_SITE_BASE + get_term_url(i) for i in ids if i})
     if not urls:
         print("No changed term pages this run -- nothing to submit to IndexNow.")
         return
@@ -419,22 +404,26 @@ def submit_indexnow(slugs, key):
     print(f"Submitted {sent}/{len(urls)} changed term URLs to IndexNow.")
 
 
-# ─── Slug repair for pages already on disk ───────────────────────────────────
+# ─── URL repair for pages already on disk ────────────────────────────────────
 #
-# Pages written before `slug:` was added to the front matter are only re-fetched
+# Pages written before `url:` was added to the front matter are only re-fetched
 # on a version bump, which means re-fetching the whole corpus. This pass fixes
-# them in place instead: it reads the canonicalUrl already in each file and
-# inserts the matching `slug:` line. One read + one write per file, no API
-# calls, resumable (a file that already has a slug line is left alone).
-_SLUG_LINE_RE = re.compile(r'^slug: ', re.M)
+# them in place instead: the ID is the filename, so it inserts `url: /term/<ID>/`
+# and drops the old label-slug canonicalUrl. One read + one write per file, no
+# API calls, resumable (a file that already has a url line is left alone).
+_URL_LINE_RE = re.compile(r'^url: ', re.M)
+_OLD_URL_LINES_RE = re.compile(r'^(canonicalUrl|slug): .*\n', re.M)
+_PAGE_FILE_RE = re.compile(r'^(.+?)_v\d+\.md$')
 
 
-def repair_slugs(root):
+def repair_urls(root):
     fixed = skipped = 0
     for dirpath, _dirs, files in os.walk(root):
         for fn in files:
-            if not fn.endswith(".md"):
+            m = _PAGE_FILE_RE.match(fn)
+            if not m:
                 continue
+            term_id = m.group(1)
             p = join(dirpath, fn)
             try:
                 with open(p, "r", encoding="utf-8") as f:
@@ -442,15 +431,12 @@ def repair_slugs(root):
             except OSError:
                 continue
             head, sep, body = text.partition("\n---\n")
-            if not sep or _SLUG_LINE_RE.search(head):
+            if not sep or _URL_LINE_RE.search(head) or "\nsitemap_exclude: true" not in head:
                 skipped += 1
                 continue
-            m = _CANONICAL_SLUG_RE.search(head)
-            if not m:
-                skipped += 1
-                continue
+            head = _OLD_URL_LINES_RE.sub("", head + "\n").rstrip("\n")
             head = head.replace("\nsitemap_exclude: true",
-                                f'\nslug: "{m.group(1)}"\nsitemap_exclude: true', 1)
+                                f"\nurl: {get_term_url(term_id)}\nsitemap_exclude: true", 1)
             tmp = f"{p}.{os.getpid()}.tmp"
             with open(tmp, "w", encoding="utf-8") as f:
                 f.write(head + sep + body)
@@ -458,7 +444,7 @@ def repair_slugs(root):
             fixed += 1
             if fixed % 10000 == 0:
                 print(f"  repaired {fixed} (skipped {skipped}) ... last {fn}")
-    print(f"Slug repair done: {fixed} pages updated, {skipped} already fine or unparseable.")
+    print(f"URL repair done: {fixed} pages updated, {skipped} already fine or unparseable.")
 
 def get_query_results_url(term_id, query_name):
     """Create a VFB viewer URL for a term query result set."""
@@ -927,15 +913,14 @@ def generate_page(term_data):
     # Comment
     comment = meta.get("Comment", "")
 
-    # URL slug. Written to the front matter as `slug:` so that Hugo's URL for
-    # the page is exactly this string. Without it Hugo derives the slug from
-    # the title, and the two disagree whenever the label holds a backslash
-    # (every FBal, e.g. `Scer\\GAL4[VT006635]`), a `/` or `.` (many FBtp,
-    # "embryonic/larval ..." FBbt terms), a Greek letter, or other punctuation
-    # get_term_url strips -- about an eighth of the corpus. For those terms
-    # the sitemap entry and the page's own canonicalUrl pointed at a URL that
-    # 404s while the real page lived at a slug nothing linked to.
-    url_slug = get_term_url(name, term_id)
+    # Title/linkTitle are JSON-quoted: a JSON string is a valid YAML
+    # double-quoted scalar, so backslashes (`Scer\\GAL4[...]`) and quotes in
+    # labels survive. The old `&bsol;` substitution reached the page as a
+    # literal "&amp;bsol;" in the <title>.
+    # Page URL: /term/<ID>/, set explicitly with `url:` so Hugo writes the
+    # page there verbatim (case kept) instead of deriving a slug from the
+    # title -- see get_term_url. .Permalink is then the canonical.
+    url_path = get_term_url(term_id)
 
     # Tags for front matter
     # Build a clean list and drop empties, otherwise a term with no Tags
@@ -955,17 +940,16 @@ def generate_page(term_data):
 
     # ── Front matter ──
     sections.append(f'''---
-title: "{name.replace(chr(92), "&bsol;")} [{term_id}]"
-linkTitle: "{name.replace(chr(92), "&bsol;")}"
+title: {json.dumps(f"{name} [{term_id}]", ensure_ascii=False)}
+linkTitle: {json.dumps(name, ensure_ascii=False)}
 tags: [{tags_csv}]
 content: [term]
 date: 2022-01-01
 description: >
     {description}
 weight: 10000
-slug: "{url_slug}"
+url: {url_path}
 sitemap_exclude: true
-canonicalUrl: "https://www.virtualflybrain.org/term/{url_slug}/"
 ---
 ''')
 
@@ -1127,9 +1111,8 @@ def process_term(term_id):
     """
     filename = term_id + "_v" + str(version) + ".md"
     if os.path.isfile(filename):
-        # Unchanged term: no re-fetch, so recover the slug already on disk
-        # rather than skip the sitemap entry entirely.
-        record_sitemap_entry(term_id, slug_from_existing_page(filename))
+        # Unchanged term: still part of the corpus, so still in the sitemap.
+        record_sitemap_entry(term_id)
         return "skip"
 
     term_data = fetch_term_info(term_id)
@@ -1137,10 +1120,9 @@ def process_term(term_id):
         return "fail"
 
     page_content = generate_page(term_data)
-    url_slug = get_term_url(term_data.get("Name", ""), term_id)
-    record_sitemap_entry(term_id, url_slug)
+    record_sitemap_entry(term_id)
     with _sitemap_lock:
-        _changed_slugs.append(url_slug)
+        _changed_ids.append(term_id)
 
     tmp = f"{filename}.{os.getpid()}.{threading.get_ident()}.tmp"
     with open(tmp, "w", encoding="utf-8") as f:
@@ -1224,7 +1206,7 @@ def test_term_page(term_id, term_type="class"):
 
     # Verify key sections
     checks = {
-        "Front matter": "canonicalUrl:" in page_content,
+        "Front matter": f"url: /term/{term_id}/" in page_content,
         "Hero card": 'class="card mb-4' in page_content,
         "VFB browser link": VFB_BROWSER_BASE in page_content,
         "Tags badges": 'badge bg-secondary' in page_content,
@@ -1417,13 +1399,13 @@ def test_medulla_page():
 # ─── Main ────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "--repair-slugs":
-        # One-off: `vfbterms.py --repair-slugs <content root>` adds `slug:` to
+    if len(sys.argv) > 1 and sys.argv[1] == "--repair-urls":
+        # One-off: `vfbterms.py --repair-urls <content root>` adds `url:` to
         # every existing term page without re-fetching anything. Run once,
         # then rebuild the site.
         if len(sys.argv) < 3 or not os.path.isdir(sys.argv[2]):
-            sys.exit("usage: vfbterms.py --repair-slugs <content root directory>")
-        repair_slugs(sys.argv[2])
+            sys.exit("usage: vfbterms.py --repair-urls <content root directory>")
+        repair_urls(sys.argv[2])
     elif len(sys.argv) > 1:
         mypath = sys.argv[1]
         # Optional: where to write sitemap1.xml.. and sitemap-terms.xml once
@@ -1466,7 +1448,7 @@ if __name__ == "__main__":
             write_sitemaps(sitemap_dir)
             indexnow_key = os.environ.get("VFB_INDEXNOW_KEY", "").strip()
             write_indexnow_key(sitemap_dir, indexnow_key)
-            submit_indexnow(_changed_slugs, indexnow_key)
+            submit_indexnow(_changed_ids, indexnow_key)
         else:
             print("No sitemap output dir given (3rd argument) -- skipping sitemap write.")
 
