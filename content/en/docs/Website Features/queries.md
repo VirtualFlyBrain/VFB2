@@ -136,7 +136,7 @@ Transgenes/driver lines reported to be expressed in the region or neuron type.
 ### scRNAseq data for *[term]* {#anatScRNAseqQuery}
 Single-cell transcriptomics clusters and datasets for the anatomical region.
 **Shown on:** anatomy classes that have scRNAseq data.
-**Columns:** Cluster, Cell type, Dataset, Publications, Tags.
+**Columns:** Cluster, Cell type, Cluster stage (from expression), Stages of samples, Tissues of samples, Dataset, Cells, Publications, Tags.
 
 ---
 
@@ -276,7 +276,7 @@ Expression patterns also offer the reverse similarity queries
 ### Clusters expressing *[term]* {#expressionCluster}
 Single-cell transcriptomics clusters that express the gene.
 **Shown on:** gene classes with scRNAseq data.
-**Columns:** Cluster, Cell type, Expression Level, Expression Extent, Tags.
+**Columns:** Cluster, Cell type, Cluster stage (from expression), Stages of samples, Tissues of samples, Expression Level, Expression Extent, Tags.
 
 Genes (and other FlyBase features) also offer [Find fly stocks](#FindStocks).
 
@@ -292,9 +292,56 @@ Genes expressed by a scRNAseq cluster, with expression level and extent.
 ### Clusters in dataset *[term]* {#scRNAdatasetData}
 All clusters in a single-cell RNA-seq dataset.
 **Shown on:** scRNAseq datasets.
-**Columns:** Cluster, Cell type, Tags, Publications.
+**Columns:** Cluster, Cell type, Cluster stage (from expression), Stages of samples, Tissues of samples, Tags, Publications.
 
 See also [scRNAseq data for [term]](#anatScRNAseqQuery) on anatomy pages.
+
+### How a scRNAseq dataset is organised
+
+A dataset's **Samples** are the dissected tissue it sequenced, each with its stage,
+tissue, sex and the fly stock, strain or genotype it came from. Each Sample was
+sequenced as one or more **Assays** (sequencing libraries), linked to their GEO, SRA
+and BioSample records. A **Clustering** is one of the authors' analyses: the
+**Clusters** it found, from the Samples it used. A dataset can have several
+Clusterings (for example one per stage), and a Clustering can use Samples curated
+under another dataset. The queries below move between them. See
+[Stage and tissue columns](#stage-and-tissue-columns) for what a cluster's stage means.
+
+### Clusters in *[term]* {#ClustersInClustering}
+The clusters a Clustering found.
+**Shown on:** scRNAseq clusterings.
+**Columns:** Cluster, Cell type, Cluster stage (from expression), Cells, Genes, Dataset, Tags.
+
+### Samples in *[term]* {#SamplesInClustering}
+The Samples a Clustering's cells came from.
+**Shown on:** scRNAseq clusterings.
+**Columns:** Sample, Tissue, Stage, Sex, Dataset, Tags.
+
+### Assays in *[term]* {#AssaysInClustering}
+The Assays (sequencing libraries) of a Clustering's Samples.
+**Shown on:** scRNAseq clusterings.
+**Columns:** Assay, Method, Sample, Dataset.
+
+### Clusterings using *[term]* {#ClusteringsWithSample}
+The Clusterings that use a Sample, including those of other datasets that reuse it.
+**Shown on:** scRNAseq samples.
+**Columns:** Clustering, Clusters, Samples, Sample stages, Sample tissues, Dataset, Tags.
+
+### Clusterings in *[term]* {#ClusteringsInDataset}
+A dataset's Clusterings.
+**Shown on:** scRNAseq datasets.
+**Columns:** Clustering, Clusters, Samples, Sample stages, Sample tissues, Dataset, Tags.
+
+### Samples in *[term]* {#SamplesInDataset}
+A dataset's own Samples, and those its Clusterings use from other datasets (each row
+names its own dataset).
+**Shown on:** scRNAseq datasets.
+**Columns:** Sample, Tissue, Stage, Sex, Dataset, Tags.
+
+### Assays in *[term]* {#AssaysInDataset}
+The Assays of those Samples.
+**Shown on:** scRNAseq datasets.
+**Columns:** Assay, Method, Sample, Dataset.
 
 ---
 
@@ -331,7 +378,9 @@ All images belonging to a dataset.
 **Shown on:** datasets that contain images.
 **Columns:** Image, Tags, Type, Template, Imaging Technique, Thumbnail.
 
-scRNAseq datasets also offer [Clusters in dataset](#scRNAdatasetData).
+scRNAseq datasets also offer [Clusters in dataset](#scRNAdatasetData),
+[Clusterings in](#ClusteringsInDataset), [Samples in](#SamplesInDataset) and
+[Assays in](#AssaysInDataset).
 
 ---
 
@@ -347,12 +396,13 @@ Entities (terms and images) that cite the publication.
 ## FlyBase features & stocks
 
 Available on FlyBase feature pages (genes, alleles, insertions, constructs,
-combinations and stocks).
+combinations, stocks and strains).
 
 ### Find fly stocks for *[term]* {#FindStocks}
 Available fly stocks for the feature, sourced from FlyBase.
-**Shown on:** FlyBase features (`FBgn`, `FBal`, `FBti`, `FBtp`, `FBco`, `FBst`) and
-expression patterns driven by them.
+**Shown on:** FlyBase features (`FBgn`, `FBal`, `FBti`, `FBtp`, `FBco`, `FBst`), strains
+(`FBsn`) and expression patterns driven by them. For a strain (e.g. a DGRP line or
+Canton-S) it lists the stock-centre stocks FlyBase records as derived from it.
 **Columns:** Stock ID, Stock Number, Genotype, Collection (plus Match for split
 combinations).
 
@@ -371,6 +421,19 @@ Steps 2 and 3 apply to each hemidriver separately, so one half may be listed on 
 own while the other is only available in another combination. If FlyBase has no
 combination for the pair, the pattern instead offers one query per hemidriver
 construct (`FBtp`).
+
+### scRNAseq samples from *[term]* {#ScRNAseqSamplesFrom}
+scRNAseq Samples taken from a fly stock or strain, or from animals whose genotype
+includes the allele, insertion, construct or split combination.
+**Shown on:** stocks, strains and genetic entities that scRNAseq Samples link.
+**Columns:** Sample, Tissue, Stage, Sex, Dataset, Tags.
+
+### scRNAseq clusters from samples of *[term]* {#ScRNAseqClustersFrom}
+Clusters of the Clusterings that use those Samples. A Clustering can pool Samples of
+several genotypes (for example a panel of DGRP lines), so a cluster's cells need not
+all come from this stock or strain.
+**Shown on:** stocks, strains and genetic entities that scRNAseq Samples link.
+**Columns:** Cluster, Cell type, Cluster stage (from expression), Stages of samples, Tissues of samples, Cells, Genes, Dataset, Tags.
 
 ### Find publications for *[term]* {#FindComboPublications}
 Publications for a split-GAL4 combination, from FlyBase.
@@ -458,8 +521,32 @@ class* pair, rolled up over the ontology's subclass hierarchy:
 | **Function** | Functional category labels for a gene (e.g. neurotransmitter/receptor roles). |
 | **Cell type** | The anatomy / cell type a cluster is "composed primarily of". |
 
+| **Cells** | Number of cells in a cluster. |
+| **Genes** | Number of genes expressed in more than 20% of a cluster's cells (the genes VFB loads for it). |
+| **Tissue** / **Stage** / **Sex** (Samples) | What was dissected, the developmental stage and the sex of the animals a Sample came from. |
+| **Method** | The assay method of a sequencing library (e.g. 10x, Smart-seq2). |
+| **Clusters** / **Samples** (Clusterings) | How many clusters a Clustering found, and how many Samples it used. |
+
 A **cluster** is a group of single cells with similar transcriptomes identified
 in a single-cell RNA-seq (scRNAseq) dataset, taken to represent one cell type.
+
+#### Stage and tissue columns
+
+Stage and tissue are recorded on **Samples**, so they are shown separately from
+anything known about the cluster itself:
+
+| Header | Meaning |
+|---|---|
+| **Cluster stage (from expression)** | A stage the cluster itself was assigned from its gene expression (for example the embryonic clusters of Calderon 2022). Usually blank. |
+| **Stages of samples** / **Sample stages** | The stages of the Samples the cluster's Clustering was built from. |
+| **Tissues of samples** / **Sample tissues** | The tissues of those Samples. A cluster's own location is its **Cell type**. |
+
+The Samples' stages describe what the Clustering was built from: a cluster need
+not have cells from each of them. Where a Clustering's Samples span several stages
+of one period they are shown as the narrowest stage covering them, but never more
+broadly than embryonic, larval, prepupal, pupal, pharate adult or adult stage. For
+example, Samples from adults aged 0 to 50 days show as *adult stage*, and Samples
+from late pupae and pharate adults show as *pupal stage* and *pharate adult stage*.
 
 ### Publication & stock columns
 

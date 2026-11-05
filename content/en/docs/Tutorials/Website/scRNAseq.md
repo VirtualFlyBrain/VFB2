@@ -17,7 +17,7 @@ Cell types with available scRNAseq data can be identified using the 'Has scRNAse
   <img src="https://www.virtualflybrain.org/images/scRNAseq/scRNAseq_search.png" alt="scRNAseq filtered search" style="max-width=50%" />
 </p>
 
-Clusters for a cell type of interest can be found via the 'Single cell transcriptomics data for...' query.
+Clusters for a cell type of interest can be found via the 'scRNAseq data for...' query.
 
 <p align="center">
   <img src="https://www.virtualflybrain.org/images/scRNAseq/cluster_query.png" alt="scRNAseq cluster query" style="max-width=50%" />
@@ -32,6 +32,9 @@ After selecting a cluster, gene expression can be retrieved via the 'Genes expre
 
 Expression level is the mean counts per million reads of all cells in the cell type cluster that express the given gene. Expression extent is the proportion of cells within the cluster that express the given gene. VFB only shows genes that are expressed in at least 20% of cells in the cluster (Extent > 0.2).
 
+### Samples, clusterings and stocks
+A dataset's 'Clusterings in...', 'Samples in...' and 'Assays in...' queries show how it was sequenced and analysed. Each Sample records its stage, tissue, sex and the stock, strain or genotype of the flies; each Assay links to its GEO, SRA and BioSample records. Cluster tables show the stages and tissues of the Samples behind each cluster. To find scRNAseq data from particular flies, open the stock, strain (e.g. a DGRP line or Canton-S) or allele and use 'scRNAseq samples from...' or 'scRNAseq clusters from samples of...'. See the [Queries Reference](/docs/website-features/queries/#how-a-scrnaseq-dataset-is-organised) for every query and column.
+
 ### Gene semantic tags
 We add semantic tags to genes to allow quick searching and filtering of results ('Function' column of gene expression data). These tags are based on FlyBase Gene Group membership and GO annotations, which are all sourced from FlyBase. A full list of gene tags with their associated Gene group and GO terms can be found [here](https://github.com/VirtualFlyBrain/vfb-scRNAseq-gene-annotations/blob/main/src/ontology/gene_functions.tsv).
 
@@ -44,9 +47,9 @@ Data can also be retrieved using [VFB_connect](https://pypi.org/project/vfb-conn
 
 
 ## Data sources and processing
-1. Raw scRNAseq data is ingested by the EBI Single Cell Expression Atlas (SCEA). Where possible, cells are linked to cell types from the [Drosophila Anatomy Ontology](https://www.ebi.ac.uk/ols4/ontologies/fbbt) based on author annotations. Data is reprocessed, filtered and reclustered.
-2. FlyBase takes data from EBI, keeping only cells that are linked to ontology terms and generating summary expression data for each cell type (cluster).
-3. VFB takes control/wild type expression data from FlyBase for datasets where at least one nervous system cell type is present and filter out any genes expressed in less than 20% of cells per cluster.
+1. VFB curates each dataset in [vfb-scRNAseq](https://github.com/VirtualFlyBrain/vfb-scRNAseq). The clusters are the authors' own, with their cell-type annotations, taken from GEO, ArrayExpress, the paper or the authors' published analysis. Samples record the stage, sex, tissue and the stock, strain or genotype. Where a study compares treatments or mutants, VFB uses the control samples.
+2. Each cluster is mapped to the [Drosophila Anatomy Ontology](https://www.ebi.ac.uk/ols4/ontologies/fbbt) term for the cell type it is composed primarily of. A cluster with no adequate term is held back rather than given a vague one, and is not shown in VFB.
+3. Summary expression is calculated per cluster from the authors' count data (counts per million), and genes expressed in less than 20% of a cluster's cells are left out. Gene ids are kept current with FlyBase.
 
 
 ## Database schema

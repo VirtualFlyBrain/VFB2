@@ -23,13 +23,13 @@ datasets does VFB hold, and which is newest?"* has one place to look. Stage labe
 now being added to dataset entities in the knowledge base itself, so the grouping below
 will also become queryable through the API and the VFB chat as that release propagates.
 
-The page lists all 210 dataset entities currently in the VFB knowledge base (`DataSet`
+The page lists all 203 dataset entities currently in the VFB knowledge base (`DataSet`
 individuals — the same list `search_terms` returns when filtered to `dataset`), grouped
 by developmental stage, with a link to each dataset's own page.
 
-**At a glance.** Of the 210 dataset entities, 2 are embryonic, 36 are larval
-(27 first-instar, 5 third-instar, and 4 larval with no instar stated), 2 are pupal and
-170 are adult (134 brain, 9 ventral nerve cord, 6 leg, head and thorax, and 21 full CNS or
+**At a glance.** Of the 203 dataset entities, 2 are embryonic, 36 are larval
+(27 first-instar, 6 third-instar, and 3 larval with no instar stated), 5 are pupal and
+160 are adult (132 brain, 9 ventral nerve cord, 6 leg, head and thorax, and 13 full CNS or
 whole body). None are stage-agnostic. The newest larval datasets by publication year are
 the split-GAL4 lines of Meissner et al. (`SplitMeissner2024`, L3, 2024) and, for
 connectomics, the L1 CNS reconstruction of Winding, Pedigo et al. (`WindingPedigo2023`,
@@ -39,10 +39,10 @@ connectomics, the L1 CNS reconstruction of Winding, Pedigo et al. (`WindingPedig
 |---|---|
 | Embryo | 2 |
 | Larva — L1 (first instar) | 27 |
-| Larva — L3 (third instar) | 5 |
-| Larva — instar not stated | 4 |
-| Pupa | 2 |
-| Adult | 170 |
+| Larva — L3 (third instar) | 6 |
+| Larva — instar not stated | 3 |
+| Pupa | 5 |
+| Adult | 160 |
 
 ## Embryo
 
@@ -52,15 +52,15 @@ VFB holds no embryonic imaging data at this time.
 
 | Dataset | Short form |
 |---|---|
-| [Single-cell RNA-seq study of gastrulating embryos](https://flybase.org/reports/FBlc0006191) | `FBlc0006191` |
-| [The continuum of Drosophila embryonic development at single-cell resolution](https://flybase.org/reports/FBlc0007797) | `FBlc0007797` |
+| [scRNAseq data from Calderon (2022)](https://virtualflybrain.org/reports/VFBseq_00002863) | `VFBseq_00002863` |
+| [scRNAseq data from Ing-Simmons (2021)](https://virtualflybrain.org/reports/VFBseq_00002844) | `VFBseq_00002844` |
 
 ## Larva
 
 The larval period runs from hatching to pupariation and is divided into three instars —
 L1, L2 and L3 — separated by moults. VFB's larval holdings cluster almost entirely at the
 first and third instars; no dataset here is recorded as L2. VFB holds 36 larval datasets
-in all: 27 at L1, 5 at L3 and 4 with no instar stated. Anatomy differs enough
+in all: 27 at L1, 6 at L3 and 3 with no instar stated. Anatomy differs enough
 between instars that a "larval" dataset with no instar stated should not be assumed
 comparable to one that states it, particularly for connectomic data.
 
@@ -99,7 +99,7 @@ template.
 | [Larval wave neurons and circuit partners - EM (Takagi2017)](https://virtualflybrain.org/reports/Takagi2017) | `Takagi2017` |
 | [Nociceptive circuit neurons - EM (Gerhard2017)](https://virtualflybrain.org/reports/Gerhard2017) | `Gerhard2017` |
 | [Nociceptive system neurons - EM (Burgos2017)](https://virtualflybrain.org/reports/Burgos2018) | `Burgos2018` |
-| [Single-cell RNA-seq study of first instar larval brains upon starvation](https://flybase.org/reports/FBlc0005362) | `FBlc0005362` |
+| [scRNAseq data from Brunet Avalos (2019)](https://virtualflybrain.org/reports/VFBseq_00003150) | `VFBseq_00003150` |
 | [Unveiling the sensory and interneuronal pathways of the neuroendocrine connectome in Drosophila (Hueckesfeld et al. 2020)](https://virtualflybrain.org/reports/Hueckesfeld2020) | `Hueckesfeld2020` |
 
 ### L3 (third instar)
@@ -114,6 +114,7 @@ publication year.
 |---|---|
 | [L3 Larval CNS Template (Truman2016)](https://virtualflybrain.org/reports/Truman2016) | `Truman2016` |
 | [L3 neuropils (WoodHartenstein2018)](https://virtualflybrain.org/reports/WoodHartenstein2018) | `WoodHartenstein2018` |
+| [scRNAseq data from Konstantinides (2022)](https://virtualflybrain.org/reports/VFBseq_00002364) | `VFBseq_00002364` |
 | [Split-GAL4 lines from Meissner et al., 2024](https://virtualflybrain.org/reports/SplitMeissner2024) | `SplitMeissner2024` |
 | [Truman Larval Flip-Out Collection](https://virtualflybrain.org/reports/TrumanWood2018) | `TrumanWood2018` |
 | [Truman Larval Flip-Out Collection](https://virtualflybrain.org/reports/TrumanWood2018public) | `TrumanWood2018public` |
@@ -128,28 +129,31 @@ instar as unknown rather than assuming L1 or L3.
 | Dataset | Short form |
 |---|---|
 | [MCFO images of GMR-GAL4 lines from Jovanic et al., 2019](https://virtualflybrain.org/reports/Gen1MCFOJovanic2019) | `Gen1MCFOJovanic2019` |
-| [Single-cell RNA-seq study of larval optic lobes](https://flybase.org/reports/FBlc0006404) | `FBlc0006404` |
 | [Split-GAL4 lines from Jovanic et al., 2019](https://virtualflybrain.org/reports/SplitJovanic2019) | `SplitJovanic2019` |
 | [Split-GAL4 lines from Takagi et al., 2017](https://virtualflybrain.org/reports/SplitTakagi2017) | `SplitTakagi2017` |
 
 ## Pupa
 
-Metamorphosis, from pupariation to eclosion. Both datasets here are transcriptomic
-surveys of the optic lobe spanning the pupal-to-adult transition; VFB holds no
-pupal-only imaging data.
+Metamorphosis, from pupariation to eclosion. All five datasets here are single-cell
+transcriptomic surveys of developing neurons (optic lobe and olfactory projection
+neurons); three continue into the adult and are listed here, at their earliest stage,
+only. VFB holds no pupal imaging data.
 
 | Dataset | Short form |
 |---|---|
-| [Single-cell RNA-seq study of pupal and adult optic lobes](https://flybase.org/reports/FBlc0005659) | `FBlc0005659` |
-| [Single-cell RNA-seq study of the pupal optic lobe](https://flybase.org/reports/FBlc0006237) | `FBlc0006237` |
+| [scRNAseq data from Hörmann (2020)](https://virtualflybrain.org/reports/VFBseq_00002461) | `VFBseq_00002461` |
+| [scRNAseq data from Kurmangaliyev (2020)](https://virtualflybrain.org/reports/VFBseq_00000001) | `VFBseq_00000001` |
+| [scRNAseq data from Li (2017) (pupa to adult)](https://virtualflybrain.org/reports/VFBseq_00002527) | `VFBseq_00002527` |
+| [scRNAseq data from Xie (2021) (prepupa to adult)](https://virtualflybrain.org/reports/VFBseq_00002581) | `VFBseq_00002581` |
+| [scRNAseq data from Özel (2021) (pupa to adult)](https://virtualflybrain.org/reports/VFBseq_00001758) | `VFBseq_00001758` |
 
 ## Adult
 
-By far VFB's largest holding: 170 of the 210 dataset entities.
+By far VFB's largest holding: 160 of the 203 dataset entities.
 Almost everything here is light-microscopy driver-line and split-GAL4 material from
 FlyLight, VDRC, FlyCircuit and individual labs, plus the per-paper EM connectome
 datasets (FAFB, hemibrain and their derivatives) and the adult-focused Fly Cell Atlas /
-Aging Fly Cell Atlas scRNAseq series. Sex is usually stated for the EM connectomes (FAFB
+Aging Fly Cell Atlas scRNAseq datasets. Sex is usually stated for the EM connectomes (FAFB
 and hemibrain are each a single traced female brain; MANC and Male-CNS are male) and
 usually unstated for driver-line collections, which typically pool both sexes.
 
@@ -197,8 +201,8 @@ grouping below.
 | [FlyCircuit 1.0 - single neurons (Chiang2010)](https://virtualflybrain.org/reports/Chiang2010) | `Chiang2010` |
 | [FlyLight - Gen1 GAL4/LexA collection (exported 2019)](https://virtualflybrain.org/reports/FlyLightGen1Set2019) | `FlyLightGen1Set2019` |
 | [FlyLight - GMR GAL4 collection (Jenett2012)](https://virtualflybrain.org/reports/Jenett2012) | `Jenett2012` |
-| [FlyLight split-GAL4 lines for Lateral Horn](https://virtualflybrain.org/reports/FlyLight2019LateralHorn2019) | `FlyLight2019LateralHorn2019` |
 | [FlyLight split-GAL4 lines for Lateral Horn (LateralHorn2019)](https://virtualflybrain.org/reports/LateralHorn2019) | `LateralHorn2019` |
+| [FlyLight split-GAL4 lines for Lateral Horn](https://virtualflybrain.org/reports/FlyLight2019LateralHorn2019) | `FlyLight2019LateralHorn2019` |
 | [Full brain EM connectome, dense reconstruction (adult female)](https://virtualflybrain.org/reports/Dorkenwald2023) | `Dorkenwald2023` |
 | [Full brain EM, sparse (manually traced) reconstruction (adult female)](https://virtualflybrain.org/reports/Zheng2018) | `Zheng2018` |
 | [GAL4 Split expression patterns from Dolan et al. 2019](https://virtualflybrain.org/reports/Dolan2019) | `Dolan2019` |
@@ -218,11 +222,9 @@ grouping below.
 | [Optic lobe EM connectome, dense reconstruction (adult male)](https://virtualflybrain.org/reports/Nern2024) | `Nern2024` |
 | [Partial brain EM connectome, dense reconstruction (adult female)](https://virtualflybrain.org/reports/Xu2020NeuronsV1point2point1) | `Xu2020NeuronsV1point2point1` |
 | [RNAseq_2020_Davis](https://virtualflybrain.org/reports/PRJNA480794) | `PRJNA480794` |
-| [Single-cell RNA-seq study of adult brain without alcohol exposure](https://flybase.org/reports/FBlc0005420) | `FBlc0005420` |
-| [Single-cell RNA-seq study of adult brain without cocaine exposure](https://flybase.org/reports/FBlc0005515) | `FBlc0005515` |
-| [Single-cell RNA-seq study of the aging brain](https://flybase.org/reports/FBlc0006090) | `FBlc0006090` |
-| [Single-cell RNA-seq study of visual motion-sensing neurons](https://flybase.org/reports/FBlc0006305) | `FBlc0006305` |
-| [Single-nucleus RNA-seq on cells from 30-days old male flies](https://flybase.org/reports/FBlc0006611) | `FBlc0006611` |
+| [scRNAseq data from Baker (2021)](https://virtualflybrain.org/reports/VFBseq_00003265) | `VFBseq_00003265` |
+| [scRNAseq data from Davie (2018)](https://virtualflybrain.org/reports/VFBseq_00000243) | `VFBseq_00000243` |
+| [scRNAseq data from Mokashi (2021)](https://virtualflybrain.org/reports/VFBseq_00003188) | `VFBseq_00003188` |
 | [Split GAL4 lines for dopaminergic neurons, Xie2018](https://virtualflybrain.org/reports/Xie2018) | `Xie2018` |
 | [split-GAL4 lines for  EB neurons (Robie2017)](https://virtualflybrain.org/reports/Robie2017) | `Robie2017` |
 | [split-GAL4 lines for dopaminergic neurons (AsoRubin2016)](https://virtualflybrain.org/reports/AsoRubin2016) | `AsoRubin2016` |
@@ -308,7 +310,7 @@ built around VNC circuits (walking, courtship song, neck motor control).
 | [Adult VNS neuropils (Court2017)](https://virtualflybrain.org/reports/Court2017) | `Court2017` |
 | [Full VNC EM connectome, dense reconstruction (adult male)](https://virtualflybrain.org/reports/Takemura2023) | `Takemura2023` |
 | [Full VNS EM, sparse reconstruction (adult female)](https://virtualflybrain.org/reports/Maniates_Selvin2020) | `Maniates_Selvin2020` |
-| [Single-cell RNA-seq study of adult ventral nerve cords](https://flybase.org/reports/FBlc0005603) | `FBlc0005603` |
+| [scRNAseq data from Allen (2020)](https://virtualflybrain.org/reports/VFBseq_00002728) | `VFBseq_00002728` |
 | [Split-GAL4 lines from Bidaye et al., 2014](https://virtualflybrain.org/reports/SplitBidaye2014) | `SplitBidaye2014` |
 | [Split-GAL4 lines from Bidaye et al., 2020](https://virtualflybrain.org/reports/SplitBidaye2020) | `SplitBidaye2020` |
 | [Split-GAL4 lines from Gorko et al., 2024](https://virtualflybrain.org/reports/SplitGorko2024) | `SplitGorko2024` |
@@ -325,14 +327,14 @@ proprioception and imaging, proboscis motor neurons, and thoracic scRNAseq.
 | [GAL4 lines from McKellar et al., 2020](https://virtualflybrain.org/reports/McKellar2020) | `McKellar2020` |
 | [Images of proboscis muscles from McKellar et al., 2020](https://virtualflybrain.org/reports/HeadMusclesMcKellar2020) | `HeadMusclesMcKellar2020` |
 | [Millimeter-scale imaging of a Drosophila leg at single-neuron resolution](https://virtualflybrain.org/reports/Kuan2020) | `Kuan2020` |
-| [Single-cell RNA-seq study of the adult thorax](https://flybase.org/reports/FBlc0006361) | `FBlc0006361` |
+| [scRNAseq data from Saavedra (2023)](https://virtualflybrain.org/reports/VFBseq_00003198) | `VFBseq_00003198` |
 | [Split-GAL4 lines from Tuthill et al., 2013](https://virtualflybrain.org/reports/SplitTuthill2013) | `SplitTuthill2013` |
 
 ### Full CNS and whole body
 
 Resources that deliberately span more than one region: whole-CNS connectomes (BANC,
 Male-CNS), descending-neuron driver-line sets that by design run from the brain into the
-VNC, and the Fly Cell Atlas / Aging Fly Cell Atlas scRNAseq series, which sample the
+VNC, and the Fly Cell Atlas / Aging Fly Cell Atlas scRNAseq datasets, which sample the
 whole animal rather than the nervous system alone.
 
 | Dataset | Short form |
@@ -340,17 +342,9 @@ whole animal rather than the nervous system alone.
 | [Full CNS EM connectome, dense reconstruction (adult female)](https://virtualflybrain.org/reports/Bates2026) | `Bates2026` |
 | [Full CNS EM connectome, dense reconstruction (adult male)](https://virtualflybrain.org/reports/Berg2025a) | `Berg2025a` |
 | [Neurons involved in courtship and song (Lillvis2018)](https://virtualflybrain.org/reports/Lillvis2018) | `Lillvis2018` |
-| [Single-nucleus RNA-seq on cells from 30-days old female flies](https://flybase.org/reports/FBlc0006424) | `FBlc0006424` |
-| [Single-nucleus RNA-seq on cells from 30-days old flies](https://flybase.org/reports/FBlc0006423) | `FBlc0006423` |
-| [Single-nucleus RNA-seq on cells from 5-days old female and male flies](https://flybase.org/reports/FBlc0004785) | `FBlc0004785` |
-| [Single-nucleus RNA-seq on cells from 5-days old female flies](https://flybase.org/reports/FBlc0003846) | `FBlc0003846` |
-| [Single-nucleus RNA-seq on cells from 5-days old male flies](https://flybase.org/reports/FBlc0004307) | `FBlc0004307` |
-| [Single-nucleus RNA-seq on cells from 50-days old female flies](https://flybase.org/reports/FBlc0006888) | `FBlc0006888` |
-| [Single-nucleus RNA-seq on cells from 50-days old flies](https://flybase.org/reports/FBlc0006887) | `FBlc0006887` |
-| [Single-nucleus RNA-seq on cells from 50-days old male flies](https://flybase.org/reports/FBlc0007071) | `FBlc0007071` |
-| [Single-nucleus RNA-seq on cells from 70-days old female flies](https://flybase.org/reports/FBlc0007348) | `FBlc0007348` |
-| [Single-nucleus RNA-seq on cells from 70-days old flies](https://flybase.org/reports/FBlc0007347) | `FBlc0007347` |
-| [Single-nucleus RNA-seq on cells from 70-days old male flies](https://flybase.org/reports/FBlc0007532) | `FBlc0007532` |
+| [scRNAseq data from Li (2022), 10x](https://virtualflybrain.org/reports/VFBseq_00000538) | `VFBseq_00000538` |
+| [scRNAseq data from Li (2022), Smart-seq2](https://virtualflybrain.org/reports/VFBseq_00000777) | `VFBseq_00000777` |
+| [scRNAseq data from Lu (2023)](https://virtualflybrain.org/reports/VFBseq_00001468) | `VFBseq_00001468` |
 | [split-GAL4 lines for descending neurons (Namiki2018)](https://virtualflybrain.org/reports/FlyLight2019Namiki2018) | `FlyLight2019Namiki2018` |
 | [split-GAL4 lines for descending neurons (Namiki2018)](https://virtualflybrain.org/reports/Namiki2018) | `Namiki2018` |
 | [Split-GAL4 lines from Feng et al., 2020](https://virtualflybrain.org/reports/SplitFeng2020) | `SplitFeng2020` |
