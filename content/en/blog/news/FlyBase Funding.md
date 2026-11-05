@@ -2,7 +2,7 @@
 title: "FlyBase Funding"
 linkTitle: "FlyBase Funding"
 date: 2026-03-01
-lastmod: 2026-08-15
+lastmod: 2026-11-05
 aliases:
   - /blog/2025/06/11/flybase-funding/
 description: >
@@ -48,5 +48,10 @@ gene, allele, transgene and stock records behind VFB's driver-line and reagent q
 and the [scRNAseq datasets](/docs/data/scrnaseq/) VFB integrates come to us through
 FlyBase from the Single Cell Expression Atlas. A FlyBase frozen at its current state
 means new *Drosophila* nervous-system data stops reaching VFB by that route.
+
+**Update (5 November 2026):** VFB now curates its scRNAseq datasets itself, from GEO,
+ArrayExpress and the papers ([vfb-scRNAseq](https://github.com/VirtualFlyBrain/vfb-scRNAseq)),
+so that data no longer depends on FlyBase's SCEA imports. Gene, allele and stock records
+still come from FlyBase.
 
 We remain grateful to Wellcome for their continued funding of Virtual Fly Brain.
