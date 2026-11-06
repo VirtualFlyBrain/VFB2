@@ -20,11 +20,11 @@ These cookies are required for the website and applications to work and cannot b
 
 | Name | Set by | Purpose | Expires |
 |------|--------|---------|---------|
-| `JSESSIONID` | Geppetto (`v2.virtualflybrain.org` and variants) | Maintains your application session in the 3D web client — currently selected neurons, layer visibility and camera state. | End of browser session |
+| `JSESSIONID` | Geppetto (`v3.virtualflybrain.org`, `v2.virtualflybrain.org` and variants) | Maintains your application session in the 3D web client — currently selected neurons, layer visibility and camera state. | End of browser session |
 
 ### Functional cookies {#functional-cookies}
 
-These cookies are set by the 3D web client (`v2.virtualflybrain.org` and variants) only to remember a choice you make. They are not sent to any third party.
+These cookies are set by the 3D web client (`v3.virtualflybrain.org`, `v2.virtualflybrain.org` and variants) only to remember a choice you make. They are not sent to any third party.
 
 | Name | Purpose | Expires |
 |------|---------|---------|

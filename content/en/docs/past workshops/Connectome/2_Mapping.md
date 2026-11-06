@@ -676,7 +676,7 @@ print(vc.get_vfb_link(list(similar_to_EPG6L1['id']) + ['VFB_001012ay'], template
 
 ```
 
-    https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_001012ay&i=VFB_00101567,VFB_jrchjtk6,VFB_jrchjtk8,VFB_jrchjtkb,VFB_jrchjtji
+    https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_001012ay&i=VFB_00101567,VFB_jrchjtk6,VFB_jrchjtk8,VFB_jrchjtkb,VFB_jrchjtji
 
 
 Note: to clean up 'spiky' neurons with obvious alignment issues you can use the navis function [despike](https://navis.readthedocs.io/en/latest/source/tutorials/generated/navis.despike_neuron.html#navis.despike_neuron)

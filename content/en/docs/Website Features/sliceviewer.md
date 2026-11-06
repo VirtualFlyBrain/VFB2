@@ -7,7 +7,7 @@ description: >
    The Slice Viewer displays single slices of the template, showing all selected painted anatomy, neurons and expression patterns.
 weight: 206
 ---
-<link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
+<link rel="stylesheet" href="https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
 
 <i class="far fa-hand-pointer"></i>   Hover to explore, click to list or shift + click to add painted anatomy
     
@@ -22,5 +22,5 @@ weight: 206
 <i class="fa gpt-showplane"></i>   Toggles the slice position on the 3D Viewer on/off
 
 <p align="center">
-  <img src="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/build/slice-viewer.png" alt="Virtual Fly Brain (VFB) Slice Viewer" style="max-width=50%" />
+  <img src="https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto/build/slice-viewer.png" alt="Virtual Fly Brain (VFB) Slice Viewer" style="max-width=50%" />
 </p>

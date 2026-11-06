@@ -7,7 +7,7 @@ description: >
    Term Context displays graphical information on the currently selected term's location or classification.
 weight: 212
 ---
-<link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
+<link rel="stylesheet" href="https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
 
 Select a graph from the **Graphs for** section of the [Term Info](/docs/website-features/terminfo/#ontology-terms-and-graphs) pane to display it in the Term Context pane. Click on any term in the graph to select it and view its Term Info.
 

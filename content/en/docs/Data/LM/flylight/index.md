@@ -17,7 +17,7 @@ FlyLight makes its primary data available via VFB as well as through dedicated w
 
 ## FlyLight Data and Resources
 
-FlyLight data is integrated and indexed on [VFB](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?q=VFB_00101567,AllDatasets) and direct linkouts are provided from the [Term Info tabs](/docs/website-features/terminfo/#references-and-linkouts) to the original images. VFB hosts the original larval images [here](https://raw.larval.flylight.virtualflybrain.org/). External links to the original collections of adult images are provided below:
+FlyLight data is integrated and indexed on [VFB](https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto?q=VFB_00101567,AllDatasets) and direct linkouts are provided from the [Term Info tabs](/docs/website-features/terminfo/#references-and-linkouts) to the original images. VFB hosts the original larval images [here](https://raw.larval.flylight.virtualflybrain.org/). External links to the original collections of adult images are provided below:
 
 [Generation 1 GAL4 expression patterns](https://flweb.janelia.org/)
 
