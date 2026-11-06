@@ -15,7 +15,7 @@ VFB provides access to its data through several APIs and databases. The core dat
 ## User Access Options
 
 **For Regular Users (GUI Access):**
-- **VFB Web Interface**: [https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto) - User-friendly web interface for browsing and querying VFB data
+- **VFB Web Interface**: [https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto](https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto) - User-friendly web interface for browsing and querying VFB data
 
 **For AI Assistants and LLM Agents:**
 - **VFB MCP Server**: [https://vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org) - Model Context Protocol server that lets Claude, GitHub Copilot, and other MCP-compatible assistants explore VFB data through natural language. See the [MCP Server documentation](/docs/apis/mcp/) to connect a client.
@@ -45,4 +45,4 @@ The APIs documented here are intended for:
 - Developers building custom tools or integrations
 - Researchers requiring low-level data access for specialized analyses
 
-For most use cases, we recommend starting with the [VFBconnect library](https://vfb-connect.readthedocs.io/) or the [web interface](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto).
+For most use cases, we recommend starting with the [VFBconnect library](https://vfb-connect.readthedocs.io/) or the [web interface](https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto).

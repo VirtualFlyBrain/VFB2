@@ -10,7 +10,7 @@ The similarity scores are calculated using [NBLAST](/docs/tutorials/apis/nblast/
 
 ## Step 1: Select a Neuron or Expression Pattern
 
-Navigate to the [VFB browser](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto) and select a neuron or expression pattern of interest so it's information is shown in the [Term Info](/docs/website-features/terminfo/) panel.
+Navigate to the [VFB browser](https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto) and select a neuron or expression pattern of interest so it's information is shown in the [Term Info](/docs/website-features/terminfo/) panel.
 
 ## Step 2: Open the 'Find similar...' Menu under the 'Query For' section
 

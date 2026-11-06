@@ -116,7 +116,7 @@ paginate = 100
   description = "VFB is an interactive tool for neurobiologists to explore the detailed neuroanatomy, neuron connectivity and gene expression of Drosophila melanogaster."
   tagline = "Drosophila neuroanatomy, imaging data and connectomics"
   copyright = "VirtualFlyBrain.org"
-  app_url = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00101567&i=VFB_00101567"
+  app_url = "https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00101567&i=VFB_00101567"
   github_repo = "https://github.com/VirtualFlyBrain/VFB2"
   github_branch = "master"
 
@@ -174,7 +174,7 @@ paginate = 100
   weight = 50
 [[menu.nova]]
   name = "Launch VFB"
-  url = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00101567&i=VFB_00101567"
+  url = "https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00101567&i=VFB_00101567"
   weight = 90
   [menu.nova.params]
     cta = true

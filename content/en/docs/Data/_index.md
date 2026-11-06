@@ -48,7 +48,7 @@ original study when you use the data, and cite
 [Court et al. (2023)](https://doi.org/10.3389/fphys.2023.1076533) for VFB itself.
 
 Data can be reached three ways: through the
-[3D browser](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto),
+[3D browser](https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto),
 programmatically through the [APIs](/docs/apis/) — `VFB_connect` for Python, the
 knowledge graph, and the MCP server — and by download of individual images from their
 [Term Info](/docs/website-features/terminfo/#data) pages, in NRRD, Woolz, OBJ and SWC as

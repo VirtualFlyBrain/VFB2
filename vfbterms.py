@@ -31,7 +31,7 @@ version = 9
 
 API_BASE = "https://v3-cached.virtualflybrain.org/get_term_info"
 STATUS_URL = "https://vfbquery.virtualflybrain.org/status"
-VFB_BROWSER_BASE = "https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto"
+VFB_BROWSER_BASE = "https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto"
 
 # Throttle settings — stay under 20 concurrent to keep API reliable
 MAX_ACTIVE_BEFORE_BACKOFF = 20  # Back off when the server reports this many active queries

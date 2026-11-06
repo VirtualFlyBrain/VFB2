@@ -18,7 +18,7 @@ Researchers can identify split drivers for neurons of interest from the `Targeti
 
 <img src="/images/splits_terminfo.png" max-width="50%" alt="Targeting Splits section of cell type Term Info page." >
 
-Similar to [non-split drivers](/docs/concepts/transgene), VFB contains images and curated information about expression patterns for combinations. Each combination gets a standard name in VFB, reflecting the names of the component hemidrivers and any short names for the combination from the literature are added as synonyms (e.g. "[P{VT017411-GAL4.DBD} ∩ P{VT019018-p65.AD} expression pattern](https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFBexp_FBtp0123314FBtp0119891)" has_exact_synonym: SS02256").
+Similar to [non-split drivers](/docs/concepts/transgene), VFB contains images and curated information about expression patterns for combinations. Each combination gets a standard name in VFB, reflecting the names of the component hemidrivers and any short names for the combination from the literature are added as synonyms (e.g. "[P{VT017411-GAL4.DBD} ∩ P{VT019018-p65.AD} expression pattern](https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFBexp_FBtp0123314FBtp0119891)" has_exact_synonym: SS02256").
 
 <img src="/images/split_vfb.png" alt="split expression shown in Virtual Fly Brain (VFB)" max-width="50%" >
 

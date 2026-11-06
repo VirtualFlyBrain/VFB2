@@ -10,7 +10,7 @@ weight: 204
 
  VFB features tens of thousands of 3D images of neurons, clones and expression patterns, registered to standard template brains. Any combination of these can be added to the 3D viewer together.
 
-<link rel="stylesheet" href="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
+<link rel="stylesheet" href="https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto/node_modules/@geppettoengine/geppetto-client/geppetto-client/style/css/gpt-icons.css">
 
 <i class="fa fa-mouse-pointer"></i>   Point and click to select neurons/expression
 
@@ -25,5 +25,5 @@ weight: 204
 <i class="fa gpt-sphere_wireframe-jpg"></i>   The sphere icon toggles wireframes on/off
 
 <p align="center">
-  <img src="https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto/build/3d-viewer.png" alt="Virtual Fly Brain (VFB) 3D Viewer" style="max-width=50%" />
+  <img src="https://v3.virtualflybrain.org/org.geppetto.frontend/geppetto/build/3d-viewer.png" alt="Virtual Fly Brain (VFB) 3D Viewer" style="max-width=50%" />
 </p>
