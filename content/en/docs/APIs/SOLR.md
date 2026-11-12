@@ -186,7 +186,7 @@ VFB's autocomplete functionality uses this SOLR API with specific parameters opt
 
 ### Autocomplete Query
 ```http
-GET /solr/vfb_olympiad/select?q=antennal&fl=short_form,label,synonym,id,facets_annotation,unique_facets&start=0&rows=150&wt=json&pf=true&fq=(short_form:VFB*%20OR%20short_form:FB*%20OR%20facets_annotation:DataSet%20OR%20facets_annotation:pub)%20AND%20NOT%20short_form:VFBc_*&bq=short_form:VFBexp*^10.0%20short_form:VFB*^100.0%20short_form:FBbt*^100.0%20short_form:FBbt_00003982^2%20facets_annotation:Deprecated^0.001%20facets_annotation:DataSet^500.0%20facets_annotation:pub^100.0
+GET /solr/ontology/select?q=antennal&fl=short_form,label,synonym,id,facets_annotation,unique_facets&start=0&rows=150&wt=json&pf=true&fq=(short_form:VFB*%20OR%20short_form:FB*%20OR%20facets_annotation:DataSet%20OR%20facets_annotation:pub)%20AND%20NOT%20short_form:VFBc_*&bq=short_form:VFBexp*^10.0%20short_form:VFB*^100.0%20short_form:FBbt*^100.0%20short_form:FBbt_00003982^2%20facets_annotation:Deprecated^0.001%20facets_annotation:DataSet^500.0%20facets_annotation:pub^100.0
 ```
 
 ## Integration with VFB

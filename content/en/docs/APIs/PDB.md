@@ -17,9 +17,11 @@ You can explore the PDB interactively using the Neo4j browser:
 
 [https://pdb.virtualflybrain.org/browser/](https://pdb.virtualflybrain.org/browser/)
 
+The Browser, the HTTP API (`https://pdb.virtualflybrain.org/db/neo4j/tx/commit`) and Bolt (`neo4j+s://bolt.pdb.virtualflybrain.org:443`, over the standard HTTPS port) are all served from `pdb.virtualflybrain.org`. The database is read-only and needs no account: anonymous reads work, and clients that send the public `neo4j` / `vfb` credentials work too. The older `pdb.v4` and `pdb.k8s` names are retired; use `pdb.virtualflybrain.org`.
+
 ## Data Structure Overview
 
-The PDB contains over 1.1 million nodes and 43 million relationships, representing a comprehensive knowledge graph of Drosophila neuroanatomy. Below is an overview of the available node labels, relationship types, and property keys.
+The PDB contains over 1.7 million nodes and 100 million relationships, representing a comprehensive knowledge graph of Drosophila neuroanatomy. Below is an overview of the available node labels, relationship types, and property keys.
 
 ### Node Labels (Gross Classifications)
 
