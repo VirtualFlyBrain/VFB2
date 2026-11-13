@@ -12,7 +12,7 @@ description: >
 VFBquery is the query service behind most of what the VFB website itself does — the term information panel, the search box, the hierarchy browser, connectivity queries, stock lookups — exposed as a plain JSON HTTP API anyone can call directly. It's the same recommended entry point as the [CATMAID pass-through](/docs/apis/catmaid/), which is one part of this service:
 
 ```
-https://v3-cached.virtualflybrain.org/
+https://api.virtualflybrain.org/
 ```
 
 Every endpoint is a read-only GET (the CATMAID pass-through also accepts POST — see its own page) returning JSON, with no API key or account needed.
@@ -21,8 +21,8 @@ Every endpoint is a read-only GET (the CATMAID pass-through also accepts POST �
 
 As with the CATMAID pass-through, the endpoint list changes over time, so it isn't duplicated in full here. The authoritative, always-current reference is the service itself:
 
-- **[https://v3-cached.virtualflybrain.org/](https://v3-cached.virtualflybrain.org/)** — browsable docs for every endpoint, with a "Run" button to try a call directly.
-- **`https://v3-cached.virtualflybrain.org/docs.json`** — the same catalogue as machine-readable JSON.
+- **[https://api.virtualflybrain.org/](https://api.virtualflybrain.org/)** — browsable docs for every endpoint, with a "Run" button to try a call directly.
+- **`https://api.virtualflybrain.org/docs.json`** — the same catalogue as machine-readable JSON.
 
 What follows is a guided tour of the main groups of endpoints, to help you find the right one.
 
@@ -62,4 +62,4 @@ What follows is a guided tour of the main groups of endpoints, to help you find 
 
 ## force_refresh and caching
 
-`v3-cached.virtualflybrain.org` caches responses for speed. Most endpoints that reflect fast-changing data accept `force_refresh=true` to bypass the cache for that one call — see the individual endpoint's parameters on the [interactive docs page](https://v3-cached.virtualflybrain.org/).
+`api.virtualflybrain.org` caches responses for speed. It is the same service as the older address `v3-cached.virtualflybrain.org`, which keeps working for existing scripts. Most endpoints that reflect fast-changing data accept `force_refresh=true` to bypass the cache for that one call — see the individual endpoint's parameters on the [interactive docs page](https://api.virtualflybrain.org/).
