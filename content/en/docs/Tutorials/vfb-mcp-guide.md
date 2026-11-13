@@ -19,7 +19,7 @@ The Model Context Protocol is a standard that allows LLMs to interact with exter
 
 ## Accessing the Tool
 
-The VFB MCP tool is available at: **[vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/)**
+The VFB MCP tool is available at: **[mcp.virtualflybrain.org](https://mcp.virtualflybrain.org/)**
 
 That page always states the currently deployed version and the
 full client setup instructions, including GitHub Copilot, VS Code and Gemini, so check it there
@@ -32,7 +32,7 @@ rather than here if the two disagree.
 The easiest way to use VFB3-MCP is through our hosted service. This requires no installation or setup on your machine.
 
 The server speaks MCP over **streamable HTTP** at
-`https://vfb3-mcp.virtualflybrain.org`. There is no API key and no account to create. Every client
+`https://mcp.virtualflybrain.org`. There is no API key and no account to create. Every client
 below needs the same two facts — that URL and the HTTP transport — so if your client is not listed,
 those are what to give it.
 
@@ -43,7 +43,7 @@ configuration, and follow the client's own current documentation if the steps be
 ##### Claude Desktop
 
 Add it as a custom connector: **Settings → Connectors → Add custom connector**, then give the name
-`virtual-fly-brain` and the URL `https://vfb3-mcp.virtualflybrain.org`. Remote MCP servers are added
+`virtual-fly-brain` and the URL `https://mcp.virtualflybrain.org`. Remote MCP servers are added
 through Connectors; `claude_desktop_config.json` is for locally-run servers and is not the route for
 this one.
 
@@ -52,7 +52,7 @@ this one.
 One command, from any directory:
 
 ```bash
-claude mcp add --transport http virtual-fly-brain https://vfb3-mcp.virtualflybrain.org
+claude mcp add --transport http virtual-fly-brain https://mcp.virtualflybrain.org
 ```
 
 Add `--scope user` to make it available in every project rather than the current one. Check it
@@ -69,7 +69,7 @@ URL. This writes an `mcp.json` for you:
   "servers": {
     "virtual-fly-brain": {
       "type": "http",
-      "url": "https://vfb3-mcp.virtualflybrain.org"
+      "url": "https://mcp.virtualflybrain.org"
     }
   }
 }
@@ -85,7 +85,7 @@ Most clients take a block of this shape. Consult your client's documentation for
   "mcpServers": {
     "virtual-fly-brain": {
       "type": "http",
-      "url": "https://vfb3-mcp.virtualflybrain.org"
+      "url": "https://mcp.virtualflybrain.org"
     }
   }
 }
@@ -139,7 +139,7 @@ If you prefer to run the MCP server locally, see the [VFB3-MCP repository README
 The server exposes a set of tools covering search, term lookup, hierarchy, connectivity, name
 resolution and the precomputed queries behind the VFB website. The tools below are those documented here at the
 time of writing; the server's own
-page at [vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/) lists the full set as
+page at [mcp.virtualflybrain.org](https://mcp.virtualflybrain.org/) lists the full set as
 deployed, which is the authoritative source if this page has fallen behind.
 
 Connectivity is worth calling out because the examples further down rely on it: `query_connectivity`
@@ -389,7 +389,7 @@ VFB terms use standardized identifiers:
 
 ## Next Steps
 
-- **Explore the tool:** Visit [vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/)
+- **Explore the tool:** Visit [mcp.virtualflybrain.org](https://mcp.virtualflybrain.org/)
 - **Endpoint reference:** See the [MCP Server API page](/docs/apis/mcp/) for the endpoint, transport and source repository at a glance
 - **Read more about NBLAST:** See our [NBLAST concepts page](/docs/concepts/nblast)
 - **Learn about VFB APIs:** Check our [API overview](/docs/tutorials/apis/vfb_api_overview)

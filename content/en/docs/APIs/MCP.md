@@ -17,16 +17,18 @@ This page is the endpoint reference. For a worked guide to connecting a client a
 
 | | |
 |---|---|
-| **URL** | `https://vfb3-mcp.virtualflybrain.org` |
+| **URL** | `https://mcp.virtualflybrain.org` |
 | **Transport** | Streamable HTTP |
 | **Authentication** | None — no API key or account |
 
-The hosted service page at [vfb3-mcp.virtualflybrain.org](https://vfb3-mcp.virtualflybrain.org/) always states the deployed version and the current, authoritative client setup instructions.
+The older address `https://vfb3-mcp.virtualflybrain.org` is the same server and keeps working, so existing client configurations need no change.
+
+The hosted service page at [mcp.virtualflybrain.org](https://mcp.virtualflybrain.org/) always states the deployed version and the current, authoritative client setup instructions.
 
 ## Quick Connect (Claude Code)
 
 ```bash
-claude mcp add --transport http virtual-fly-brain https://vfb3-mcp.virtualflybrain.org
+claude mcp add --transport http virtual-fly-brain https://mcp.virtualflybrain.org
 ```
 
 Add `--scope user` to make it available in every project rather than just the current directory. For every other client — Claude Desktop, VS Code, GitHub Copilot, Gemini and others — see the [VFB MCP Tool Guide](/docs/tutorials/vfb-mcp-guide/).
