@@ -3,7 +3,7 @@ title: "Introducing the VFB Model Context Protocol (MCP) Tool"
 linkTitle: "VFB MCP Tool Launch"
 date: 2026-06-21
 description: >
-    Explore Virtual Fly Brain data directly through your favorite LLM with the new VFB Model Context Protocol (MCP) tool - now available at vfb3-mcp.virtualflybrain.org
+    Explore Virtual Fly Brain data directly through your favorite LLM with the new VFB Model Context Protocol (MCP) tool - now available at mcp.virtualflybrain.org
 ---
 
 We're excited to announce the launch of the **Virtual Fly Brain Model Context Protocol (MCP) Tool** — a powerful new way to explore VFB data through Large Language Models (LLMs) like Claude, providing natural language access to VFB's comprehensive neuroanatomical database.
@@ -38,7 +38,7 @@ The tool provides seamless access to VFB's databases through a simple interface.
 
 ## Getting Started
 
-Visit the **[VFB MCP Tool](https://vfb3-mcp.virtualflybrain.org/)** to begin exploring. The hosted
+Visit the **[VFB MCP Tool](https://mcp.virtualflybrain.org/)** to begin exploring. The hosted
 service is currently **v1.11.0**; that page always states the deployed version and the current setup
 instructions for each client. You can:
 
