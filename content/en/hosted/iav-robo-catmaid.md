@@ -59,12 +59,12 @@ This CATMAID instance enables:
 ### Recommended: VFB pass-through API
 
 For most uses, the fastest and simplest way to pull data out of this instance is VFB's
-CATMAID pass-through, `v3-cached.virtualflybrain.org` — it takes VFB ids as well as native
+CATMAID pass-through, `api.virtualflybrain.org` — it takes VFB ids as well as native
 skeleton ids (skids), needs no token or CSRF cookie, and is documented interactively at
-[v3-cached.virtualflybrain.org](https://v3-cached.virtualflybrain.org/):
+[api.virtualflybrain.org](https://api.virtualflybrain.org/):
 
 ```bash
-curl "https://v3-cached.virtualflybrain.org/catmaid/iav-robo/annotations_for_skeletons?ids=16"
+curl "https://api.virtualflybrain.org/catmaid/iav-robo/annotations_for_skeletons?ids=16"
 ```
 
 See the [CATMAID API](/docs/apis/catmaid/) page for the full command list, VFB-id/skid

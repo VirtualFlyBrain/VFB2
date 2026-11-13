@@ -12,7 +12,7 @@ description: >
 VFB hosts several [CATMAID](https://catmaid.readthedocs.io/) instances (FAFB, FANC, L1EM, Larva1099, and others — see [Hosted Sites](/hosted/)). Each one has its own native CATMAID API, but for most uses **the recommended way to pull data out of any of them is VFB's CATMAID pass-through**, one part of the wider [VFBquery API](/docs/apis/vfbquery/), served at:
 
 ```
-https://v3-cached.virtualflybrain.org/catmaid/{instance}/{command}
+https://api.virtualflybrain.org/catmaid/{instance}/{command}
 ```
 
 It sits in front of the same instances and forwards to their native API, but resolves two problems that come up as soon as you try to use CATMAID data alongside the rest of VFB: it takes VFB ids directly, and it needs no CSRF cookie, referrer or per-instance token to read data. If you already have a `VFB_...` id from a term-info page or a VFBconnect query, you can hand it straight to the pass-through — no separate lookup step to find the matching skeleton id first.
@@ -30,20 +30,20 @@ It sits in front of the same instances and forwards to their native API, but res
 
 The command catalogue changes as commands are added, so it isn't duplicated here. The authoritative, always-current reference is the interactive docs page itself:
 
-- **[https://v3-cached.virtualflybrain.org/](https://v3-cached.virtualflybrain.org/)** — browsable docs for every command, with a "Run" button to try a call directly.
-- **`https://v3-cached.virtualflybrain.org/docs.json`** — the same catalogue as machine-readable JSON, for generating clients or checking parameters programmatically.
+- **[https://api.virtualflybrain.org/](https://api.virtualflybrain.org/)** — browsable docs for every command, with a "Run" button to try a call directly.
+- **`https://api.virtualflybrain.org/docs.json`** — the same catalogue as machine-readable JSON, for generating clients or checking parameters programmatically.
 
 ## Basic usage
 
 ```bash
 # Native skid
-curl "https://v3-cached.virtualflybrain.org/catmaid/fafb/annotations_for_skeletons?ids=16"
+curl "https://api.virtualflybrain.org/catmaid/fafb/annotations_for_skeletons?ids=16"
 
 # VFB id instead — resolved to a skid internally before the call is forwarded
-curl "https://v3-cached.virtualflybrain.org/catmaid/fafb/annotations_for_skeletons?ids=VFB_001011rj"
+curl "https://api.virtualflybrain.org/catmaid/fafb/annotations_for_skeletons?ids=VFB_001011rj"
 
 # A long id list, or a mix of VFB ids and skids, goes in the POST body instead of the query string
-curl -X POST "https://v3-cached.virtualflybrain.org/catmaid/fafb/annotations_for_skeletons" \
+curl -X POST "https://api.virtualflybrain.org/catmaid/fafb/annotations_for_skeletons" \
   -H "Content-Type: application/json" \
   -d '{"ids": ["VFB_001011rj", 16]}'
 ```
