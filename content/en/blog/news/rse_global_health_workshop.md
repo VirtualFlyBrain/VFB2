@@ -12,6 +12,10 @@ On 20 October 2026 the [Royal Society of Edinburgh](https://rse.org.uk) (RSE), S
 
 Virtual Fly Brain (VFB) took part in the third session, 'Small Brains, Big Threats: Connectomics and the Insects Shaping Global Health', chaired by David Price (University of Edinburgh). Douglas Armstrong, VFB's Principal Investigator at Edinburgh, spoke alongside Liz Bandason (Lilongwe University of Agriculture and Natural Resources), Andrea Adden (University of Bristol) and Kit Longden (University of Cambridge).
 
+![The session panel seated at a table on stage at the Royal Society of Edinburgh, with the chair at the lectern and VFB's closing slide of QR codes on the screen behind them](/images/rse2026/small-brains-big-threats-panel.jpg)
+
+*Questions to the 'Small Brains, Big Threats' panel at the RSE, with VFB's closing slide on screen.*
+
 Most of the room worked outside fly neuroscience, so the talk set out what a connectome is and why a fly brain is worth mapping before it turned to VFB itself. Rather than slides of text, we built the talk as a series of short movies made from VFB data: neurons that differ between male and female brains, shown in 3D (the movie above), and how VFB links a neuron traced in an electron microscopy connectome to the driver lines a lab can order to study it.
 
 The worked example was carbon dioxide. Flies detect it with receptor neurons on the antenna, and the connectomes on VFB let you follow that signal into the brain, connection by connection. Carbon dioxide is also one of the cues a mosquito uses to find a person, which is where a fly circuit meets the session's theme.
