@@ -54,8 +54,6 @@ We planned the lecture by reading the programme and asking, for every lecture an
 | Thursday | 3D printing and brain dissection practicals | Template brain and brain region meshes download as files that print, and the painted regions are an orientation guide for the dissection. |
 | Friday | From flies to brain health | Dopaminergic and mushroom body circuits as the readouts for disease models, with FlyBase links from fly genes to their human orthologues. |
 
-For the sessions on fly handling and on PCR we had nothing to offer beyond a link to a gene page, and we said so. A resource is easier to trust when it is clear about what it is not for.
-
 The match was closest where the school came back to our worked example. The students' group project in the omics practicals was 'The fly brain in five models of Parkinson's disease' ([course materials](https://github.com/nkempynck/isn-school-2026)), which starts from the same dopaminergic neurons we had used for every stop of the tour.
 
 ## Try it yourself
