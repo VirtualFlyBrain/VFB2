@@ -33,7 +33,7 @@ Each entity in VFB has a unique `Name`. The `Name` field also shows semantic tag
 
 <i class="far fa-hand-pointer"></i>   Click on thumbnails to add an image to the 3D viewer
 
-[Queries](/docs/website-features/search_query/#queries-from-term-info) relevant to the selected entity can find related entities and other relevant information. Some EM neurons also have an option to add the neuron to the [Circuit Browser](/docs/website-features/circuitbrowser) tool to explore connectivity data. Queries are specialised for different types of entity, for example, the Term Info page for a neuronal cell type may have queries to find images, transgene expression and transcriptomics data, whereas an EM image may have queries to find connectivity data.
+[Queries](/docs/website-features/search_query/#queries-from-term-info) relevant to the selected entity can find related entities and other relevant information. EM neurons with connectivity data, and neuron types, also have an option to add them to the [Circuit Browser](/docs/website-features/circuitbrowser) tool to find synaptic paths between them. Queries are specialised for different types of entity, for example, the Term Info page for a neuronal cell type may have queries to find images, transgene expression and transcriptomics data, whereas an EM image may have queries to find connectivity data.
 
 <i class="fab fa-quora"></i>   Run term related [queries](/docs/website-features/search_query/#queries-from-term-info)
 
