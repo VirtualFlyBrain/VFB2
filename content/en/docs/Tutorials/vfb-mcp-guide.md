@@ -144,8 +144,9 @@ deployed, which is the authoritative source if this page has fallen behind.
 
 Connectivity is worth calling out because the examples further down rely on it: `query_connectivity`
 answers "what connects to this neuron" directly, and `list_connectome_datasets` gives the dataset
-symbols you need to include or exclude a connectome from that query. Ask your assistant in plain
-language and it will pick the tool; you do not need to name them.
+symbols you need to include or exclude a connectome from that query. For indirect routes,
+`find_circuit_paths` finds the strongest multi-step paths between two neuron types or neurons. Ask
+your assistant in plain language and it will pick the tool; you do not need to name them.
 
 ### 1. **Term Information Queries** (`get_term_info`)
 
@@ -238,6 +239,23 @@ Resolve a split-GAL4 combination name to its FBco ID and the component hemidrive
 "What are the components of SS04495?"
 "What is MB002B?"
 ```
+
+### 8. **Circuit Paths** (`find_circuit_paths`)
+
+Find the strongest multi-step synaptic paths from one neuron type (or single neuron) to another,
+searched separately in each connectome. It is the search behind the
+[Circuit Browser](/docs/website-features/circuitbrowser/), which explains how paths are scored and
+how neuron types are counted. Paths found in more than one connectome are listed as the most robust.
+
+**Example Query:**
+```text
+"How does LC12 reach the giant fiber neuron?"
+"What routes lead from DA1 olfactory receptor neurons to MBON01?"
+```
+
+⚠️ Scores compare paths within one connectome; they are not absolute strengths. Asking for the
+individual neurons along each path between neuron types is much slower (tens of seconds), so the MCP
+server allows fewer paths (up to 5) when they are asked for.
 
 ## Example Use Cases
 

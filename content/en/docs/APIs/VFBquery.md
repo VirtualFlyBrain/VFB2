@@ -43,6 +43,8 @@ What follows is a guided tour of the main groups of endpoints, to help you find 
 
 - **`/list_connectome_datasets`** — the connectome datasets `/query_connectivity` can draw on.
 - **`/query_connectivity?upstream_type=LPLC2&downstream_type=giant fiber neuron`** — synaptic connectivity from one neuron type (or any subclass) to another, summed across the connectomes. Types can be given as labels, synonyms or FBbt ids.
+- **`/circuit_paths?source=FBbt_00100484&target=FBbt_00004020&k=5`** — the strongest multi-step paths from one neuron type or neuron to another (here LC12 to the giant fiber neuron), found separately in each connectome. Ends are FBbt class ids or VFB neuron ids, comma-separated for several. This is the search behind the [Circuit Browser](/docs/website-features/circuitbrowser/), which explains how paths are scored.
+- **`/circuit_paths/terms`** — the neuron types that have neurons in the circuit graphs, i.e. the types a `/circuit_paths` search can start or end at.
 
 ## FlyBase stocks and combinations
 
